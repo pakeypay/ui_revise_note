@@ -1,0 +1,498 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2026-11-12 · 修改前后对比（共 23 项总清单）</title>
+<style>body{margin:0;background:#f5f6f8;color:#1d2129;font:14px/1.7 -apple-system,'PingFang SC',sans-serif}header{background:#1d5b97;color:white;padding:24px 36px}h1{font-size:22px;margin:0}main{max-width:1400px;margin:24px auto 72px;padding:0 24px}.pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}section{background:white;border:1px solid #e5e9f0;border-radius:12px;padding:24px}section[id]{scroll-margin-top:20px}h2{font-size:18px;margin-top:0}img{width:100%}button,a{cursor:pointer}a{color:#1d5b97}button{font:inherit;border:1px solid #d9dfe7;border-radius:6px;background:white;padding:6px 16px;color:#1d5b97}.primary{background:#1d5b97;color:white;border-color:#1d5b97}.field{border:1px solid #d9dfe7;border-radius:6px;padding:7px 12px;color:#86909c}.menu{box-shadow:0 5px 16px #0002;border:1px solid #e5e9f0;border-radius:8px;margin-top:5px;padding:6px}.option{padding:8px 12px}.selected{background:#e8f3ff;color:#1d5b97;border-radius:5px}.create{border:0;border-top:1px solid #e5e9f0;border-radius:0;width:100%;text-align:left;padding:12px}.hint{color:#6b778c}.demo{background:#f7f8fa;padding:12px;margin:20px 0}dialog{border:0;border-radius:12px;padding:24px;width:min(460px,80vw);box-shadow:0 12px 48px #0003}dialog::backdrop{background:#0006}.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:24px}.emoji-audit-summary{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 18px}.emoji-audit-badge{background:#f2f6fb;border:1px solid #d6e4f5;border-radius:8px;padding:8px 14px;font-size:13px;color:#1d5b97}.emoji-audit-table{width:100%;border-collapse:collapse;margin:10px 0 22px;font-size:13px}.emoji-audit-table th,.emoji-audit-table td{border:1px solid #e5e9f0;padding:9px 12px;text-align:left;vertical-align:top}.emoji-audit-table th{background:#f7f8fa;color:#1d2129;font-weight:600}.emoji-audit-table code{background:#f2f3f5;padding:2px 6px;border-radius:4px;font-size:12px;color:#1d2129}.index-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:12px 0 14px}.index-chips{display:flex;flex-wrap:wrap;gap:8px}.index-chip{border:1px solid #d9dfe7;border-radius:999px;background:#fff;padding:4px 12px;font-size:12px;color:#4e5969}.index-chip.active{background:#1d5b97;border-color:#1d5b97;color:#fff}.index-search{border:1px solid #d9dfe7;border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;min-width:260px}.index-table tbody tr:hover{background:#f9fbff}.index-title-link{font-weight:600;text-decoration:none}.index-title-link:hover{text-decoration:underline}.scope-tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:#eef4fb;color:#1d5b97;white-space:nowrap}.back-to-index{position:fixed;right:24px;bottom:24px;z-index:50;background:#1d5b97;color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;text-decoration:none;box-shadow:0 6px 18px rgba(29,91,151,.28)}.back-to-index:hover{background:#164a7c}@media(max-width:850px){.pair{grid-template-columns:1fr}.index-search{width:100%}}</style>
+<header><h1>2026-11-12 · 修改前后对比</h1><div style="margin-top:4px;opacity:.92">共 23 项修改与核查记录 · 点击顶部总清单锚点快速跳转至对应详情</div></header><main><section id="change-index">
+  <h2>修改记录总清单（索引）</h2>
+  <p style="margin:0 0 10px;color:#4e5969">汇总本页全部 23 项修改、核查结论与整改记录（含图文对比、交互示意与全站排查清单），点击任意条目即可跳转至下方对应区块。</p>
+  <div class="emoji-audit-summary">
+    <div class="emoji-audit-badge"><strong>当前显示 / 总计</strong>：<span id="index-visible-count">23</span> / 23 项</div>
+    <div class="emoji-audit-badge"><strong>图文对比与核查留痕</strong>：21 项（共 89 张截图）</div>
+    <div class="emoji-audit-badge"><strong>全项目专项清单</strong>：2 项（禁用 Emoji 清理 + 仅表头吸顶改造）</div>
+  </div>
+  <div class="index-toolbar">
+    <div class="index-chips" id="index-scope-chips">
+      <button type="button" class="index-chip active" data-scope="all">全部（23）</button>
+      <button type="button" class="index-chip" data-scope="PC端">PC端（10）</button>
+      <button type="button" class="index-chip" data-scope="双端">双端（7）</button>
+      <button type="button" class="index-chip" data-scope="移动端">移动端（4）</button>
+      <button type="button" class="index-chip" data-scope="全项目">全项目（2）</button>
+    </div>
+    <input type="search" id="index-search" class="index-search" placeholder="筛选模块、端别、文件或关键词…">
+  </div>
+  <table class="emoji-audit-table index-table">
+    <thead>
+      <tr>
+        <th style="width:52px">序号</th>
+        <th style="width:32%">模块与改动主题（点击跳转）</th>
+        <th style="width:76px">端别</th>
+        <th style="width:26%">定位 / 触发路径</th>
+        <th>涉及文件与留痕形式</th>
+      </tr>
+    </thead>
+    <tbody id="change-index-body">
+      <tr data-scope="PC端"><td>01</td><td><a class="index-title-link" href="#sec-01">轮转任务与考核 · 新建病种入口</a></td><td><span class="scope-tag">PC端</span></td><td>轮转任务和考核 → 各科室培养指标 → 病种要求 → 病种下拉列表</td><td><code>pages/轮转任务和考核/page.js</code> · 截图（1 张）+ 交互示意</td></tr>
+      <tr data-scope="PC端"><td>02</td><td><a class="index-title-link" href="#sec-02">补充修改 · 技能「去系统设置配置」</a></td><td><span class="scope-tag">PC端</span></td><td>轮转任务和考核 → 各科室培养指标 → 技能 / 手术配置入口</td><td><code>pages/轮转任务和考核/page.js</code> · 截图（1 张）+ 交互示意</td></tr>
+      <tr data-scope="PC端"><td>03</td><td><a class="index-title-link" href="#sec-03">发放课程证书 · 教师端 / 管理员端</a></td><td><span class="scope-tag">PC端</span></td><td>技能中心课程 → 发放课程证书（规则可编辑与状态标签）</td><td>规则与状态标签交互示意 + 图文对比（2 张）</td></tr>
+      <tr data-scope="双端"><td>04</td><td><a class="index-title-link" href="#sec-04">课程评价与反馈 · 复用原移动端教学分析</a></td><td><span class="scope-tag">双端</span></td><td>PC 课程评价与反馈 / 移动端第三个 Tab</td><td><code>shared/data/teaching-feedback-data.js</code> · 截图（1 张）+ 实时数据</td></tr>
+      <tr data-scope="PC端"><td>05</td><td><a class="index-title-link" href="#sec-05">临床教学活动 · 发起签到弹窗（二维码为主、签到码为辅 + 双阶段自动切换）</a></td><td><span class="scope-tag">PC端</span></td><td>科室管理员 / 教师端 → 临床教学活动 → 发起签到</td><td><code>pages/教学活动实施/page.js</code>、<code>page.css</code> · 图文对比（2 张）</td></tr>
+      <tr data-scope="PC端"><td>06</td><td><a class="index-title-link" href="#sec-06">技能中心课程 · 发起签到弹窗（活动开始 + 活动结束双签到页签与轮次切换）</a></td><td><span class="scope-tag">PC端</span></td><td>教师端 / 管理员端 → 技能中心课程 → 课程详情 → 发起签到</td><td><code>pages/技能中心课程/views/implementation.js</code>、<code>implementation.css</code>、<code>pages/课程实施/page.js</code> · 图文对比（3 张）</td></tr>
+      <tr data-scope="PC端"><td>07</td><td><a class="index-title-link" href="#sec-07">技能中心课程（课程实施） · 课程评价与反馈页签恢复（含往期对比分析与 AI 改进建议）</a></td><td><span class="scope-tag">PC端</span></td><td>教师端 / 管理员端 → 技能中心课程 → 课程评价与反馈</td><td><code>shared/js/teacher-eval.js</code>、<code>course-dev-seed.js</code>、<code>course-impl-demo.js</code>、<code>course-insight.js</code> · 图文对比（4 张）</td></tr>
+      <tr data-scope="PC端"><td>08</td><td><a class="index-title-link" href="#sec-08">线上课程 · 视图切换按钮样式统一（对齐技能中心课程）</a></td><td><span class="scope-tag">PC端</span></td><td>程主任 / 管理员 / 教师 / 学员 → 线上课程 → 筛选栏右侧展示方式切换</td><td><code>shared/js/online-course-hub.js</code>、3 个共享 CSS · 图文对比（3 张）</td></tr>
+      <tr data-scope="PC端"><td>09</td><td><a class="index-title-link" href="#sec-09">临床教学活动 · 编辑/发起教学活动（教学资料移入卡片 01 底部 + 千问风格重构）</a></td><td><span class="scope-tag">PC端</span></td><td>科室管理员 / 教师端 → 临床教学活动 → 编辑教学活动 / 单次发起</td><td><code>pages/教学活动实施/page.js</code>、<code>page.css</code> · 图文对比（4 张）</td></tr>
+      <tr data-scope="全项目"><td>10</td><td><a class="index-title-link" href="#sec-10">全项目禁用 Emoji 清理清单（PC 端 + 移动端）</a></td><td><span class="scope-tag">全项目</span></td><td>根目录 <code>*.html</code>、<code>pages/</code>、<code>shared/</code>、<code>移动端/</code>、<code>course-management-api/</code></td><td>30 个前端文件清理汇总清单（22 个 JS 语法校验通过）</td></tr>
+      <tr data-scope="PC端"><td>11</td><td><a class="index-title-link" href="#sec-11">临床教学活动 · 操作列收口、统一两态签到弹窗、文案统一与编辑二次确认</a></td><td><span class="scope-tag">PC端</span></td><td>科室管理员 / 教师端 → 临床教学活动 → 列表操作 / 编辑保存</td><td><code>pages/教学活动实施/page.js</code>、<code>page.css</code>、<code>implementation.js</code>、<code>课程实施/page.js</code> · 图文对比（7 张）</td></tr>
+      <tr data-scope="PC端"><td>12</td><td><a class="index-title-link" href="#sec-12">临床教学活动 · 教师端与科室管理员端列表样式对齐</a></td><td><span class="scope-tag">PC端</span></td><td>教师端 vs 科室管理员 → 临床教学活动列表</td><td><code>pages/教学活动实施/page.js</code>、<code>page.css</code> · 图文对比（3 张）</td></tr>
+      <tr data-scope="双端"><td>13</td><td><a class="index-title-link" href="#sec-13">移动端线上课程与详情 · 竞品级双视图重构 + 真实视频/弹题/建课 + PC双端同源SSOT同步</a></td><td><span class="scope-tag">双端</span></td><td>移动端（学员/教师/科室管理员）→ 线上课程列表与详情 ↔ PC 端</td><td><code>online-course-mobile-ssot.js</code>、<code>tdesign-app.js/css</code> 等 11 个文件 · 图文对比（10 张）</td></tr>
+      <tr data-scope="移动端"><td>14</td><td><a class="index-title-link" href="#sec-14">移动端线上课程 · 顶部三大新建按钮收口为右下角复合悬浮按钮（FAB）</a></td><td><span class="scope-tag">移动端</span></td><td>移动端教师端（教学 → 线上课程）/ 科室管理员端</td><td><code>移动端/shared/tdesign-app.js</code>、<code>tdesign-app.css</code> · 图文对比（3 张）</td></tr>
+      <tr data-scope="双端"><td>15</td><td><a class="index-title-link" href="#sec-15">技能中心课程详情 PC 与移动端对齐 · 同伴互评去掉邀请直接选人及真实表单项读取修复</a></td><td><span class="scope-tag">双端</span></td><td>PC 教师/学员端 &amp; 移动端教师/学员端 → 技能中心课程详情</td><td><code>course-session-tasks.js</code>、<code>course-dev-seed.js</code>、<code>course-eval-composer.js</code>、<code>tdesign-app.js</code> · 图文对比（7 张）</td></tr>
+      <tr data-scope="双端"><td>16</td><td><a class="index-title-link" href="#sec-16">临床思维课程（双端教师端 &amp; 移动端学员端）· 补齐第 4 页签并统一按 SSOT 收口为 2 门已开课程（儿科肺炎 / 儿科腹泻）</a></td><td><span class="scope-tag">双端</span></td><td>移动端/PC 教师端 → 教学/我的授课 &amp; 移动端学员端 → 学习/服务 ↔ SSOT</td><td><code>clinical-thinking-training.js</code>、<code>pages/临床思维课程/page.js</code>、<code>tdesign-app.js</code>、<code>teacher/student/department-manager-tdesign.html</code>、<code>nav-data.js</code> · 图文对比（9 张）</td></tr>
+      <tr data-scope="全项目"><td>17</td><td><a class="index-title-link" href="#sticky-table-header-inventory">全站列表「仅表头吸顶」改造清单（三批次汇总 · 共 24 个列表页/子列表 + 6 个共享底座文件）</a></td><td><span class="scope-tag">全项目</span></td><td>PC 端全站主页面列表（跳过空间工作台、轮转安排、轮转任务和考核）</td><td>6 个共享底座 + 24 个列表页改造汇总清单</td></tr>
+      <tr data-scope="移动端"><td>18</td><td><a class="index-title-link" href="#sec-18">移动端首页 · 视觉质感恢复、多色语义重构与常用服务自定义配置</a></td><td><span class="scope-tag">移动端</span></td><td>移动端（教师/学员/科室管理员）→ 首页 &amp; 机构服务大厅</td><td><code>移动端/shared/tdesign-app.css</code>、<code>tdesign-app.js</code>、<code>mentor-mobile.js</code> · 图文对比（3 张）</td></tr>
+      <tr data-scope="双端"><td>19</td><td><a class="index-title-link" href="#sec-19">移动端教师端 · 轮转带教与「我的责任学员」入口核查结论（对照 PC 端，维持现状）</a></td><td><span class="scope-tag">双端</span></td><td>移动端教师端 → 轮转带教 / 首页常用服务「我的责任学员」 ↔ PC 教师端 → 我的学员</td><td>核查结论留痕（未修改代码）· <code>tdesign-app.js</code>、<code>mentor-mobile.js</code>、<code>nav-data.js</code> · 留痕截图（4 张）</td></tr>
+      <tr data-scope="双端"><td>20</td><td><a class="index-title-link" href="#sec-20">技能中心课程 · 移动端学员端课程详情对齐 PC 端（封面图/4页签/扫码签到/专项课程/学习反馈/课程证书）&amp; 移除 AI 推荐虚构预约训练</a></td><td><span class="scope-tag">双端</span></td><td>移动端（学员-儿科示例 / student-tdesign）→ 学习 → 技能中心课程详情 &amp; PC 学员端 → AI 学习推荐</td><td><code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/tdesign-app.css</code>、<code>shared/js/course-insight.js</code> · 图文对比（8 张）</td></tr>
+      <tr data-scope="双端"><td>21</td><td><a class="index-title-link" href="#sec-21">全项目头像风格统一 · 写实风头像全面替换为 3D 卡通风格头像（avatar_05.png）</a></td><td><span class="scope-tag">双端</span></td><td>PC 全站侧边栏 / 线上建课 / 新建课程单HTML &amp; 移动端个人中心 / 我的教学画像 / 基本信息</td><td><code>shared/js/nav-render.js</code>、<code>online-course-creator.js</code>、<code>pages/新建课程/单HTML/index.html</code>、<code>移动端/shared/tdesign-app.js</code> · 图文对比（4 张）</td></tr>
+      <tr data-scope="移动端"><td>22</td><td><a class="index-title-link" href="#sec-22">我的责任学员 · 移动端教师端 SSOT 对齐 PC 端（真实头像、更换导师待确认、访谈通过/退回、名额校验与 5 字段简介）</a></td><td><span class="scope-tag">移动端</span></td><td>移动端教师端（<code>teacher-tdesign.html</code>）→ 首页常用服务 / 全部应用 → 我的责任学员（顶栏与入口不动）</td><td><code>移动端/shared/mentor-mobile.js</code>、<code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/tdesign-app.css</code>、<code>移动端/teacher-tdesign.html</code> · 图文对比（5 张）</td></tr>
+      <tr data-scope="移动端"><td>23</td><td><a class="index-title-link" href="#sec-23">我的轮转学员（轮转带教） · 移动端教师端 SSOT 与全功能对齐 PC 端（真实头像卡片、搜索与简介、手册/评价表/NAT21-09、大病历评定、催办与年月筛选）</a></td><td><span class="scope-tag">移动端</span></td><td>移动端教师端（<code>teacher-tdesign.html</code>）→ 底部「轮转带教」Tab（标题与入口不动）</td><td><code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/tdesign-app.css</code>、<code>移动端/teacher-tdesign.html</code> · 图文对比（5 张）</td></tr>
+    </tbody>
+  </table>
+</section><section id="sec-01" style="margin-top:24px"><h2>轮转任务与考核 · 新建病种入口</h2><p>定位：轮转任务和考核 → 各科室培养指标 → 病种要求 → 病种下拉列表。实现文件：<a href="../../pages/轮转任务和考核/page.js">page.js</a>。</p><div class="pair"><div><h3>修改前</h3><p>只能选择已有病种，缺少新建入口。</p><a href="2026-11-12-对比截图/病种下拉-修改前.png"><img alt="用户提供的修改前完整页面截图" src="2026-11-12-对比截图/病种下拉-修改前.png"></a></div><div><h3>修改后 · 交互示意</h3><p>下拉底部增加「＋ 新建病种」，无可选病种时也保留入口。</p><div class="field">选择已配置的病种　⌕</div><div class="menu"><div class="option">营养性缺铁性贫血</div><div class="option">免疫性血小板减少症</div><div class="option selected">白血病</div><div class="option">淋巴瘤</div><div class="option">溶血性贫血</div><button class="create" onclick="openModal()">＋ 新建病种</button></div><div class="demo"><label>演示权限：<select id="permission"><option value="yes">有后台管理权限</option><option value="no">无后台管理权限</option></select></label><div class="hint">切换权限后点击「新建病种」，查看两种弹窗。</div></div><p>有权限：提示前往后台，新开「系统设置 → 培养指标字典 → 病种」，保留原页编辑内容。</p><p>无权限：提示「当前账号没有后台病种管理权限，请联系系统管理员进行添加」，不提供跳转按钮。</p><a href="../../pages/轮转任务和考核/index.html" target="_blank">打开实际页面 ↗</a></div></div></section><section id="sec-02" style="margin-top:24px"><h2>补充修改 · 技能「去系统设置配置」</h2><div class="pair"><div><h3>修改前</h3><img alt="技能配置入口修改前" src="2026-11-12-对比截图/技能配置-修改前.png"><p>点击直接跳转系统设置。</p></div><div><h3>修改后 · 交互示意</h3><div style="padding:12px;border:1px dashed #ffbd65;background:#fffaf1">本科室暂无可选技能 <button onclick="openModal('技能')">去系统设置配置</button></div><p>复用上方权限选择器。有权限先弹窗确认，再新开后台「培养指标字典 → 技能」；无权限提示联系系统管理员进行添加。</p><p>手术配置入口同步使用相同弹窗，并定位「手术」页签。</p></div></div></section><section id="sec-03" style="margin-top:24px"><h2>发放课程证书 · 教师端 / 管理员端</h2><div class="pair"><div><h3>修改前 · 规则只读、名单单标签</h3><img alt="原规则只读" src="2026-11-12-对比截图/发证规则-修改前.png"><img alt="原名单单标签" src="2026-11-12-对比截图/发证标签-修改前.png"></div><div><h3>修改后 · 可编辑规则与四个状态标签</h3><div id="cert-demo" oninput="updateCertDemo()"><p><label><input id="rule-task" type="checkbox" checked> 课程任务完成率</label> ≥ <input id="rule-percent" type="number" min="0" max="100" value="100" style="width:70px"> %</p><p><label><input id="rule-exam" type="checkbox" checked> 结课考核成绩</label> ≥ <input id="rule-score" type="number" min="0" max="100" value="60" style="width:70px"> 分（百分制）</p><p><label><input id="rule-eval" type="checkbox" checked> 完成课程评价</label><br><input id="rule-text" aria-label="评价要求" value="提交课程反馈 / 评教" style="width:90%;padding:8px"></p></div><p class="hint">交互示意：示例学员任务完成率 85%，考核 75 分，已提交评价。修改规则可查看四个标签同步变化。</p><b>示例学员</b><div id="cert-tags" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px"></div><p>依次展示总体状态、任务完成率、考核成绩、课程评价。未勾选显示「不要求」，实际页面悬停标签可查看阈值和当前完成情况。</p><p>确认发放时保存规则；取消不保存。评价文字为可编辑说明，仍按反馈 / 评教提交记录核验。</p></div></div></section><script>function updateCertDemo(){const v=id=>document.getElementById(id);const rules=[['任务完成率',v('rule-task').checked,85>=Number(v('rule-percent').value)],['考核成绩',v('rule-exam').checked,75>=Number(v('rule-score').value)],['课程评价',v('rule-eval').checked,true]];v('rule-percent').disabled=!rules[0][1];v('rule-score').disabled=!rules[1][1];v('rule-text').disabled=!rules[2][1];const pass=rules.every(r=>!r[1]||r[2]);v('cert-tags').replaceChildren(...[[pass?'已达标':'未达标',pass],...rules.map(r=>[r[0]+'：'+(!r[1]?'不要求':r[2]?'已达标':'未达标'),!r[1]||r[2]])].map(([text,ok])=>{const tag=document.createElement('span');tag.textContent=text;tag.style='font-size:12px;border-radius:4px;padding:2px 8px;background:'+(ok?'#e8f3ff;color:#175898':'#fff7e8;color:#b65a00');return tag}));}updateCertDemo();</script><section id="sec-04" style="margin-top:24px"><h2>课程评价与反馈 · 复用原移动端教学分析</h2><div class="pair"><div><h3>修改前</h3><p>移动端弹窗包含学习分析和教学分析；PC 与移动端内容不一致。</p><img alt="原移动端教学分析" src="2026-11-12-对比截图/原移动端教学分析.png"></div><div><h3>修改后</h3><p>移动端第三个 tab 只保留教学分析，PC 课程评价与反馈展示同一份内容。已替换先前新增的两份问卷样本。</p><div id="teaching-comparison"></div></div></div></section><script>
+/* 复用移动端原教学分析演示数据；PC 与移动端共用。 */
+(function (global) {
+  var data = {
+          stats: {checkin:'6/6',pretest:'5/6',learn:'83%',progress:'72%'},
+          groups: [
+            {title:'课前任务',items:[
+              {t:'视频',n:'导尿术操作视频学习',d:6,total:6,s:'已截止'},
+              {t:'测验',n:'课前测试题',d:5,total:6,s:'进行中'},
+              {t:'作业',n:'课前课程任务单',d:6,total:6,s:'已截止'}
+            ]},
+            {title:'课中任务',items:[
+              {t:'测验',n:'随堂测验',d:5,total:6,s:'已截止'},
+              {t:'评估',n:'技能站导师评分',d:2,total:6,s:'进行中'}
+            ]},
+            {title:'课后任务',items:[
+              {t:'作业',n:'课后临床观察记录',d:0,total:6,s:'未开始'},
+              {t:'反馈',n:'课程满意度问卷',d:4,total:6,s:'进行中'}
+            ]}
+          ],
+          members:[['李明辉','2/2','100%'],['王雅琪','2/2','100%'],['张文博','1/2','60%'],['陈晓华','2/2','100%'],['刘思琪','2/2','80%'],['赵欣怡','2/2','60%']],
+          teach:{
+            satisfaction:'4.5',content:'4.6',organization:'4.4',platform:'4.3',nps:'86%',
+            scores:[['教学内容质量','4.6'],['教师专业水平','4.5'],['教学方法适切性','4.4'],['互动反馈及时性','4.2'],['课程资料完整性','4.3'],['场地/设备条件','4.1']],
+            wc:['操作规范','贴近临床','即时反馈','导师专业','实操充分','课前视频有用','希望回放','练习时间短'],
+            suggest:[{c:2,t:'技能站练习时间偏短，希望延长单站操作时间或增加重复练习机会。'},{c:1,t:'课前测试题希望有答案解析，帮助课前查漏补缺。'},{c:1,t:'希望提供课堂操作视频回放，便于课后复习导师演示要点。'}],
+            comments:[{u:'学员 L**',s:5,b:'教学团队专业且负责，技能站设置非常实用，课前视频帮助很大，理论和实操结合得很好。'},{u:'学员 W**',s:4,b:'课程安排紧凑，导师反馈即时，希望下次技能站时间能再长一些。'}]
+          },
+          suggestions:[
+            {tag:'课程任务',title:'课前预习完成率偏低',desc:'本期课前学习完成率 83%，签到率 100%。建议在课前信中增加完成引导，或将课前测成绩计入最终课程成绩，提升预习动力。'},
+            {tag:'教学组织',title:'技能站练习时间偏短',desc:'学员反馈单站练习时间不足。建议将技能站轮转时间由 4 分钟延长至 6 分钟，或增设一轮重复练习环节。'},
+            {tag:'评估结果',title:'失分点集中在无菌操作',desc:'综合考核失分分析显示，清洁消毒与无菌操作环节失分率最高（32%）。建议在技能站一增加针对性示范与即时纠错。'},
+            {tag:'课程改进',title:'推荐补充课后学习资源',desc:'结合测验失分点，建议补充导管型号选择速查表与无菌操作专项微课作为课后延伸资源，帮助学员查漏补缺。'}
+          ],
+          selfEvalQuiz:{done:5,total:6,dims:[['课前准备充分度','78%'],['课堂参与度','90%'],['技能操作自信度','72%'],['课后巩固计划','65%']]},
+          courseFeedbackQuiz:{done:4,total:6,dims:[['教学内容','92%'],['教学组织','88%'],['平台体验','86%'],['整体满意度','90%']]}
+        };
+  global.TeachingFeedbackData = { get: function () { return JSON.parse(JSON.stringify(data)); } };
+})(window);
+
+</script><script>const feedback=TeachingFeedbackData.get(), host=document.getElementById('teaching-comparison');function line(text,tag='p'){const el=document.createElement(tag);el.textContent=text;host.append(el)}line('整体满意度 '+feedback.teach.satisfaction+' · 教学内容 '+feedback.teach.content+' · 教学组织 '+feedback.teach.organization+' · 平台体验 '+feedback.teach.platform+' · 推荐意愿 '+feedback.teach.nps);line('教学/课程改进建议','h3');feedback.suggestions.forEach(x=>line(x.title+'：'+x.desc));line('分项评分详情','h3');feedback.teach.scores.forEach(x=>line(x.join('：')));line('高频反馈词','h3');line(feedback.teach.wc.join(' · '));line('改进建议归纳','h3');feedback.teach.suggest.forEach(x=>line(x.c+'人提及：'+x.t));line('学员评语','h3');feedback.teach.comments.forEach(x=>line(x.u+' · '+x.s+'分：'+x.b));line('课程反馈问卷统计','h3');line('已回收 '+feedback.courseFeedbackQuiz.done+'/'+feedback.courseFeedbackQuiz.total+' 份');feedback.courseFeedbackQuiz.dims.forEach(x=>line(x.join('：')));</script><section id="sec-05" style="margin-top:24px"><h2>临床教学活动 · 发起签到弹窗（二维码为主、签到码为辅 + 双阶段自动切换）</h2><p>定位：程主任（科室管理员）/ 教师端 → 临床教学活动 → 编辑教学活动 / 列表操作 → 发起签到。实现文件：<a href="../../pages/教学活动实施/page.js">page.js</a>、<a href="../../pages/教学活动实施/page.css">page.css</a>。</p><div class="pair"><div><h3>修改前 · 问题</h3><ul><li>点击「发起签到」后弹窗内仍多出一颗「开启开始签到」按钮，需二次点击才出码。</li><li>弹窗中间蓝框区域缺失二维码，仅显示超大号 6 位数字签到码，未做到「二维码为主、签到码为辅」。</li></ul><a href="2026-11-12-对比截图/临床教学活动签到弹窗-修改前.jpg" target="_blank"><img alt="临床教学活动签到弹窗修改前" src="2026-11-12-对比截图/临床教学活动签到弹窗-修改前.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>移除冗余的「开启开始签到 / 开启结束签到」按钮；点开「发起签到」即自动启动并展示动态点阵二维码与 60s 自动刷新倒计时。</li><li>按「二维码为主（204×204 白底主卡）、签到码为辅（18px 等宽副签）」重构双栏布局，并在弹窗内右侧提供「活动开始签到 / 活动结束签到」双阶段切换与人数进度，去掉顶部重复 Tab；第 1 次点击「发起签到」默认进入开始签到，第 2 次点击进入结束签到。</li></ul><a href="2026-11-12-对比截图/临床教学活动签到弹窗-修改后.png" target="_blank"><img alt="临床教学活动签到弹窗修改后" src="2026-11-12-对比截图/临床教学活动签到弹窗-修改后.png"></a></div></div></section><section id="sec-06" style="margin-top:24px"><h2>技能中心课程 · 发起签到弹窗（活动开始 + 活动结束双签到页签与轮次切换）</h2><p>定位：王老师（教师端）/ 管理员端 → 技能中心课程 → 课程详情 → 发起签到。实现文件：<a href="../../pages/技能中心课程/views/implementation.js">implementation.js</a>、<a href="../../pages/技能中心课程/views/implementation.css">implementation.css</a>、<a href="../../pages/课程实施/page.js">课程实施/page.js</a>。</p><div class="pair"><div><h3>修改前 · 问题</h3><ul><li>点击「发起签到」弹出的弹窗仅有单轮签到视图，无法在同一弹窗内查看和切换「活动开始签到」与「活动结束签到」。</li><li>再次点击「发起签到」不能自动衔接至「活动结束签到」。</li></ul><a href="2026-11-12-对比截图/技能中心课程签到弹窗-修改前.png" target="_blank"><img alt="技能中心课程签到弹窗修改前" src="2026-11-12-对比截图/技能中心课程签到弹窗-修改前.png"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>在弹窗内右侧新增「活动开始签到 / 活动结束签到」双阶段切换卡片（含实时签到/签出人数与状态徽标，去除顶部重复 Tab），两轮签到同窗可见、可随时切换。</li><li>实现按课次记录点击次数：第 1 次点击「发起签到」默认进入「活动开始签到」，第 2 次点击「发起签到」自动进入「活动结束签到」，两阶段均保持 60s 动态二维码自动刷新与独立签到记录。</li></ul><a href="2026-11-12-对比截图/技能中心课程签到弹窗-修改后.png" target="_blank"><img alt="技能中心课程签到弹窗修改后（活动开始签到）" src="2026-11-12-对比截图/技能中心课程签到弹窗-修改后.png"></a><a href="2026-11-12-对比截图/技能中心课程签到弹窗-结束签到-修改后.png" target="_blank"><img style="margin-top:12px" alt="技能中心课程签到弹窗修改后（第二次点击进入活动结束签到）" src="2026-11-12-对比截图/技能中心课程签到弹窗-结束签到-修改后.png"></a></div></div></section><section id="sec-07" style="margin-top:24px"><h2>技能中心课程（课程实施） · 课程评价与反馈页签恢复（含往期对比分析与 AI 改进建议）</h2><p>定位：王老师（教师端）/ 管理员端 → 技能中心课程 → 儿童球囊面罩给氧 → 课程评价与反馈。实现文件：<a href="../../shared/js/teacher-eval.js">teacher-eval.js</a>、<a href="../../shared/data/course-dev-seed.js">course-dev-seed.js</a>、<a href="../../shared/js/course-impl-demo.js">course-impl-demo.js</a>、<a href="../../shared/js/course-insight.js">course-insight.js</a>。</p><div class="pair"><div><h3>修改前 · 问题</h3><ul><li>工作区误把 <code>teacher-eval.js</code> 的 <code>mainView==='teach'</code> 替换为硬编码的移动端演示卡片（整体满意度、系统自动生成建议、分项评分详情），覆盖了原有的结构化反馈视图与「往期对比分析」「AI 改进建议」按钮。</li><li>远端提交 <code>a81149ed</code>（线上课程反馈下线）同步误清了线下课程种子 <code>course-dev-seed.js</code> 中的 <code>课后学员反馈问卷</code>（<code>fb-1</code>），导致反馈问卷统计与题目分析无法展示。</li></ul><a href="2026-11-12-对比截图/课程评价与反馈-修改前.jpg" target="_blank"><img alt="课程评价与反馈修改前" src="2026-11-12-对比截图/课程评价与反馈-修改前.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>恢复 <code>shared/js/teacher-eval.js</code> 的结构化 <code>teach</code> 视图，找回「往期对比分析」「AI 改进建议」入口（<code>&lt;fd-course-insight&gt;</code>）以及 <code>&lt;fd-eval-summary&gt;</code>（回收汇总、条目分析、提交记录（匿名））。</li><li>在 <code>shared/data/course-dev-seed.js</code> 中恢复线下课程「课后学员反馈问卷」（<code>fb-1</code>，6 道题目），并在 <code>shared/js/course-impl-demo.js</code> 将 <code>SEED_KEY</code> 递增至 <code>v4</code>，确保已缓存旧快照的浏览器刷新即可同步生效。</li></ul><a href="2026-11-12-对比截图/课程评价与反馈-修改后.png" target="_blank"><img alt="课程评价与反馈修改后（课后学员反馈问卷与条目分析）" src="2026-11-12-对比截图/课程评价与反馈-修改后.png"></a><a href="2026-11-12-对比截图/课程评价与反馈-往期对比分析-修改后.png" target="_blank"><img style="margin-top:12px" alt="往期对比分析抽屉修改后" src="2026-11-12-对比截图/课程评价与反馈-往期对比分析-修改后.png"></a><a href="2026-11-12-对比截图/课程评价与反馈-AI改进建议-修改后.png" target="_blank"><img style="margin-top:12px" alt="AI 改进建议抽屉修改后" src="2026-11-12-对比截图/课程评价与反馈-AI改进建议-修改后.png"></a></div></div></section><section id="sec-08" style="margin-top:24px"><h2>线上课程 · 视图切换按钮样式统一（对齐技能中心课程）</h2><p>定位：程主任（科室管理员）/ 管理员 / 教师 / 学员 → 线上课程 → 筛选栏右侧展示方式切换。实现文件：<a href="../../shared/js/online-course-hub.js">online-course-hub.js</a>、<a href="../../shared/styles/online-course-qianwen.css">online-course-qianwen.css</a>、<a href="../../shared/styles/online-course-hub.css">online-course-hub.css</a>、<a href="../../shared/styles/course-management-qianwen.css">course-management-qianwen.css</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li><code>online-course-hub.js</code> 误用了仅在 <code>manager.html</code> 加载的 <code>.sast-view-toggle</code> / <code>.sast-toggle-btn</code>，导致 <code>程主任.html</code>、教师端与学员端样式缺失，退化为浏览器默认方框按钮（<code>2px outset</code>、直角灰底）。</li><li>全页排查其余页面未发现第二个失样式的方框切换按钮；仅统计分析 <code>.ocs-mode-tabs</code> 存在 Grid 横向拉伸问题、建课结果页 <code>.occ-qr-tabs</code> 为旧版小方角切换条（本次仅记录未改）。</li></ul><a href="2026-11-12-对比截图/线上课程视图切换-修改前.jpg" target="_blank"><img alt="线上课程视图切换按钮修改前" src="2026-11-12-对比截图/线上课程视图切换-修改前.jpg"></a></div><div><h3>修改后 · 修改内容</h3><ul><li>将 <code>online-course-hub.js</code> 切换容器改为与「技能中心课程」一致的 <code>cd-view-switch app-mode-segmented och-view-toggle</code> 结构与 <code>15×15px</code> 描边图标。</li><li>在共用 CSS 中统一外框 <code>72×36px</code>、<code>#f1f5f9</code> 全圆角底轨、<code>32×30px</code> 按钮与纯白激活胶囊阴影，并补充 <code>.och-library / .och-catalog-surface</code> 的 <code>min-width: 0</code> 防止 1440px 列表视图横向撑出裁切切换按钮。</li></ul><a href="2026-11-12-对比截图/线上课程视图切换-修改后.png" target="_blank"><img alt="线上课程视图切换按钮修改后（列表视图）" src="2026-11-12-对比截图/线上课程视图切换-修改后.png"></a><a href="2026-11-12-对比截图/线上课程视图切换-卡片-修改后.png" target="_blank"><img style="margin-top:12px" alt="线上课程视图切换按钮修改后（卡片视图）" src="2026-11-12-对比截图/线上课程视图切换-卡片-修改后.png"></a></div></div></section><section id="sec-09" style="margin-top:24px"><h2>临床教学活动 · 编辑/发起教学活动（教学资料移入卡片 01 底部 + 千问风格重构）</h2><p>定位：程主任（科室管理员）/ 教师端 → 临床教学活动 → 点击活动行进入编辑教学活动（或单次发起）。实现文件：<a href="../../pages/教学活动实施/page.js">page.js</a>、<a href="../../pages/教学活动实施/page.css">page.css</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li><code>教学资料</code> 上传模块独立悬在主表单上方，占用首屏视觉重心，且直接暴露浏览器原生 <code>Choose Files / No file chosen</code> 控件。</li><li>顶部工具栏与右侧「活动发起概览」存在两套重复的 <code>取消 / 保存修改</code> 操作（顶部黑底、右侧蓝底），主操作不唯一、IA 冗余。</li><li>卡片 02 学员检索框右侧 <code>添加</code> 按钮存在嵌套边框与圆角重叠，分组面板带 3px 粗色顶边，与千问轻量化体系不统一。</li></ul><a href="2026-11-12-对比截图/临床教学活动编辑页-修改前.jpg" target="_blank"><img alt="临床教学活动编辑页修改前" src="2026-11-12-对比截图/临床教学活动编辑页-修改前.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>将 <code>教学资料</code> 上传与文件预览胶囊整体移入卡片 01（基本信息与活动安排）最底部，改用千问极简虚线上传区，完整保留多文件上传、预览弹窗与原有文案。</li><li>重构信息架构（IA）：顶部工具栏收敛为返回、标题与上下文签到入口，去除重复提交/取消按钮；右侧「活动发起概览」收敛为全圆角墨黑主胶囊（<code>#171a22</code>）+ 描边次胶囊，并将 sticky 偏移设为 <code>top: 76px</code> 避免滚动被顶栏遮挡。</li><li>全页统一千问 AI 风格（<code>18px</code> 卡片圆角、<code>#e1e6ef</code> 极细边框、中性数字步骤徽标、<code>#eef4fb / #175898</code> 选中态），卡片 02 检索框拆为独立输入框与胶囊 <code>添加</code> 按钮。</li></ul><a href="2026-11-12-对比截图/临床教学活动编辑页-修改后.png" target="_blank"><img alt="临床教学活动编辑页修改后（教学资料位于卡片 01 底部）" src="2026-11-12-对比截图/临床教学活动编辑页-修改后.png"></a><a href="2026-11-12-对比截图/临床教学活动编辑页-上传文件-修改后.png" target="_blank"><img style="margin-top:12px" alt="临床教学活动编辑页修改后（上传 PDF 后展示预览胶囊）" src="2026-11-12-对比截图/临床教学活动编辑页-上传文件-修改后.png"></a><a href="2026-11-12-对比截图/临床教学活动编辑页-学员与范围-修改后.png" target="_blank"><img style="margin-top:12px" alt="临床教学活动编辑页修改后（卡片 02 学员、卡片 03 范围与右侧吸顶概览）" src="2026-11-12-对比截图/临床教学活动编辑页-学员与范围-修改后.png"></a></div></div></section><section id="sec-10" style="margin-top:24px"><h2>全项目禁用 Emoji 清理清单（PC 端 + 移动端）</h2><p>要求：整个项目中，无论 PC 端还是移动端，在任何前端页面与交互脚本中均禁止使用 Emoji。本次共排查根目录 <code>*.html</code>、<code>pages/</code>、<code>shared/</code>、<code>移动端/</code>、<code>course-management-api/</code> 全部运行代码，将所有 Emoji 统一替换为内联线性 SVG 图标、纯文本状态标签或非 Emoji 的标准字符（如实心/空心方块）。</p><div class="emoji-audit-summary"><div class="emoji-audit-badge"><strong>覆盖范围</strong>：PC 端 + 移动端 H5 + 共享组件</div><div class="emoji-audit-badge"><strong>共清理文件</strong>：30 个前端文件</div><div class="emoji-audit-badge"><strong>校验结果</strong>：剩余 Emoji 0 处；22 个 JS 文件语法校验全部通过</div></div><h3>一、移动端（移动端/）</h3><table class="emoji-audit-table"><thead><tr><th style="width:28%">文件</th><th style="width:28%">原 Emoji（Unicode 编码）</th><th style="width:24%">替换方案</th><th>涉及位置</th></tr></thead><tbody><tr><td><a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a></td><td><code>U+1F4DC</code>（卷轴）</td><td>内联 <code>award</code> SVG 图标</td><td>教师端课程详情 · 课程证书已启用标签（L5522）</td></tr><tr><td><a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a></td><td><code>U+1F514</code>（铃铛）× 2</td><td>内联 <code>bell</code> SVG 图标</td><td>专项课程分节任务提醒按钮、单次课程提醒未完成按钮（L5631、L5702）</td></tr><tr><td><a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a></td><td><code>U+1F44D</code>（点赞）、<code>U+1F4AC</code>（对话气泡）</td><td>内联 <code>thumbs-up</code> / <code>message-square</code> SVG 图标</td><td>讨论区帖子点赞与回复操作栏（L8719、L8722）</td></tr></tbody></table><h3>二、PC 端业务模块（pages/）</h3><table class="emoji-audit-table"><thead><tr><th style="width:28%">文件</th><th style="width:28%">原 Emoji（Unicode 编码）</th><th style="width:24%">替换方案</th><th>涉及位置</th></tr></thead><tbody><tr><td><a href="../../pages/官网/site.js">官网/site.js</a></td><td><code>U+2699 U+FE0F</code>（齿轮）、<code>U+2705</code>（绿对勾）</td><td>内联 <code>settings</code> SVG 图标；Toast 改纯文本</td><td>顶栏/移动端网站配置入口、配置抽屉、保存成功提示</td></tr><tr><td><a href="../../pages/我的电子轮转手册/page.js">我的电子轮转手册/page.js</a></td><td><code>U+1F4CE</code>（回形针）、<code>U+26A1</code>（闪电）、<code>U+1F4CB</code>（剪贴板）</td><td>内联 <code>paperclip</code> / <code>zap</code> / <code>clipboard</code> SVG 图标</td><td>大病历扫描件附件提示、审核规则说明栏</td></tr><tr><td><a href="../../pages/技能中心课程/views/audit.js">技能中心课程/views/audit.js</a></td><td><code>U+1F4C4</code>（文档）、<code>U+1F4DD</code>（备忘录）</td><td>内联 <code>file-text</code> / <code>clipboard-check</code> SVG 图标</td><td>微课课时目录文档附件与随堂测验标识</td></tr><tr><td><a href="../../pages/课程审核/page.js">课程审核/page.js</a></td><td><code>U+1F4C4</code>（文档）、<code>U+1F4DD</code>（备忘录）</td><td>内联 <code>file-text</code> / <code>clipboard-check</code> SVG 图标</td><td>微课课时目录文档附件与随堂测验标识</td></tr><tr><td><a href="../../pages/技能中心课程/views/development.js">技能中心课程/views/development.js</a></td><td><code>U+1F4A1</code>（灯泡）、<code>U+1F4D6</code>（翻开的书）</td><td>内联 <code>lightbulb</code> / <code>book-open</code> SVG 图标</td><td>引用线上课程弹窗指引条、空状态占位图标</td></tr><tr><td><a href="../../pages/技能中心课程/views/implementation.js">技能中心课程/views/implementation.js</a></td><td><code>U+1F6E1 U+FE0F</code>（盾牌）、<code>U+2699 U+FE0F</code>（齿轮）、<code>U+1F4DC</code>（卷轴）</td><td>内联 <code>shield-check</code> / <code>settings</code> / <code>award</code> SVG 图标</td><td>线上课程审核/权限设置按钮、课程证书已启用标签</td></tr><tr><td><a href="../../pages/课程实施/page.js">课程实施/page.js</a></td><td><code>U+1F6E1 U+FE0F</code>（盾牌）、<code>U+2699 U+FE0F</code>（齿轮）、<code>U+1F4DC</code>（卷轴）</td><td>内联 <code>shield-check</code> / <code>settings</code> / <code>award</code> SVG 图标</td><td>线上课程审核/权限设置按钮、课程证书已启用标签</td></tr><tr><td><a href="../../pages/技能中心课程/views/pool.js">技能中心课程/views/pool.js</a></td><td><code>U+1F680</code>（火箭）</td><td>内联 <code>send</code> SVG 图标</td><td>发起在线实施批次按钮</td></tr><tr><td><a href="../../pages/课程池/page.js">课程池/page.js</a></td><td><code>U+1F680</code>（火箭）</td><td>内联 <code>send</code> SVG 图标</td><td>发起在线实施批次按钮</td></tr><tr><td><a href="../../pages/排课与报名/page.js">排课与报名/page.js</a> &amp; <a href="../../pages/排课与报名/page.css">page.css</a></td><td><code>U+26A0 U+FE0F</code>（警告三角）</td><td>内联 <code>alert-triangle</code> SVG 图标；清理注释</td><td>质控未确认阻断警示卡片、不可开启报名角标</td></tr><tr><td><a href="../../pages/角色工作台/page.js">角色工作台/page.js</a></td><td><code>U+1F4C4</code>（文档）、<code>U+1F4CA</code>（柱状图）</td><td>内联 <code>file-text</code> / <code>bar-chart</code> SVG 图标</td><td>课前导学配套资料下载链接（PDF / XLSX）</td></tr><tr><td><a href="../../pages/评估工具库/page.js">评估工具库/page.js</a></td><td><code>U+2702</code>（剪刀）</td><td>内联 <code>scissors</code> SVG 图标</td><td>表单预览分页符标记</td></tr><tr><td><a href="../../pages/课程工作台方案5/page.js">课程工作台方案5/page.js</a></td><td><code>U+2705</code>（绿对勾）、<code>U+1F4A1</code>（灯泡）</td><td>内联 <code>check-circle</code> / <code>info</code> SVG 图标</td><td>科室健康达标空状态、诊疗中心矩阵底部提示</td></tr><tr><td><a href="../../pages/轮转安排/page.js">轮转安排/page.js</a></td><td><code>U+26A0 U+FE0F</code>（警告三角）</td><td>移除前缀符号，保留告警文案</td><td>累计请假超期补轮转提示</td></tr><tr><td><a href="../../pages/可选课程/index_single.html">可选课程/index_single.html</a></td><td><code>U+1F4D6</code>（翻开的书）、<code>U+2764</code>（红心）</td><td>内联 <code>book-open</code> / <code>heart</code> SVG 图标</td><td>住培三年培养计划分类标题（通识 / 内科）</td></tr><tr><td><a href="../../pages/发证管理/发证管理-设计稿-v3.html">发证管理-设计稿-v3.html</a></td><td><code>U+26A0</code>（警告三角）</td><td>内联 <code>alert-triangle</code> SVG 图标</td><td>证书撤销合规确认提示条</td></tr><tr><td><a href="../../pages/讨论区管理/讨论区管理-设计稿-管理端.html">讨论区管理-设计稿-管理端.html</a></td><td><code>U+1F4CC</code>（图钉）</td><td>复用页面 <code>ico('pin')</code> SVG 图标</td><td>置顶帖标题前缀图标</td></tr><tr><td><a href="../../pages/题库管理/题库管理-单文件.html">题库管理-单文件.html</a></td><td><code>U+2728</code>（闪耀星）</td><td>内联 <code>sparkles</code> SVG 图标</td><td>AI 生成题目草稿按钮</td></tr><tr><td><a href="../../pages/评估结果与分析/demo-antv.html">demo-antv.html</a></td><td><code>U+1F4C8</code>（趋势图）</td><td>内联 <code>trending-up</code> SVG 图标</td><td>演示页顶部横幅标题</td></tr><tr><td><a href="../../pages/评估结果与分析/demo-echarts.html">demo-echarts.html</a></td><td><code>U+1F4CA</code>（柱状图）</td><td>内联 <code>bar-chart</code> SVG 图标</td><td>演示页顶部横幅标题</td></tr><tr><td><a href="../../pages/排课与报名/排课管理走查标准.html">排课管理走查标准.html</a>、<a href="../../pages/排课与报名/选课报名走查标准.html">选课报名走查标准.html</a>、<a href="../../pages/课程审核/课程审核走查标准.html">课程审核走查标准.html</a>、<a href="../../pages/课程池/课程池走查标准.html">课程池走查标准.html</a></td><td><code>U+2705</code>（绿对勾）、<code>U+26A0 U+FE0F</code>（警告三角）</td><td>替换为彩色纯文本状态标识（<code>[已完成]</code> / <code>[部分完成]</code> / <code>[待确认]</code>）</td><td>各条目标题、进度说明与汇总表格</td></tr></tbody></table><h3>三、共享模块与演示文件（shared/）</h3><table class="emoji-audit-table"><thead><tr><th style="width:28%">文件</th><th style="width:28%">原 Emoji（Unicode 编码）</th><th style="width:24%">替换方案</th><th>涉及位置</th></tr></thead><tbody><tr><td><a href="../../shared/js/course-dev-renderer.js">course-dev-renderer.js</a></td><td><code>U+1F4A1</code>（灯泡）、<code>U+1F4D6</code>（翻开的书）</td><td>内联 <code>lightbulb</code> / <code>book-open</code> SVG 图标</td><td>引用线上课程弹窗指引条、空结果占位图</td></tr><tr><td><a href="../../shared/js/eval-form-sheet.js">eval-form-sheet.js</a></td><td><code>U+2702</code>（剪刀）、<code>U+2611</code>（蓝框复选）</td><td>内联 <code>scissors</code> SVG 图标；<code>■</code> 替代 <code>U+2611</code></td><td>分页符、多选/扣分项/一票否决项勾选态</td></tr><tr><td><a href="../../shared/js/online-course-audit.js">online-course-audit.js</a></td><td><code>U+1F4C4</code>、<code>U+1F4DD</code>、<code>U+1F4CA</code>、<code>U+1F3AC</code></td><td>内联 <code>file-text</code> / <code>clipboard-check</code> / <code>bar-chart</code> / <code>video</code> SVG 图标</td><td>课时列表与配套教学资源文件列表</td></tr><tr><td><a href="../../shared/js/online-course-creator.js">online-course-creator.js</a></td><td><code>U+23F1</code>（秒表）</td><td>内联 <code>clock</code> SVG 图标</td><td>视频随堂测验打点按钮</td></tr><tr><td><a href="../../shared/data/mentor-demo.js">mentor-demo.js</a>、<a href="../../shared/js/course-impl-demo.js">course-impl-demo.js</a>、<a href="../../shared/js/exit-exam-demo.js">exit-exam-demo.js</a></td><td><code>U+2699</code>（齿轮）</td><td>内联 <code>settings</code> SVG 图标</td><td>右下角原型演示工具悬浮入口</td></tr><tr><td><a href="../../shared/files/online-demo/live-session.html">live-session.html</a></td><td><code>U+1F465</code>、<code>U+1F393</code>、<code>U+1F552</code>、<code>U+1F4AC</code>、<code>U+1F4D6</code>、<code>U+1F4CE</code>、<code>U+2728</code>、<code>U+1F3AF</code>、<code>U+1F4C5</code>、<code>U+1F4C4</code>、<code>U+2705</code>、<code>U+1F389</code></td><td>全部替换为内联 SVG 图标或纯文本提示</td><td>直播示范页底栏统计、侧栏页签、课程介绍、Toast 与系统消息</td></tr></tbody></table></section><section id="sec-11" style="margin-top:24px"><h2>临床教学活动 · 操作列收口、统一两态签到弹窗、文案统一与编辑二次确认</h2><p>定位：程主任（科室管理员）/ 王老师（教师端）→ 临床教学活动 → 列表操作 / 编辑教学活动。实现文件：<a href="../../pages/教学活动实施/page.js">page.js</a>、<a href="../../pages/教学活动实施/page.css">page.css</a>、<a href="../../pages/技能中心课程/views/implementation.js">implementation.js</a>、<a href="../../pages/课程实施/page.js">课程实施/page.js</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li><code>进行中</code> 行操作列同时显示 3 个独立按钮（<code>结束活动</code> / <code>发起签出</code> / <code>签到详情</code>），分别弹出不同模态框，操作繁琐。</li><li><code>已完成</code> 活动点击 <code>签到详情</code> 时未初始化历史签入/签出记录，统计全部显示 <code>0/10 未完成</code>。</li><li>签到弹窗右上角切换标签文案为 <code>开始签到 / 结束签到</code>，与二维码区状态徽标 <code>活动开始签到 / 活动结束签到</code> 不统一。</li><li>编辑教学活动点击 <code>保存修改</code> 直接提交保存，缺少变更通知二次确认弹窗。</li></ul><a href="2026-11-12-对比截图/活动列表三按钮收口-修改前.jpg" target="_blank"><img alt="活动列表三按钮修改前" src="2026-11-12-对比截图/活动列表三按钮收口-修改前.jpg"></a><a href="2026-11-12-对比截图/活动已完成弹窗明细-修改前.jpg" target="_blank"><img style="margin-top:12px" alt="已完成活动签到详情 0/10 修改前" src="2026-11-12-对比截图/活动已完成弹窗明细-修改前.jpg"></a><a href="2026-11-12-对比截图/活动签到弹窗文案-修改前.jpg" target="_blank"><img style="margin-top:12px" alt="签到弹窗旧文案开始/结束签到修改前" src="2026-11-12-对比截图/活动签到弹窗文案-修改前.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>操作列收口为单主按钮：未完成/进行中统一展示 <code>发起签到</code>（同一弹窗内按「活动开始签到 → 活动结束签到」推进）；双阶段完成后切换为 <code>签到详情</code>。</li><li>三弹窗合并为同一弹窗两态（<code>attendanceVisible</code>）：态 1 为左二维码 + 右实时名单；态 2（详情模式）自动隐藏左侧二维码栏，并补齐历史 <code>已完成</code> 活动 <code>9/10</code> 签入/签出明细与时间戳。</li><li>全端签到弹窗阶段切换标签统一改为 <code>活动开始签到 0/N</code> 与 <code>活动结束签到 0/N</code>。</li><li>在 <code>submitLaunch()</code> 编辑保存逻辑找回 <code>ArcoVue.Modal.confirm</code> 二次确认弹窗（<code>确认修改并通知学员？</code>）。</li></ul><a href="2026-11-12-对比截图/活动列表单按钮收口-修改后.png" target="_blank"><img alt="活动列表操作列收口为单按钮修改后" src="2026-11-12-对比截图/活动列表单按钮收口-修改后.png"></a><a href="2026-11-12-对比截图/活动已完成弹窗明细-修改后.png" target="_blank"><img style="margin-top:12px" alt="统一弹窗状态二（详情无二维码+已签明细）修改后" src="2026-11-12-对比截图/活动已完成弹窗明细-修改后.png"></a><a href="2026-11-12-对比截图/临床教学活动签到弹窗-修改后.png" target="_blank"><img style="margin-top:12px" alt="统一弹窗状态一（活动开始/结束签到文案）修改后" src="2026-11-12-对比截图/临床教学活动签到弹窗-修改后.png"></a><a href="2026-11-12-对比截图/活动保存二次确认弹窗-修改后.png" target="_blank"><img style="margin-top:12px" alt="编辑保存二次确认弹窗修改后" src="2026-11-12-对比截图/活动保存二次确认弹窗-修改后.png"></a></div></div></section><section id="sec-12" style="margin-top:24px"><h2>临床教学活动 · 教师端与科室管理员端列表样式对齐</h2><p>定位：王老师（教师端）vs 程主任（科室管理员）→ 临床教学活动列表。实现文件：<a href="../../pages/教学活动实施/page.js">page.js</a>、<a href="../../pages/教学活动实施/page.css">page.css</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>教师端使用 <code>16px</code> 圆角旧卡片容器、<code>全部状态</code> 下拉筛选框与 <code>15px</code> 粗行高样式。</li><li>教师端操作列多出 <code>编辑活动</code> 链接且按钮为蓝框描边样式，与科室管理员端的千问轻量列表样式（快捷状态胶囊、<code>12px</code> 卡片、黑底主胶囊）不统一。</li></ul><a href="2026-11-12-对比截图/活动教师端列表样式-修改前.png" target="_blank"><img alt="教师端旧列表样式修改前" src="2026-11-12-对比截图/活动教师端列表样式-修改前.png"></a><a href="2026-11-12-对比截图/活动科室端参考样式.jpg" target="_blank"><img style="margin-top:12px" alt="科室管理员端参考列表样式" src="2026-11-12-对比截图/活动科室端参考样式.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>教师端 <code>.ta-work-surface</code> 卡片对齐为 <code>12px</code> 圆角与 <code>#e1e6ef</code> 细边框，复用 <code>全部 / 待开始 / 进行中 / 已完成</code> 快捷状态胶囊切换条并移除多余状态下拉框。</li><li>统一行标题 <code>14px</code>、行高与间距，教师端操作列统一为墨黑主胶囊 <code>发起签到</code> 与文字链接 <code>签到详情</code>（点击整行仍可直接进入编辑/查看）。</li></ul><a href="2026-11-12-对比截图/活动教师端列表样式-修改后.png" target="_blank"><img alt="教师端列表样式对齐科室管理员端修改后" src="2026-11-12-对比截图/活动教师端列表样式-修改后.png"></a></div></div></section><section id="sec-13" style="margin-top:24px"><h2>移动端线上课程与详情 · 竞品级双视图重构 + 真实视频/弹题/建课 + PC双端同源SSOT同步</h2><p>定位：移动端（学员端 / 教师端 / 科室管理员端）→ 线上课程列表与详情 ↔ PC 端（<code>王老师.html?page=线上课程</code>）。实现文件：<a href="../../移动端/shared/js/online-course-mobile-ssot.js">online-course-mobile-ssot.js</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../../移动端/student-tdesign.html">student-tdesign.html</a>、<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>、<a href="../../移动端/department-manager-tdesign.html">department-manager-tdesign.html</a>、<a href="../../pages/线上课程/page.js">pages/线上课程/page.js</a>、<a href="../../shared/js/online-course-hub.js">online-course-hub.js</a>、<a href="../../shared/data/online-course-packages.js">online-course-packages.js</a>、<a href="../../shared/js/course-discussion.js">course-discussion.js</a>、<a href="../../scripts/serve-mobile-roles.cjs">serve-mobile-roles.cjs</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>移动端列表仅有单列简陋文字卡，无 16:9 封面、无卡片/列表双视图切换，存在异常冗余进度条，且缺少搜索与筛选抽屉。</li><li>教师端缺少 <code>新建录播课程 / 新建直播课程 / 新建专项课程</code> 入口、海报二维码与卡片操作抽屉。</li><li>移动端详情页无真实视频播放与弹题入口、无测验/作业提交，结构文案与 PC 端差异巨大且 5 图标页签排版错位。</li><li>PC 与移动端各自依赖静态数据，新建/复制/答疑/学习进度无法双向同步。</li></ul><a href="2026-11-12-对比截图/移动端线上课程列表-修改前.png" target="_blank"><img alt="移动端线上课程列表修改前" src="2026-11-12-对比截图/移动端线上课程列表-修改前.png"></a><a href="2026-11-12-对比截图/移动端线上课程详情-修改前.png" target="_blank"><img style="margin-top:12px" alt="移动端线上课程详情修改前" src="2026-11-12-对比截图/移动端线上课程详情-修改前.png"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>列表页升级为 <strong>2 列 16:9 封面卡片视图 + 紧凑列表视图</strong>、单条 4px 进度条、科室分组与筛选抽屉；教师端补全三大建课入口、<code>···</code> 操作抽屉与扫码海报导出，支持专项课包口令解锁。</li><li>详情与播放舞台 1:1 对齐 PC：学员端 6 字段 Hero、4 大页签（课程详情/病种图谱/讨论区/课程证书）、真实 MP4 <code>&lt;video&gt;</code>（Range 206 流式加载）+ 视频时间轴弹题、随堂测验与作业提交；教师端升级 5 大管理 Tab（目录/学情名册/答疑讨论/病种证书/统计课后）与一键 <code>课程预览</code>。</li><li>新建 <code>OnlineCourseMobileSSOT</code> 适配层，双套 SSOT 共享 <code>fdek.online-course.*</code> 等持久化键并监听 <code>storage</code> / <code>fdek.online-course.synced</code> 实现 PC ↔ 移动端实时双向同步与独立兜底（实测走查 37/37 与双端同步 E2E 24/24 全通过）。</li></ul><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><a href="2026-11-12-对比截图/移动端线上课程学员端卡片-修改后.png" target="_blank"><img alt="学员端 2 列卡片视图修改后" src="2026-11-12-对比截图/移动端线上课程学员端卡片-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程学员端列表-修改后.png" target="_blank"><img alt="学员端紧凑列表视图修改后" src="2026-11-12-对比截图/移动端线上课程学员端列表-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程学员端详情-修改后.png" target="_blank"><img alt="学员端课程详情修改后" src="2026-11-12-对比截图/移动端线上课程学员端详情-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程视频弹题-修改后.png" target="_blank"><img alt="真实视频播放器与弹题作答修改后" src="2026-11-12-对比截图/移动端线上课程视频弹题-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程教师端列表-修改后.png" target="_blank"><img alt="教师端列表与三大建课入口修改后" src="2026-11-12-对比截图/移动端线上课程教师端列表-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程教师端建课-修改后.png" target="_blank"><img alt="教师端建课表单修改后" src="2026-11-12-对比截图/移动端线上课程教师端建课-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程教师端详情-修改后.png" target="_blank"><img alt="教师端 5-Tab 详情与预览入口修改后" src="2026-11-12-对比截图/移动端线上课程教师端详情-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程双端同步PC端-修改后.png" target="_blank"><img alt="移动端新建课程实时同步至 PC 端修改后" src="2026-11-12-对比截图/移动端线上课程双端同步PC端-修改后.png"></a></div></div></div></section><section id="sec-14" style="margin-top:24px"><h2>移动端线上课程 · 顶部三大新建按钮收口为右下角复合悬浮按钮（FAB）</h2><p>定位：移动端教师端（<code>教学 → 线上课程</code>）与科室管理员端（<code>科室管理 → 线上课程</code>）。实现文件：<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../../移动端/shared/tdesign-app.css">tdesign-app.css</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>页面顶部（红框区域）长期横排占位 3 颗新建按钮（<code>新建录播课程</code> / <code>新建直播课程</code> / <code>新建专项课程</code>），挤占列表首屏展示空间。</li><li>小屏窄视口下横排多按钮视觉拥挤，用户期望收口为右下角蓝圈区域的单个复合新建悬浮按钮（Speed-Dial FAB）。</li></ul><a href="2026-11-12-对比截图/移动端线上课程复合新建按钮-修改前.png" target="_blank"><img alt="移动端线上课程顶部三大新建按钮修改前" src="2026-11-12-对比截图/移动端线上课程复合新建按钮-修改前.png"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>移除列表顶部 <code>.td-onl-create-bar</code> 三按钮条，使科室切换栏、搜索框与课程卡片上移，首屏课程浏览面积显著提升。</li><li>在底部导航栏上方右下角新增 <code>.td-onl-create-fab</code> 圆形 <code>+</code> 悬浮按钮；点击后平滑展开 3 枚复合功能胶囊（<code>新建录播课程</code>、<code>新建直播课程</code>、<code>新建专项课程</code>）并伴随轻模糊遮罩与按钮旋转 <code>×</code> 态，点击遮罩、切换页签或选中任一方式后自动收起。</li></ul><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><a href="2026-11-12-对比截图/移动端线上课程教师端列表-修改后.png" target="_blank"><img alt="收口后默认列表与右下角圆形加号FAB修改后" src="2026-11-12-对比截图/移动端线上课程教师端列表-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程复合新建按钮-修改后.png" target="_blank"><img alt="点击右下角FAB展开三大建课菜单修改后" src="2026-11-12-对比截图/移动端线上课程复合新建按钮-修改后.png"></a></div></div></div></section><section id="sec-15" style="margin-top:24px"><h2>技能中心课程详情 PC 与移动端对齐 · 同伴互评去掉邀请直接选人及真实表单项读取修复</h2><p>定位：PC 教师端（<a href="../../王老师.html">王老师.html</a>）、PC 学员端（<a href="../../王同学.html">王同学.html</a>）、移动端教师端（<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）与移动端学员端（<a href="../../移动端/student-tdesign.html">student-tdesign.html</a>）。核心实现：<a href="../../shared/js/course-session-tasks.js">course-session-tasks.js</a>、<a href="../../shared/data/course-dev-seed.js">course-dev-seed.js</a>、<a href="../../shared/js/course-eval-composer.js">course-eval-composer.js</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>移动端技能中心课程详情（教师端）：默认落在「课程信息」Tab；头卡缺少课程封面图、专科与证书弹窗标签；右上角缺少「开课日志」「发布通知」；课程任务缺少调整时间与单任务提醒；课程评价与反馈仍为旧版，缺少往期对比分析与 AI 改进建议。</li><li>PC 端技能中心课程详情（教师端）：顶部操作区缺少「发布通知」按钮；同伴互评原依赖受评人发起邀请后才能互评，操作链路冗余。</li><li>互评表单项缺失：<code>CRS-EVAL-003</code>（<code>EC 手法与通气核查表</code>）未进入 <code>EvalToolCatalog.allForms()</code>，导致 <code>CourseDevSeed.peerEvaluation()</code>、<code>CourseSessionTasks.resolveForm()</code> 与 <code>CourseEvalTasks.findLib()</code> 无法读出 8 条核查条目；移动端 <code>ensureCourseTaskModules</code> 亦误加载 <code>eval-tasks.js</code> 且缺少 <code>syncStudentCourseDemoState</code> 引发运行时异常。</li></ul><a href="2026-11-12-对比截图/移动端技能中心课程详情-修改前.png" target="_blank"><img alt="移动端技能中心课程详情修改前" src="2026-11-12-对比截图/移动端技能中心课程详情-修改前.png"></a><a href="2026-11-12-对比截图/PC技能中心课程详情-修改前.jpg" target="_blank"><img alt="PC技能中心课程详情修改前" src="2026-11-12-对比截图/PC技能中心课程详情-修改前.jpg" style="margin-top:10px"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>课程详情 PC 与移动端对齐：移动端默认落点调整为「课程任务」，头卡补充封面图、专科标签与可点击「课程证书已启用 · 点击查看」，右上角置入「开课日志」「发布通知」；PC 教师端顶部同步补齐「发布通知」；移动端补全调整时间、单任务提醒、目标标签、课前信与专项多节信息读取、讨论区及「往期对比分析」「AI 改进建议」。</li><li>直接选人同伴互评：PC 与移动端均去除邀请环节，任意同课次学员打开同伴互评即可直接选择同伴评分，支持实时展示已评人数进度。</li><li>互评表单来源与稳定性修复：<code>CourseSessionTasks.resolveForm</code>、<code>CourseDevSeed.peerEvaluation</code> 与 <code>CourseEvalTasks.findLib</code> 优先通过 <code>EvalToolCatalog.formByCode</code> 读取 <code>CRS-EVAL-003</code>；移动端修正 <code>ensureCourseTaskModules</code> 加载 <code>course-eval-composer.js</code> 并补齐 <code>syncStudentCourseDemoState</code>；PC 与移动端互评均完整渲染 8 条核查条目，页面零报错。</li></ul><a href="2026-11-12-对比截图/移动端技能中心课程详情-教师端-修改后.png" target="_blank"><img alt="移动端技能中心课程详情教师端修改后" src="2026-11-12-对比截图/移动端技能中心课程详情-教师端-修改后.png"></a><a href="2026-11-12-对比截图/移动端技能中心课程详情-评价与反馈-修改后.png" target="_blank"><img alt="移动端技能中心课程评价与反馈修改后" src="2026-11-12-对比截图/移动端技能中心课程详情-评价与反馈-修改后.png" style="margin-top:10px"></a><a href="2026-11-12-对比截图/PC技能中心课程详情-修改后.png" target="_blank"><img alt="PC技能中心课程详情修改后" src="2026-11-12-对比截图/PC技能中心课程详情-修改后.png" style="margin-top:10px"></a><a href="2026-11-12-对比截图/PC同伴互评直接选人-修改后.png" target="_blank"><img alt="PC同伴互评直接选人修改后" src="2026-11-12-对比截图/PC同伴互评直接选人-修改后.png" style="margin-top:10px"></a><a href="2026-11-12-对比截图/移动端同伴互评直接选人-修改后.png" target="_blank"><img alt="移动端同伴互评直接选人修改后" src="2026-11-12-对比截图/移动端同伴互评直接选人-修改后.png" style="margin-top:10px"></a></div></div></section><section id="sec-16" style="margin-top:24px"><h2>临床思维课程（双端教师端 &amp; 移动端学员端）· 补齐第 4 页签并统一按 SSOT 收口为 2 门已开课程</h2><p>定位：移动端教师端（<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a> → 教学 → 临床思维课程）、PC 教师端（<a href="../../王老师.html">王老师.html</a> → 我的授课 → 临床思维课程）及移动端学员端（<a href="../../移动端/student-tdesign.html">student-tdesign.html</a> → 学习 → 临床思维训练）；<strong>PC 管理员端保持 10 门全集监控不变</strong>。实现文件：<a href="../../shared/data/clinical-thinking-training.js">clinical-thinking-training.js</a>（SSOT）、<a href="../../pages/临床思维课程/page.js">pages/临床思维课程/page.js</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>、<a href="../../移动端/student-tdesign.html">student-tdesign.html</a>、<a href="../../移动端/department-manager-tdesign.html">department-manager-tdesign.html</a>、<a href="../../shared/js/nav-data.js">nav-data.js</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>移动端教师端「教学」缺少第 4 个 Tab <code>临床思维课程</code>，且接入后误展示管理员端 10 门全量数据；PC 端 <code>role='teacher'</code> 也直接复用了管理员端 10 门视图（且小行数下粘性表头 <code>top:64px</code> 遮挡首行），未收敛为实际开课的 2 门（<code>儿科肺炎</code>、<code>儿科腹泻</code>）。</li><li>移动端学员端 <code>tdesign-app.js</code> 未使用 SSOT，本地硬编码 6 例虚构病例（哮喘、高热惊厥、川崎病、败血症等）及静态指标 <code>3/6 / 91.7</code>，且点开腹泻病例时问诊/检查/诊断内容错用肺炎数据；PC 学员端 2 门卡片也局部硬编码而未读取 SSOT。</li></ul><a href="2026-11-12-对比截图/教师端移动端教学Tab-参照.png" target="_blank"><img alt="移动端教师端教学仅3个Tab修改前" src="2026-11-12-对比截图/教师端移动端教学Tab-参照.png"></a><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px"><a href="2026-11-12-对比截图/教师端移动端临床思维10门-修改前.png" target="_blank"><img alt="移动端教师端误展示10门课程修改前" src="2026-11-12-对比截图/教师端移动端临床思维10门-修改前.png"></a><a href="2026-11-12-对比截图/学员端移动端临床思维6例-修改前.jpg" target="_blank"><img alt="移动端学员端硬编码6例修改前" src="2026-11-12-对比截图/学员端移动端临床思维6例-修改前.jpg"></a></div><a href="2026-11-12-对比截图/教师端我的授课菜单-修改前.jpg" target="_blank"><img alt="PC教师端我的授课4项参照" src="2026-11-12-对比截图/教师端我的授课菜单-修改前.jpg" style="margin-top:12px"></a></div><div><h3>修改后 · 改动说明</h3><ul><li><strong>SSOT 统一收口（<code>clinical-thinking-training.js</code>）</strong>：新增 <code>getTeacherOverview()</code> 与 <code>getStudentProjects()</code>，严格收口为实际已开课的 <strong>2 门课程</strong>（<code>TC-PED-000 儿科肺炎</code> + <code>TC-PED-008 儿科腹泻</code>），并按 2 门真实流水计算 KPI；原有 <code>getAdminOverview()</code> 保持 10 门不变，<strong>PC 管理员端零改动</strong>。</li><li><strong>PC &amp; 移动端教师端对齐</strong>：移动端教师端补齐第 4 个 Tab <code>临床思维课程</code>，与 PC 教师端共同调用 <code>getTeacherOverview()</code>（<code>2 门 / 12 人 / 90.9 分 / 100%</code>）；PC 教师端关闭 2 行小表粘性表头以消除首行遮挡，移动端支持学员名单详情及复盘小结展开。</li><li><strong>PC &amp; 移动端学员端同源 SSOT</strong>：PC 学员端 <code>page.js</code> 与移动端 <code>student-tdesign.html</code> / <code>tdesign-app.js</code> 移除局部硬编码，统一读取 <code>getStudentProjects()</code>（含 <code>ekfy.png / ekfx.png</code> 封面、训练次数/最高分、预期耗时），并在点开 <code>儿科腹泻</code> 推演详情时展示腹泻专属问诊、查体、检查、诊断与补液决策方案。</li></ul><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><a href="2026-11-12-对比截图/教师端移动端教学4Tab-修改后.png" target="_blank"><img alt="移动端教师端教学4Tab及2门课程修改后" src="2026-11-12-对比截图/教师端移动端教学4Tab-修改后.png"></a><a href="2026-11-12-对比截图/教师端移动端临床思维详情-修改后.png" target="_blank"><img alt="移动端临床思维课程学员名单详情修改后" src="2026-11-12-对比截图/教师端移动端临床思维详情-修改后.png"></a></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px"><a href="2026-11-12-对比截图/学员端移动端临床思维2门-修改后.png" target="_blank"><img alt="移动端学员端临床思维2门SSOT对齐修改后" src="2026-11-12-对比截图/学员端移动端临床思维2门-修改后.png"></a><a href="2026-11-12-对比截图/学员端移动端临床思维训练详情-修改后.png" target="_blank"><img alt="移动端学员端儿科腹泻独立病例推演修改后" src="2026-11-12-对比截图/学员端移动端临床思维训练详情-修改后.png"></a></div><a href="2026-11-12-对比截图/教师端PC临床思维2门-修改后.png" target="_blank"><img alt="PC教师端临床思维2门课程修改后" src="2026-11-12-对比截图/教师端PC临床思维2门-修改后.png" style="margin-top:12px"></a></div></div></section><section id="sticky-table-header-inventory" style="margin-top:24px">
+  <h2>全站列表「仅表头吸顶」改造清单（三批次汇总 · 共 24 个列表页/子列表 + 6 个共享底座文件）</h2>
+  <p>改造原则：仅保留<strong>主页面列表表头吸顶</strong>（固定于 <code>64px</code> 页面工具栏 <code>.app-page-toolbar</code> 正下方；<code>教学资源库</code>在内部滚动容器顶部 <code>top: 0</code>），不改动搜索栏、筛选条、分页器与卡片结构，且<strong>不改动任何抽屉（<code>&lt;a-drawer&gt;</code>）/弹窗（<code>&lt;a-modal&gt;</code>）内表格</strong>。已按要求跳过 <code>空间工作台</code>、<code>轮转安排</code>、<code>轮转任务和考核</code>。</p>
+  <div class="emoji-audit-summary">
+    <div class="emoji-audit-badge"><strong>改造策略</strong>：Arco <code>:sticky-header="64"</code> + 原生/Grid <code>position: sticky; top: 64px</code></div>
+    <div class="emoji-audit-badge"><strong>裁剪与遮挡修复</strong>：卡片/外壳 <code>overflow: hidden → clip</code>；表头实色背景 + 底部分割线 + 固定列 <code>z-index: 35</code></div>
+    <div class="emoji-audit-badge"><strong>宽表兼容</strong>：<code>:scroll="{ x }"</code> 表头与表体横向滚动同步</div>
+  </div>
+
+  <h3>一、全局底座与跨模块共享样式（6 个文件）</h3>
+  <table class="emoji-audit-table">
+    <thead>
+      <tr>
+        <th style="width:24%">文件</th>
+        <th style="width:26%">作用范围</th>
+        <th>具体修改内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="../../shared/styles/arco-overrides.css">shared/styles/arco-overrides.css</a></td>
+        <td>所有同时开启 <code>:sticky-header="64"</code> 与 <code>:scroll="{ x }"</code> 的宽表（如结业办理、师资管理、学员管理、用户管理等）</td>
+        <td>新增 <code>.arco-table-container:has(&gt; .arco-scrollbar &gt; .arco-table-content &gt; .arco-table-header-sticky)</code> 规则：将 <code>.arco-table-content</code> 设为 <code>overflow: clip !important</code>，改为由 <code>.arco-table-header-sticky</code>（隐藏滚动条）与 <code>.arco-table-body</code> 各自承担横向滚动，避免 <code>overflow-x: auto</code> 阻断表头相对视口吸顶。</td>
+      </tr>
+      <tr>
+        <td><a href="../../shared/js/global-components.js">shared/js/global-components.js</a></td>
+        <td>配合上条全局宽表吸顶横滚联动</td>
+        <td>新增 <code>initStickyTableHorizontalSync()</code> 与 <code>syncStickyTableScrollPosition()</code>：捕获阶段监听横向滚动，双向同步 <code>.arco-table-body</code> 与 <code>.arco-table-header-sticky</code> 的 <code>scrollLeft</code>，并更新 <code>.arco-table-scroll-position-{left,middle,right}</code>。</td>
+      </tr>
+      <tr>
+        <td><a href="../../shared/styles/material-domain.css">shared/styles/material-domain.css</a></td>
+        <td>物资管理套件（物资工作台、使用管理、盘点管理、维修管理）</td>
+        <td>将外层工作台裁剪从 <code>overflow: hidden</code> 改为 <code>overflow: clip</code>；为 <code>.material-page-content .arco-table-header-sticky</code> 设置 <code>top: 64px !important</code>、实色表头背景、底边线及固定列 <code>z-index: 35 !important</code>。</td>
+      </tr>
+      <tr>
+        <td><a href="../../shared/styles/people-management-qianwen.css">shared/styles/people-management-qianwen.css</a></td>
+        <td>师生域（师资管理、学员管理、成果管理、发证管理）</td>
+        <td>在页面样式之后覆盖：对应 <code>.ra-table-card</code>、<code>.fdek-issue-card</code>、<code>.arco-tabs-content</code>、<code>.arco-table-container</code> 改为 <code>overflow: clip !important</code>；主表 <code>.arco-table-header-sticky</code> 固定在 <code>top: 64px</code>、实色白底 <code>#ffffff !important</code> 及固定列 <code>z-index: 35 !important</code>。</td>
+      </tr>
+      <tr>
+        <td><a href="../../shared/styles/space-management-v2.css">shared/styles/space-management-v2.css</a></td>
+        <td>空间管理 3 页（仅限 <code>#sa-app</code> / <code>#sast-app</code> / <code>#bdm-app</code>，不含空间工作台）</td>
+        <td>将 <code>.sast-workbench</code> 设为 <code>overflow: clip !important</code>；为 <code>.sast-thead</code> 设置 <code>position: sticky !important; top: 64px !important; z-index: 20 !important</code>、实色浅灰底与底边阴影线。</td>
+      </tr>
+      <tr>
+        <td><a href="../../shared/styles/course-management-qianwen.css">shared/styles/course-management-qianwen.css</a></td>
+        <td>课程域（临床思维课程、排课与报名 / 管理员排课与报名等）</td>
+        <td>将 <code>.ct-light-card</code>、<code>.p-list-shell</code>、<code>.cs-plan-manager</code> 改为 <code>overflow: clip !important</code>；新增 <code>.ct-page .ct-light-card</code> 与 <code>.course-scheduling</code> 主视图（含原生 <code>th.cs-col-th</code>）的 <code>top: 64px !important</code>、<code>#fafbfc !important</code> 实色吸顶及固定列 <code>z-index: 35 !important</code>。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>二、第一批：临床教学活动域 + 物资档案 + 教学资源库 + 线上课程</h3>
+  <table class="emoji-audit-table">
+    <thead>
+      <tr>
+        <th style="width:16%">模块名称</th>
+        <th style="width:26%">具体修改的列表（组件/数据源/选择器）</th>
+        <th style="width:22%">涉及文件</th>
+        <th>具体改动内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>临床教学活动（实施）</strong></td>
+        <td>管理员端 &amp; 教师端主活动列表（2 处 <code>&lt;a-table class="ta-detail-table" :data="filteredActivities"&gt;</code>）及 2 处原生 <code>table.ta-qw-table</code></td>
+        <td><a href="../../pages/教学活动实施/page.js">教学活动实施/page.js</a><br><a href="../../pages/教学活动实施/page.css">教学活动实施/page.css</a></td>
+        <td><code>page.js</code> 两处 <code>.ta-detail-table</code> 增加 <code>:sticky-header="64"</code>；<code>page.css</code> 将 <code>#teaching-activities-app</code> 下工作面/卡片/列表容器改为 <code>overflow: clip !important</code>，为 <code>.arco-table-header-sticky</code> 与 <code>.ta-qw-table thead th</code> 配置 <code>top: 64px</code> 与实色背景 <code>#f7f9fc / #f8fafc</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>临床教学活动池</strong></td>
+        <td>活动池主列表（<code>&lt;a-table :data="filteredActivities"&gt;</code>）</td>
+        <td><a href="../../pages/临床教学活动池/page.js">临床教学活动池/page.js</a><br><a href="../../pages/临床教学活动池/page.css">临床教学活动池/page.css</a></td>
+        <td><code>page.js</code> 增加 <code>:sticky-header="64"</code>；<code>page.css</code> 将 <code>#activity-pool-app</code> 卡片容器改 <code>overflow: clip !important</code>，配置 <code>top: 64px</code> <code>#fafbfc</code> 实色吸顶。</td>
+      </tr>
+      <tr>
+        <td><strong>临床教学活动开发</strong></td>
+        <td>活动开发列表（<code>&lt;a-table :data="filteredList" data-audit="activity-development-list"&gt;</code>）</td>
+        <td><a href="../../pages/临床教学活动开发/page.js">临床教学活动开发/page.js</a><br><a href="../../pages/临床教学活动开发/page.css">临床教学活动开发/page.css</a></td>
+        <td><code>page.js</code> 增加 <code>:sticky-header="64"</code>；<code>page.css</code> 将 <code>.activity-dev-page</code> 列表壳层改 <code>overflow: clip !important</code>，设置 <code>top: 64px</code>、<code>#fafbfc</code> 背景与固定列 <code>z-index: 35 !important</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>临床教学活动统计</strong></td>
+        <td>原生统计表（<code>.as-dept-teacher-table</code>、<code>.as-roster-table</code>、<code>.as-matrix-table</code>）</td>
+        <td><a href="../../pages/临床教学活动统计/page.css">临床教学活动统计/page.css</a></td>
+        <td>将 <code>.as-card</code> / <code>.as-dept-report-card</code> 改为 <code>overflow: clip</code>（1181px 以上外层包装改 <code>overflow-x: clip</code>），为三类统计表 <code>thead th</code> 设置 <code>position: sticky; top: 64px; z-index: 30</code> 与实色底色遮罩。</td>
+      </tr>
+      <tr>
+        <td><strong>物资档案</strong></td>
+        <td>物资档案主表（<code>&lt;a-table class="archive-table material-data-table" :data="archiveTableData"&gt;</code>）</td>
+        <td><a href="../../pages/物资档案/page.js">物资档案/page.js</a><br><a href="../../pages/物资档案/page.css">物资档案/page.css</a></td>
+        <td><code>page.js</code> 增加 <code>:sticky-header="64"</code>；<code>page.css</code> 将 <code>.material-shell-archive</code> 各层包装改 <code>overflow: clip !important</code>，配置 <code>top: 64px</code> 吸顶与固定左右列 <code>z-index: 35 !important</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>教学资源库</strong></td>
+        <td>资源文件主列表（内部滚动区 <code>.list-wrap.p-list-shell</code> 内原生 <code>table.quark-table</code>）</td>
+        <td><a href="../../pages/教学资源库/page.css">教学资源库/page.css</a></td>
+        <td>修复表头与内容文字重叠问题：为 <code>.quark-table thead th</code> 设置 <code>position: sticky; top: 0; z-index: 20</code>（高于行内操作组 <code>z-index: 10</code>），强制 <code>background: #ffffff !important</code> 与底部分割线 <code>inset 0 -1px 0 #edf0f5</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>线上课程</strong></td>
+        <td>① 课程目录列表视图（<code>online-course-hub.js</code> 中 <code>&lt;a-table class="och-table" :data="filteredCourses"&gt;</code>）；② 课程审核列表（<code>online-course-audit.js</code> 中 <code>.cp-audit-table :data="filteredAuditList"</code>）；③ 统计原生表 <code>.ocs-table</code></td>
+        <td><a href="../../pages/线上课程/page.js">线上课程/page.js</a><br><a href="../../shared/js/online-course-hub.js">online-course-hub.js</a><br><a href="../../shared/js/online-course-audit.js">online-course-audit.js</a><br><a href="../../shared/styles/online-course-qianwen.css">online-course-qianwen.css</a></td>
+        <td>父页传参 <code>:sticky-table-header="64"</code>，两子组件接收 <code>stickyTableHeader</code> 并透传给 <code>:sticky-header</code>；<code>online-course-qianwen.css</code> 配置 <code>top: 64px</code>、实色表头、固定列 <code>z-index: 35</code> 及 <code>.ocs-table thead th</code> 吸顶。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>三、第二批：物资域其余 4 页 + 师生域基础 + 题库管理</h3>
+  <table class="emoji-audit-table">
+    <thead>
+      <tr>
+        <th style="width:16%">模块名称</th>
+        <th style="width:26%">具体修改的列表（组件/数据源/选择器）</th>
+        <th style="width:22%">涉及文件</th>
+        <th>具体改动内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>物资工作台</strong></td>
+        <td>4 个主视图 <code>&lt;a-table&gt;</code>：<code>archiveTableData</code>、<code>displayTeachingUseData</code>（核验 / 准备 2 表）、<code>filteredInventoryResultItems</code></td>
+        <td><a href="../../pages/物资工作台/page.js">物资工作台/page.js</a><br><a href="../../pages/物资工作台/page.css">物资工作台/page.css</a></td>
+        <td>4 张主表均加 <code>:sticky-header="64"</code>；<code>page.css</code> 为 <code>.material-shell-workbench</code> 容器设置 <code>overflow: clip !important</code>、<code>top: 64px</code> 实色吸顶与固定列 <code>z-index: 35</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>使用管理（物资使用与归还）</strong></td>
+        <td>5 个主视图 <code>&lt;a-table&gt;</code>：<code>archiveTableData</code>、<code>displayTeachingPrepareData</code>、<code>displayTeachingCheckData</code>、<code>displayBorrowPrepareData</code>、<code>filteredInventoryResultItems</code></td>
+        <td><a href="../../pages/使用管理/page.js">使用管理/page.js</a><br><a href="../../pages/使用管理/page.css">使用管理/page.css</a></td>
+        <td>5 张主表均加 <code>:sticky-header="64"</code>；<code>page.css</code> 为 <code>.material-shell-usage</code> 外层及表格容器设置 <code>overflow: clip !important</code>、<code>top: 64px</code> 实色吸顶与固定列 <code>z-index: 35</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>维修管理（维保管理）</strong></td>
+        <td>5 个主视图 <code>&lt;a-table&gt;</code>（<code>archiveTableData</code>、<code>displayTeachingUseData</code>×2、<code>filteredRepairWorkQueue</code>、<code>filteredInventoryResultItems</code>）+ 共享保养表（<code>material-maintenance.js</code> <code>:data="filtered"</code>）</td>
+        <td><a href="../../pages/维修管理/page.js">维修管理/page.js</a><br><a href="../../pages/维修管理/page.css">维修管理/page.css</a><br><a href="../../shared/js/material-maintenance.js">material-maintenance.js</a></td>
+        <td>上述 6 张主表均加 <code>:sticky-header="64"</code>；<code>page.css</code> 将 <code>.repair-panel</code> 等外层改为 <code>overflow: clip !important</code> 并配置 <code>top: 64px</code> 实色吸顶与固定列层级。</td>
+      </tr>
+      <tr>
+        <td><strong>盘点管理</strong></td>
+        <td>4 个主视图 <code>&lt;a-table&gt;</code>：<code>archiveTableData</code>、<code>displayTeachingUseData</code>×2、<code>filteredInventoryResultItems</code></td>
+        <td><a href="../../pages/盘点管理/page.js">盘点管理/page.js</a><br><a href="../../pages/盘点管理/page.css">盘点管理/page.css</a></td>
+        <td>4 张主表均加 <code>:sticky-header="64"</code>；<code>page.css</code> 为 <code>.inventory-panel</code> 及 <code>.material-shell-inventory</code> 设置 <code>overflow: clip !important</code>、<code>top: 64px</code> 实色吸顶。</td>
+      </tr>
+      <tr>
+        <td><strong>师资管理</strong></td>
+        <td>5 个主视图 <code>&lt;a-table&gt;</code>：院内师资 <code>filteredTeachers</code>、外聘师资 <code>filteredExternalTeachers</code>、国际师资 <code>filteredInternationalTeachers</code>、准入审批 <code>filteredApplications</code>、年度审核 <code>filteredAudits</code></td>
+        <td><a href="../../pages/师资管理/page.js">师资管理/page.js</a><br><a href="../../pages/师资管理/page.css">师资管理/page.css</a><br><a href="../../shared/styles/people-management-qianwen.css">people-management-qianwen.css</a></td>
+        <td>5 张主表均加 <code>:sticky-header="64"</code>（含宽表 <code>:scroll="{ x }"</code>）；<code>page.css</code> 与共享 CSS 将 <code>.teacher-db-wrapper</code> 外层改 <code>overflow: clip !important</code> 并配置 <code>top: 64px</code> 吸顶及固定列 <code>z-index: 35</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>学员管理</strong></td>
+        <td>学员档案主表（<code>&lt;a-table :data="filteredStudents"&gt;</code>）</td>
+        <td><a href="../../pages/学员管理/page.js">学员管理/page.js</a><br><a href="../../pages/学员管理/page.css">学员管理/page.css</a><br><a href="../../shared/styles/people-management-qianwen.css">people-management-qianwen.css</a></td>
+        <td>主表增加 <code>:sticky-header="64"</code>；<code>page.css</code> 与共享 CSS 将 <code>.student-db-wrapper</code> 外层改 <code>overflow: clip !important</code> 并配置 <code>top: 64px</code> 实色吸顶与固定列 <code>z-index: 35</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>用户管理</strong></td>
+        <td>3 个主视图 <code>&lt;a-table class="um-business-table"&gt;</code>：人员列表 <code>filteredPersons</code>、用户组成员 <code>selectedGroupMemberRows</code>、外部人员 <code>extRows</code></td>
+        <td><a href="../../pages/用户管理/page.js">用户管理/page.js</a><br><a href="../../pages/用户管理/external-users.js">external-users.js</a><br><a href="../../pages/用户管理/page.css">用户管理/page.css</a></td>
+        <td>3 张主表均加 <code>:sticky-header="64"</code>（含宽表 <code>:scroll="{ x }"</code>）；<code>page.css</code> 配置 <code>.um-wrapper .um-business-table</code> 的 <code>overflow: clip !important</code>、<code>top: 64px</code> 与固定列层级。</td>
+      </tr>
+      <tr>
+        <td><strong>题库管理</strong></td>
+        <td>3 个主视图 <code>&lt;a-table class="qb-vue-table"&gt;</code>：题库主表 <code>pagedList</code>、审核列表 <code>reviewList</code>、我的题目 <code>mineList</code></td>
+        <td><a href="../../pages/题库管理/page.js">题库管理/page.js</a><br><a href="../../pages/题库管理/page.css">题库管理/page.css</a></td>
+        <td>3 张主表均加 <code>:sticky-header="64"</code>；<code>page.css</code> 将外层改 <code>overflow: clip !important</code> 并配置 <code>top: 64px</code> 实色吸顶与固定列 <code>z-index: 35</code>。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>四、第三批：空间管理（不含空间工作台）+ 轮转指定 + 师生域收尾 + 课程域</h3>
+  <table class="emoji-audit-table">
+    <thead>
+      <tr>
+        <th style="width:16%">模块名称</th>
+        <th style="width:26%">具体修改的列表（组件/数据源/选择器）</th>
+        <th style="width:22%">涉及文件</th>
+        <th>具体改动内容</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>空间预约审批</strong></td>
+        <td>自定义 Grid 列表表头 <code>#sa-app .sast-thead</code></td>
+        <td><a href="../../pages/空间预约审批/page.css">空间预约审批/page.css</a><br><a href="../../shared/styles/space-management-v2.css">space-management-v2.css</a></td>
+        <td>将 <code>.sast-workbench</code> 的 <code>overflow: hidden</code> 改为 <code>overflow: clip</code>；为 <code>#sa-app .sast-thead</code> 增加 <code>position: sticky !important; top: 64px !important; z-index: 20 !important</code>、<code>#f8fafc</code> 实色背景及底边阴影。</td>
+      </tr>
+      <tr>
+        <td><strong>空间资产管理</strong></td>
+        <td>自定义 Grid 列表表头 <code>#sast-app .sast-thead</code>（内含状态下拉筛选）</td>
+        <td><a href="../../pages/空间资产管理/page.css">空间资产管理/page.css</a><br><a href="../../shared/styles/space-management-v2.css">space-management-v2.css</a></td>
+        <td>将 <code>.sast-workbench</code> 改为 <code>overflow: clip</code>；为 <code>#sast-app .sast-thead</code> 设置 <code>position: sticky !important; top: 64px !important; z-index: 20 !important</code> 及实色背景。</td>
+      </tr>
+      <tr>
+        <td><strong>班牌和大屏管理</strong></td>
+        <td>自定义 Grid 列表表头 <code>#bdm-app .sast-thead</code></td>
+        <td><a href="../../pages/班牌和大屏管理/page.css">班牌和大屏管理/page.css</a><br><a href="../../shared/styles/space-management-v2.css">space-management-v2.css</a></td>
+        <td>将 <code>.sast-workbench</code> 改为 <code>overflow: clip</code>；为 <code>#bdm-app .sast-thead</code> 设置 <code>position: sticky !important; top: 64px !important; z-index: 20 !important</code> 及实色背景。</td>
+      </tr>
+      <tr>
+        <td><strong>责任导师分配</strong></td>
+        <td>主工作台 3 个 <code>&lt;a-table&gt;</code>：学员分配进度 <code>progressRowsView</code>、导师视图 <code>teacherViewRows</code>、月度带教明细 <code>advisorMonthRows</code>（抽屉内 4 表未改）</td>
+        <td><a href="../../pages/导师分配/page.js">导师分配/page.js</a><br><a href="../../pages/导师分配/page.css">导师分配/page.css</a></td>
+        <td>3 张主表增加 <code>:sticky-header="64"</code>；<code>page.css</code> 将 <code>.ma-panel</code> 改为 <code>overflow: clip</code>，追加 <code>.ma-wrapper .ma-panel .arco-table-header-sticky</code>（<code>top: 64px</code>、<code>#f7f9fc !important</code> 背景、固定列 <code>z-index: 35</code>）。</td>
+      </tr>
+      <tr>
+        <td><strong>成果管理</strong></td>
+        <td>成果列表主表（<code>&lt;a-table :data="filteredRows"&gt;</code>）</td>
+        <td><a href="../../pages/成果管理/page.js">成果管理/page.js</a><br><a href="../../pages/成果管理/page.css">成果管理/page.css</a><br><a href="../../shared/styles/people-management-qianwen.css">people-management-qianwen.css</a></td>
+        <td>主表增加 <code>:sticky-header="64"</code>；<code>page.css</code> 与共享 CSS 将 <code>.ra-table-card</code> 改为 <code>overflow: clip</code>，追加 <code>top: 64px</code> <code>#ffffff !important</code> 实色吸顶与固定列 <code>z-index: 35</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>发证管理</strong></td>
+        <td>2 个主页面 <code>&lt;a-table&gt;</code>：证书台账 <code>filteredCerts</code>、批量导入名单 <code>filteredImportRows</code>（抽屉内明细表未改）</td>
+        <td><a href="../../pages/发证管理/page.js">发证管理/page.js</a><br><a href="../../pages/发证管理/page.css">发证管理/page.css</a><br><a href="../../shared/styles/people-management-qianwen.css">people-management-qianwen.css</a></td>
+        <td>2 张主表增加 <code>:sticky-header="64"</code>；<code>page.css</code> 与共享 CSS 将 <code>.ra-table-card</code>、<code>.fdek-issue-card</code> 改为 <code>overflow: clip</code> 并配置 <code>top: 64px</code> <code>#ffffff !important</code> 吸顶。</td>
+      </tr>
+      <tr>
+        <td><strong>结业办理（结业信息）</strong></td>
+        <td>结业审核主表（<code>&lt;a-table :data="rows" :scroll="{ x: 1120 }"&gt;</code>；抽屉内 <code>.jb-table</code> 未改）</td>
+        <td><a href="../../pages/结业信息/page.js">结业信息/page.js</a><br><a href="../../pages/结业信息/page.css">结业信息/page.css</a></td>
+        <td>主表增加 <code>:sticky-header="64"</code>；<code>page.css</code> 将 <code>.jb-panel</code> 改为 <code>overflow: clip</code> 并配置 <code>top: 64px</code> <code>#f7f9fc !important</code> 吸顶与固定列 <code>z-index: 35</code>（联动全局横滚兼容）。</td>
+      </tr>
+      <tr>
+        <td><strong>临床思维课程</strong></td>
+        <td>2 个主视图 <code>&lt;a-table&gt;</code>：学员训练记录 <code>studentRecords</code>、病例课程列表 <code>filteredCourses</code>（抽屉内表格未改）</td>
+        <td><a href="../../pages/临床思维课程/page.js">临床思维课程/page.js</a><br><a href="../../pages/临床思维课程/page.css">临床思维课程/page.css</a><br><a href="../../shared/styles/course-management-qianwen.css">course-management-qianwen.css</a></td>
+        <td>2 张主表增加 <code>:sticky-header="64"</code>；<code>page.css</code> 与共享 CSS 将 <code>.ct-page .ct-light-card</code> 改为 <code>overflow: clip</code>，追加 <code>top: 64px</code> 实色吸顶与固定列 <code>z-index: 35</code>。</td>
+      </tr>
+      <tr>
+        <td><strong>排课与报名</strong><br><span style="color:#6b778c;font-size:12px">（<code>管理员排课与报名</code> 直接复用）</span></td>
+        <td>2 个主视图 <code>&lt;a-table&gt;</code>（排课计划 <code>filteredPlans</code>、报名名单 <code>filteredRegistrationRows</code>）+ 2 个子阶段原生表（排课准备/审核发布 <code>table.cs-unified-plan-table</code>；<code>planManagerVisible</code> 抽屉及弹窗内表格均未改）</td>
+        <td><a href="../../pages/排课与报名/page.js">排课与报名/page.js</a><br><a href="../../pages/排课与报名/page.css">排课与报名/page.css</a><br><a href="../../shared/styles/course-management-qianwen.css">course-management-qianwen.css</a></td>
+        <td>仅上述 2 处主视图 <code>&lt;a-table&gt;</code> 增加 <code>:sticky-header="64"</code>；<code>page.css</code> 与共享 CSS 将 <code>.cs-plan-landing .cs-plan-manager</code> 及主阶段 <code>.schedule-table-wrap.p-list-shell</code> 改为 <code>overflow: clip</code>，为主视图 Arco 表头与原生 <code>thead th.cs-col-th</code> 配置 <code>top: 64px</code> <code>#fafbfc</code> 吸顶。</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>五、明确跳过与当前校验状态</h3>
+  <ul>
+    <li><strong>明确未改范围</strong>：<code>空间工作台</code>、<code>轮转安排</code>、<code>轮转任务和考核</code>、各模块抽屉（<code>&lt;a-drawer&gt;</code>）与弹窗（<code>&lt;a-modal&gt;</code>）内部次级表格，以及所有页面的搜索框、筛选条、分页控件与卡片结构。</li>
+    <li><strong>当前校验状态</strong>：第三批全部 7 个 JS 文件已通过 <code>node -c</code> 语法校验、<code>:sticky-header="64"</code> 命中位置核对无抽屉误改、13 个 CSS 文件大括号配对检查通过；因上一轮浏览器子代理（<code>flash</code>）触发 <code>429</code> 配额限制，第三批暂未附带自动滚动实拍截图。</li>
+  </ul>
+</section><section id="sec-18" style="margin-top:24px">
+  <h2>移动端首页 · 视觉质感恢复、多色语义重构与常用服务自定义配置</h2>
+  <p>定位：移动端教师端（<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）/ 学员端（<a href="../../移动端/student-tdesign.html">student-tdesign.html</a>）/ 科室管理员端（<a href="../../移动端/department-manager-tdesign.html">department-manager-tdesign.html</a>）→ 首页 Hero、公告条、本月待办、常用服务及机构服务大厅。实现文件：<a href="../../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../../移动端/shared/mentor-mobile.js">mentor-mobile.js</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>公告条出现 <code>· undefined</code> 脏数据</strong>：<code>mentor-mobile.js</code> 构造的导师通知仅赋了 <code>name</code> 而缺省 <code>text</code>，首页直接拼接 <code>name + ' · ' + text</code> 导致末尾显示 <code>· undefined</code>。</li>
+        <li><strong>Hero 头图建筑质感与快捷容器丢失</strong>：<code>tdesign-app.css</code> 文末 <code>!important</code> 补丁用纯蓝渐变覆盖了「儿科医院 8 号楼」实景底图，并去掉了顶部 3 个快捷操作图标的磨砂圆角盒。</li>
+        <li><strong>待办与服务图标退化为全蓝单色、分割线丢失</strong>：文末补丁将样式类误写为 <code>.tone-red</code> / <code>.tone-blue</code>（JS 实际输出 <code>red-tone</code> / <code>blue</code>），且 <code>border: none !important</code> 覆盖了 <code>border-bottom</code>，导致待办行间无分割线、紧急项失去红标锚点、常用服务全变单色蓝。</li>
+        <li><strong>常用服务首页溢出且「全部应用」漏项</strong>：教师端首页平铺 10+ 项导致第 3 行被底栏裁切；<code>serviceHallGroups</code> 教师端遗漏「我的出题」「我的责任学员」，学员端遗漏「我的训练」「自适应学习」，且不支持用户增删配置。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端首页-教师端-修改前.jpg" target="_blank"><img alt="移动端首页教师端修改前" src="2026-11-12-对比截图/移动端首页-教师端-修改前.jpg"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>修复公告条 <code>· undefined</code></strong>：<a href="../../移动端/shared/mentor-mobile.js">mentor-mobile.js</a> 拆分返回 <code>name</code> 与 <code>text</code> 字段，<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a> 使用空值过滤拼接。</li>
+        <li><strong>恢复医院大楼底图与磨砂快捷框</strong>：保留新版「官方白字院徽 + 右上铃铛 + 通栏搜索框」布局，恢复医院蓝半透明渐变叠加 <code>儿科医院 8 号楼.png</code> 及 44×44 磨砂圆角快捷容器。</li>
+        <li><strong>恢复待办分割线与多色语义</strong>：修复 <code>.task-item</code> 下边框与 <code>red-tone</code> / <code>orange-tone</code> / <code>blue-tone</code> 类匹配，紧急待办按钮恢复红色 <code>theme="danger"</code>。</li>
+        <li><strong>多色宫格 + 角标右上角 + 自定义增删（上限 8 项）</strong>：补齐 <code>.service-icon</code> 全色系样式，角标挪至图标右上角；首页默认展示 8 项（2×4），补全各角色 <code>serviceHallGroups</code> 分组，并在首页「管理」与「机构服务大厅 → 配置常用」支持添加、移出、恢复默认及按角色 <code>localStorage</code> 持久化（同步约束桌面端 <code>.t-popup--bottom</code> 居中对齐 430px 手机壳）；底栏「轮转带教」文案按要求保持不变。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端首页-教师端-修改后.png" target="_blank"><img alt="移动端首页教师端修改后" src="2026-11-12-对比截图/移动端首页-教师端-修改后.png"></a>
+      <a href="2026-11-12-对比截图/移动端首页-自定义常用服务-修改后.png" target="_blank"><img alt="移动端机构服务大厅自定义常用服务修改后" src="2026-11-12-对比截图/移动端首页-自定义常用服务-修改后.png" style="margin-top:10px"></a>
+    </div>
+  </div>
+</section><section id="sec-19" style="margin-top:24px">
+  <h2>移动端教师端 · 轮转带教与「我的责任学员」入口核查结论（对照 PC 端，维持现状）</h2>
+  <p>定位：移动端教师端（<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）底部「轮转带教」Tab &amp; 首页「常用服务 / 全部应用 → 我的责任学员」 ↔ PC 教师端「我的学员」（<a href="../../shared/js/nav-data.js">nav-data.js</a>、<a href="../../pages/我的轮转学员/page.js">我的轮转学员</a>、<a href="../../pages/责任导师/page.js">我的责任学员</a>）。相关文件：<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../../移动端/shared/mentor-mobile.js">mentor-mobile.js</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>排查现状 · 双端入口差异</h3>
+      <ul>
+        <li><strong>PC 端结构</strong>：<code>nav-data.js</code> 在教师端「我的学员」下并列拆分为两个独立菜单——<strong>「我的轮转学员」</strong>（指导医师维度，管理在轮学员、手册、大病历与科室评语）和<strong>「我的责任学员」</strong>（责任导师维度，管理三年全程绑定学员、学员选择与谈话记录审核）。</li>
+        <li><strong>移动端「轮转带教」Tab</strong>：底部导航 <code>轮转带教</code>（<code>activeTab === 'students'</code>）仅承载了指导医师这一条线（「当前带教学员 / 历史带教记录」+ 大病历审核 / 科室评语 / 360 环评），页面内未直接放置「我的责任学员」。</li>
+        <li><strong>数据口径备忘</strong>：移动端 <code>teacherRotationStudents</code> 目前按全科室（<code>stay.dept === "重症医学科"</code>）过滤在轮学员（展示 22 人），而 PC 端「我的轮转学员」按当前登录教师的指导医师身份过滤（展示 2 人）。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-轮转带教-排查现状.png" target="_blank"><img alt="移动端教师端轮转带教现状" src="2026-11-12-对比截图/移动端教师端-轮转带教-排查现状.png"></a>
+      <a href="2026-11-12-对比截图/PC教师端-我的轮转学员-对比参考.png" target="_blank"><img alt="PC教师端我的轮转学员" src="2026-11-12-对比截图/PC教师端-我的轮转学员-对比参考.png" style="margin-top:10px"></a>
+      <a href="2026-11-12-对比截图/PC教师端-我的责任学员-对比参考.png" target="_blank"><img alt="PC教师端我的责任学员" src="2026-11-12-对比截图/PC教师端-我的责任学员-对比参考.png" style="margin-top:10px"></a>
+    </div>
+    <div>
+      <h3>核查结论 · 维持现状（暂不修改代码）</h3>
+      <ul>
+        <li><strong>移动端已有完整「我的责任学员」模块</strong>：由独立组件 <code>&lt;fdek-mentor-mobile&gt;</code>（<code>移动端/shared/mentor-mobile.js</code>）承载，已包含「当前责任学员」「学员选择（互选期）」「历史责任学员」「修改个人简介」以及学员档案 / 谈话记录审核功能，并与 PC 端共用 <code>Rotations</code> 数据。</li>
+        <li><strong>现有触发入口</strong>：挂在移动端教师端<strong>首页「常用服务」及「全部应用 → 带教与评价 → 我的责任学员」</strong>（点击以 <code>overlay === 'mentor'</code> 浮层打开），而非嵌入底部「轮转带教」Tab。</li>
+        <li><strong>处理结论</strong>：经与用户确认，移动端既已具备完整的「我的责任学员」入口与功能，<strong>本次保持现状，不修改业务代码</strong>；若后续需在交互上与 PC 端完全对齐，可将底部「轮转带教」Tab 更名为「我的学员」并在页内增设「我的轮转学员 / 我的责任学员」分段切换（同步按需统一指导医师过滤口径）。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-现有入口.png" target="_blank"><img alt="移动端教师端我的责任学员现有入口" src="2026-11-12-对比截图/移动端教师端-我的责任学员-现有入口.png"></a>
+    </div>
+  </div>
+</section><section id="sec-20" style="margin-top:24px">
+  <h2>技能中心课程 · 移动端学员端课程详情对齐 PC 端 &amp; 移除 AI 学习推荐虚构预约训练</h2>
+  <p>定位：移动端（<code>移动端/学员-儿科示例.html</code>、<code>移动端/student-tdesign.html</code>）→ 学习 → 技能中心课程（单次/专项课程详情） &amp; PC 学员端（<code>王同学.html?page=技能中心课程</code>）→ 学习反馈 → AI 学习推荐。实现文件：<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../../shared/js/course-insight.js">course-insight.js</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>Hero 头部缺失封面与 SSOT 字段不一致</strong>：移动端学员端详情缺少课程封面图、课程介绍、授课对象、证书启用标识等字段，且未接入 <code>CourseImplDemo.applyStudent</code> 与 <code>CourseSessionTasks.linkedSession</code> 联动同步。</li>
+        <li><strong>顶部页签与底部操作栏布局不匹配</strong>：顶部仅有「课程任务 / 课程信息」2 个页签，「学习分析」「课程评价与反馈」放在底部 4 按钮里，缺少「学习反馈」「课程证书」页签，且「签到」未做成扫码签到流程。</li>
+        <li><strong>资料与测验读写 Bug</strong>：<code>.pptx / .docx</code> 资料误标为「视频 · 看视频」，点学习无法打开预览或记录 <code>已学习</code>；测验与作业 ID 解析及 SSOT 会话键不一致导致答卷解析异常；列表中缺失「AHA-PALS 儿童高级生命支持」专项课程及分节任务。</li>
+        <li><strong>AI 学习推荐含虚构数据</strong>：<code>shared/js/course-insight.js</code> 的 <code>studentAnalyze</code> 返回了虚构的 5 条「预约训练 · 技能中心模型练习」推荐项，实际无需该类数据。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-修改前.png" target="_blank"><img alt="移动端学员端技能中心课程详情修改前" src="2026-11-12-对比截图/技能中心课程-移动端学员端-修改前.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-AI推荐-修改前.jpg" target="_blank"><img style="margin-top:12px" alt="PC端AI学习推荐含预约训练修改前" src="2026-11-12-对比截图/技能中心课程-AI推荐-修改前.jpg"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>Hero 头部与双端 SSOT 同源</strong>：增加封面图与状态徽标，展示「课程类型 · 培养层次 · 角色」「证书状态」、简介及 2×2 SSOT 字段（授课时间、地点/平台、授课对象、授课教师；专项课程展示节数、开课时间、负责人、授课对象），完整接入 <code>CourseImplDemo.applyStudent</code> 与 <code>linkedSession</code>。</li>
+        <li><strong>顶部 4 页签 + 底部双按钮 + 扫码签到</strong>：顶部统一为「课程任务 / 课程信息 / 学习反馈 / 课程证书」，底部精简为「签到」「讨论区」双按钮；点击「签到」弹出「扫码签到」交互框（取景框扫描 + 拍照/4~6 位数字备用码）并写入 <code>fdek.course.checkins.v1</code>。</li>
+        <li><strong>专项课程 + 学习反馈 + 课程证书 + 资料/测验对齐 PC</strong>：学员课程列表与详情补齐专项课程 <code>AHA-PALS 儿童高级生命支持</code>（含可折叠 <code>第 N 节</code> 任务节点与节列表）；<code>.pptx→课件</code>、<code>.docx→文档</code> 点击「学习」打开 <code>CourseFilePreview</code> 并记录已学；修复测验/作业 <code>source.id</code> 与 SSOT 联动，确保「查看答卷」直接进入解析态；补齐「学习反馈」（4 KPI、我的成绩与评估明细、我的反馈、AI 学习推荐）与「课程证书」（结业条件核验 + 电子证书预览）。</li>
+        <li><strong>移除虚构预约训练推荐</strong>：<code>course-insight.js</code> 删除 <code>预约训练</code> 相关生成逻辑，双端 AI 学习推荐均只保留「课程资料」与「题库练习」。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-课程任务-修改后.png" target="_blank"><img alt="移动端学员端课程详情（封面图+4页签+课程任务+底栏2按钮）" src="2026-11-12-对比截图/技能中心课程-移动端学员端-课程任务-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-扫码签到-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端学员端扫码签到弹窗" src="2026-11-12-对比截图/技能中心课程-移动端学员端-扫码签到-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-学习反馈-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端学员端学习反馈页签" src="2026-11-12-对比截图/技能中心课程-移动端学员端-学习反馈-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-课程证书-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端学员端课程证书页签" src="2026-11-12-对比截图/技能中心课程-移动端学员端-课程证书-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-专项课程-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端学员端专项课程AHA-PALS分节详情" src="2026-11-12-对比截图/技能中心课程-移动端学员端-专项课程-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-AI推荐-修改后.png" target="_blank"><img style="margin-top:12px" alt="PC端AI学习推荐已移除预约训练" src="2026-11-12-对比截图/技能中心课程-AI推荐-修改后.png"></a>
+    </div>
+  </div>
+</section><section id="sec-21" style="margin-top:24px"><h2>全项目头像风格统一 · 写实风头像全面替换为 3D 卡通风格头像（avatar_05.png）</h2>
+  <p>定位：PC 端全站侧边栏左下角用户头像、线上建课默认讲师头像、新建课程单 HTML 侧边栏，以及移动端教师端「我的」个人中心 / 我的教学画像 / 基本信息页。实现文件：<a href="../../shared/js/nav-render.js">nav-render.js</a>、<a href="../../shared/js/online-course-creator.js">online-course-creator.js</a>、<a href="../../pages/新建课程/单HTML/index.html">新建课程/单HTML/index.html</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li>项目同时混用两种头像风格：全站列表/名片使用 3D 卡通风格（<code>shared/assets/avatars/avatar_01~10.png</code>），而 PC 侧边栏、线上建课、新建课程单文件版及移动端教师个人中心仍使用旧版黑边圆框写实人像（<code>doctor-avatar-middle-aged.png</code>），视觉风格割裂。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/头像统一-PC端侧边栏-修改前.png" target="_blank"><img alt="PC端侧边栏旧版写实头像修改前" src="2026-11-12-对比截图/头像统一-PC端侧边栏-修改前.png"></a>
+      <a href="2026-11-12-对比截图/头像统一-移动端个人中心-修改前.png" target="_blank"><img style="margin-top:12px" alt="移动端个人中心旧版写实头像修改前" src="2026-11-12-对比截图/头像统一-移动端个人中心-修改前.png"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>PC 端统一替换</strong>：更新 <code>shared/js/nav-render.js</code>、<code>shared/js/online-course-creator.js</code>（使用 <code>getSharedBaseUrl()</code> 并兼容 <code>?root=1</code>）与 <code>pages/新建课程/单HTML/index.html</code>，将所有 <code>doctor-avatar-middle-aged.png</code> 引用替换为 3D 卡通风格 <code>avatars/avatar_05.png</code>。</li>
+        <li><strong>移动端统一替换</strong>：将 <code>shared/assets/avatars/avatar_01~10.png</code> 同步至 <code>移动端/assets/avatars/</code>（并同步 <code>avatar_05.png</code> 至单 HTML 资产目录），更新 <code>移动端/shared/tdesign-app.js</code> 中个人中心、我的教学画像、基本信息 3 处头像为 <code>./assets/avatars/avatar_05.png</code>。</li>
+        <li><strong>清理旧头像资产</strong>：删除活跃目录中的 4 份 <code>doctor-avatar-middle-aged.png</code> 冗余资源，全仓检索确认 0 处残留引用。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/头像统一-PC端侧边栏-修改后.png" target="_blank"><img alt="PC端侧边栏统一3D卡通头像修改后" src="2026-11-12-对比截图/头像统一-PC端侧边栏-修改后.png"></a>
+      <a href="2026-11-12-对比截图/头像统一-移动端个人中心-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端个人中心统一3D卡通头像修改后" src="2026-11-12-对比截图/头像统一-移动端个人中心-修改后.png"></a>
+    </div>
+  </div>
+</section><section id="sec-22" style="margin-top:24px">
+  <h2>我的责任学员 · 移动端教师端 SSOT 对齐 PC 端</h2>
+  <p>定位：移动端教师端（<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）首页「常用服务」/「全部应用 → 带教与评价 → 我的责任学员」（<code>overlay === 'mentor'</code>，保留顶栏与入口位置不变） ↔ PC 端（<a href="../../pages/责任导师/page.js">pages/责任导师/page.js</a>）。实现文件：<a href="../../移动端/shared/mentor-mobile.js">mentor-mobile.js</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>SSOT 与人数不一致</strong>：原组件默认角色未严格对齐 PC 导师 <code>周文浩</code> 且缺少 <code>people-profile.js / rotation-handbook-link.js</code> 依赖，导致显示 <code>当前责任学员 (0)</code>、<code>历史责任学员 (0)</code>（PC 为 <code>1</code> / <code>2</code>）。</li>
+        <li><strong>功能与信息缺口</strong>：缺失「更换导师 · 待你确认」区块与「剩余名额」校验提示；学员未使用 PC 真实头像图片且缺少工号/绑定方式/当前轮转科室/最近访谈与「轮转手册」操作；访谈审核仅支持查看、缺少「通过 / 退回（必填原因）」与推送通知；修改个人简介未对齐 PC 的 <code>PeopleProfile.BIO_FIELDS</code> 5 字段结构化表单。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-现有入口.png" target="_blank"><img alt="移动端教师端我的责任学员修改前（0人空状态）" src="2026-11-12-对比截图/移动端教师端-我的责任学员-现有入口.png"></a>
+      <a href="2026-11-12-对比截图/PC教师端-我的责任学员-对比参考.png" target="_blank"><img style="margin-top:12px" alt="PC教师端我的责任学员对照参考" src="2026-11-12-对比截图/PC教师端-我的责任学员-对比参考.png"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>SSOT 与人数完全对齐</strong>：对齐 <code>MENTOR_NAME = '周文浩'</code> 与全量 <code>Rotations.MENTOR_STUDENTS / MUTUAL / TRANSFERS</code>，当前展示 <code>1</code> 人（王雨桐，<code>2024001</code>，<code>带教 1 / 3 人</code>）、历史 <code>2</code> 条，并补齐「更换导师 · 待你确认」审批流（查看简介 / 不接收填因 / 接收）及「学员选择」<code>remainSlots</code> 剩余名额校验。</li>
+        <li><strong>卡片字段与操作闭环</strong>：统一采用 <code>PeopleProfile.avatarOf</code> 真实头像，补齐工号、招收年度、绑定方式、当前轮转科室、最近访谈；操作区补齐「查看（4 页签档案抽屉：基本信息/轮转历程/资质与成果/访谈记录）」「轮转手册（联动打开 <code>MobileHandbook</code> <code>mode=&quot;mentor&quot;</code>）」「访谈记录审核（支持通过与必填原因退回 + <code>pushMentorNotice</code>）」。</li>
+        <li><strong>结构化个人简介</strong>：对齐 PC 端 <code>PeopleProfile.BIO_FIELDS</code> 5 字段编辑器（含专业方向必填校验与 <code>MentorDemo.updateMentorBio</code> 持久化），保留原有 <code>← 我的责任学员</code> 顶栏与首页入口。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-修改后.png" target="_blank"><img alt="移动端教师端我的责任学员修改后（王雨桐真实头像与完整操作）" src="2026-11-12-对比截图/移动端教师端-我的责任学员-修改后.png"></a>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-访谈审核-修改后.png" target="_blank"><img alt="移动端教师端访谈记录审核（通过/退回）修改后" src="2026-11-12-对比截图/移动端教师端-我的责任学员-访谈审核-修改后.png"></a>
+        <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-学员选择-修改后.png" target="_blank"><img alt="移动端教师端更换导师待确认与学员选择名额校验修改后" src="2026-11-12-对比截图/移动端教师端-我的责任学员-学员选择-修改后.png"></a>
+      </div>
+    </div>
+  </div>
+</section><section id="sec-23" style="margin-top:24px">
+  <h2>我的轮转学员（轮转带教） · 移动端教师端 SSOT 与全功能对齐 PC 端</h2>
+  <p>定位：移动端教师端（<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）底部「轮转带教」Tab（保留标题 <code>轮转带教</code> 与底栏入口不变） ↔ PC 端「我的轮转学员」（<a href="../../shared/js/rotation-pc.js">rotation-pc.js</a>）。实现文件：<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>SSOT 口径不一致</strong>：按全科室过滤展示 <code>22 人</code>（张佳惠等），未按 PC <code>advisorMe()</code> 指导医师（王老师 / 周文浩）收口为当前 <code>2</code> 人（何梓涵、张明轩）与历史 <code>38</code> 条，且列表内残留硬编码的模拟「待审大病历 / 待写评语 / 360° 评价」分组。</li>
+        <li><strong>工具栏、头像与核心功能缺失</strong>：缺少顶部「搜索学员姓名或工号」与「修改个人简介」入口；学员卡片使用首字蓝块而非 PC 真实头像，字段与大病历成绩缺失；仅可看简版手册，缺少「评价表」「<code>NAT21-09</code> 住院病历书写质量评价量表（含在院/出院、AI 预评与分差、一票否决）」「大病历书写整体成绩评定」「催办（24h 冷却 + 消息通知）」以及历史带教「年份 + 月份」双筛选。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-轮转带教-排查现状.png" target="_blank"><img alt="移动端教师端轮转带教修改前（22人科室口径）" src="2026-11-12-对比截图/移动端教师端-轮转带教-排查现状.png"></a>
+      <a href="2026-11-12-对比截图/PC教师端-我的轮转学员-对比参考.png" target="_blank"><img style="margin-top:12px" alt="PC教师端我的轮转学员对照参考" src="2026-11-12-对比截图/PC教师端-我的轮转学员-对比参考.png"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>SSOT 与卡片全面对齐 PC</strong>：<code>advisorMe()</code> 统一收口为 <code>当前带教学员 (2)</code>（何梓涵 <code>2024037</code>、张明轩 <code>2025003</code>）与 <code>历史带教记录 (38)</code>，移除静态模拟分组并保持 <code>role === 'department'</code> 原有逻辑不受影响；卡片采用真实头像图片，展示工号、轮转状态、招收年度、培训专业、轮转科室、轮转时间、责任导师与大病历成绩。</li>
+        <li><strong>工具栏与历史年月筛选</strong>：新增姓名/工号实时搜索框与「修改个人简介」5 字段弹窗入口；「历史带教记录」补齐与 PC 一致的年份 + 月份双下拉筛选（<code>R.historyFilterYears / historyPeriodMatches</code>）。</li>
+        <li><strong>手册审核、<code>NAT21-09</code>、大病历与催办闭环</strong>：补齐「查看手册（含科次切换与评价表详情）」「手册审核（<code>NAT21-09</code> 在院 85 / 出院 100 评分、AI 预评及分差提示、一票否决、必填原因退回）」「大病历书写整体成绩评定（<code>RotationHandbookLink.saveBigrecOverall</code>，保存后刷新为 <code>91 分（优秀）</code> 与 <code>手册审核 · 修改成绩</code>）」以及「催办（24h <code>localStorage</code> 冷却态 <code>已催办</code> + 通知写入）」。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-轮转带教-修改后.png" target="_blank"><img alt="移动端教师端轮转带教修改后（2人SSOT真实头像卡片与搜索/简介/完整按钮）" src="2026-11-12-对比截图/移动端教师端-轮转带教-修改后.png"></a>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <a href="2026-11-12-对比截图/移动端教师端-轮转带教-NAT21-09审核-修改后.png" target="_blank"><img alt="移动端教师端NAT21-09质量评价与AI预评修改后" src="2026-11-12-对比截图/移动端教师端-轮转带教-NAT21-09审核-修改后.png"></a>
+        <a href="2026-11-12-对比截图/移动端教师端-轮转带教-历史带教筛选-修改后.png" target="_blank"><img alt="移动端教师端历史带教记录38条及年份月份双筛选修改后" src="2026-11-12-对比截图/移动端教师端-轮转带教-历史带教筛选-修改后.png"></a>
+      </div>
+    </div>
+  </div>
+</section><dialog id="modal"><h2>新建病种</h2><p id="message"></p><div class="actions"><button id="cancel" onclick="modal.close()">取消</button><button id="confirm" class="primary"></button></div></dialog></main><script>function openModal(cat="病种"){document.querySelector('#modal h2').textContent='新建'+cat;const allowed=document.getElementById('permission').value==='yes';document.getElementById('message').textContent=allowed?'病种需在后台「系统设置 → 培养指标字典 → 病种」中添加。将新开页面，当前轮转配置会保留；添加完成后返回本页选择病种。':'当前账号没有后台病种管理权限，请联系系统管理员进行添加。';document.getElementById('message').textContent=document.getElementById('message').textContent.replaceAll('病种',cat);document.getElementById('cancel').hidden=!allowed;const ok=document.getElementById('confirm');ok.textContent=allowed?'前往后台添加':'知道了';ok.onclick=()=>{if(allowed)window.open('../../pages/系统设置/index.html#group=teaching&page=indicators&tab='+({'病种':'disease','技能':'skill','手术':'surgery'}[cat]),'_blank','noopener');document.getElementById('modal').close()};document.getElementById('modal').showModal()}</script><a class="back-to-index" href="#change-index">↑ 返回总清单</a><script>(function(){const body=document.getElementById('change-index-body'),search=document.getElementById('index-search'),chips=document.querySelectorAll('#index-scope-chips .index-chip'),visibleEl=document.getElementById('index-visible-count');let activeScope='all';function applyFilter(){const q=(search.value||'').trim().toLowerCase();let shown=0;body.querySelectorAll('tr').forEach(tr=>{const scope=tr.dataset.scope||'',scopeOk=activeScope==='all'||scope===activeScope,textOk=!q||tr.textContent.toLowerCase().includes(q),show=scopeOk&&textOk;tr.hidden=!show;if(show)shown++});if(visibleEl)visibleEl.textContent=String(shown)}chips.forEach(btn=>btn.addEventListener('click',()=>{chips.forEach(c=>c.classList.remove('active'));btn.classList.add('active');activeScope=btn.dataset.scope;applyFilter()}));search.addEventListener('input',applyFilter)})();</script></html>
