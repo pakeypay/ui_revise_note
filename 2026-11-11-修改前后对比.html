@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>2026-11-11 第三轮走查 · 修改前后对比</title>
+<style>
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;margin:0;background:#f5f6f7;color:#1d2129}
+  header{background:#175898;color:#fff;padding:20px 32px}
+  header h1{margin:0;font-size:20px}
+  header p{margin:6px 0 0;opacity:.85;font-size:13px}
+  section{background:#fff;margin:20px auto;padding:24px 32px;max-width:1500px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+  section[id]{scroll-margin-top:20px}
+  section h2{font-size:17px;margin:0 0 4px;color:#175898}
+  section .meta{font-size:12px;color:#86909c;margin-bottom:6px}
+  section .note{font-size:13px;color:#4e5969;background:#f7f8fa;border-left:3px solid #175898;padding:8px 12px;margin:10px 0 16px}
+  .pair{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+  .pair figure{flex:1;min-width:420px;margin:0}
+  .pair figcaption{font-size:12px;font-weight:600;margin-bottom:6px}
+  .pair .before figcaption{color:#f53f3f}
+  .pair .after figcaption{color:#00b42a}
+  .pair img{width:100%;border:1px solid #e5e6eb;border-radius:6px;display:block}
+</style>
+</head>
+<body>
+<header>
+  <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
+  <h1>第三轮走查验收 · 修改前后对比（2026-11-11）</h1>
+  <p>对照文档：《2026-11-11-第三轮走查意见定位与改造清单.md》 · 每条意见含修改前/修改后截图与说明</p>
+</header>
+<!-- SECTIONS -->
+<section id="sec-01">
+  <h2>意见 10 · 科室管理员活动详情：去掉「一起全选分组/全选全部」+ 修改前二次确认</h2>
+  <div class="meta">pages/教学活动实施/page.js · 提交见 git 历史</div>
+  <div class="note">删除「一起全选分组」按钮与「★ 一起全选分组」胶囊、「全选全部」按钮（详情抽屉与废弃发起弹窗两处）；保留「清空」与按分组逐个全选胶囊。「确定修改并通知学员」改为先弹二次确认（将通知 N 名学员及主讲教师）。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 详情抽屉（待开始）</figcaption><img src="2026-11-11-对比截图/意见10-前-01-详情抽屉.png"></figure>
+    <figure class="after"><figcaption>修改后 · 详情抽屉</figcaption><img src="2026-11-11-对比截图/意见10-后-01-详情抽屉.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 无二次确认（点击直接保存并通知）</figcaption><img src="2026-11-11-对比截图/意见10-前-01-详情抽屉.png"></figure>
+    <figure class="after"><figcaption>修改后 · 二次确认弹窗</figcaption><img src="2026-11-11-对比截图/意见10-后-02-二次确认弹窗.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 签到情况页签</figcaption><img src="2026-11-11-对比截图/意见10-前-02-签到页签.png"></figure>
+    <figure class="after"><figcaption>修改后 · 签到情况页签</figcaption><img src="2026-11-11-对比截图/意见10-后-03-签到页签.png"></figure>
+  </div>
+</section>
+<section id="sec-02">
+  <h2>意见 6 · 护理专区不再标绿</h2>
+  <div class="meta">shared/styles/online-course-hub.css · shared/js/online-course-hub.js</div>
+  <div class="note">绿标实际出现在「技能中心课程开发 → 引用线上课程」弹窗（复用 online-course-hub 组件，其自带样式仍为绿色 #00a870）。已把 hub 的护理专区筛选页签、标签、卡片角标统一改为与「线上课程」页面一致的口径（橙色 #b54708 / 白底橙字），并把列表视图的 a-tag 由 green 改为 gray。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 卡片角标绿底白字</figcaption><img src="2026-11-11-对比截图/意见6-前-02-引用弹窗-护理专区.png"></figure>
+    <figure class="after"><figcaption>修改后 · 角标白底橙字（与线上课程页一致）</figcaption><img src="2026-11-11-对比截图/意见6-后-02-引用弹窗-护理专区.png"></figure>
+  </div>
+</section>
+<section id="sec-03">
+  <h2>意见 9 · 教师端「发起教学活动」按管理员端口径对齐 + 增加「上传资料」</h2>
+  <div class="meta">pages/临床教学活动实施/page.js（教师端） · 仲裁基准：pages/教学活动实施/page.js（管理员端）</div>
+  <div class="note">按「管理员 vs 教师以管理员为准」：教师端补齐管理员端字段——活动时长、主讲人（多选可输入）、主办科室，并新增 PM 要求的「上传资料」上传区；草稿保存时一并写入时长/主讲人/科室/资料名称。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 仅类型/名称/时间/人数/地点</figcaption><img src="2026-11-11-对比截图/意见9-前-01-教师端发起弹窗.png"></figure>
+    <figure class="after"><figcaption>修改后 · 对齐管理员字段 + 上传资料</figcaption><img src="2026-11-11-对比截图/意见9-后-01-教师端发起弹窗.png"></figure>
+  </div>
+</section>
+<section id="sec-04">
+  <h2>意见 11 · 临床教学活动详情：升级二级页面 + 名单归签到 + 结束活动/签退</h2>
+  <div class="meta">pages/教学活动实施/page.js + page.css（管理员端，仲裁基准）</div>
+  <div class="note">① 活动详情由 720px 抽屉改为<strong>二级页面</strong>（返回 + 页面级操作区）；② 「教学活动详情」页签只保留事实信息，<strong>名单移入「教学活动签到情况」</strong>，并为每人标注未签到/已签到/已签退；③ 进行中状态新增<strong>「结束活动」</strong>按钮 → 结束活动·签退弹窗（签退核验码 + 签退码 + 结束说明），确认后活动置「已完成」、已签到学员记入签退名单，学员凭码完成签退。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 详情为弹窗抽屉（内含名单）</figcaption><img src="2026-11-11-对比截图/意见11-前-01-详情抽屉.png"></figure>
+    <figure class="after"><figcaption>修改后 · 二级页面（详情只放事实信息）</figcaption><img src="2026-11-11-对比截图/意见11-后-01-详情二级页面.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 名单在详情页签内</figcaption><img src="2026-11-11-对比截图/意见11-前-02-签到页签.png"></figure>
+    <figure class="after"><figcaption>修改后 · 名单归签到情况页签（带考勤状态）</figcaption><img src="2026-11-11-对比截图/意见11-后-02-签到情况页签.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 无结束活动入口</figcaption><img src="2026-11-11-对比截图/意见11-前-01-进行中活动详情.png"></figure>
+    <figure class="after"><figcaption>修改后 · 「结束活动」+ 签退码弹窗</figcaption><img src="2026-11-11-对比截图/意见11-后-03-签退码.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 教师端详情为抽屉</figcaption><img src="2026-11-11-对比截图/意见11-教师前-01-教师端详情.png"></figure>
+    <figure class="after"><figcaption>修改后 · 教师端详情二级页面（含结束活动）</figcaption><img src="2026-11-11-对比截图/意见11-教师后-01-教师端详情.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 教师端无签到明细视图</figcaption><img src="2026-11-11-对比截图/意见11-教师前-02-教师端签到情况.png"></figure>
+    <figure class="after"><figcaption>修改后 · 教师端签到情况页签（名单与状态）</figcaption><img src="2026-11-11-对比截图/意见11-教师后-02-教师端签到情况.png"></figure>
+  </div>
+</section>
+<section id="sec-05">
+  <h2>意见 1 · 移动端课程详情：去掉「课前信」独立 Tab，改为课前任务中的一项</h2>
+  <div class="meta">移动端/shared/tdesign-app.js（学员端 + 教师端）</div>
+  <div class="note">按「移动端跟 PC 端」原则：PC 端课前信是<strong>课前任务列表中的一项</strong>，移动端原为独立 Tab。现删除两端「课前信」Tab，课前阶段新增「课前信」任务项（课前任务共 6 项），点击后以底部抽屉展示课前信内容（发放时间 + 分段内容 + 自动填充/选填标记）。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 顶部有「课前信」独立 Tab</figcaption><img src="2026-11-11-对比截图/意见1-前-01-课程任务页签.png"></figure>
+    <figure class="after"><figcaption>修改后 · 课前信成为课前任务中的一项</figcaption><img src="2026-11-11-对比截图/意见1-后-01-课程任务页签.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 需切到课前信 Tab 查看</figcaption><img src="2026-11-11-对比截图/意见1-前-02-课前信内容.png"></figure>
+    <figure class="after"><figcaption>修改后 · 点击课前信任务项弹出内容抽屉</figcaption><img src="2026-11-11-对比截图/意见1-后-02-课前信内容.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 学员端同样为独立 Tab</figcaption><img src="2026-11-11-对比截图/意见1-前-02-课前信内容.png"></figure>
+    <figure class="after"><figcaption>修改后 · 学员端课前任务含课前信</figcaption><img src="2026-11-11-对比截图/意见1-后-学员-01-课程任务页签.png"></figure>
+  </div>
+</section>
+<section id="sec-06">
+  <h2>意见 2 · 发放课程证书：新增规则设置 + 每人达标结果</h2>
+  <div class="meta">pages/课程实施/page.js（管理端实际加载）+ pages/技能中心课程/views/implementation.js · 两处同源同步</div>
+  <div class="note">① 新增<strong>「规则设置」</strong>只读区块（发证管理配置的 3 条条件：课程任务完成率 / 结课考核成绩 / 完成课程评价）；② 发放对象每人增加<strong>达标结果</strong>标签（已达标 / 未达标 / 已发证），悬停显示逐项核验明细（完成率、成绩、评价状态）。达标判定与学员端证书核验取同一份任务与作答数据。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 仅证书版式与发放对象</figcaption><img src="2026-11-11-对比截图/意见2-前-01-发放课程证书-规则设置.png"></figure>
+    <figure class="after"><figcaption>修改后 · 新增规则设置区块</figcaption><img src="2026-11-11-对比截图/意见2-后-01-发放课程证书-规则设置.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 名单只有姓名/科室/年级</figcaption><img src="2026-11-11-对比截图/意见2-前-02-发放对象-达标结果.png"></figure>
+    <figure class="after"><figcaption>修改后 · 每人标注已达标 / 未达标</figcaption><img src="2026-11-11-对比截图/意见2-后-02-发放对象-达标结果.png"></figure>
+  </div>
+</section>
+<section id="sec-07">
+  <h2>意见 5 · AI 学习推荐：只推荐学习资料，不写薄弱环节、不推荐其他课程</h2>
+  <div class="meta">shared/js/course-insight.js（fd-study-advisor 组件，学员端「我的成绩与评估 → AI 学习推荐」）</div>
+  <div class="note">去掉「薄弱点」与「自评与导师评估不一致」两块分析结论；推荐列表只保留本课程的学习资料类（课程资料 / 题库练习 / 预约训练），去掉「相关课程」跨课程推荐；推荐理由文案改为只说明资料本身（不再出现"对应失分项 / 本次失分病种 / 操作条目未达标"）。<br>注：该组件依赖真实会话作答数据，学员端页面需预置课次才能出结果，故此处用组件级对照页取证（加载的是生产组件本身）。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 输出薄弱点并推荐其他课程</figcaption><img src="2026-11-11-对比截图/意见5-前-01-AI学习推荐结果.png"></figure>
+    <figure class="after"><figcaption>修改后 · 只输出学习资料推荐</figcaption><img src="2026-11-11-对比截图/意见5-后-01-AI学习推荐结果.png"></figure>
+  </div>
+</section>
+<section id="sec-08">
+  <h2>意见 4 · 线上课程去掉「自评 / 课程反馈」（两类任务全局下线）</h2>
+  <div class="meta">pages/官网/course.js · pages/官网/courses-data.js · shared/data/online-course-demo.js · pages/我的课程/page.js · pages/我的授课/page.js · pages/课程实施/page.js · pages/技能中心课程/views/implementation.js · 移动端/shared/tdesign-app.js</div>
+  <div class="note">按 PM 确认的「全局下线」口径：① 线上课程目录模板与演示数据不再生成「课程目标达成自评」「课程体验反馈」任务；② 各端课前/课中/课后任务计划移除「课程综合评价（学员自评）」「课程满意度反馈问卷」（学员端 / 教师端 / 管理端 / 移动端同源同步）；③ 线上课程结业条件由三项改为两项（去掉「提交课程评价」），官网 / 学员端 / 移动端同步；④ 官网课程详情删除「课程评价」页签与头部评分。技能中心课的「课后学员反馈问卷」（我的授课 · 学习反馈）不在范围内，保留。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 官网有「课程评价」页签与头部评分，结业条件三项</figcaption><img src="2026-11-11-对比截图/意见4-前-01-官网-课程详情与结业条件.png"></figure>
+    <figure class="after"><figcaption>修改后 · 页签收敛为两个，结业条件两项</figcaption><img src="2026-11-11-对比截图/意见4-后-01-官网-课程详情与结业条件.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 目录末章含「课程目标达成自评」与「课程体验反馈」</figcaption><img src="2026-11-11-对比截图/意见4-前-02-学员端-课程目录末章.png"></figure>
+    <figure class="after"><figcaption>修改后 · 目录只剩综合测验与结课作业</figcaption><img src="2026-11-11-对比截图/意见4-后-02-学员端-课程目录末章.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 学员端结业条件三项（含提交课程评价）</figcaption><img src="2026-11-11-对比截图/意见4-前-03-学员端-课程证书.png"></figure>
+    <figure class="after"><figcaption>修改后 · 两项全部满足后进入发证名单</figcaption><img src="2026-11-11-对比截图/意见4-后-03-学员端-课程证书.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 移动端结业条件三项</figcaption><img src="2026-11-11-对比截图/意见4-前-04-移动端-课程证书.png"></figure>
+    <figure class="after"><figcaption>修改后 · 移动端同步为两项</figcaption><img src="2026-11-11-对比截图/意见4-后-04-移动端-课程证书.png"></figure>
+  </div>
+</section>
+</body>
+</html>
