@@ -52,13 +52,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-13 · 移动端「我的」与二级页面修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">5</span> 项修改记录 · 严格对齐「成果申报」设计规范（卡片化、圆角 14px、品牌蓝高亮、44×44px 柔和图标、右侧状态胶囊与 Chevron）</div>
+  <div class="sub">共 <span id="index-total-count">4</span> 项修改记录 · 严格对齐「成果申报」设计规范（卡片化、圆角 14px、品牌蓝高亮、44×44px 柔和图标、右侧状态胶囊与 Chevron）</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">5</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">4</span> 项</div>
       <div class="summary-badge"><strong>视觉标杆</strong>：成果申报（数据概览 + 筛选胶囊 + 独立卡片 + FAB）</div>
       <div class="summary-badge"><strong>核心规范</strong>：统一 3D 卡通医生头像、统一 16px 卡片边距、禁用裸文字表格</div>
     </div>
@@ -108,13 +108,6 @@
           <td><span class="scope-tag">移动端</span></td>
           <td>移动端教师端 → 底部「轮转带教」Tab /「我的」Tab</td>
           <td><code>移动端/shared/tdesign-app.css</code>、<code>shared/js/people-profile.js</code>、入口 HTML · 图文对比（4 张）</td>
-        </tr>
-        <tr data-scope="移动端">
-          <td>11</td>
-          <td><a href="#sec-11"><strong>教师端「我的」· 账号绑定、头像与教师档案关联修复</strong></a></td>
-          <td><span class="scope-tag">移动端</span></td>
-          <td>移动端教师端 → 我的 → 教师档案</td>
-          <td><code>移动端/teacher-tdesign.html</code>、<code>移动端/shared/tdesign-app.js</code> · 图文对比（4 张）</td>
         </tr>
       </tbody>
     </table>
@@ -244,34 +237,6 @@
         </ul>
         <a href="2026-11-13-对比截图/移动端-轮转带教-修改后.png" target="_blank"><img alt="轮转带教修改后" src="2026-11-13-对比截图/移动端-轮转带教-修改后.png"></a>
         <a href="2026-11-13-对比截图/移动端-个人中心-修改后.png" target="_blank"><img alt="个人中心修改后" src="2026-11-13-对比截图/移动端-个人中心-修改后.png"></a>
-      </div>
-    </div>
-  </section>
-  <section id="sec-11">
-    <h2>教师端「我的」· 账号绑定、头像与教师档案关联修复</h2>
-    <div class="meta-path">
-      定位：移动端教师端 → 我的 → 教师档案。<br>
-      涉及文件：<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>。
-    </div>
-    <div class="pair">
-      <div>
-        <h3>修改前 · 存在问题</h3>
-        <ul>
-          <li><strong>教师账号未绑定人员档案</strong>：教师入口未设置当前账号 ID，档案页无法按王老师匹配 PC 师资档案，显示“当前账号尚未关联教师档案”。</li>
-          <li><strong>头像来源为空</strong>：账号上下文缺失时头像计算值为空，页面只显示替代文字。</li>
-        </ul>
-        <a href="2026-11-13-对比截图/移动端教师我的档案-关联前.png" target="_blank"><img alt="教师档案关联修复前" src="2026-11-13-对比截图/移动端教师我的档案-关联前.png"></a>
-        <a href="2026-11-13-对比截图/移动端-个人中心-修改前.png" target="_blank"><img alt="教师个人中心修复前" src="2026-11-13-对比截图/移动端-个人中心-修改前.png"></a>
-      </div>
-      <div>
-        <h3>修改后 · 改动说明</h3>
-        <ul>
-          <li><strong>绑定演示账号</strong>：教师权威入口设置 <code>MOBILE_ACCOUNT_ID="wang_teacher"</code>，档案页可正确匹配 PC 人员档案。</li>
-          <li><strong>头像增加兜底</strong>：教师使用 <code>avatar_03.png</code>，学员使用 <code>avatar_05.png</code>，不再出现空 src。</li>
-          <li><strong>档案回到 PC SSOT</strong>：教师档案继续由 PC「师资管理 → 教师档案」渲染，移动端仅做卡片、锚点和纵向布局适配。</li>
-        </ul>
-        <a href="2026-11-13-对比截图/移动端教师我的首页-修改后.png" target="_blank"><img alt="教师个人中心修复后" src="2026-11-13-对比截图/移动端教师我的首页-修改后.png"></a>
-        <a href="2026-11-13-对比截图/移动端教师我的档案-修改后.png" target="_blank"><img alt="教师档案修复后" src="2026-11-13-对比截图/移动端教师我的档案-修改后.png"></a>
       </div>
     </div>
   </section>
