@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-11-16 · 修改前后对比</title>
+<style>
+  body{margin:0;background:#f5f6f8;color:#1d2129;font:14px/1.7 -apple-system,'PingFang SC',sans-serif}
+  header{background:#1d5b97;color:#fff;padding:24px 36px}
+  header h1{font-size:22px;margin:0}
+  header .sub{margin-top:4px;opacity:.9;font-size:13px}
+  main{max-width:1400px;margin:24px auto 64px;padding:0 24px}
+  section{background:#fff;border:1px solid #e5e9f0;border-radius:12px;padding:24px;margin-top:24px}
+  section[id]{scroll-margin-top:20px}
+  #change-index{margin-top:0}
+  h2{font-size:18px;margin-top:0}
+  img{width:100%;border:1px solid #e5e9f0;border-radius:6px;display:block}
+  a{color:#1d5b97;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .index-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:12px 0 14px}
+  .index-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .index-chip{border:1px solid #d9dfe7;border-radius:999px;background:#fff;padding:4px 12px;font-size:12px;color:#4e5969;cursor:pointer}
+  .index-chip.active{background:#1d5b97;border-color:#1d5b97;color:#fff}
+  .index-search{border:1px solid #d9dfe7;border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;min-width:240px}
+  .summary-row{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 16px}
+  .summary-badge{background:#f2f6fb;border:1px solid #d6e4f5;border-radius:8px;padding:6px 12px;font-size:13px;color:#1d5b97}
+  .audit-table{width:100%;border-collapse:collapse;font-size:13px}
+  .audit-table th,.audit-table td{border:1px solid #e5e9f0;padding:9px 12px;text-align:left;vertical-align:top}
+  .audit-table th{background:#f7f8fa;font-weight:600}
+  .audit-table tbody tr:hover{background:#f9fbff}
+  .scope-tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:#eef4fb;color:#1d5b97;white-space:nowrap}
+  .back-to-index{position:fixed;right:24px;bottom:24px;z-index:50;background:#1d5b97;color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;box-shadow:0 6px 18px rgba(29,91,151,.28)}
+  .back-to-index:hover{text-decoration:none;background:#164a7c}
+  @media(max-width:850px){.pair{grid-template-columns:1fr}.index-search{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
+  <h1>2026-11-16 · 修改前后对比</h1>
+  <div class="sub">共 <span id="index-total-count">1</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
+</header>
+<main>
+  <section id="change-index">
+    <h2>修改记录总清单（索引）</h2>
+    <div class="summary-row">
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">1</span> 项</div>
+    </div>
+    <div class="index-toolbar">
+      <div class="index-chips" id="index-scope-chips">
+        <button type="button" class="index-chip active" data-scope="all">全部</button>
+        <button type="button" class="index-chip" data-scope="PC端">PC端</button>
+        <button type="button" class="index-chip" data-scope="移动端">移动端</button>
+        <button type="button" class="index-chip" data-scope="双端">双端</button>
+        <button type="button" class="index-chip" data-scope="全项目">全项目</button>
+      </div>
+      <input type="search" id="index-search" class="index-search" placeholder="筛选模块、文件或关键词…">
+    </div>
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th style="width:56px">序号</th>
+          <th style="width:32%">模块与改动主题（点击跳转）</th>
+          <th style="width:88px">端别</th>
+          <th style="width:26%">定位 / 触发路径</th>
+          <th>涉及文件与留痕形式</th>
+        </tr>
+      </thead>
+      <tbody id="change-index-body">
+        <tr data-scope="PC端">
+          <td>01</td>
+          <td><a href="#sec-01"><strong>入基地技能考 · 在线评分与课程免修主流程</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>管理员 → 评估管理 → 入基地技能考 → 新建考试</td>
+          <td>pages/入基地技能考/page.js、shared/js/base-entry-exam.js · 图文对比（4 张）</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="sec-01">
+    <h2>入基地技能考 · 在线评分与课程免修主流程</h2>
+    <p>定位：管理员 → 评估管理 → 入基地技能考 → 新建考试。实现文件：<a href="../../pages/入基地技能考/page.js">page.js</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul><li>原抽屉仅560px；考试日期没有起止时间；没有考官和公布设置；管理员手工录分与附件流程未连接师生任务。</li></ul>
+        <a href="2026-11-16-对比截图/入基地技能考-修改前.png" target="_blank"><img alt="修改前" src="2026-11-16-对比截图/入基地技能考-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul><li>抽屉加宽至1080px；读取年度计划的一年级必修项目和课程开发终结性工具；按真实用户组选择学员、为项目多选考官；发布生成账号通知与师生任务，在线评分自动汇总，通过后只增加免修标签。</li></ul>
+        <a href="2026-11-16-对比截图/入基地技能考-修改后.png" target="_blank"><img alt="修改后" src="2026-11-16-对比截图/入基地技能考-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+<section><h2>主流程验证</h2><p>隔离浏览器中以配置好的终结性工具测试：发布考试 → 考官评分 → 学员查看90分、免修 → 选课卡片显示免修。未到时间、重复提交、多考官均分及延后公布均已做逻辑验证。图中测试数据不写入用户当前浏览器。</p><p>当前为本地交互原型，数据保存在同源 localStorage。默认年度计划中的课程尚未配置工具时会明确提示并阻止发起；需先在课程开发保存终结性工具。各考官完成后取均分，表单成绩按百分制换算。</p><div class="pair"><figure><img src="2026-11-16-对比截图/入基地技能考-学员结果-修改后.png" alt="学员待他人评估结果"><figcaption>学员结果</figcaption></figure><figure><img src="2026-11-16-对比截图/入基地技能考-课程免修-修改后.png" alt="课程免修标签"><figcaption>免修标签不改变报名状态；截图中的报名已截止来自课程原有排期。</figcaption></figure></div></section></main>
+<a class="back-to-index" href="#change-index">↑ 返回总清单</a>
+<script>
+(function(){
+  const body = document.getElementById('change-index-body');
+  const search = document.getElementById('index-search');
+  const chips = document.querySelectorAll('#index-scope-chips .index-chip');
+  const visibleEl = document.getElementById('index-visible-count');
+  let activeScope = 'all';
+  function applyFilter(){
+    const q = (search.value || '').trim().toLowerCase();
+    let shown = 0;
+    body.querySelectorAll('tr').forEach(tr => {
+      const scope = tr.dataset.scope || '';
+      const scopeOk = activeScope === 'all' || scope === activeScope;
+      const textOk = !q || tr.textContent.toLowerCase().includes(q);
+      const show = scopeOk && textOk;
+      tr.hidden = !show;
+      if (show) shown++;
+    });
+    if (visibleEl) visibleEl.textContent = String(shown);
+  }
+  chips.forEach(btn => btn.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    activeScope = btn.dataset.scope;
+    applyFilter();
+  }));
+  search.addEventListener('input', applyFilter);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="../../shared/illustrations/standard.svg">
+<title>2026-11-16 · PC端「年度课程计划」视角权限解耦与弹窗补齐修改前后对比</title>
+<style>
+  body{margin:0;background:#f5f6f8;color:#1d2129;font:14px/1.7 -apple-system,'PingFang SC',sans-serif}
+  header{background:#1d5b97;color:#fff;padding:24px 36px}
+  header h1{font-size:22px;margin:0}
+  header .sub{margin-top:4px;opacity:.9;font-size:13px}
+  header .sub a{color:#e6f4ff;text-decoration:underline}
+  main{max-width:1440px;margin:24px auto 64px;padding:0 24px}
+  section{background:#fff;border:1px solid #e5e9f0;border-radius:12px;padding:24px;margin-top:24px}
+  section[id]{scroll-margin-top:20px}
+  #change-index{margin-top:0}
+  h2{font-size:18px;margin-top:0;color:#1d2129;display:flex;align-items:center;gap:8px}
+  h2::before{content:'';display:inline-block;width:4px;height:18px;border-radius:2px;background:#1d5b97}
+  h3{font-size:15px;margin:12px 0 8px;color:#1d2129}
+  img{width:100%;max-width:100%;border:1px solid #e5e9f0;border-radius:8px;display:block;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:transform 0.2s ease}
+  img:hover{transform:scale(1.008)}
+  a{color:#1d5b97;text-decoration:none}
+  a:hover{text-decoration:underline}
+  ul{margin:8px 0 14px 20px;padding:0;color:#4e5969}
+  li{margin-bottom:6px;line-height:1.6}
+  .pair,.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .pair > div,.compare-grid > div{display:flex;flex-direction:column}
+  .pair img + img,.compare-grid img + img{margin-top:14px}
+  .meta-path,.meta-box{font-size:13px;color:#86909c;margin:-4px 0 16px;padding-bottom:12px;border-bottom:1px solid #f2f3f5}
+  .meta-path code,.meta-box code{background:#f2f3f5;padding:2px 6px;border-radius:4px;font-size:12px;color:#1d2129}
+  .index-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:12px 0 14px}
+  .index-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .index-chip{border:1px solid #d9dfe7;border-radius:999px;background:#fff;padding:4px 12px;font-size:12px;color:#4e5969;cursor:pointer}
+  .index-chip.active{background:#1d5b97;border-color:#1d5b97;color:#fff}
+  .index-search{border:1px solid #d9dfe7;border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;min-width:240px}
+  .summary-row{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 16px}
+  .summary-badge{background:#f2f6fb;border:1px solid #d6e4f5;border-radius:8px;padding:6px 12px;font-size:13px;color:#1d5b97}
+  .audit-table{width:100%;border-collapse:collapse;font-size:13px}
+  .audit-table th,.audit-table td{border:1px solid #e5e9f0;padding:9px 12px;text-align:left;vertical-align:top}
+  .audit-table th{background:#f7f8fa;font-weight:600;color:#1d2129}
+  .audit-table tbody tr:hover{background:#f9fbff}
+  .scope-tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:#eef4fb;color:#1d5b97;white-space:nowrap}
+  .back-to-index{position:fixed;right:24px;bottom:24px;z-index:50;background:#1d5b97;color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;box-shadow:0 6px 18px rgba(29,91,151,.28)}
+  .back-to-index:hover{text-decoration:none;background:#164a7c}
+  .badge-tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:600}
+  .badge-tag.before{background:#fff1f0;color:#d4380d}
+  .badge-tag.after{background:#e8ffea;color:#00b578}
+  @media(max-width:850px){.pair,.compare-grid{grid-template-columns:1fr}.index-search{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
+  <h1>2026-11-16 · PC端「年度课程计划」视角权限解耦与弹窗补齐修改前后对比</h1>
+  <div class="sub">共 <span id="index-total-count">5</span> 项修改记录 · 严格剥离跨角色视角越权，补齐自主添加课程与真实课程联动学习闭环，完善批量装配课程多维筛选</div>
+</header>
+<main>
+  <!-- 顶部总索引 -->
+  <section id="change-index">
+    <h2>修改记录总清单（索引）</h2>
+    <div class="summary-row">
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">5</span> 项</div>
+      <div class="summary-badge"><strong>改造核心</strong>：双端视角解耦（学员不看全院配置 / 管理员不看学员视角）</div>
+      <div class="summary-badge"><strong>功能补齐</strong>：自主选修加课弹窗 + 点击「学习」联动真实系统学习平台</div>
+      <div class="summary-badge"><strong>交互增强</strong>：批量装配课程弹窗「更多筛选」多维浮层与实时联动</div>
+    </div>
+    <div class="index-toolbar">
+      <div class="index-chips" id="index-scope-chips">
+        <button type="button" class="index-chip active" data-scope="all">全部</button>
+        <button type="button" class="index-chip" data-scope="PC端">PC端</button>
+      </div>
+      <input type="search" id="index-search" class="index-search" placeholder="筛选模块、文件或关键词…">
+    </div>
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th style="width:56px">序号</th>
+          <th style="width:34%">模块与改动主题（点击跳转）</th>
+          <th style="width:88px">端别</th>
+          <th style="width:26%">定位 / 触发路径</th>
+          <th>涉及文件与留痕形式</th>
+        </tr>
+      </thead>
+      <tbody id="change-index-body">
+        <tr data-scope="PC端">
+          <td>01</td>
+          <td><a href="#sec-01"><strong>学员端 · 年度课程计划移除全院管理配置下拉</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>学员端 → 我的学习 → 年度课程计划</td>
+          <td><code>pages/年度学习计划/page.js</code> 等 · 截图对比（2 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>02</td>
+          <td><a href="#sec-02"><strong>学员端 · 补齐「自主添加课程」与「学习」业务弹窗</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>学员端 → 年度课程计划 → 自主添加课程 / 列表学习按钮</td>
+          <td><code>pages/年度学习计划/page.js</code> 等 · 截图对比（2 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>03</td>
+          <td><a href="#sec-03"><strong>管理员端 · 移除学员个人视角切换胶囊</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>管理员端 → 课程管理 → 课程工作台 / 年度课程计划</td>
+          <td><code>pages/课程工作台/page.js</code> 等 · 截图对比（2 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>04</td>
+          <td><a href="#sec-04"><strong>批量装配课程弹窗 · 「更多筛选」支持交互展开与多维条件过滤</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>管理端 → 年度课程计划 → 配置方案 → 批量加课 → 更多筛选</td>
+          <td><code>pages/年度学习计划/page.js</code> 等 · 截图对比（2 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>05</td>
+          <td><a href="#sec-05"><strong>学员端 · 优化「学习」交互：直达真实课程详情，未选课智能提醒，取消无必要证书弹窗</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>学员端 → 我的学习 → 年度课程计划 → 列表「学习」按钮</td>
+          <td><code>pages/年度学习计划/page.js</code> 等 · 截图对比（2 张）</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════ 01 学员端移除全院配置视角 ══════════════════════ -->
+  <section id="sec-01">
+    <h2>01. 学员端 · 年度课程计划移除全院管理配置下拉</h2>
+    <div class="meta-path">
+      <strong>定位路径</strong>：学员端（<code>student.html</code>） → 侧边栏「我的学习」 → 「年度课程计划」<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code>
+    </div>
+    <div class="pair">
+      <div>
+        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
+        <ul>
+          <li><strong>越权漏洞</strong>：顶部工具栏渲染了「视角：全院管理配置 / 学员个人视角」下拉选择胶囊。</li>
+          <li><strong>角色混淆</strong>：学员可以随意点击切换到「全院管理配置」，甚至查看到全院大纲配置、下发群体与批量加课等管理员专属功能，权限边界失控。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-学员端-修改前.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-学员端-修改前.png" alt="学员端修改前">
+        </a>
+      </div>
+      <div>
+        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
+        <ul>
+          <li><strong>移除下拉胶囊</strong>：在学员端界面彻底剔除视角切换下拉按钮（<code>.alp-perspective-pill</code>），仅展示学员个人计划视角。</li>
+          <li><strong>权限硬拦截</strong>：控制器方法 <code>setPerspective</code> 增加 <code>role === 'admin'</code> 权限守卫，阻止任何非管理员角色通过方法调用越权切换。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-学员端-修改后.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-学员端-修改后.png" alt="学员端修改后">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ 02 补齐自主加课与学习弹窗 ══════════════════════ -->
+  <section id="sec-02">
+    <h2>02. 学员端 · 补齐「自主添加课程」与「学习」业务弹窗</h2>
+    <div class="meta-path">
+      <strong>定位路径</strong>：学员端 → 年度课程计划 → 顶部「自主添加课程」按钮 / 课程表格右侧「学习」按钮<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code>
+    </div>
+    <div class="pair">
+      <div>
+        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
+        <ul>
+          <li><strong>功能静默阻断</strong>：点击顶部「自主添加课程」按钮无任何反应；点击课程列表行操作列「学习」按钮同样无任何弹窗展开。</li>
+          <li><strong>模板缺失</strong>：底层代码中声明了 <code>studentAddCourseModalVisible</code> 与多套学习状态，但 HTML 模板中完全遗漏了弹窗 DOM 结构，导致交互链路断裂。</li>
+        </ul>
+        <div style="background:#f8fafc;border:1px dashed #d0d5dd;border-radius:8px;padding:32px 20px;text-align:center;color:#64748b;margin-top:10px;">
+          <div style="font-size:15px;font-weight:600;color:#344054;">修改前：点击按钮无任何弹窗响应</div>
+          <p style="font-size:13px;margin:8px 0 0;">（底层有状态变更但无弹窗 UI 容器）</p>
+        </div>
+      </div>
+      <div>
+        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
+        <ul>
+          <li><strong>复用标准课程池装配抽屉</strong>：拒绝另起炉灶与样式割裂，直接复用成熟的「课程池装配大抽屉（弹窗 B）」，自适应切换为「自主添加选修课程」模式；内置 37 门全量课程池，且包含「更多筛选」交互气泡（归属基地/课程结构/来源/授课形式/精品课）多维联动筛选能力。</li>
+          <li><strong>分类学习弹窗</strong>：点击「学习」根据课程属性弹出对应模态窗（线上微课理论修读、虚拟病例临床思维推演、自适应学习弱项攻关、技能实训预约排课、达标成绩与证书）。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-自主添加课程弹窗-修改后.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-自主添加课程弹窗-修改后.png" alt="自主添加课程弹窗">
+        </a>
+        <a href="2026-11-16-对比截图/年度课程计划-学习预约弹窗-修改后.png" target="_blank" style="margin-top:14px;display:block;">
+          <img src="2026-11-16-对比截图/年度课程计划-学习预约弹窗-修改后.png" alt="技能实训预约弹窗">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ 03 管理员端移除学员视角 ══════════════════════ -->
+  <section id="sec-03">
+    <h2>03. 管理员端 · 移除学员个人视角切换胶囊</h2>
+    <div class="meta-path">
+      <strong>定位路径</strong>：管理员端（<code>manager.html</code>） → 「课程管理」 → 「课程工作台」/「年度课程计划」<br>
+      <strong>核心文件</strong>：<code>pages/课程工作台/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/年度学习计划/page.js</code>
+    </div>
+    <div class="pair">
+      <div>
+        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
+        <ul>
+          <li><strong>管理端混入学员视角</strong>：管理员端顶部保留「视角：全院管理配置 / 学员个人视角」下拉选择控件。</li>
+          <li><strong>定位不纯粹</strong>：管理员应该专注全院方案配置、学习群体设定与课程指派，混入个人视角造成操作干扰。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-管理员端-修改前.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-管理员端-修改前.png" alt="管理员端修改前">
+        </a>
+      </div>
+      <div>
+        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
+        <ul>
+          <li><strong>彻底移除视角下拉</strong>：管理员端工具栏移除了视角下拉胶囊与 <code>cw4-perspective-control</code> 控件，界面干净清爽。</li>
+          <li><strong>双端完全解耦</strong>：管理员端专心进行全院 3 个重点群体与各阶段培养方案下发；学员端专心完成个人自主选修规划与学时达成。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-管理员端-修改后.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-管理员端-修改后.png" alt="管理员端修改后">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ 04 批量装配课程更多筛选 ══════════════════════ -->
+  <section id="sec-04">
+    <h2>04. 批量装配课程弹窗 · 「更多筛选」支持交互展开与多维条件过滤</h2>
+    <div class="meta-path">
+      <strong>定位路径</strong>：管理员端 → 「年度课程计划」 → 群体「配置」方案 → 「批量加课」大纲课程装配弹窗 → 工具栏「更多筛选」<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/年度学习计划/page.css</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/课程工作台/dashboard.css</code>
+    </div>
+    <div class="pair">
+      <div>
+        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
+        <ul>
+          <li><strong>按钮静态假死</strong>：批量装配课程抽屉顶部工具栏的「更多筛选」为无事件绑定的静态普通按钮，点击无任何响应与面板展开。</li>
+          <li><strong>筛选维度欠缺</strong>：仅有科室、课程类型、适用学员等基础筛选，缺少按「归属基地」、「课程结构」、「课程来源」、「授课形式」、「精品课程」等进阶维度的快速筛选能力。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/批量装配课程-更多筛选-修改前.png" target="_blank">
+          <img src="2026-11-16-对比截图/批量装配课程-更多筛选-修改前.png" alt="更多筛选修改前">
+        </a>
+      </div>
+      <div>
+        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
+        <ul>
+          <li><strong>气泡浮层与动画指示</strong>：点击展开专业的气泡下拉弹层（Popover），右侧箭头随展开状态旋转，并提供单独的关闭与完成动作。</li>
+          <li><strong>5大深层筛选维度</strong>：平铺式标签选择「归属基地（儿科/儿外科/两基地共用）」、「课程结构（单次/专项）」、「课程来源（原创/引进）」、「授课形式」及「仅展示精品示范课程」勾选项。</li>
+          <li><strong>动态角标与实时联动</strong>：条件生效时按钮高亮并显示数字角标（如 <code>更多筛选 1</code>），候选课程大表实时联动计算；支持浮层内单独「重置此组筛选」和外层全局「重置筛选」。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/批量装配课程-更多筛选-修改后.png" target="_blank">
+          <img src="2026-11-16-对比截图/批量装配课程-更多筛选-修改后.png" alt="更多筛选修改后">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════ 05 学习直达课程详情与未选课提醒 ══════════════════════ -->
+  <section id="sec-05">
+    <h2>05. 学员端 · 优化「学习」交互：直达真实课程详情，未选课智能提醒，取消无必要证书弹窗</h2>
+    <div class="meta-path">
+      <strong>定位路径</strong>：学员端（<code>student.html</code>） → 「我的学习」 → 「年度课程计划」 → 列表每门课程后的「学习」按钮<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/我的课程/page.js</code>
+    </div>
+    <div class="pair">
+      <div>
+        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
+        <ul>
+          <li><strong>已达标课程弹出多余证书</strong>：之前点击已达标课程会弹出「课程学分达成证明」证书模态框，无法直接复习课程详情与章节课件，缺乏实用价值。</li>
+          <li><strong>未选课缺乏智能引导</strong>：未选修的待开始课程缺少明确的选课拦截与确认交互，直接跳转或原地提示容易让学员感到突兀。</li>
+          <li><strong>表格状态徽标单一</strong>：状态列硬编码为已达标样式，未能按已达标、进行中、待开始呈现清晰的三态色彩体系。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-未选课提醒弹窗.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-未选课提醒弹窗.png" alt="未选课提醒弹窗确认">
+        </a>
+      </div>
+      <div>
+        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
+        <ul>
+          <li><strong>未选课拦截弹窗提醒</strong>：对于尚未选修（状态为「<code>待开始</code>」）的课程，点击「学习」弹出友好模态框：<em>“您尚未选修《XXX》，暂无学习记录。是否跳转到选课界面进行选课？”</em>，提供 <code>[取消]</code> 与 <code>[前往选课]</code> 按钮，点击确认后平滑引导至选课中心。</li>
+          <li><strong>直达真实课程详情</strong>：针对已选课的课程（无论进行中还是已达标），彻底取消冗余证书弹窗，通过会话标记与路由直达对应模块的真实「课程详情」（线下技能实训课进入技能中心课程详情抽屉，线上课程进入在线学习播放器与课件详情）。</li>
+          <li><strong>状态徽标三态色彩标准化</strong>：状态列动态绑定样式：已达标呈现绿色 <code>is-done</code>、进行中呈现蓝色 <code>is-doing</code>、待开始呈现灰色 <code>is-todo</code>，进度一目了然。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-点击学习-直达真实课程详情.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-点击学习-直达真实课程详情.png" alt="直达真实课程详情">
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+<a href="#change-index" class="back-to-index">↑ 回到索引</a>
+
+<script>
+  (function(){
+    var search = document.getElementById('index-search');
+    var chips = document.getElementById('index-scope-chips');
+    var tbody = document.getElementById('change-index-body');
+    var countEl = document.getElementById('index-visible-count');
+    if(!search || !chips || !tbody) return;
+
+    var curScope = 'all';
+    function filter(){
+      var q = search.value.trim().toLowerCase();
+      var rows = tbody.querySelectorAll('tr');
+      var visible = 0;
+      rows.forEach(function(r){
+        var scope = r.getAttribute('data-scope') || '';
+        var text = r.textContent.toLowerCase();
+        var matchScope = (curScope === 'all') || (scope === curScope);
+        var matchText = !q || (text.indexOf(q) !== -1);
+        if(matchScope && matchText){
+          r.style.display = '';
+          visible++;
+        } else {
+          r.style.display = 'none';
+        }
+      });
+      if(countEl) countEl.textContent = visible;
+    }
+
+    chips.addEventListener('click', function(e){
+      var btn = e.target.closest('.index-chip');
+      if(!btn) return;
+      chips.querySelectorAll('.index-chip').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+      curScope = btn.getAttribute('data-scope') || 'all';
+      filter();
+    });
+
+    search.addEventListener('input', filter);
+  })();
+</script>
+</body>
+</html>

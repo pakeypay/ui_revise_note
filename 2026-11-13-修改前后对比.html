@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="../../shared/illustrations/standard.svg">
+<title>2026-11-13 · 移动端「我的」与二级页面修改前后对比</title>
+<style>
+  body{margin:0;background:#f5f6f8;color:#1d2129;font:14px/1.7 -apple-system,'PingFang SC',sans-serif}
+  header{background:#1d5b97;color:#fff;padding:24px 36px}
+  header h1{font-size:22px;margin:0}
+  header .sub{margin-top:4px;opacity:.9;font-size:13px}
+  header .sub a{color:#e6f4ff;text-decoration:underline}
+  main{max-width:1400px;margin:24px auto 64px;padding:0 24px}
+  section{background:#fff;border:1px solid #e5e9f0;border-radius:12px;padding:24px;margin-top:24px}
+  section[id]{scroll-margin-top:20px}
+  #change-index{margin-top:0}
+  h2{font-size:18px;margin-top:0;color:#1d2129;display:flex;align-items:center;gap:8px}
+  h2::before{content:'';display:inline-block;width:4px;height:18px;border-radius:2px;background:#1d5b97}
+  h3{font-size:15px;margin:12px 0 8px;color:#1d2129}
+  img{width:100%;max-width:420px;border:1px solid #e5e9f0;border-radius:8px;display:block;box-shadow:0 2px 8px rgba(0,0,0,0.04);transition:transform 0.2s ease}
+  img:hover{transform:scale(1.01)}
+  a{color:#1d5b97;text-decoration:none}
+  a:hover{text-decoration:underline}
+  ul{margin:8px 0 14px 20px;padding:0;color:#4e5969}
+  li{margin-bottom:6px;line-height:1.6}
+  .pair,.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .pair > div,.compare-grid > div{display:flex;flex-direction:column}
+  .pair img + img,.compare-grid img + img{margin-top:14px}
+  .meta-path,.meta-box{font-size:13px;color:#86909c;margin:-4px 0 16px;padding-bottom:12px;border-bottom:1px solid #f2f3f5}
+  .meta-path code,.meta-box code{background:#f2f3f5;padding:2px 6px;border-radius:4px;font-size:12px;color:#1d2129}
+  .index-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:12px 0 14px}
+  .index-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .index-chip{border:1px solid #d9dfe7;border-radius:999px;background:#fff;padding:4px 12px;font-size:12px;color:#4e5969;cursor:pointer}
+  .index-chip.active{background:#1d5b97;border-color:#1d5b97;color:#fff}
+  .index-search{border:1px solid #d9dfe7;border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;min-width:240px}
+  .summary-row{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 16px}
+  .summary-badge{background:#f2f6fb;border:1px solid #d6e4f5;border-radius:8px;padding:6px 12px;font-size:13px;color:#1d5b97}
+  .audit-table{width:100%;border-collapse:collapse;font-size:13px}
+  .audit-table th,.audit-table td{border:1px solid #e5e9f0;padding:9px 12px;text-align:left;vertical-align:top}
+  .audit-table th{background:#f7f8fa;font-weight:600;color:#1d2129}
+  .audit-table tbody tr:hover{background:#f9fbff}
+  .scope-tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:#eef4fb;color:#1d5b97;white-space:nowrap}
+  .back-to-index{position:fixed;right:24px;bottom:24px;z-index:50;background:#1d5b97;color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;box-shadow:0 6px 18px rgba(29,91,151,.28)}
+  .back-to-index:hover{text-decoration:none;background:#164a7c}
+  .badge-benchmark{display:inline-block;padding:2px 8px;background:#e8ffea;color:#00b578;border-radius:4px;font-size:12px;font-weight:600}
+  .badge-stale{display:inline-block;padding:2px 8px;background:#fff1f0;color:#d4380d;border-radius:4px;font-size:12px;font-weight:600}
+  @media(max-width:850px){.pair,.compare-grid{grid-template-columns:1fr}.index-search{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
+  <h1>2026-11-13 · 移动端「我的」与二级页面修改前后对比</h1>
+  <div class="sub">共 <span id="index-total-count">5</span> 项修改记录 · 严格对齐「成果申报」设计规范（卡片化、圆角 14px、品牌蓝高亮、44×44px 柔和图标、右侧状态胶囊与 Chevron）</div>
+</header>
+<main>
+  <section id="change-index">
+    <h2>修改记录总清单（索引）</h2>
+    <div class="summary-row">
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">5</span> 项</div>
+      <div class="summary-badge"><strong>视觉标杆</strong>：成果申报（数据概览 + 筛选胶囊 + 独立卡片 + FAB）</div>
+      <div class="summary-badge"><strong>核心规范</strong>：统一 3D 卡通医生头像、统一 16px 卡片边距、禁用裸文字表格</div>
+    </div>
+    <div class="index-toolbar">
+      <div class="index-chips" id="index-scope-chips">
+        <button type="button" class="index-chip active" data-scope="all">全部</button>
+        <button type="button" class="index-chip" data-scope="移动端">移动端</button>
+        <button type="button" class="index-chip" data-scope="双端">双端</button>
+      </div>
+      <input type="search" id="index-search" class="index-search" placeholder="筛选模块、文件或关键词…">
+    </div>
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th style="width:56px">序号</th>
+          <th style="width:32%">模块与改动主题（点击跳转）</th>
+          <th style="width:88px">端别</th>
+          <th style="width:26%">定位 / 触发路径</th>
+          <th>涉及文件与留痕形式</th>
+        </tr>
+      </thead>
+      <tbody id="change-index-body">
+        <tr data-scope="移动端">
+          <td>07</td>
+          <td><a href="#sec-07"><strong>多角色切换与管理端个人中心适配</strong></a></td>
+          <td><span class="scope-tag">移动端</span></td>
+          <td>移动端 → 我的 → 当前身份 / 切换角色；管理端中心</td>
+          <td><code>移动端/shared/admin-tdesign-app.js</code> 等 · 留痕截图（3 张）</td>
+        </tr>
+        <tr data-scope="移动端">
+          <td>08</td>
+          <td><a href="#sec-08"><strong>轮转手册 · 结构精简与右侧箭头手风琴改造</strong></a></td>
+          <td><span class="scope-tag">移动端</span></td>
+          <td>移动端学员端 → 底部「轮转」Tab → 轮转手册</td>
+          <td><code>移动端/shared/tdesign-app.js/css</code> · 图文对比（2 张）</td>
+        </tr>
+        <tr data-scope="移动端">
+          <td>09</td>
+          <td><a href="#sec-09"><strong>课程详情 · 冗余任务进度标题与课前信卡片去重</strong></a></td>
+          <td><span class="scope-tag">移动端</span></td>
+          <td>移动端学员端 → 学习/首页 → 技能课程详情</td>
+          <td><code>移动端/shared/tdesign-app.js</code> · 图文对比（4 张）</td>
+        </tr>
+        <tr data-scope="移动端">
+          <td>10</td>
+          <td><a href="#sec-10"><strong>轮转带教与个人中心 · 启动错误及样式恢复</strong></a></td>
+          <td><span class="scope-tag">移动端</span></td>
+          <td>移动端教师端 → 底部「轮转带教」Tab /「我的」Tab</td>
+          <td><code>移动端/shared/tdesign-app.css</code>、<code>shared/js/people-profile.js</code>、入口 HTML · 图文对比（4 张）</td>
+        </tr>
+        <tr data-scope="移动端">
+          <td>11</td>
+          <td><a href="#sec-11"><strong>教师端「我的」· 账号绑定、头像与教师档案关联修复</strong></a></td>
+          <td><span class="scope-tag">移动端</span></td>
+          <td>移动端教师端 → 我的 → 教师档案</td>
+          <td><code>移动端/teacher-tdesign.html</code>、<code>移动端/shared/tdesign-app.js</code> · 图文对比（4 张）</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+
+
+
+
+
+
+  <!-- 07 多角色切换与权限 -->
+  <section id="sec-07">
+    <h2>多角色切换与管理端个人中心适配</h2>
+    <div class="meta-path">
+      定位：移动端 → 我的 → 当前身份 / 切换角色；管理端中心。<br>
+      涉及文件：<a href="../../移动端/shared/admin-tdesign-app.js">admin-tdesign-app.js</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>角色混杂</strong>：一人多身份时无法直观预览和即时切换工作视角。</li>
+          <li><strong>管理端个人中心缺失</strong>：科室主任、教务管理员登录移动端时中心布局错乱。</li>
+        </ul>
+        <p style="color:#86909c;font-size:13px">（改前管理角色无规范个人中心适配）</p>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>角色切换半屏抽屉</strong>：底部 ActionSheet 列出用户当前具备的所有系统身份（规培生、专培生、临床带教老师、责任导师、管理员），勾选即平滑切换。</li>
+          <li><strong>管理端全套适配</strong>：管理员端「我的」同步适配 TDesign 视觉规范与安全权限说明。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/多角色切换-修改后.png" target="_blank"><img alt="多角色切换修改后" src="2026-11-13-对比截图/多角色切换-修改后.png"></a>
+        <a href="2026-11-13-对比截图/admin-我的-修改后.png" target="_blank"><img alt="管理员个人中心修改后" src="2026-11-13-对比截图/admin-我的-修改后.png"></a>
+        <a href="2026-11-13-对比截图/admin-角色权限-修改后.png" target="_blank"><img alt="管理员角色权限修改后" src="2026-11-13-对比截图/admin-角色权限-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-08" style="margin-top:24px">
+    <h2>08. 轮转手册 · 结构精简与右侧箭头手风琴改造</h2>
+    <div class="meta-box">
+      <strong>触发路径</strong>：移动端（学员）→ 底部「轮转」Tab → 轮转手册<br>
+      <strong>涉及文件</strong>：<a href="../../移动端/shared/tdesign-app.js" target="_blank"><code>移动端/shared/tdesign-app.js</code></a>、<a href="../../移动端/shared/tdesign-app.css" target="_blank"><code>移动端/shared/tdesign-app.css</code></a>、<a href="../../移动端/student-tdesign.html" target="_blank"><code>移动端/student-tdesign.html</code></a>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h3>存在问题（修改前）</h3>
+        <ul>
+          <li><strong>入口冗余且冲突</strong>：顶部卡片已有「历史轮转科室 >」，下方卡片内又含科室选择下拉框，中间夹着一排横向卡片（中医儿科/新生儿科等出科胶囊），形成 3 个重复科室入口，割裂阅读流。</li>
+          <li><strong>平铺列表撑爆首屏</strong>：病种、技能、手术、抢救等所有清单一次性平铺，在手机小屏需反复长滑数十屏，无法纵览完成全貌。</li>
+          <li><strong>手风琴展开指示缺失</strong>：原有卡片缺少清晰的折叠指示，右侧没有标准的交互箭头。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/移动端学员端-轮转手册手风琴改造-修改前.jpg" target="_blank"><img alt="轮转手册修改前" src="2026-11-13-对比截图/移动端学员端-轮转手册手风琴改造-修改前.jpg"></a>
+      </div>
+      <div class="compare-card">
+        <h3>修改内容（修改后）</h3>
+        <ul>
+          <li><strong>保留科室教学资源库</strong>：严格保留顶部「呼吸科学习资源」折叠组件与教学资源库数据联动。</li>
+          <li><strong>移除横向滑动卡片</strong>：彻底删除冗余的横向科室胶囊条，还原干净整洁的垂直信息流。</li>
+          <li><strong>手风琴（Accordion）组件化</strong>：分为「要求标准」与「通用活动要求」两大分组，各要求项默认收起或按需展开；指标摘要（如 6 项、审核通过 2/2）紧随标题。</li>
+          <li><strong>下拉箭头统一定位右侧</strong>：展开箭头（<code>chevron-down</code>）严格固定在最右侧，展开时平滑旋转 180° 并高亮蓝色，完全对齐移动端标准手风琴体验。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/移动端学员端-轮转手册手风琴改造-修改后.png" target="_blank"><img alt="轮转手册修改后" src="2026-11-13-对比截图/移动端学员端-轮转手册手风琴改造-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 课程详情去重 -->
+  <section id="sec-09">
+    <h2>课程详情 · 冗余任务进度标题与课前信卡片去重</h2>
+    <div class="meta-path">
+      定位：移动端学员端 → 技能课程详情（如「儿童球囊面罩给氧」）→「课程任务」与「课程信息」Tab。<br>
+      涉及文件：<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>任务进度标题冗余</strong>：在「课程任务」Tab 下方存在二级标题栏「| 课程任务进度 完成各阶段必修任务以获得结业认证」，与上方已经选中的「课程任务」Tab 标签及下方的阶段任务卡片标题形成视觉与信息双重冗余，挤占首屏垂直空间。</li>
+          <li><strong>课前信卡片位置重复</strong>：在「课程信息」Tab 底部展示了完整的课前信卡片（含前3项与展开全文），但该课前信已经在「课程任务」Tab 的「课前任务」清单中作为可点击、可学习的任务项存在，信息两处重复维护，用户易产生混淆。</li>
+        </ul>
+        <div style="display:grid;gap:12px;">
+          <a href="2026-11-13-对比截图/移动端课程详情-任务进度与课前信重复-修改前-1.jpg" target="_blank"><img alt="课程任务Tab修改前（含冗余任务进度小标题）" src="2026-11-13-对比截图/移动端课程详情-任务进度与课前信重复-修改前-1.jpg"></a>
+          <a href="2026-11-13-对比截图/移动端课程详情-任务进度与课前信重复-修改前-2.png" target="_blank"><img alt="课程信息Tab修改前（底部含重复课前信卡片）" src="2026-11-13-对比截图/移动端课程详情-任务进度与课前信重复-修改前-2.png"></a>
+        </div>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>精简任务流首屏</strong>：移除了「课程任务」Tab 下方冗余的「课程任务进度」标题栏，点击 Tab 后直入阶段任务清单（课前、课中、课后），层级更清晰紧凑，首屏多展现一项任务内容。</li>
+          <li><strong>单一信源与清晰权责</strong>：彻底移除「课程信息」Tab 底部（含单次课程与专项系列课程分支）的重复课前信卡片。课前信统一归口在「课程任务 → 课前任务 → 课前信」中查看并记录学习状态，使课程信息 Tab 专注呈现课程简介、师资团队、课程目标与大纲。</li>
+        </ul>
+        <div style="display:grid;gap:12px;">
+          <a href="2026-11-13-对比截图/移动端课程详情-任务进度与课前信重复-修改后-1.png" target="_blank"><img alt="课程任务Tab修改后（去除非必要标题）" src="2026-11-13-对比截图/移动端课程详情-任务进度与课前信重复-修改后-1.png"></a>
+          <a href="2026-11-13-对比截图/移动端课程详情-任务进度与课前信重复-修改后-2.png" target="_blank"><img alt="课程信息Tab修改后（去重后纯粹大纲信息）" src="2026-11-13-对比截图/移动端课程详情-任务进度与课前信重复-修改后-2.png"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- 10 移动端教师页启动与轮转带教恢复 -->
+  <section id="sec-10">
+    <h2>轮转带教与个人中心 · 启动错误及样式恢复</h2>
+    <div class="meta-path">
+      定位：移动端教师端 → 底部「轮转带教」Tab /「我的」Tab。<br>
+      涉及文件：<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>、<a href="../../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../../shared/js/people-profile.js">people-profile.js</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>启动脚本加载失败</strong>：根目录共享数据缺少 `?root=1` 路径标记，导致 `TeachingFeedbackData` 未定义，Vue 页面初始化中断。</li>
+          <li><strong>轮转卡片样式丢失</strong>：学员列表使用了新的 `rt-m-*` 类名，但没有对应卡片、搜索栏和操作按钮样式。</li>
+          <li><strong>头像无法加载</strong>：移动端静态服务器下共享头像路径未带根目录映射标记。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/移动端-轮转带教-修改前.png" target="_blank"><img alt="轮转带教修改前" src="2026-11-13-对比截图/移动端-轮转带教-修改前.png"></a>
+        <a href="2026-11-13-对比截图/移动端-个人中心-修改前.png" target="_blank"><img alt="个人中心修改前" src="2026-11-13-对比截图/移动端-个人中心-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li>为移动端共享数据入口统一补齐 `?root=1`，恢复 Vue 正常挂载和底部 Tab 交互。</li>
+          <li>补齐轮转带教搜索框、历史筛选、学员信息网格、状态标签和手册/审核/催办按钮样式。</li>
+          <li>为共享头像 URL 保留根目录映射参数，确保教师端卡片展示真实头像。</li>
+          <li>验证搜索学员、轮转卡片、个人中心及角色切换入口均可用，页面无 JS 报错。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/移动端-轮转带教-修改后.png" target="_blank"><img alt="轮转带教修改后" src="2026-11-13-对比截图/移动端-轮转带教-修改后.png"></a>
+        <a href="2026-11-13-对比截图/移动端-个人中心-修改后.png" target="_blank"><img alt="个人中心修改后" src="2026-11-13-对比截图/移动端-个人中心-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+  <section id="sec-11">
+    <h2>教师端「我的」· 账号绑定、头像与教师档案关联修复</h2>
+    <div class="meta-path">
+      定位：移动端教师端 → 我的 → 教师档案。<br>
+      涉及文件：<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>教师账号未绑定人员档案</strong>：教师入口未设置当前账号 ID，档案页无法按王老师匹配 PC 师资档案，显示“当前账号尚未关联教师档案”。</li>
+          <li><strong>头像来源为空</strong>：账号上下文缺失时头像计算值为空，页面只显示替代文字。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/移动端教师我的档案-关联前.png" target="_blank"><img alt="教师档案关联修复前" src="2026-11-13-对比截图/移动端教师我的档案-关联前.png"></a>
+        <a href="2026-11-13-对比截图/移动端-个人中心-修改前.png" target="_blank"><img alt="教师个人中心修复前" src="2026-11-13-对比截图/移动端-个人中心-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>绑定演示账号</strong>：教师权威入口设置 <code>MOBILE_ACCOUNT_ID="wang_teacher"</code>，档案页可正确匹配 PC 人员档案。</li>
+          <li><strong>头像增加兜底</strong>：教师使用 <code>avatar_03.png</code>，学员使用 <code>avatar_05.png</code>，不再出现空 src。</li>
+          <li><strong>档案回到 PC SSOT</strong>：教师档案继续由 PC「师资管理 → 教师档案」渲染，移动端仅做卡片、锚点和纵向布局适配。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/移动端教师我的首页-修改后.png" target="_blank"><img alt="教师个人中心修复后" src="2026-11-13-对比截图/移动端教师我的首页-修改后.png"></a>
+        <a href="2026-11-13-对比截图/移动端教师我的档案-修改后.png" target="_blank"><img alt="教师档案修复后" src="2026-11-13-对比截图/移动端教师我的档案-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+</main>
+<a class="back-to-index" href="#change-index">↑ 返回总清单</a>
+<script>
+(function(){
+  const body = document.getElementById('change-index-body');
+  const search = document.getElementById('index-search');
+  const chips = document.querySelectorAll('#index-scope-chips .index-chip');
+  const visibleEl = document.getElementById('index-visible-count');
+  let activeScope = 'all';
+  function applyFilter(){
+    const q = (search.value || '').trim().toLowerCase();
+    let shown = 0;
+    body.querySelectorAll('tr').forEach(tr => {
+      const scope = tr.dataset.scope || '';
+      const scopeOk = activeScope === 'all' || scope === activeScope;
+      const textOk = !q || tr.textContent.toLowerCase().includes(q);
+      const show = scopeOk && textOk;
+      tr.hidden = !show;
+      if (show) shown++;
+    });
+    if (visibleEl) visibleEl.textContent = String(shown);
+  }
+  chips.forEach(btn => btn.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    activeScope = btn.dataset.scope;
+    applyFilter();
+  }));
+  if (search) search.addEventListener('input', applyFilter);
+})();
+</script>
+</body>
+</html>

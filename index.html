@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="../../shared/illustrations/standard.svg">
+<title>复旦儿科技能中心 · UI修改前后留痕总览</title>
+<style>
+  :root{
+    --color-primary:#175898;
+    --color-primary-hover:#13477c;
+    --color-primary-bg:#f0f6fc;
+    --color-border:#e5e9f0;
+    --color-text:#1d2129;
+    --color-text-secondary:#4e5969;
+    --color-text-muted:#86909c;
+    --color-card-bg:#ffffff;
+    --color-page-bg:#f5f6f8;
+  }
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--color-page-bg);color:var(--color-text);font:14px/1.7 -apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif}
+  
+  /* 顶部横幅 */
+  header{background:linear-gradient(135deg,#175898 0%,#1d6ab7 100%);color:#fff;padding:32px 36px 36px}
+  .header-inner{max-width:1320px;margin:0 auto}
+  .brand-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.16);padding:4px 12px;border-radius:999px;font-size:12px;letter-spacing:.3px;margin-bottom:12px;border:1px solid rgba(255,255,255,.24)}
+  header h1{font-size:24px;margin:0;font-weight:600;letter-spacing:-.2px}
+  header p{margin:8px 0 0;opacity:.92;font-size:14px;max-width:860px;line-height:1.6}
+  
+  /* 指标横条 */
+  .metrics-strip{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+  .metric-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(6px);border-radius:10px;padding:10px 18px;min-width:140px}
+  .metric-label{font-size:12px;opacity:.85;margin-bottom:2px}
+  .metric-value{font-size:22px;font-weight:700;letter-spacing:-.5px}
+  .metric-unit{font-size:12px;font-weight:normal;opacity:.85;margin-left:4px}
+  
+  /* 主体区域 */
+  main{max-width:1320px;margin:28px auto 80px;padding:0 24px}
+  
+  /* 工具栏：搜索与筛选 */
+  .toolbar-card{background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:12px;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;box-shadow:0 1px 3px rgba(0,0,0,.04);margin-bottom:24px}
+  .filter-group{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .filter-chip{border:1px solid #d9dfe7;border-radius:999px;background:#fff;padding:6px 14px;font-size:13px;color:var(--color-text-secondary);cursor:pointer;transition:all .15s ease}
+  .filter-chip:hover{border-color:var(--color-primary);color:var(--color-primary)}
+  .filter-chip.active{background:var(--color-primary);border-color:var(--color-primary);color:#fff;font-weight:500}
+  .search-box{border:1px solid #d9dfe7;border-radius:8px;padding:8px 14px;font:inherit;font-size:13px;min-width:280px;outline:none;transition:border-color .15s}
+  .search-box:focus{border-color:var(--color-primary);box-shadow:0 0 0 3px rgba(23,88,152,.12)}
+  
+  /* 每日卡片流 */
+  .days-stream{display:flex;flex-direction:column;gap:24px}
+  .day-card{background:var(--color-card-bg);border:1px solid var(--color-border);border-radius:14px;padding:26px 28px;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:transform .15s ease,box-shadow .15s ease;position:relative}
+  .day-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.07);transform:translateY(-1px)}
+  .day-card.featured{border-left:4px solid var(--color-primary)}
+  
+  .day-header{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--color-border)}
+  .day-title-wrap{flex:1;min-width:320px}
+  .day-meta-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
+  
+  .date-badge{font-size:13px;font-weight:700;color:var(--color-primary);background:var(--color-primary-bg);padding:3px 10px;border-radius:6px;border:1px solid #d6e4f5}
+  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:500}
+  .tag-latest{background:#e8fff0;color:#00873a;border:1px solid #b7f4cb}
+  .tag-major{background:#fff7e6;color:#d46b08;border:1px solid #ffd591}
+  .tag-audit{background:#f0f5ff;color:#1d39c4;border:1px solid #adc6ff}
+  
+  .day-title{font-size:19px;font-weight:600;margin:0 0 6px;color:var(--color-text)}
+  .day-desc{margin:0;color:var(--color-text-secondary);font-size:13.5px;line-height:1.6}
+  
+  .day-actions{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .btn-primary{display:inline-flex;align-items:center;gap:6px;background:var(--color-primary);color:#fff;padding:9px 20px;border-radius:8px;font-size:13.5px;font-weight:500;text-decoration:none;transition:background .15s;white-space:nowrap;box-shadow:0 2px 6px rgba(23,88,152,.25)}
+  .btn-primary:hover{background:var(--color-primary-hover);text-decoration:none}
+  .stat-summary{font-size:12px;color:var(--color-text-muted)}
+  
+  /* 列表项快速定位 */
+  .items-overview{margin-top:20px}
+  .items-overview-title{font-size:13px;font-weight:600;color:var(--color-text-secondary);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+  .items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:10px}
+  .item-link{display:flex;align-items:baseline;gap:8px;background:#f9fafb;border:1px solid #eef0f3;border-radius:8px;padding:9px 12px;text-decoration:none;color:var(--color-text);font-size:13px;transition:all .15s ease}
+  .item-link:hover{background:#f0f6fc;border-color:#c8def5;color:var(--color-primary)}
+  .item-num{font-size:12px;font-weight:700;color:var(--color-primary);min-width:20px}
+  .item-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .item-badge{font-size:11px;padding:1px 6px;border-radius:4px;background:#e5e6eb;color:#4e5969;white-space:nowrap}
+  .item-badge.benchmark{background:#e8fff0;color:#00873a;border:1px solid #b7f4cb}
+  
+  /* 往期归档卡片 */
+  .archive-section{margin-top:40px;background:#fff;border:1px solid var(--color-border);border-radius:14px;padding:22px 26px}
+  .archive-title{font-size:16px;font-weight:600;margin:0 0 14px;color:var(--color-text);display:flex;align-items:center;gap:8px}
+  .archive-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+  .archive-item{padding:8px 12px;border-radius:6px;background:#f7f8fa;border:1px solid #eef0f4;font-size:13px;color:var(--color-text-secondary);display:flex;align-items:center;justify-content:space-between}
+  .archive-item:hover{border-color:#d0d7de;color:var(--color-primary)}
+  .archive-item a{color:inherit;text-decoration:none;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .archive-date{font-size:12px;color:var(--color-text-muted);margin-left:8px}
+  
+  /* 页脚 */
+  footer{text-align:center;padding:36px 0 20px;font-size:12px;color:var(--color-text-muted)}
+  footer a{color:var(--color-primary);text-decoration:none}
+  
+  /* 空状态 */
+  .empty-state{text-align:center;padding:48px 0;color:var(--color-text-muted);font-size:14px;display:none}
+  
+  @media(max-width:800px){
+    header{padding:24px 20px}
+    main{padding:0 16px;margin-top:20px}
+    .day-card{padding:20px 18px}
+    .day-actions{align-items:flex-start;width:100%}
+    .btn-primary{width:100%;justify-content:center}
+    .items-grid{grid-template-columns:1fr}
+    .search-box{width:100%}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand-badge">复旦大学附属儿科医院 · 技能中心管理平台</div>
+    <h1>UI 改版与功能演进 · 修改前后留痕总览</h1>
+    <p>按工作日归档每日界面重构、交互优化、Bug 修复与视觉走查留痕。点击下方任意日期卡片可进入该日完整图文对比详情，亦可直接通过具体条目锚点快速直达。</p>
+    
+    <div class="metrics-strip">
+      <div class="metric-card">
+        <div class="metric-label">归档天数</div>
+        <div class="metric-value">5<span class="metric-unit">个工作日</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">累计修改与走查项</div>
+        <div class="metric-value">60<span class="metric-unit">项</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">对比留痕截图</div>
+        <div class="metric-value">211<span class="metric-unit">张</span></div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">最新更新日期</div>
+        <div class="metric-value" style="font-size:19px">2026-11-16</div>
+      </div>
+      <div class="metric-card" style="background:#ffffff;border:none;box-shadow:0 4px 12px rgba(0,0,0,0.12)">
+        <div class="metric-label" style="color:#175898;font-weight:600">⚡ 全量聚合模式</div>
+        <a href="../修改前后对比.html" style="color:#175898;font-weight:700;text-decoration:none;font-size:14px;display:inline-flex;align-items:center;gap:4px;margin-top:2px">打开单文件全量对比 (68项/224图) →</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- 筛选与搜索工具栏 -->
+  <div class="toolbar-card">
+    <div class="filter-group" id="date-filter-group">
+      <span style="font-size:13px;color:var(--color-text-secondary);font-weight:500;margin-right:4px">日期快速切换：</span>
+      <button type="button" class="filter-chip active" data-date="all">全部日期（5 天）</button>
+      <button type="button" class="filter-chip" data-date="2026-11-16">2026-11-16（最新 · 6 项）</button>
+      <button type="button" class="filter-chip" data-date="2026-11-15">2026-11-15（双端改造 · 10 项）</button>
+      <button type="button" class="filter-chip" data-date="2026-11-13">2026-11-13（专项 · 5 项）</button>
+      <button type="button" class="filter-chip" data-date="2026-11-12">2026-11-12（大版本 · 25 项）</button>
+      <button type="button" class="filter-chip" data-date="2026-11-11">2026-11-11（走查验收 · 8 项）</button>
+    </div>
+    <input type="search" id="keyword-search" class="search-box" placeholder="输入功能模块、改动主题或关键词筛选…">
+  </div>
+
+  <div class="days-stream" id="days-stream">
+
+    <!-- 卡片 0: 2026-11-16 -->
+    <article class="day-card featured" data-date="2026-11-16" data-keywords="年度课程计划 年度学习计划 学员端 管理员端 视角切换 权限越权 自主添加课程 选修 学习弹窗 实训预约 临床思维 线上微课 批量装配 批量加课 更多筛选 基地 课程结构 来源 授课形式 精品课程 真实课程跳转 选课报名 临床思维训练 自适应学习 线上课程">
+      <div class="day-header">
+        <div class="day-title-wrap">
+          <div class="day-meta-row">
+            <span class="date-badge">2026-11-16</span>
+            <span class="tag tag-latest">本日最新</span>
+            <span class="tag tag-audit">权限解耦与真实学习闭环</span>
+          </div>
+          <h2 class="day-title">2026-11-16 · PC端「年度课程计划」视角权限解耦与弹窗补齐</h2>
+          <p class="day-desc">
+            全面解耦学员端与管理员端的视角边界：彻底移除学员端「视角：全院管理配置」越权切换，并同样清除管理员端「学员个人视角」，各司其职；补齐学员端自主添加课程模态弹窗（37门课程检索与加课）；将批量装配大纲课程弹窗中的「更多筛选」升级为可交互气泡浮层，支持5大深层筛选；点击每门课程的「学习」按钮全面接入路由跳转，直达线上课程、临床思维训练、自适应学习与选课预约等真实系统学习大厅。
+          </p>
+        </div>
+        <div class="day-actions">
+          <a class="btn-primary" href="2026-11-16-修改前后对比.html">查看 11-16 留痕详情 →</a>
+          <span class="stat-summary">共 5 项核心改造 · 10 张留痕截图</span>
+        </div>
+      </div>
+      
+      <div class="items-overview">
+        <div class="items-overview-title">
+          <span>包含修改项目清单（点击直达该项对比区）</span>
+          <span style="font-weight:normal;color:var(--color-text-muted)">共 5 项</span>
+        </div>
+        <div class="items-grid">
+          <a class="item-link" href="2026-11-16-修改前后对比.html#sec-01">
+            <span class="item-num">01</span>
+            <span class="item-name">学员端 · 年度课程计划移除全院管理配置下拉</span>
+            <span class="item-badge benchmark">越权拦截</span>
+          </a>
+          <a class="item-link" href="2026-11-16-修改前后对比.html#sec-02">
+            <span class="item-num">02</span>
+            <span class="item-name">学员端 · 补齐「自主添加课程」与「学习」业务弹窗</span>
+            <span class="item-badge benchmark">交互补齐</span>
+          </a>
+          <a class="item-link" href="2026-11-16-修改前后对比.html#sec-03">
+            <span class="item-num">03</span>
+            <span class="item-name">管理员端 · 移除学员个人视角切换胶囊</span>
+            <span class="item-badge benchmark">双端解耦</span>
+          </a>
+          <a class="item-link" href="2026-11-16-修改前后对比.html#sec-04">
+            <span class="item-num">04</span>
+            <span class="item-name">批量装配课程弹窗 · 「更多筛选」支持交互展开与多维过滤</span>
+            <span class="item-badge benchmark">筛选增强</span>
+          </a>
+          <a class="item-link" href="2026-11-16-修改前后对比.html#sec-05">
+            <span class="item-num">05</span>
+            <span class="item-name">学员端 · 点击「学习」联动跳转至系统真实课程学习平台</span>
+            <span class="item-badge benchmark">真实闭环</span>
+          </a>
+        </div>
+      </div>
+    </article>
+    <article class="day-card featured" data-date="2026-11-16" data-keywords="入基地技能考 考官 在线评分 免修"><div class="day-header"><div><span class="date-badge">2026-11-16</span><h2>入基地技能考 · 在线评分与免修主流程</h2><p>1项修改 · 4张截图。配置考试、师生任务、自动汇总与课程免修标签。</p></div><a class="btn-primary" href="2026-11-16-入基地技能考-修改前后对比.html">查看修改对比 →</a></div><a class="item-link" href="2026-11-16-入基地技能考-修改前后对比.html#sec-01">01 · 考试配置与跨角色主流程</a></article>
+
+    <!-- 卡片 1: 2026-11-15 -->
+    <article class="day-card featured" data-date="2026-11-15" data-keywords="学员端 双端改造 nav.html 选课报名 学习日历 科室矩阵 调课申请 教学资源库 网盘 借阅申请 评估任务 催办 申诉 临床思维课程 外部平台 我的画像 我的档案 年度课程计划 自主训练 王同学 ST202401">
+      <div class="day-header">
+        <div class="day-title-wrap">
+          <div class="day-meta-row">
+            <span class="date-badge">2026-11-15</span>
+            <span class="tag tag-major">往期归档</span>
+            <span class="tag tag-major">双端深度改造</span>
+            <span class="tag tag-audit">学员端基线对齐</span>
+          </div>
+          <h2 class="day-title">2026-11-15 · 学员端（PC 端 vs 移动端）双端深度改造与基线对齐</h2>
+          <p class="day-desc">
+            严格以 nav.html 权威角色路由为唯一基线，破除表面乐观假象；全面落地选课大纲与先修要求、双端移除日历科室矩阵并保留移动端调课申请、网盘式教学资源库与借阅审批流、待他人评估催办与申诉抽屉、临床思维课程直达外部平台、双端彻底下架「我的画像」仅保留「我的档案」、年度课程计划阶段细目抽屉、清洗残留“王建军”硬编码并动态绑定学员人设「王同学」（ST202401）。
+          </p>
+        </div>
+        <div class="day-actions">
+          <a class="btn-primary" href="2026-11-15-修改前后对比.html">查看 11-15 留痕详情 →</a>
+          <span class="stat-summary">全量 10 项改造 · 16 张留痕截图</span>
+        </div>
+      </div>
+      
+      <div class="items-overview">
+        <div class="items-overview-title">
+          <span>包含修改项目清单（点击直达该项对比区）</span>
+          <span style="font-weight:normal;color:var(--color-text-muted)">10 / 10 项已整改闭环</span>
+        </div>
+        <div class="items-grid">
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-01">
+            <span class="item-num">01</span>
+            <span class="item-name">选课报名 · 移动端补齐大纲抽屉与先修要求</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-02">
+            <span class="item-num">02</span>
+            <span class="item-name">学习日历 · PC 学员端彻底移除科室矩阵</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-03">
+            <span class="item-num">03</span>
+            <span class="item-name">学习日历 · 移动端精简并新增调课申请抽屉</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-04">
+            <span class="item-num">04</span>
+            <span class="item-name">教学资源库 · 优化网盘层级与借阅申请流转</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-05">
+            <span class="item-num">05</span>
+            <span class="item-name">评估任务 · 增加待他人评估催办与申诉抽屉</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-06">
+            <span class="item-num">06</span>
+            <span class="item-name">临床思维课程 · 移动端重构为直达外部平台</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-07">
+            <span class="item-num">07</span>
+            <span class="item-name">我的画像 · PC 学员端彻底移除画像仅保留档案</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-08">
+            <span class="item-num">08</span>
+            <span class="item-name">我的画像 · 移动端个人中心与大厅下架画像</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-09">
+            <span class="item-num">09</span>
+            <span class="item-name">年度课程计划 · 复用 PC 功能与阶段考核抽屉</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-15-修改前后对比.html#sec-10">
+            <span class="item-num">10</span>
+            <span class="item-name">自主训练预约 · 动态绑定王同学与清洗硬编码</span>
+            <span class="item-badge">移动端</span>
+          </a>
+        </div>
+      </div>
+    </article>
+    
+    <!-- 卡片 2: 2026-11-13 -->
+    <article class="day-card" data-date="2026-11-13" data-keywords="移动端 我的 个人中心 轮转带教 启动错误 样式恢复 成果申报 我的证书 教师画像 教师档案 学员档案 资质 角色切换 管理端">
+      <div class="day-header">
+        <div class="day-title-wrap">
+          <div class="day-meta-row">
+            <span class="date-badge">2026-11-13</span>
+            <span class="tag tag-major">往期归档</span>
+            <span class="tag tag-audit">移动端专项</span>
+          </div>
+          <h2 class="day-title">2026-11-13 · 移动端「我的」与二级页面全面视觉重构</h2>
+          <p class="day-desc">
+            以「成果申报」为全项目移动端视觉规范标杆，彻底重构移动端个人中心首页、全屏新建流程、我的证书、学员/教师档案卡片化、我的教师画像雷达图、资质与成果卡片化收口，并适配多角色切换与管理端个人中心。
+          </p>
+        </div>
+        <div class="day-actions">
+          <a class="btn-primary" href="2026-11-13-修改前后对比.html">查看 11-13 留痕详情 →</a>
+          <span class="stat-summary">当前展示 5 项（07–11）· 移动端留痕</span>
+        </div>
+      </div>
+      
+      <div class="items-overview">
+        <div class="items-overview-title">
+          <span>包含修改项目清单（点击直达该项对比区）</span>
+          <span style="font-weight:normal;color:var(--color-text-muted)">5 / 12 项（临时展示）</span>
+        </div>
+        <div class="items-grid">
+          <a class="item-link" href="2026-11-13-修改前后对比.html#sec-07">
+            <span class="item-num">07</span>
+            <span class="item-name">多角色切换与管理端个人中心适配</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-13-修改前后对比.html#sec-08">
+            <span class="item-num">08</span>
+            <span class="item-name">轮转手册 · 结构精简与右侧箭头手风琴改造</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-13-修改前后对比.html#sec-09">
+            <span class="item-num">09</span>
+            <span class="item-name">课程详情 · 冗余任务进度标题与课前信卡片去重</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-13-修改前后对比.html#sec-10">
+            <span class="item-num">10</span>
+            <span class="item-name">轮转带教与个人中心 · 启动错误及样式恢复</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-13-修改前后对比.html#sec-11">
+            <span class="item-num">11</span>
+            <span class="item-name">教师端「我的」· 账号绑定、头像与教师档案关联修复</span>
+            <span class="item-badge">移动端</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 卡片 3: 2026-11-12 -->
+    <article class="day-card" data-date="2026-11-12" data-keywords="轮转任务 考核 病种 技能 教学活动 签到 二维码 签到码 单按钮 千问 技能中心 同伴互评 线上课程 FAB 悬浮按钮 表头吸顶 Emoji 头像 导师 责任学员">
+      <div class="day-header">
+        <div class="day-title-wrap">
+          <div class="day-meta-row">
+            <span class="date-badge">2026-11-12</span>
+            <span class="tag tag-major">大版本综合重构</span>
+            <span class="tag">PC端 + 移动端 + 全项目</span>
+          </div>
+          <h2 class="day-title">2026-11-12 · 轮转考核、教学活动、线上课程、全站吸顶与多模块走查对比</h2>
+          <p class="day-desc">
+            覆盖轮转病种/技能配置入口、临床教学活动双阶段签到与单按钮收口、技能中心课程双签到与同伴互评直接选人、线上课程竞品级重构与FAB加号、全站24张列表表头吸顶改造、全项目禁用Emoji清理与3D卡通头像统一。
+          </p>
+        </div>
+        <div class="day-actions">
+          <a class="btn-primary" href="2026-11-12-修改前后对比.html">查看 11-12 留痕详情 (106 张截图) →</a>
+          <span class="stat-summary">共 25 项改动与核查 · 106 张实测截图 · 30+ 个核心代码文件</span>
+        </div>
+      </div>
+      
+      <div class="items-overview">
+        <div class="items-overview-title">
+          <span>核心修改项目精选（点击直达该项对比区）</span>
+          <span style="font-weight:normal;color:var(--color-text-muted)">精选展示 12 项 / 共 25 项</span>
+        </div>
+        <div class="items-grid">
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-01">
+            <span class="item-num">01</span>
+            <span class="item-name">轮转任务与考核 · 新建病种入口</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-05">
+            <span class="item-num">05</span>
+            <span class="item-name">临床教学活动 · 发起签到弹窗（双阶段切换）</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-06">
+            <span class="item-num">06</span>
+            <span class="item-name">技能中心课程 · 签到弹窗（课程开始/结束切换）</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-08">
+            <span class="item-num">08</span>
+            <span class="item-name">线上课程 · 视图切换按钮样式统一</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-10">
+            <span class="item-num">10</span>
+            <span class="item-name">全项目禁用 Emoji 清理清单（30 个文件）</span>
+            <span class="item-badge">全项目</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-11">
+            <span class="item-num">11</span>
+            <span class="item-name">临床教学活动 · 操作列收口单按钮与二次确认</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-13">
+            <span class="item-num">13</span>
+            <span class="item-name">移动端线上课程与详情 · 竞品级双视图重构</span>
+            <span class="item-badge">双端SSOT</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-14">
+            <span class="item-num">14</span>
+            <span class="item-name">移动端线上课程 · 顶部按钮收口为右下角 FAB</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-15">
+            <span class="item-num">15</span>
+            <span class="item-name">技能中心课程 · 同伴互评免邀请直接选人</span>
+            <span class="item-badge">双端</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sticky-table-header-inventory">
+            <span class="item-num">17</span>
+            <span class="item-name">全站列表「仅表头吸顶」改造清单 (24 个列表页)</span>
+            <span class="item-badge">全项目</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-18">
+            <span class="item-num">18</span>
+            <span class="item-name">移动端首页 · 医院底图恢复与常用服务自定义</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-12-修改前后对比.html#sec-21">
+            <span class="item-num">21</span>
+            <span class="item-name">全项目头像风格统一为 3D 卡通风格头像</span>
+            <span class="item-badge">双端</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 卡片 4: 2026-11-11 -->
+    <article class="day-card" data-date="2026-11-11" data-keywords="走查 意见 教学活动 全选分组 护理专区 发起教学活动 课前信 证书规则 AI学习推荐 课程反馈">
+      <div class="day-header">
+        <div class="day-title-wrap">
+          <div class="day-meta-row">
+            <span class="date-badge">2026-11-11</span>
+            <span class="tag tag-audit">走查验收</span>
+            <span class="tag">PC端 + 移动端</span>
+          </div>
+          <h2 class="day-title">2026-11-11 · 第三轮走查验收 · 修改前后对比</h2>
+          <p class="day-desc">
+            针对第三轮走查清单 8 条核心意见专项落地，包含科室管理员活动详情二次确认、护理专区统一橙色标、教师端发起活动对齐管理员与上传资料、活动详情升级二级页与名单归签到、移动端课程详情课前信收口等。
+          </p>
+        </div>
+        <div class="day-actions">
+          <a class="btn-primary" href="2026-11-11-修改前后对比.html">查看 11-11 留痕详情 (40 张截图) →</a>
+          <span class="stat-summary">共 8 项走查修改 · 40 张实测截图 · 对应走查清单 8 条意见</span>
+        </div>
+      </div>
+      
+      <div class="items-overview">
+        <div class="items-overview-title">
+          <span>包含走查修改清单（点击直达该项对比区）</span>
+          <span style="font-weight:normal;color:var(--color-text-muted)">8 / 8 项</span>
+        </div>
+        <div class="items-grid">
+          <a class="item-link" href="2026-11-11-修改前后对比.html#sec-01">
+            <span class="item-num">01</span>
+            <span class="item-name">意见 10 · 活动详情：去掉全选分组 + 二次确认</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-11-修改前后对比.html#sec-02">
+            <span class="item-num">02</span>
+            <span class="item-name">意见 6 · 护理专区不再标绿（统一橙色口径）</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-11-修改前后对比.html#sec-03">
+            <span class="item-num">03</span>
+            <span class="item-name">意见 9 · 教师端发起活动对齐管理员 + 上传资料</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-11-修改前后对比.html#sec-04">
+            <span class="item-num">04</span>
+            <span class="item-name">意见 11 · 临床教学活动详情升级二级页与签退码</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-11-修改前后对比.html#sec-05">
+            <span class="item-num">05</span>
+            <span class="item-name">意见 1 · 移动端课程详情：课前信收入口为任务项</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-11-修改前后对比.html#sec-06">
+            <span class="item-num">06</span>
+            <span class="item-name">意见 2 · 发放课程证书：新增规则设置与达标结果</span>
+            <span class="item-badge">PC端</span>
+          </a>
+          <a class="item-link" href="2026-11-11-修改前后对比.html#sec-07">
+            <span class="item-num">07</span>
+            <span class="item-name">意见 5 · AI 学习推荐：只推荐资料收口</span>
+            <span class="item-badge">移动端</span>
+          </a>
+          <a class="item-link" href="2026-11-11-修改前后对比.html#sec-08">
+            <span class="item-num">08</span>
+            <span class="item-name">意见 4 · 线上课程下线自评与课程反馈</span>
+            <span class="item-badge">双端</span>
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <div id="empty-state" class="empty-state">
+    未检索到与关键词匹配的留痕记录，请尝试其他关键词或点击上方「全部日期」重置。
+  </div>
+
+  <!-- 往期走查与设计改造文档归档 -->
+  <section class="archive-section">
+    <h3 class="archive-title">
+      <span>往期设计走查与合并记录归档（Markdown 文档）</span>
+    </h3>
+    <div class="archive-grid">
+      <div class="archive-item">
+        <a href="2026-11-11-第三轮走查意见定位与改造清单.md" target="_blank">2026-11-11 第三轮走查意见定位与改造清单</a>
+        <span class="archive-date">11-11</span>
+      </div>
+      <div class="archive-item">
+        <a href="2026-10-30-飞书多维表格待办任务梳理.md" target="_blank">2026-10-30 飞书多维表格待办任务梳理</a>
+        <span class="archive-date">10-30</span>
+      </div>
+      <div class="archive-item">
+        <a href="2026-10-28-PC轮转菜单与页面调整.md" target="_blank">2026-10-28 PC 轮转菜单与页面调整</a>
+        <span class="archive-date">10-28</span>
+      </div>
+      <div class="archive-item">
+        <a href="2026-10-24-课程工作台可视化下钻.md" target="_blank">2026-10-24 课程工作台可视化下钻</a>
+        <span class="archive-date">10-24</span>
+      </div>
+      <div class="archive-item">
+        <a href="2026-10-20-题库与试卷改造.md" target="_blank">2026-10-20 题库与试卷改造</a>
+        <span class="archive-date">10-20</span>
+      </div>
+      <div class="archive-item">
+        <a href="2026-09-19-菜单与页面改造汇总.md" target="_blank">2026-09-19 菜单与页面改造汇总</a>
+        <span class="archive-date">09-19</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>复旦大学附属儿科医院 · 临床技能培训中心平台 · 研发与交互留痕档案库</div>
+  <div style="margin-top:4px">在线镜像：<a href="https://pakeypay.github.io/ui_revise_note/">https://pakeypay.github.io/ui_revise_note/</a></div>
+</footer>
+
+<script>
+(function(){
+  const chips = document.querySelectorAll('#date-filter-group .filter-chip');
+  const cards = document.querySelectorAll('.day-card');
+  const searchInput = document.getElementById('keyword-search');
+  const emptyState = document.getElementById('empty-state');
+  let activeDate = 'all';
+
+  function filterCards(){
+    const query = (searchInput.value || '').trim().toLowerCase();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cardDate = card.dataset.date || '';
+      const cardKeywords = (card.dataset.keywords || '').toLowerCase();
+      const cardText = card.textContent.toLowerCase();
+      
+      const dateMatch = activeDate === 'all' || cardDate === activeDate;
+      const searchMatch = !query || cardKeywords.includes(query) || cardText.includes(query);
+
+      if (dateMatch && searchMatch) {
+        card.style.display = '';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (emptyState) {
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      activeDate = chip.dataset.date;
+      filterCards();
+    });
+  });
+
+  searchInput.addEventListener('input', filterCards);
+})();
+</script>
+</body>
+</html>
