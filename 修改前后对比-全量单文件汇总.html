@@ -1,0 +1,2633 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>复旦儿科技能中心 · 修改前后对比全景看板（全量单文件汇总版）</title>
+<style>
+:root{
+  --primary:#175898;
+  --primary-hover:#13477c;
+  --primary-bg:#f0f6fc;
+  --border:#e5e9f0;
+  --border-light:#eef1f5;
+  --text:#1d2129;
+  --text-sec:#4e5969;
+  --text-muted:#86909c;
+  --card-bg:#ffffff;
+  --page-bg:#f5f6f8;
+  --before-bg:#fff2f0;
+  --before-color:#cf1322;
+  --before-border:#ffa39e;
+  --after-bg:#f6ffed;
+  --after-color:#389e0d;
+  --after-border:#b7eb8f;
+  --shadow:0 1px 3px rgba(0,0,0,0.05),0 8px 24px rgba(0,0,0,0.04);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--page-bg);color:var(--text);font:14px/1.7 -apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif}
+
+/* 顶部横幅 */
+header.hero{background:linear-gradient(135deg,#175898 0%,#203f6b 100%);color:#fff;padding:32px 36px 36px;box-shadow:0 4px 12px rgba(23,88,152,0.18)}
+.hero-inner{max-width:1440px;margin:0 auto}
+.brand-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.16);padding:4px 12px;border-radius:999px;font-size:12px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.25)}
+h1{font-size:25px;margin:0 0 8px;font-weight:600}
+.hero-desc{margin:0;opacity:0.92;font-size:14px;max-width:960px;line-height:1.6}
+
+/* 指标胶囊 */
+.metrics{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+.m-card{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.22);backdrop-filter:blur(6px);border-radius:10px;padding:10px 18px;min-width:140px}
+.m-label{font-size:12px;opacity:0.85;margin-bottom:2px}
+.m-val{font-size:22px;font-weight:700}
+.m-unit{font-size:12px;font-weight:normal;opacity:0.85;margin-left:4px}
+
+/* 控制栏 (Sticky Toolbar) */
+.toolbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,0.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:14px 24px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.toolbar-inner{max-width:1440px;margin:0 auto;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.filter-group{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filter-label{font-size:12.5px;color:var(--text-sec);font-weight:600}
+.chip{border:1px solid #d9dfe7;border-radius:999px;background:#fff;padding:5px 13px;font-size:12.5px;color:var(--text-sec);cursor:pointer;transition:all 0.15s ease}
+.chip:hover{border-color:var(--primary);color:var(--primary)}
+.chip.active{background:var(--primary);border-color:var(--primary);color:#fff;font-weight:500}
+
+.search-box{border:1px solid #d9dfe7;border-radius:8px;padding:7px 14px;font:inherit;font-size:13px;min-width:260px;outline:none;transition:border-color 0.15s}
+.search-box:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(23,88,152,0.12)}
+.stat-pill{font-size:12.5px;color:var(--text-muted);background:#f2f4f7;padding:5px 12px;border-radius:6px;border:1px solid var(--border)}
+
+/* 视图模式切换 */
+.view-modes{display:flex;border:1px solid #d9dfe7;border-radius:8px;overflow:hidden;background:#fff}
+.view-btn{border:0;background:transparent;padding:6px 12px;font-size:12.5px;color:var(--text-sec);cursor:pointer}
+.view-btn.active{background:var(--primary-bg);color:var(--primary);font-weight:600}
+
+/* 主容器 */
+main{max-width:1440px;margin:28px auto 100px;padding:0 24px}
+
+/* 条目卡片 */
+.item-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);margin-bottom:28px;overflow:hidden;transition:box-shadow 0.2s}
+.item-card:hover{box-shadow:0 6px 20px rgba(0,0,0,0.06)}
+.item-header{padding:18px 24px 14px;background:#fbfcfe;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px}
+.item-title-wrap{flex:1;min-width:300px}
+.badge-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:6px}
+.badge-date{font-size:12px;font-weight:700;color:var(--primary);background:var(--primary-bg);padding:2px 8px;border-radius:4px;border:1px solid #d6e4f5}
+.badge-scope{font-size:11.5px;padding:2px 8px;border-radius:4px;background:#eef4fb;color:#175898;font-weight:500}
+.badge-num{font-size:12px;font-weight:700;color:#fff;background:var(--primary);padding:2px 8px;border-radius:4px}
+.item-title{font-size:17px;font-weight:600;margin:0 0 4px;color:var(--text)}
+.item-meta{font-size:12.5px;color:var(--text-muted);line-height:1.5}
+
+/* 卡片内容区域 */
+.item-body{padding:20px 24px}
+.item-body img{max-width:100%;border-radius:8px;border:1px solid var(--border);box-shadow:0 2px 6px rgba(0,0,0,0.04);cursor:zoom-in;transition:transform 0.2s ease}
+.item-body img:hover{transform:scale(1.008)}
+.item-body .pair, .item-body .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.item-body h3{font-size:14.5px;margin:8px 0 10px;color:var(--text)}
+.item-body p{margin:6px 0 12px;color:var(--text-sec);line-height:1.6}
+
+/* 对比栅格 */
+.pair-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.pair-col{display:flex;flex-direction:column}
+.col-header{display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:13.5px;font-weight:600}
+.tag-badge{padding:3px 10px;border-radius:4px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
+.tag-badge.before{background:var(--before-bg);color:var(--before-color);border:1px solid var(--before-border)}
+.tag-badge.after{background:var(--after-bg);color:var(--after-color);border:1px solid var(--after-border)}
+
+/* 图片容器 */
+.img-wrap{position:relative;background:#f7f8fa;border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.03);margin-bottom:12px}
+.img-wrap img{display:block;width:100%;height:auto;cursor:zoom-in;transition:transform 0.2s ease}
+.img-wrap img:hover{transform:scale(1.008)}
+.img-caption{padding:6px 12px;font-size:12px;color:var(--text-sec);background:#fcfdfe;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+
+/* 列表展示 */
+ul.desc-list{margin:6px 0 14px 18px;padding:0;color:var(--text-sec);font-size:13px}
+ul.desc-list li{margin-bottom:5px;line-height:1.6}
+
+/* Lightbox 大图弹窗 */
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:999;display:none;align-items:center;justify-content:center;flex-direction:column;padding:24px}
+#lightbox.active{display:flex}
+#lightbox img{max-width:92vw;max-height:86vh;object-fit:contain;border-radius:6px;box-shadow:0 12px 36px rgba(0,0,0,0.5)}
+#lbCaption{color:#fff;margin-top:12px;font-size:14px;font-weight:500;text-align:center;background:rgba(0,0,0,0.4);padding:6px 16px;border-radius:999px}
+#lbClose{position:absolute;top:20px;right:24px;color:#fff;font-size:32px;cursor:pointer;opacity:0.85;border:none;background:none;line-height:1}
+#lbClose:hover{opacity:1}
+.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.2);color:#fff;border:none;border-radius:50%;width:48px;height:48px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lb-arrow:hover{background:rgba(255,255,255,0.4)}
+.lb-prev{left:24px}
+.lb-next{right:24px}
+
+/* 单栏模式 */
+body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compare-grid{grid-template-columns:1fr !important}
+
+/* 快速回到顶部 */
+.floating-nav{position:fixed;right:24px;bottom:24px;z-index:50;display:flex;flex-direction:column;gap:8px}
+.fab{background:var(--primary);color:#fff;border:0;border-radius:999px;padding:10px 16px;font-size:13px;font-weight:500;box-shadow:0 4px 14px rgba(23,88,152,0.3);cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+.fab:hover{background:var(--primary-hover);color:#fff}
+
+@media(max-width:960px){
+  header.hero{padding:24px 20px}
+  .toolbar{padding:12px 16px}
+  main{padding:0 16px}
+  .pair-grid, .pair, .compare-grid{grid-template-columns:1fr !important}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand-badge">复旦大学附属儿科医院 · 技能中心管理平台</div>
+    <h1>UI 改版与功能演进 · 修改前后对比全景看板（全量单文件汇总版）</h1>
+    <p class="hero-desc">
+      汇总本工程历史至今所有 UI 重构、权限解耦、业务闭环与交互改造的修改前与修改后对照。支持按日期快速切换、按端类型筛选、实时关键字搜索，并内置全屏无损对比大图查看器。
+    </p>
+    
+    <div class="metrics">
+      <div class="m-card">
+        <div class="m-label">归档总天数</div>
+        <div class="m-val">5<span class="m-unit">个工作日</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-label">全量修改与对比项</div>
+        <div class="m-val">67<span class="m-unit">项</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-label">对比留痕截图总数</div>
+        <div class="m-val">224<span class="m-unit">张</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-label">最新更新日期</div>
+        <div class="m-val" style="font-size:19px">2026-11-16</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="filter-group" id="dateFilters">
+      <span class="filter-label">日期：</span>
+      <button class="chip active" data-date="all">全部日期 (67)</button>
+      <button class="chip" data-date="2026-11-16">2026-11-16 (最新 · 5项)</button>
+      <button class="chip" data-date="2026-11-15">2026-11-15 (双端改造 · 28项)</button>
+      <button class="chip" data-date="2026-11-13">2026-11-13 (移动端 · 7项)</button>
+      <button class="chip" data-date="2026-11-12">2026-11-12 (大版本 · 25项)</button>
+      <button class="chip" data-date="2026-11-11">2026-11-11 (走查验收 · 8项)</button>
+    </div>
+    
+    <div class="filter-group" id="scopeFilters">
+      <span class="filter-label">终端：</span>
+      <button class="chip active" data-scope="all">全部</button>
+      <button class="chip" data-scope="PC端">PC端</button>
+      <button class="chip" data-scope="移动端">移动端</button>
+      <button class="chip" data-scope="双端协同">双端协同</button>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px">
+      <input type="search" id="searchInput" class="search-box" placeholder="搜索功能、模块名或改动内容…">
+      <div class="view-modes">
+        <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
+        <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
+      </div>
+      <div class="stat-pill" id="counterPill">显示 67 / 67 项</div>
+    </div>
+  </div>
+</div>
+
+<main id="mainContainer">
+
+    <article class="item-card" id="2026-11-16-sec-01" data-date="2026-11-16" data-scope="PC端" data-search="01. 学员端 · 年度课程计划移除全院管理配置下拉 <strong>定位路径</strong>：学员端（<code>student.html</code>） → 侧边栏「我的学习」 → 「年度课程计划」<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code> 年度课程计划 权限解耦 交互补齐 真实学习直达 线上课程 选课报名">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#01</span>
+            <span class="badge-date">2026-11-16</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">01. 学员端 · 年度课程计划移除全院管理配置下拉</h2>
+          <div class="item-meta"><strong>定位路径</strong>：学员端（<code>student.html</code>） → 侧边栏「我的学习」 → 「年度课程计划」<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code></div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>01. 学员端 · 年度课程计划移除全院管理配置下拉</h2>
+    <div class="meta-path">
+      <strong>定位路径</strong>：学员端（<code>student.html</code>） → 侧边栏「我的学习」 → 「年度课程计划」<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code>
+    </div>
+    <div class="pair">
+      <div>
+        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
+        <ul>
+          <li><strong>越权漏洞</strong>：顶部工具栏渲染了「视角：全院管理配置 / 学员个人视角」下拉选择胶囊。</li>
+          <li><strong>角色混淆</strong>：学员可以随意点击切换到「全院管理配置」，甚至查看到全院大纲配置、下发群体与批量加课等管理员专属功能，权限边界失控。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-学员端-修改前.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-学员端-修改前.png" alt="学员端修改前">
+        </a>
+      </div>
+      <div>
+        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
+        <ul>
+          <li><strong>移除下拉胶囊</strong>：在学员端界面彻底剔除视角切换下拉按钮（<code>.alp-perspective-pill</code>），仅展示学员个人计划视角。</li>
+          <li><strong>权限硬拦截</strong>：控制器方法 <code>setPerspective</code> 增加 <code>role === 'admin'</code> 权限守卫，阻止任何非管理员角色通过方法调用越权切换。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-学员端-修改后.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-学员端-修改后.png" alt="学员端修改后">
+        </a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-16-sec-02" data-date="2026-11-16" data-scope="PC端" data-search="02. 管理员端 · 移除学员个人视角切换胶囊 <strong>定位路径</strong>：管理员端（<code>manager.html</code>） → 「课程管理」 → 「课程工作台」/「年度课程计划」<br>
+      <strong>核心文件</strong>：<code>pages/课程工作台/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/年度学习计划/page.js</code> 年度课程计划 权限解耦 交互补齐 真实学习直达 线上课程 选课报名">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#02</span>
+            <span class="badge-date">2026-11-16</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">02. 管理员端 · 移除学员个人视角切换胶囊</h2>
+          <div class="item-meta"><strong>定位路径</strong>：管理员端（<code>manager.html</code>） → 「课程管理」 → 「课程工作台」/「年度课程计划」<br>
+      <strong>核心文件</strong>：<code>pages/课程工作台/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/年度学习计划/page.js</code></div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>02. 管理员端 · 移除学员个人视角切换胶囊</h2>
+    <div class="meta-path">
+      <strong>定位路径</strong>：管理员端（<code>manager.html</code>） → 「课程管理」 → 「课程工作台」/「年度课程计划」<br>
+      <strong>核心文件</strong>：<code>pages/课程工作台/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/年度学习计划/page.js</code>
+    </div>
+    <div class="pair">
+      <div>
+        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
+        <ul>
+          <li><strong>管理端混入学员视角</strong>：管理员端顶部保留「视角：全院管理配置 / 学员个人视角」下拉选择控件。</li>
+          <li><strong>定位不纯粹</strong>：管理员应该专注全院方案配置、学习群体设定与课程指派，混入个人视角造成操作干扰。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-管理员端-修改前.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-管理员端-修改前.png" alt="管理员端修改前">
+        </a>
+      </div>
+      <div>
+        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
+        <ul>
+          <li><strong>彻底移除视角下拉</strong>：管理员端工具栏移除了视角下拉胶囊与 <code>cw4-perspective-control</code> 控件，界面干净清爽。</li>
+          <li><strong>双端完全解耦</strong>：管理员端专心进行全院 3 个重点群体与各阶段培养方案下发；学员端专心完成个人自主选修规划与学时达成。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-管理员端-修改后.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-管理员端-修改后.png" alt="管理员端修改后">
+        </a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-16-sec-03" data-date="2026-11-16" data-scope="PC端" data-search="03. 批量装配课程弹窗 · 「更多筛选」支持交互展开与多维条件过滤 <strong>定位路径</strong>：管理员端 → 「年度课程计划」 → 群体「配置」方案 → 「批量加课」大纲课程装配弹窗 → 工具栏「更多筛选」<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/年度学习计划/page.css</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/课程工作台/dashboard.css</code> 年度课程计划 权限解耦 交互补齐 真实学习直达 线上课程 选课报名">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#03</span>
+            <span class="badge-date">2026-11-16</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">03. 批量装配课程弹窗 · 「更多筛选」支持交互展开与多维条件过滤</h2>
+          <div class="item-meta"><strong>定位路径</strong>：管理员端 → 「年度课程计划」 → 群体「配置」方案 → 「批量加课」大纲课程装配弹窗 → 工具栏「更多筛选」<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/年度学习计划/page.css</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/课程工作台/dashboard.css</code></div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>03. 批量装配课程弹窗 · 「更多筛选」支持交互展开与多维条件过滤</h2>
+    <div class="meta-path">
+      <strong>定位路径</strong>：管理员端 → 「年度课程计划」 → 群体「配置」方案 → 「批量加课」大纲课程装配弹窗 → 工具栏「更多筛选」<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/年度学习计划/page.css</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/课程工作台/dashboard.css</code>
+    </div>
+    <div class="pair">
+      <div>
+        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
+        <ul>
+          <li><strong>按钮静态假死</strong>：批量装配课程抽屉顶部工具栏的「更多筛选」为无事件绑定的静态普通按钮，点击无任何响应与面板展开。</li>
+          <li><strong>筛选维度欠缺</strong>：仅有科室、课程类型、适用学员等基础筛选，缺少按「归属基地」、「课程结构」、「课程来源」、「授课形式」、「精品课程」等进阶维度的快速筛选能力。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/批量装配课程-更多筛选-修改前.png" target="_blank">
+          <img src="2026-11-16-对比截图/批量装配课程-更多筛选-修改前.png" alt="更多筛选修改前">
+        </a>
+      </div>
+      <div>
+        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
+        <ul>
+          <li><strong>气泡浮层与动画指示</strong>：点击展开专业的气泡下拉弹层（Popover），右侧箭头随展开状态旋转，并提供单独的关闭与完成动作。</li>
+          <li><strong>5大深层筛选维度</strong>：平铺式标签选择「归属基地（儿科/儿外科/两基地共用）」、「课程结构（单次/专项）」、「课程来源（原创/引进）」、「授课形式」及「仅展示精品示范课程」勾选项。</li>
+          <li><strong>动态角标与实时联动</strong>：条件生效时按钮高亮并显示数字角标（如 <code>更多筛选 1</code>），候选课程大表实时联动计算；支持浮层内单独「重置此组筛选」和外层全局「重置筛选」。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/批量装配课程-更多筛选-修改后.png" target="_blank">
+          <img src="2026-11-16-对比截图/批量装配课程-更多筛选-修改后.png" alt="更多筛选修改后">
+        </a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-16-sec-04" data-date="2026-11-16" data-scope="PC端" data-search="04. 学员端 · 优化「学习」交互：直达真实课程详情，未选课智能提醒，取消无必要证书弹窗 <strong>定位路径</strong>：学员端（<code>student.html</code>） → 「我的学习」 → 「年度课程计划」 → 列表每门课程后的「学习」按钮<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/我的课程/page.js</code> 年度课程计划 权限解耦 交互补齐 真实学习直达 课程详情 未选课提醒 选课中心 状态徽标">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#04</span>
+            <span class="badge-date">2026-11-16</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">04. 学员端 · 优化「学习」交互：直达真实课程详情，未选课智能提醒，取消无必要证书弹窗</h2>
+          <div class="item-meta"><strong>定位路径</strong>：学员端（<code>student.html</code>） → 「我的学习」 → 「年度课程计划」 → 列表每门课程后的「学习」按钮<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/我的课程/page.js</code></div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>04. 学员端 · 优化「学习」交互：直达真实课程详情，未选课智能提醒，取消无必要证书弹窗</h2>
+    <div class="meta-path">
+      <strong>定位路径</strong>：学员端（<code>student.html</code>） → 「我的学习」 → 「年度课程计划」 → 列表每门课程后的「学习」按钮<br>
+      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/我的课程/page.js</code>
+    </div>
+    <div class="pair">
+      <div>
+        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
+        <ul>
+          <li><strong>已达标课程弹出多余证书</strong>：之前点击已达标课程会弹出「课程学分达成证明」证书模态框，无法直接复习课程详情与章节课件，缺乏实用价值。</li>
+          <li><strong>未选课缺乏智能引导</strong>：未选修的待开始课程缺少明确的选课拦截与确认交互，直接跳转或原地提示容易让学员感到突兀。</li>
+          <li><strong>表格状态徽标单一</strong>：状态列硬编码为已达标样式，未能按已达标、进行中、待开始呈现清晰的三态色彩体系。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-未选课提醒弹窗.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-未选课提醒弹窗.png" alt="未选课提醒弹窗确认">
+        </a>
+      </div>
+      <div>
+        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
+        <ul>
+          <li><strong>未选课拦截弹窗提醒</strong>：对于尚未选修（状态为「<code>待开始</code>」）的课程，点击「学习」弹出友好模态框：<em>“您尚未选修《XXX》，暂无学习记录。是否跳转到选课界面进行选课？”</em>，提供 <code>[取消]</code> 与 <code>[前往选课]</code> 按钮，点击确认后平滑引导至选课中心。</li>
+          <li><strong>直达真实课程详情</strong>：针对已选课的课程（无论进行中还是已达标），彻底取消冗余证书弹窗，通过会话标记与路由直达对应模块的真实「课程详情」（线下技能实训课进入技能中心课程详情抽屉，线上课程进入在线学习播放器与课件详情）。</li>
+          <li><strong>状态徽标三态色彩标准化</strong>：状态列动态绑定样式：已达标呈现绿色 <code>is-done</code>、进行中呈现蓝色 <code>is-doing</code>、待开始呈现灰色 <code>is-todo</code>，进度一目了然。</li>
+        </ul>
+        <a href="2026-11-16-对比截图/年度课程计划-点击学习-直达真实课程详情.png" target="_blank">
+          <img src="2026-11-16-对比截图/年度课程计划-点击学习-直达真实课程详情.png" alt="直达真实课程详情">
+        </a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-16-exam-01" data-date="2026-11-16" data-scope="双端协同" data-search="入基地技能考 · 在线评分与课程免修主流程 测试定位：系统设置 → 题库/试卷 → 终结性考评；pc 端考官评分与学员端免修核定闭环 入基地考 在线评分 课程免修 考官端 学员端">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#05</span>
+            <span class="badge-date">2026-11-16</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">入基地技能考 · 在线评分与课程免修主流程</h2>
+          <div class="item-meta">测试定位：系统设置 → 题库/试卷 → 终结性考评；PC 端考官评分与学员端免修核定闭环</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>入基地技能考 · 在线评分与课程免修主流程</h2>
+    <p>定位：管理员 → 评估管理 → 入基地技能考 → 新建考试。实现文件：<a href="../pages/入基地技能考/page.js">page.js</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul><li>原抽屉仅560px；考试日期没有起止时间；没有考官和公布设置；管理员手工录分与附件流程未连接师生任务。</li></ul>
+        <a href="2026-11-16-对比截图/入基地技能考-修改前.png" target="_blank"><img alt="修改前" src="2026-11-16-对比截图/入基地技能考-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul><li>抽屉加宽至1080px；读取年度计划的一年级必修项目和课程开发终结性工具；按真实用户组选择学员、为项目多选考官；发布生成账号通知与师生任务，在线评分自动汇总，通过后只增加免修标签。</li></ul>
+        <a href="2026-11-16-对比截图/入基地技能考-修改后.png" target="_blank"><img alt="修改后" src="2026-11-16-对比截图/入基地技能考-修改后.png"></a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-P01" data-date="2026-11-15" data-scope="PC端" data-search="p01 · 菜单：删「资质与成果」、新增「师资申请」 双端改造核验项：p01（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 pc端 p01">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#P01</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">P01 · 菜单：删「资质与成果」、新增「师资申请」</h2>
+          <div class="item-meta">双端改造核验项：P01（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> P01 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/P01.jpg" alt="P01 · 菜单：删「资质与成果」、新增「师资申请」 修改前" loading="lazy" data-cap="P01 · 菜单：删「资质与成果」、新增「师资申请」 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> P01 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/P01.jpg" alt="P01 · 菜单：删「资质与成果」、新增「师资申请」 修改后" loading="lazy" data-cap="P01 · 菜单：删「资质与成果」、新增「师资申请」 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-P02" data-date="2026-11-15" data-scope="PC端" data-search="p02 · pc 师资申请 · 单一列表 双端改造核验项：p02（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 pc端 p02">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#P02</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">P02 · PC 师资申请 · 单一列表</h2>
+          <div class="item-meta">双端改造核验项：P02（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> P02 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/P02.jpg" alt="P02 · PC 师资申请 · 单一列表 修改前" loading="lazy" data-cap="P02 · PC 师资申请 · 单一列表 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> P02 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/P02.jpg" alt="P02 · PC 师资申请 · 单一列表 修改后" loading="lazy" data-cap="P02 · PC 师资申请 · 单一列表 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-P02F" data-date="2026-11-15" data-scope="PC端" data-search="p02f · pc 师资申请 · 新建表单抽屉 双端改造核验项：p02f（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 pc端 p02f">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#P02F</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">P02F · PC 师资申请 · 新建表单抽屉</h2>
+          <div class="item-meta">双端改造核验项：P02F（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> P02F 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/P02.jpg" alt="P02F · PC 师资申请 · 新建表单抽屉 修改前" loading="lazy" data-cap="P02F · PC 师资申请 · 新建表单抽屉 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> P02F 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/P02F.jpg" alt="P02F · PC 师资申请 · 新建表单抽屉 修改后" loading="lazy" data-cap="P02F · PC 师资申请 · 新建表单抽屉 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-P04" data-date="2026-11-15" data-scope="PC端" data-search="p04 · pc 教师「我的档案」8 分区 双端改造核验项：p04（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 pc端 p04">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#P04</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">P04 · PC 教师「我的档案」8 分区</h2>
+          <div class="item-meta">双端改造核验项：P04（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> P04 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/P04.jpg" alt="P04 · PC 教师「我的档案」8 分区 修改前" loading="lazy" data-cap="P04 · PC 教师「我的档案」8 分区 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> P04 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/P04.jpg" alt="P04 · PC 教师「我的档案」8 分区 修改后" loading="lazy" data-cap="P04 · PC 教师「我的档案」8 分区 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-P05" data-date="2026-11-15" data-scope="PC端" data-search="p05 · pc 学员「我的档案」7 分区 双端改造核验项：p05（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 pc端 p05">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#P05</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">P05 · PC 学员「我的档案」7 分区</h2>
+          <div class="item-meta">双端改造核验项：P05（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> P05 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/P05.jpg" alt="P05 · PC 学员「我的档案」7 分区 修改前" loading="lazy" data-cap="P05 · PC 学员「我的档案」7 分区 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> P05 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/P05.jpg" alt="P05 · PC 学员「我的档案」7 分区 修改后" loading="lazy" data-cap="P05 · PC 学员「我的档案」7 分区 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-M03" data-date="2026-11-15" data-scope="移动端" data-search="m03 · 教师端教学日历（仅日历视图） 双端改造核验项：m03（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 m03">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#M03</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">M03 · 教师端教学日历（仅日历视图）</h2>
+          <div class="item-meta">双端改造核验项：M03（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> M03 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/M03.jpg" alt="M03 · 教师端教学日历（仅日历视图） 修改前" loading="lazy" data-cap="M03 · 教师端教学日历（仅日历视图） · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> M03 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/M03.jpg" alt="M03 · 教师端教学日历（仅日历视图） 修改后" loading="lazy" data-cap="M03 · 教师端教学日历（仅日历视图） · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-C02" data-date="2026-11-15" data-scope="PC端" data-search="c02 · pc 确认下课 · 只留物资清单 双端改造核验项：c02（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 pc端 c02">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#C02</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">C02 · PC 确认下课 · 只留物资清单</h2>
+          <div class="item-meta">双端改造核验项：C02（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> C02 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/C02.jpg" alt="C02 · PC 确认下课 · 只留物资清单 修改前" loading="lazy" data-cap="C02 · PC 确认下课 · 只留物资清单 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> C02 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/C02.jpg" alt="C02 · PC 确认下课 · 只留物资清单 修改后" loading="lazy" data-cap="C02 · PC 确认下课 · 只留物资清单 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-A01" data-date="2026-11-15" data-scope="PC端" data-search="a01 · 教师端教学活动 · 无批量发起 双端改造核验项：a01（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 pc端 a01">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#A01</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">A01 · 教师端教学活动 · 无批量发起</h2>
+          <div class="item-meta">双端改造核验项：A01（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> A01 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/A01.jpg" alt="A01 · 教师端教学活动 · 无批量发起 修改前" loading="lazy" data-cap="A01 · 教师端教学活动 · 无批量发起 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> A01 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/A01.jpg" alt="A01 · 教师端教学活动 · 无批量发起 修改后" loading="lazy" data-cap="A01 · 教师端教学活动 · 无批量发起 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-R01" data-date="2026-11-15" data-scope="PC端" data-search="r01 · 教学资源库 · 无弹题 双端改造核验项：r01（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 pc端 r01">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#R01</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">R01 · 教学资源库 · 无弹题</h2>
+          <div class="item-meta">双端改造核验项：R01（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> R01 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/R01.jpg" alt="R01 · 教学资源库 · 无弹题 修改前" loading="lazy" data-cap="R01 · 教学资源库 · 无弹题 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> R01 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/R01.jpg" alt="R01 · 教学资源库 · 无弹题 修改后" loading="lazy" data-cap="R01 · 教学资源库 · 无弹题 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-M01" data-date="2026-11-15" data-scope="移动端" data-search="m01 · 移动端师资申请 · 列表 双端改造核验项：m01（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 m01">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#M01</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">M01 · 移动端师资申请 · 列表</h2>
+          <div class="item-meta">双端改造核验项：M01（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> M01 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/M01.jpg" alt="M01 · 移动端师资申请 · 列表 修改前" loading="lazy" data-cap="M01 · 移动端师资申请 · 列表 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> M01 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/M01.jpg" alt="M01 · 移动端师资申请 · 列表 修改后" loading="lazy" data-cap="M01 · 移动端师资申请 · 列表 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-M02" data-date="2026-11-15" data-scope="移动端" data-search="m02 · 移动端首页 · 无数据汇总 双端改造核验项：m02（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 m02">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#M02</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">M02 · 移动端首页 · 无数据汇总</h2>
+          <div class="item-meta">双端改造核验项：M02（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> M02 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/M02.jpg" alt="M02 · 移动端首页 · 无数据汇总 修改前" loading="lazy" data-cap="M02 · 移动端首页 · 无数据汇总 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> M02 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/M02.jpg" alt="M02 · 移动端首页 · 无数据汇总 修改后" loading="lazy" data-cap="M02 · 移动端首页 · 无数据汇总 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-Q01" data-date="2026-11-15" data-scope="移动端" data-search="q01 · 我的出题 · pc 端操作提示 双端改造核验项：q01（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 q01">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#Q01</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">Q01 · 我的出题 · PC 端操作提示</h2>
+          <div class="item-meta">双端改造核验项：Q01（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> Q01 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/Q01.jpg" alt="Q01 · 我的出题 · PC 端操作提示 修改前" loading="lazy" data-cap="Q01 · 我的出题 · PC 端操作提示 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> Q01 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/Q01.jpg" alt="Q01 · 我的出题 · PC 端操作提示 修改后" loading="lazy" data-cap="Q01 · 我的出题 · PC 端操作提示 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-S01" data-date="2026-11-15" data-scope="移动端" data-search="s01 · 督导专家 · 首页两功能 双端改造核验项：s01（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 s01">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#S01</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">S01 · 督导专家 · 首页两功能</h2>
+          <div class="item-meta">双端改造核验项：S01（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> S01 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/S01.jpg" alt="S01 · 督导专家 · 首页两功能 修改前" loading="lazy" data-cap="S01 · 督导专家 · 首页两功能 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> S01 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/S01.jpg" alt="S01 · 督导专家 · 首页两功能 修改后" loading="lazy" data-cap="S01 · 督导专家 · 首页两功能 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-S02" data-date="2026-11-15" data-scope="移动端" data-search="s02 · 督导专家 · 任务 tab 双端改造核验项：s02（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 s02">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#S02</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">S02 · 督导专家 · 任务 Tab</h2>
+          <div class="item-meta">双端改造核验项：S02（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> S02 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/S02.jpg" alt="S02 · 督导专家 · 任务 Tab 修改前" loading="lazy" data-cap="S02 · 督导专家 · 任务 Tab · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> S02 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/S02.jpg" alt="S02 · 督导专家 · 任务 Tab 修改后" loading="lazy" data-cap="S02 · 督导专家 · 任务 Tab · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-S03" data-date="2026-11-15" data-scope="移动端" data-search="s03 · 首页右上角 · 身份切换 双端改造核验项：s03（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 s03">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#S03</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">S03 · 首页右上角 · 身份切换</h2>
+          <div class="item-meta">双端改造核验项：S03（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> S03 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/S03.jpg" alt="S03 · 首页右上角 · 身份切换 修改前" loading="lazy" data-cap="S03 · 首页右上角 · 身份切换 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> S03 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/S03.jpg" alt="S03 · 首页右上角 · 身份切换 修改后" loading="lazy" data-cap="S03 · 首页右上角 · 身份切换 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-S04" data-date="2026-11-15" data-scope="移动端" data-search="s04 · 管理员工作台 · 三个分组 双端改造核验项：s04（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 s04">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#S04</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">S04 · 管理员工作台 · 三个分组</h2>
+          <div class="item-meta">双端改造核验项：S04（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> S04 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/S04.jpg" alt="S04 · 管理员工作台 · 三个分组 修改前" loading="lazy" data-cap="S04 · 管理员工作台 · 三个分组 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> S04 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/S04.jpg" alt="S04 · 管理员工作台 · 三个分组 修改后" loading="lazy" data-cap="S04 · 管理员工作台 · 三个分组 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-S05" data-date="2026-11-15" data-scope="移动端" data-search="s05 · 科室管理员 · 四 tab 双端改造核验项：s05（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 s05">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#S05</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">S05 · 科室管理员 · 四 Tab</h2>
+          <div class="item-meta">双端改造核验项：S05（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> S05 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/S05.jpg" alt="S05 · 科室管理员 · 四 Tab 修改前" loading="lazy" data-cap="S05 · 科室管理员 · 四 Tab · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> S05 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/S05.jpg" alt="S05 · 科室管理员 · 四 Tab 修改后" loading="lazy" data-cap="S05 · 科室管理员 · 四 Tab · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-IF01" data-date="2026-11-15" data-scope="双端协同" data-search="if01 · pc 档案 · 无 iframe 双端改造核验项：if01（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 双端协同 if01">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#IF01</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">IF01 · PC 档案 · 无 iframe</h2>
+          <div class="item-meta">双端改造核验项：IF01（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> IF01 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/IF01.jpg" alt="IF01 · PC 档案 · 无 iframe 修改前" loading="lazy" data-cap="IF01 · PC 档案 · 无 iframe · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> IF01 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/IF01.jpg" alt="IF01 · PC 档案 · 无 iframe 修改后" loading="lazy" data-cap="IF01 · PC 档案 · 无 iframe · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-IF02" data-date="2026-11-15" data-scope="双端协同" data-search="if02 · 移动端 · 无 iframe 双端改造核验项：if02（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 双端协同 if02">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#IF02</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">IF02 · 移动端 · 无 iframe</h2>
+          <div class="item-meta">双端改造核验项：IF02（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> IF02 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/IF02.jpg" alt="IF02 · 移动端 · 无 iframe 修改前" loading="lazy" data-cap="IF02 · 移动端 · 无 iframe · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> IF02 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/IF02.jpg" alt="IF02 · 移动端 · 无 iframe 修改后" loading="lazy" data-cap="IF02 · 移动端 · 无 iframe · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-SS01" data-date="2026-11-15" data-scope="移动端" data-search="ss01 · 移动端自有 ssot · 运行时 双端改造核验项：ss01（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 ss01">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#SS01</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">SS01 · 移动端自有 SSOT · 运行时</h2>
+          <div class="item-meta">双端改造核验项：SS01（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> SS01 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/SS01.jpg" alt="SS01 · 移动端自有 SSOT · 运行时 修改前" loading="lazy" data-cap="SS01 · 移动端自有 SSOT · 运行时 · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> SS01 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/SS01.jpg" alt="SS01 · 移动端自有 SSOT · 运行时 修改后" loading="lazy" data-cap="SS01 · 移动端自有 SSOT · 运行时 · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-S06" data-date="2026-11-15" data-scope="移动端" data-search="s06 · 督导首页 · 教学日历入口（复用通用 → 督导视图） 双端改造核验项：s06（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 s06">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#S06</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">S06 · 督导首页 · 教学日历入口（复用通用 → 督导视图）</h2>
+          <div class="item-meta">双端改造核验项：S06（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> S06 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/S06.jpg" alt="S06 · 督导首页 · 教学日历入口（复用通用 → 督导视图） 修改前" loading="lazy" data-cap="S06 · 督导首页 · 教学日历入口（复用通用 → 督导视图） · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> S06 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/S06.jpg" alt="S06 · 督导首页 · 教学日历入口（复用通用 → 督导视图） 修改后" loading="lazy" data-cap="S06 · 督导首页 · 教学日历入口（复用通用 → 督导视图） · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-15-S06B" data-date="2026-11-15" data-scope="移动端" data-search="s06b · 督导教学日历：通用日历 → 督导视图（周期 / 筛选 / 自选） 双端改造核验项：s06b（对齐 pc 与移动端业务规范与视觉一致性） 双端改造 移动端 s06b">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#S06B</span>
+            <span class="badge-date">2026-11-15</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">S06B · 督导教学日历：通用日历 → 督导视图（周期 / 筛选 / 自选）</h2>
+          <div class="item-meta">双端改造核验项：S06B（对齐 PC 与移动端业务规范与视觉一致性）</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+      <div class="pair-grid">
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge before">🔴 修改前</span> S06B 修改前基线</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/before/S06B.jpg" alt="S06B · 督导教学日历：通用日历 → 督导视图（周期 / 筛选 / 自选） 修改前" loading="lazy" data-cap="S06B · 督导教学日历：通用日历 → 督导视图（周期 / 筛选 / 自选） · 修改前">
+            <div class="img-caption"><span>修改前基线</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+        <div class="pair-col">
+          <div class="col-header"><span class="tag-badge after">🟢 修改后</span> S06B 修改后实现</div>
+          <div class="img-wrap">
+            <img src="双端改造截图-20261115/after/S06B.jpg" alt="S06B · 督导教学日历：通用日历 → 督导视图（周期 / 筛选 / 自选） 修改后" loading="lazy" data-cap="S06B · 督导教学日历：通用日历 → 督导视图（周期 / 筛选 / 自选） · 修改后">
+            <div class="img-caption"><span>修改后实现</span><span>点击放大 🔍</span></div>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-13-sec-01" data-date="2026-11-13" data-scope="移动端" data-search="个人中心首页 · 视觉重构与布局对齐 移动端「我的」模块视觉重构与成果申报规范对齐 移动端 个人中心 档案 画像 成果申报">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#01</span>
+            <span class="badge-date">2026-11-13</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">个人中心首页 · 视觉重构与布局对齐</h2>
+          <div class="item-meta">移动端「我的」模块视觉重构与成果申报规范对齐</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>个人中心首页 · 视觉重构与布局对齐</h2>
+    <div class="meta-path">
+      定位：移动端（教师 / 学员端）→ 底部「我的」Tab。<br>
+      涉及文件：<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/tdesign-app.css">tdesign-app.css</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>头像降级</strong>：头像退化为文字单字蓝圆「王」，缺失全站统一的 3D 卡通形象。</li>
+          <li><strong>图标缺失</strong>：服务列表项左侧轻量图标被全部误删，退化为枯燥纯文本。</li>
+          <li><strong>排版脱节</strong>：顶部身份卡片与下层服务列表左右 padding 不一致，出现错位；背景与卡片边界模糊。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/个人中心-用户提供修改前.png" target="_blank"><img alt="个人中心修改前" src="2026-11-13-对比截图/个人中心-用户提供修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>统一 3D 卡通头像</strong>：引入 3D 医生头像（`avatar_03.png` 教师 / `avatar_05.png` 学员），配搭浅蓝渐变柔和微阴影。</li>
+          <li><strong>恢复彩色分类图标</strong>：服务项左侧补回 44×44px pastel 柔和圆角图标（蓝/紫/橙/绿），右侧配对状态胶囊与浅灰 Chevron `>`。</li>
+          <li><strong>严格统一对齐</strong>：整页所有卡片统一 16px 左右外边距、14px 圆角、纯白背景与 `rgba(0,82,217,0.08)` 超轻细边框。</li>
+          <li><strong>右上角通知铃铛</strong>：右上角补齐标准消息铃铛（带未读红点），信息架构完整。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/teacher-我的-修改后.png" target="_blank"><img alt="教师端个人中心修改后" src="2026-11-13-对比截图/teacher-我的-修改后.png"></a>
+        <a href="2026-11-13-对比截图/student-我的-修改后.png" target="_blank"><img alt="学员端个人中心修改后" src="2026-11-13-对比截图/student-我的-修改后.png"></a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-13-sec-02" data-date="2026-11-13" data-scope="移动端" data-search="成果申报 · 视觉规范标杆与全屏新建流程 设计标杆 移动端「我的」模块视觉重构与成果申报规范对齐 移动端 个人中心 档案 画像 成果申报">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#02</span>
+            <span class="badge-date">2026-11-13</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">成果申报 · 视觉规范标杆与全屏新建流程 设计标杆</h2>
+          <div class="item-meta">移动端「我的」模块视觉重构与成果申报规范对齐</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>成果申报 · 视觉规范标杆与全屏新建流程 <span class="badge-benchmark">设计标杆</span></h2>
+    <div class="meta-path">
+      定位：移动端学员端 → 我的 → 成果申报（本轮各二级页面统一视觉对齐的基准设计）。<br>
+      涉及文件：<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/tdesign-app.css">tdesign-app.css</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>无数据概览</strong>：顶部缺少状态分布与快捷筛选，申报进度无法一目了然。</li>
+          <li><strong>列表缺乏层次</strong>：旧表单未做卡片化，字段平铺拥挤。</li>
+          <li><strong>退出无确认</strong>：新建申报若误触返回，已填写内容直接丢失，缺少留存提示。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/新建申报-用户提供修改前.png" target="_blank"><img alt="新建申报修改前" src="2026-11-13-对比截图/新建申报-用户提供修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>分段数据概览</strong>：顶部设计 4 列统计栏（全部 3、待审核 1、已通过 1、不予通过 1），激活态呈柔和浅蓝胶囊。</li>
+          <li><strong>分类筛选胶囊</strong>：提供横向轻量筛选 Pill（全部类型、资格证书、竞赛获奖、教学课题、国家版权）。</li>
+          <li><strong>卡片化列表</strong>：44×44px pastel 分类图标、加粗标题、元数据行与右侧审核状态标签（待审核/已通过/不予通过）。</li>
+          <li><strong>深蓝 FAB 悬浮按钮</strong>：右下角提供品牌蓝悬浮新建按钮（`+`），点击滑入全屏新建表单。</li>
+          <li><strong>就地表单校验与退出确认</strong>：字段必填即时标红，退出弹窗二次确认保护草稿。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/student-成果申报-修改后.png" target="_blank"><img alt="成果申报列表修改后" src="2026-11-13-对比截图/student-成果申报-修改后.png"></a>
+        <a href="2026-11-13-对比截图/student-新建申报-修改后.png" target="_blank"><img alt="新建申报全屏修改后" src="2026-11-13-对比截图/student-新建申报-修改后.png"></a>
+        <a href="2026-11-13-对比截图/student-放弃填写确认-修改后.png" target="_blank"><img alt="放弃填写确认弹窗修改后" src="2026-11-13-对比截图/student-放弃填写确认-修改后.png"></a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-13-sec-03" data-date="2026-11-13" data-scope="移动端" data-search="我的证书 · 视觉全面对齐成果申报规范 移动端「我的」模块视觉重构与成果申报规范对齐 移动端 个人中心 档案 画像 成果申报">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#03</span>
+            <span class="badge-date">2026-11-13</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">我的证书 · 视觉全面对齐成果申报规范</h2>
+          <div class="item-meta">移动端「我的」模块视觉重构与成果申报规范对齐</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>我的证书 · 视觉全面对齐成果申报规范</h2>
+    <div class="meta-path">
+      定位：移动端（教师 / 学员端）→ 我的 → 我的证书。<br>
+      涉及文件：<a href="../shared/js/self-profile.js">self-profile.js</a>、<a href="../shared/styles/self-profile.css">self-profile.css</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>平铺大表格</strong>：直接继承桌面版大表格，无卡片感与数据概览，在竖屏手机上极度粗糙。</li>
+          <li><strong>状态标签重叠</strong>：已过期、已作废证书内同时渲染两套 Arco 标签与文本，排版凌乱。</li>
+          <li><strong>缺少移动交互规范</strong>：未提供卡片点击动效、缺少右侧 Chevron `>` 引导，证书详情弹窗未适配全屏。</li>
+        </ul>
+        <p style="color:#86909c;font-size:13px">（改前直接沿用未适配的 PC 大平铺视图，无移动端卡片规范）</p>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>引入 4 列数据概览卡片</strong>：完全对齐「成果申报」规范，顶部展示「全部 5 · 有效 3 · 已过期 1 · 已作废 1」分段数据卡。</li>
+          <li><strong>年份分组轻量胶囊</strong>：以浅灰优雅圆角胶囊呈现「2026 年度」「2025 年度」时间线分界。</li>
+          <li><strong>高品质证书卡片</strong>：14px 圆角纯白卡片，左侧 44×44px 缎带奖章图标（有效浅蓝、过期浅灰、撤销浅粉），右侧独立状态胶囊（绿色「有效」、灰色「已过期」）与 Chevron `>`。</li>
+          <li><strong>全屏证书查看</strong>：点击卡片平滑滑入全屏证书详情页，优雅呈现证书原件与结构化发证元数据。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/student-certificates-修改后.png" target="_blank"><img alt="学员端我的证书修改后" src="2026-11-13-对比截图/student-certificates-修改后.png"></a>
+        <a href="2026-11-13-对比截图/student-certificates-弹窗-修改后.png" target="_blank"><img alt="证书全屏详情修改后" src="2026-11-13-对比截图/student-certificates-弹窗-修改后.png"></a>
+        <a href="2026-11-13-对比截图/teacher-certificates-修改后.png" target="_blank"><img alt="教师端我的证书修改后" src="2026-11-13-对比截图/teacher-certificates-修改后.png"></a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-13-sec-04" data-date="2026-11-13" data-scope="移动端" data-search="学员档案 / 教师档案 · 移动端卡片化与栏目切换 移动端「我的」模块视觉重构与成果申报规范对齐 移动端 个人中心 档案 画像 成果申报">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#04</span>
+            <span class="badge-date">2026-11-13</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">学员档案 / 教师档案 · 移动端卡片化与栏目切换</h2>
+          <div class="item-meta">移动端「我的」模块视觉重构与成果申报规范对齐</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>学员档案 / 教师档案 · 移动端卡片化与栏目切换</h2>
+    <div class="meta-path">
+      定位：移动端（教师 / 学员端）→ 我的 → 学员档案 / 教师档案。<br>
+      涉及文件：<a href="../shared/js/self-profile.js">self-profile.js</a>、<a href="../shared/styles/self-profile.css">self-profile.css</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>桌面平铺长表格</strong>：直接暴露 PC 端多列表格与侧边栏，横向严重撑开溢出，无法在手机端正常阅览。</li>
+          <li><strong>缺少个人名片</strong>：顶部仅有单调小字标题，无头像、档案编号与账号状态。</li>
+          <li><strong>信息无收敛</strong>：基本信息、身份沿革、历程全部单页堆叠，无分栏筛选机制。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/档案-用户提供修改前.png" target="_blank"><img alt="档案修改前（用户提供）" src="2026-11-13-对比截图/档案-用户提供修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>医生专属英雄名片</strong>：顶部 16px 圆角纯白卡片，嵌入 3D 卡通医生头像、加粗大名、身份徽章、档案编号与绿色「账号已开通」指示点。</li>
+          <li><strong>TDesign 滑动栏目 Tabs</strong>：平滑横滑切换「基本信息」「身份沿革」「教学/轮转记录」「资质与成果」等独立栏目。</li>
+          <li><strong>键值对卡片化</strong>：基本信息转换为 14px 圆角纯白卡片，清晰的键（灰色）值（深色）层次与浅色分割线。</li>
+          <li><strong>表格行响应式转卡片</strong>：身份沿革、轮转历程等数据行自动映射为独立卡片，首列加粗作为卡片标题，字段名自动转为卡片行标签，彻底根除横向滚动。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/teacher-archive-修改后.png" target="_blank"><img alt="教师档案修改后" src="2026-11-13-对比截图/teacher-archive-修改后.png"></a>
+        <a href="2026-11-13-对比截图/student-archive-修改后.png" target="_blank"><img alt="学员档案修改后" src="2026-11-13-对比截图/student-archive-修改后.png"></a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-13-sec-05" data-date="2026-11-13" data-scope="移动端" data-search="我的教师画像 · 视觉重构与全屏弹窗适配 移动端「我的」模块视觉重构与成果申报规范对齐 移动端 个人中心 档案 画像 成果申报">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#05</span>
+            <span class="badge-date">2026-11-13</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">我的教师画像 · 视觉重构与全屏弹窗适配</h2>
+          <div class="item-meta">移动端「我的」模块视觉重构与成果申报规范对齐</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>我的教师画像 · 视觉重构与全屏弹窗适配</h2>
+    <div class="meta-path">
+      定位：移动端教师端 → 我的 → 我的教师画像。<br>
+      涉及文件：<a href="../shared/js/self-profile.js">self-profile.js</a>、<a href="../shared/styles/self-profile.css">self-profile.css</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>工具栏折行重叠</strong>：顶部三个操作按钮文字超长且带 PC 副标题，在移动端强行折行甚至覆盖头像。</li>
+          <li><strong>头像粗糙</strong>：仅渲染单字「王」圆圈，缺少教师职业感。</li>
+          <li><strong>综合评分布局凌乱</strong>：五优综合评分、雷达图与各项数据在手机端排列松散，缺乏卡片聚合感。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/教师画像-用户提供修改前.png" target="_blank"><img alt="教师画像修改前（用户提供）" src="2026-11-13-对比截图/教师画像-用户提供修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>紧凑操作栏</strong>：隐藏 PC 端副标题，将「画像规则说明」「证据补录」「生成发展报告」收束为 1/3 等分的紧凑胶囊按钮栏，绝不折行。</li>
+          <li><strong>3D 教师卡通头像</strong>：58px 双层纯白边框圆形容器，优雅展示 3D 教师形象与职称、工号信息。</li>
+          <li><strong>79 分综合评分英雄卡</strong>：浅蓝渐变背景，大号加粗 36px 得分，搭配紫色「院均基准 75 分 · B 良好」基准线胶囊与 4 列教学 KPI 矩阵。</li>
+          <li><strong>证据补录与报告全屏化</strong>：补录材料全屏滑入，支持真实附件上传、移除与本地待提交暂存校验。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/teacher-portrait-修改后.png" target="_blank"><img alt="教师画像主页修改后" src="2026-11-13-对比截图/teacher-portrait-修改后.png"></a>
+        <a href="2026-11-13-对比截图/teacher-证据补录-修改后.png" target="_blank"><img alt="证据补录全屏修改后" src="2026-11-13-对比截图/teacher-证据补录-修改后.png"></a>
+        <a href="2026-11-13-对比截图/teacher-补录已选文件-修改后.png" target="_blank"><img alt="真实文件附件选择修改后" src="2026-11-13-对比截图/teacher-补录已选文件-修改后.png"></a>
+        <a href="2026-11-13-对比截图/teacher-指标证据-修改后.png" target="_blank"><img alt="指标证据查看修改后" src="2026-11-13-对比截图/teacher-指标证据-修改后.png"></a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-13-sec-06" data-date="2026-11-13" data-scope="移动端" data-search="资质与成果 · 列表卡片化与冗余标题收口 移动端「我的」模块视觉重构与成果申报规范对齐 移动端 个人中心 档案 画像 成果申报">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#06</span>
+            <span class="badge-date">2026-11-13</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">资质与成果 · 列表卡片化与冗余标题收口</h2>
+          <div class="item-meta">移动端「我的」模块视觉重构与成果申报规范对齐</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>资质与成果 · 列表卡片化与冗余标题收口</h2>
+    <div class="meta-path">
+      定位：移动端教师端 → 我的 → 资质与成果。<br>
+      涉及文件：<a href="../shared/js/self-profile.js">self-profile.js</a>、<a href="../shared/styles/self-profile.css">self-profile.css</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>标题重复显示</strong>：同时出现「| 资质与成果」与「资质证书 共 4 项」，排版冗余。</li>
+          <li><strong>列表缺乏卡片感</strong>：资质证书条目以未经移动优化的列表平铺，附件链接与生效日期杂糅。</li>
+        </ul>
+        <p style="color:#86909c;font-size:13px">（改前直接沿用未适配的 PC 大平铺视图）</p>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>移除重复标题</strong>：收口为单个带品牌蓝竖条的清晰分类栏目，顶部保留 3D 医生名片卡片。</li>
+          <li><strong>条目全面卡片化</strong>：14px 圆角纯白卡片，清晰展示证书全称、类别徽章、蓝色附件查看链接与发证日期。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/teacher-qualifications-修改后.png" target="_blank"><img alt="资质与成果修改后" src="2026-11-13-对比截图/teacher-qualifications-修改后.png"></a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-13-sec-07" data-date="2026-11-13" data-scope="移动端" data-search="多角色切换与管理端个人中心适配 移动端「我的」模块视觉重构与成果申报规范对齐 移动端 个人中心 档案 画像 成果申报">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#07</span>
+            <span class="badge-date">2026-11-13</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">多角色切换与管理端个人中心适配</h2>
+          <div class="item-meta">移动端「我的」模块视觉重构与成果申报规范对齐</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+    <h2>多角色切换与管理端个人中心适配</h2>
+    <div class="meta-path">
+      定位：移动端 → 我的 → 当前身份 / 切换角色；管理端中心。<br>
+      涉及文件：<a href="../移动端/shared/admin-tdesign-app.js">admin-tdesign-app.js</a>、<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>。
+    </div>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>角色混杂</strong>：一人多身份时无法直观预览和即时切换工作视角。</li>
+          <li><strong>管理端个人中心缺失</strong>：科室主任、教务管理员登录移动端时中心布局错乱。</li>
+        </ul>
+        <p style="color:#86909c;font-size:13px">（改前管理角色无规范个人中心适配）</p>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>角色切换半屏抽屉</strong>：底部 ActionSheet 列出用户当前具备的所有系统身份（规培生、专培生、临床带教老师、责任导师、管理员），勾选即平滑切换。</li>
+          <li><strong>管理端全套适配</strong>：管理员端「我的」同步适配 TDesign 视觉规范与安全权限说明。</li>
+        </ul>
+        <a href="2026-11-13-对比截图/多角色切换-修改后.png" target="_blank"><img alt="多角色切换修改后" src="2026-11-13-对比截图/多角色切换-修改后.png"></a>
+        <a href="2026-11-13-对比截图/admin-我的-修改后.png" target="_blank"><img alt="管理员个人中心修改后" src="2026-11-13-对比截图/admin-我的-修改后.png"></a>
+        <a href="2026-11-13-对比截图/admin-角色权限-修改后.png" target="_blank"><img alt="管理员角色权限修改后" src="2026-11-13-对比截图/admin-角色权限-修改后.png"></a>
+      </div>
+    </div>
+  
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-01" data-date="2026-11-12" data-scope="PC端" data-search="轮转任务与考核 · 新建病种入口 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 轮转任务与考核">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#01</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">轮转任务与考核 · 新建病种入口</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>轮转任务与考核 · 新建病种入口</h2><p>定位：轮转任务和考核 → 各科室培养指标 → 病种要求 → 病种下拉列表。实现文件：<a href="../pages/轮转任务和考核/page.js">page.js</a>。</p><div class="pair"><div><h3>修改前</h3><p>只能选择已有病种，缺少新建入口。</p><a href="2026-11-12-对比截图/病种下拉-修改前.png"><img alt="用户提供的修改前完整页面截图" src="2026-11-12-对比截图/病种下拉-修改前.png"></a></div><div><h3>修改后 · 交互示意</h3><p>下拉底部增加「＋ 新建病种」，无可选病种时也保留入口。</p><div class="field">选择已配置的病种　⌕</div><div class="menu"><div class="option">营养性缺铁性贫血</div><div class="option">免疫性血小板减少症</div><div class="option selected">白血病</div><div class="option">淋巴瘤</div><div class="option">溶血性贫血</div><button class="create" onclick="openModal()">＋ 新建病种</button></div><div class="demo"><label>演示权限：<select id="permission"><option value="yes">有后台管理权限</option><option value="no">无后台管理权限</option></select></label><div class="hint">切换权限后点击「新建病种」，查看两种弹窗。</div></div><p>有权限：提示前往后台，新开「系统设置 → 培养指标字典 → 病种」，保留原页编辑内容。</p><p>无权限：提示「当前账号没有后台病种管理权限，请联系系统管理员进行添加」，不提供跳转按钮。</p><a href="../pages/轮转任务和考核/index.html" target="_blank">打开实际页面 ↗</a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-02" data-date="2026-11-12" data-scope="PC端" data-search="补充修改 · 技能「去系统设置配置」 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 补充修改">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#02</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">补充修改 · 技能「去系统设置配置」</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>补充修改 · 技能「去系统设置配置」</h2><div class="pair"><div><h3>修改前</h3><img alt="技能配置入口修改前" src="2026-11-12-对比截图/技能配置-修改前.png"><p>点击直接跳转系统设置。</p></div><div><h3>修改后 · 交互示意</h3><div style="padding:12px;border:1px dashed #ffbd65;background:#fffaf1">本科室暂无可选技能 <button onclick="openModal('技能')">去系统设置配置</button></div><p>复用上方权限选择器。有权限先弹窗确认，再新开后台「培养指标字典 → 技能」；无权限提示联系系统管理员进行添加。</p><p>手术配置入口同步使用相同弹窗，并定位「手术」页签。</p></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-03" data-date="2026-11-12" data-scope="PC端" data-search="发放课程证书 · 教师端 / 管理员端 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 发放课程证书">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#03</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">发放课程证书 · 教师端 / 管理员端</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>发放课程证书 · 教师端 / 管理员端</h2><div class="pair"><div><h3>修改前 · 规则只读、名单单标签</h3><img alt="原规则只读" src="2026-11-12-对比截图/发证规则-修改前.png"><img alt="原名单单标签" src="2026-11-12-对比截图/发证标签-修改前.png"></div><div><h3>修改后 · 可编辑规则与四个状态标签</h3><div id="cert-demo" oninput="updateCertDemo()"><p><label><input id="rule-task" type="checkbox" checked> 课程任务完成率</label> ≥ <input id="rule-percent" type="number" min="0" max="100" value="100" style="width:70px"> %</p><p><label><input id="rule-exam" type="checkbox" checked> 结课考核成绩</label> ≥ <input id="rule-score" type="number" min="0" max="100" value="60" style="width:70px"> 分（百分制）</p><p><label><input id="rule-eval" type="checkbox" checked> 完成课程评价</label><br><input id="rule-text" aria-label="评价要求" value="提交课程反馈 / 评教" style="width:90%;padding:8px"></p></div><p class="hint">交互示意：示例学员任务完成率 85%，考核 75 分，已提交评价。修改规则可查看四个标签同步变化。</p><b>示例学员</b><div id="cert-tags" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:12px"></div><p>依次展示总体状态、任务完成率、考核成绩、课程评价。未勾选显示「不要求」，实际页面悬停标签可查看阈值和当前完成情况。</p><p>确认发放时保存规则；取消不保存。评价文字为可编辑说明，仍按反馈 / 评教提交记录核验。</p></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-04" data-date="2026-11-12" data-scope="移动端" data-search="课程评价与反馈 · 复用原移动端教学分析 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 移动端 课程评价与反馈">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#04</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">课程评价与反馈 · 复用原移动端教学分析</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>课程评价与反馈 · 复用原移动端教学分析</h2><div class="pair"><div><h3>修改前</h3><p>移动端弹窗包含学习分析和教学分析；PC 与移动端内容不一致。</p><img alt="原移动端教学分析" src="2026-11-12-对比截图/原移动端教学分析.png"></div><div><h3>修改后</h3><p>移动端第三个 tab 只保留教学分析，PC 课程评价与反馈展示同一份内容。已替换先前新增的两份问卷样本。</p><div id="teaching-comparison"></div></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-05" data-date="2026-11-12" data-scope="PC端" data-search="临床教学活动 · 发起签到弹窗（二维码为主、签到码为辅 + 双阶段自动切换） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 临床教学活动">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#05</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">临床教学活动 · 发起签到弹窗（二维码为主、签到码为辅 + 双阶段自动切换）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>临床教学活动 · 发起签到弹窗（二维码为主、签到码为辅 + 双阶段自动切换）</h2><p>定位：程主任（科室管理员）/ 教师端 → 临床教学活动 → 编辑教学活动 / 列表操作 → 发起签到。实现文件：<a href="../pages/教学活动实施/page.js">page.js</a>、<a href="../pages/教学活动实施/page.css">page.css</a>。</p><div class="pair"><div><h3>修改前 · 问题</h3><ul><li>点击「发起签到」后弹窗内仍多出一颗「开启开始签到」按钮，需二次点击才出码。</li><li>弹窗中间蓝框区域缺失二维码，仅显示超大号 6 位数字签到码，未做到「二维码为主、签到码为辅」。</li></ul><a href="2026-11-12-对比截图/临床教学活动签到弹窗-修改前.jpg" target="_blank"><img alt="临床教学活动签到弹窗修改前" src="2026-11-12-对比截图/临床教学活动签到弹窗-修改前.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>移除冗余的「开启开始签到 / 开启结束签到」按钮；点开「发起签到」即自动启动并展示动态点阵二维码与 60s 自动刷新倒计时。</li><li>按「二维码为主（204×204 白底主卡）、签到码为辅（18px 等宽副签）」重构双栏布局，并在弹窗内右侧提供「活动开始签到 / 活动结束签到」双阶段切换与人数进度，去掉顶部重复 Tab；第 1 次点击「发起签到」默认进入开始签到，第 2 次点击进入结束签到。</li></ul><a href="2026-11-12-对比截图/临床教学活动签到弹窗-修改后.png" target="_blank"><img alt="临床教学活动签到弹窗修改后" src="2026-11-12-对比截图/临床教学活动签到弹窗-修改后.png"></a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-06" data-date="2026-11-12" data-scope="PC端" data-search="技能中心课程 · 发起签到弹窗（活动开始 + 活动结束双签到页签与轮次切换） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 技能中心课程">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#06</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">技能中心课程 · 发起签到弹窗（活动开始 + 活动结束双签到页签与轮次切换）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>技能中心课程 · 发起签到弹窗（活动开始 + 活动结束双签到页签与轮次切换）</h2><p>定位：王老师（教师端）/ 管理员端 → 技能中心课程 → 课程详情 → 发起签到。实现文件：<a href="../pages/技能中心课程/views/implementation.js">implementation.js</a>、<a href="../pages/技能中心课程/views/implementation.css">implementation.css</a>、<a href="../pages/课程实施/page.js">课程实施/page.js</a>。</p><div class="pair"><div><h3>修改前 · 问题</h3><ul><li>点击「发起签到」弹出的弹窗仅有单轮签到视图，无法在同一弹窗内查看和切换「活动开始签到」与「活动结束签到」。</li><li>再次点击「发起签到」不能自动衔接至「活动结束签到」。</li></ul><a href="2026-11-12-对比截图/技能中心课程签到弹窗-修改前.png" target="_blank"><img alt="技能中心课程签到弹窗修改前" src="2026-11-12-对比截图/技能中心课程签到弹窗-修改前.png"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>在弹窗内右侧新增「活动开始签到 / 活动结束签到」双阶段切换卡片（含实时签到/签出人数与状态徽标，去除顶部重复 Tab），两轮签到同窗可见、可随时切换。</li><li>实现按课次记录点击次数：第 1 次点击「发起签到」默认进入「活动开始签到」，第 2 次点击「发起签到」自动进入「活动结束签到」，两阶段均保持 60s 动态二维码自动刷新与独立签到记录。</li></ul><a href="2026-11-12-对比截图/技能中心课程签到弹窗-修改后.png" target="_blank"><img alt="技能中心课程签到弹窗修改后（活动开始签到）" src="2026-11-12-对比截图/技能中心课程签到弹窗-修改后.png"></a><a href="2026-11-12-对比截图/技能中心课程签到弹窗-结束签到-修改后.png" target="_blank"><img style="margin-top:12px" alt="技能中心课程签到弹窗修改后（第二次点击进入活动结束签到）" src="2026-11-12-对比截图/技能中心课程签到弹窗-结束签到-修改后.png"></a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-07" data-date="2026-11-12" data-scope="PC端" data-search="技能中心课程（课程实施） · 课程评价与反馈页签恢复（含往期对比分析与 ai 改进建议） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 技能中心课程（课程实施）">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#07</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">技能中心课程（课程实施） · 课程评价与反馈页签恢复（含往期对比分析与 AI 改进建议）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>技能中心课程（课程实施） · 课程评价与反馈页签恢复（含往期对比分析与 AI 改进建议）</h2><p>定位：王老师（教师端）/ 管理员端 → 技能中心课程 → 儿童球囊面罩给氧 → 课程评价与反馈。实现文件：<a href="../shared/js/teacher-eval.js">teacher-eval.js</a>、<a href="../shared/data/course-dev-seed.js">course-dev-seed.js</a>、<a href="../shared/js/course-impl-demo.js">course-impl-demo.js</a>、<a href="../shared/js/course-insight.js">course-insight.js</a>。</p><div class="pair"><div><h3>修改前 · 问题</h3><ul><li>工作区误把 <code>teacher-eval.js</code> 的 <code>mainView==='teach'</code> 替换为硬编码的移动端演示卡片（整体满意度、系统自动生成建议、分项评分详情），覆盖了原有的结构化反馈视图与「往期对比分析」「AI 改进建议」按钮。</li><li>远端提交 <code>a81149ed</code>（线上课程反馈下线）同步误清了线下课程种子 <code>course-dev-seed.js</code> 中的 <code>课后学员反馈问卷</code>（<code>fb-1</code>），导致反馈问卷统计与题目分析无法展示。</li></ul><a href="2026-11-12-对比截图/课程评价与反馈-修改前.jpg" target="_blank"><img alt="课程评价与反馈修改前" src="2026-11-12-对比截图/课程评价与反馈-修改前.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>恢复 <code>shared/js/teacher-eval.js</code> 的结构化 <code>teach</code> 视图，找回「往期对比分析」「AI 改进建议」入口（<code>&lt;fd-course-insight&gt;</code>）以及 <code>&lt;fd-eval-summary&gt;</code>（回收汇总、条目分析、提交记录（匿名））。</li><li>在 <code>shared/data/course-dev-seed.js</code> 中恢复线下课程「课后学员反馈问卷」（<code>fb-1</code>，6 道题目），并在 <code>shared/js/course-impl-demo.js</code> 将 <code>SEED_KEY</code> 递增至 <code>v4</code>，确保已缓存旧快照的浏览器刷新即可同步生效。</li></ul><a href="2026-11-12-对比截图/课程评价与反馈-修改后.png" target="_blank"><img alt="课程评价与反馈修改后（课后学员反馈问卷与条目分析）" src="2026-11-12-对比截图/课程评价与反馈-修改后.png"></a><a href="2026-11-12-对比截图/课程评价与反馈-往期对比分析-修改后.png" target="_blank"><img style="margin-top:12px" alt="往期对比分析抽屉修改后" src="2026-11-12-对比截图/课程评价与反馈-往期对比分析-修改后.png"></a><a href="2026-11-12-对比截图/课程评价与反馈-AI改进建议-修改后.png" target="_blank"><img style="margin-top:12px" alt="AI 改进建议抽屉修改后" src="2026-11-12-对比截图/课程评价与反馈-AI改进建议-修改后.png"></a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-08" data-date="2026-11-12" data-scope="PC端" data-search="线上课程 · 视图切换按钮样式统一（对齐技能中心课程） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 线上课程">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#08</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">线上课程 · 视图切换按钮样式统一（对齐技能中心课程）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>线上课程 · 视图切换按钮样式统一（对齐技能中心课程）</h2><p>定位：程主任（科室管理员）/ 管理员 / 教师 / 学员 → 线上课程 → 筛选栏右侧展示方式切换。实现文件：<a href="../shared/js/online-course-hub.js">online-course-hub.js</a>、<a href="../shared/styles/online-course-qianwen.css">online-course-qianwen.css</a>、<a href="../shared/styles/online-course-hub.css">online-course-hub.css</a>、<a href="../shared/styles/course-management-qianwen.css">course-management-qianwen.css</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li><code>online-course-hub.js</code> 误用了仅在 <code>manager.html</code> 加载的 <code>.sast-view-toggle</code> / <code>.sast-toggle-btn</code>，导致 <code>程主任.html</code>、教师端与学员端样式缺失，退化为浏览器默认方框按钮（<code>2px outset</code>、直角灰底）。</li><li>全页排查其余页面未发现第二个失样式的方框切换按钮；仅统计分析 <code>.ocs-mode-tabs</code> 存在 Grid 横向拉伸问题、建课结果页 <code>.occ-qr-tabs</code> 为旧版小方角切换条（本次仅记录未改）。</li></ul><a href="2026-11-12-对比截图/线上课程视图切换-修改前.jpg" target="_blank"><img alt="线上课程视图切换按钮修改前" src="2026-11-12-对比截图/线上课程视图切换-修改前.jpg"></a></div><div><h3>修改后 · 修改内容</h3><ul><li>将 <code>online-course-hub.js</code> 切换容器改为与「技能中心课程」一致的 <code>cd-view-switch app-mode-segmented och-view-toggle</code> 结构与 <code>15×15px</code> 描边图标。</li><li>在共用 CSS 中统一外框 <code>72×36px</code>、<code>#f1f5f9</code> 全圆角底轨、<code>32×30px</code> 按钮与纯白激活胶囊阴影，并补充 <code>.och-library / .och-catalog-surface</code> 的 <code>min-width: 0</code> 防止 1440px 列表视图横向撑出裁切切换按钮。</li></ul><a href="2026-11-12-对比截图/线上课程视图切换-修改后.png" target="_blank"><img alt="线上课程视图切换按钮修改后（列表视图）" src="2026-11-12-对比截图/线上课程视图切换-修改后.png"></a><a href="2026-11-12-对比截图/线上课程视图切换-卡片-修改后.png" target="_blank"><img style="margin-top:12px" alt="线上课程视图切换按钮修改后（卡片视图）" src="2026-11-12-对比截图/线上课程视图切换-卡片-修改后.png"></a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-09" data-date="2026-11-12" data-scope="PC端" data-search="临床教学活动 · 编辑/发起教学活动（教学资料移入卡片 01 底部 + 千问风格重构） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 临床教学活动">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#09</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">临床教学活动 · 编辑/发起教学活动（教学资料移入卡片 01 底部 + 千问风格重构）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>临床教学活动 · 编辑/发起教学活动（教学资料移入卡片 01 底部 + 千问风格重构）</h2><p>定位：程主任（科室管理员）/ 教师端 → 临床教学活动 → 点击活动行进入编辑教学活动（或单次发起）。实现文件：<a href="../pages/教学活动实施/page.js">page.js</a>、<a href="../pages/教学活动实施/page.css">page.css</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li><code>教学资料</code> 上传模块独立悬在主表单上方，占用首屏视觉重心，且直接暴露浏览器原生 <code>Choose Files / No file chosen</code> 控件。</li><li>顶部工具栏与右侧「活动发起概览」存在两套重复的 <code>取消 / 保存修改</code> 操作（顶部黑底、右侧蓝底），主操作不唯一、IA 冗余。</li><li>卡片 02 学员检索框右侧 <code>添加</code> 按钮存在嵌套边框与圆角重叠，分组面板带 3px 粗色顶边，与千问轻量化体系不统一。</li></ul><a href="2026-11-12-对比截图/临床教学活动编辑页-修改前.jpg" target="_blank"><img alt="临床教学活动编辑页修改前" src="2026-11-12-对比截图/临床教学活动编辑页-修改前.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>将 <code>教学资料</code> 上传与文件预览胶囊整体移入卡片 01（基本信息与活动安排）最底部，改用千问极简虚线上传区，完整保留多文件上传、预览弹窗与原有文案。</li><li>重构信息架构（IA）：顶部工具栏收敛为返回、标题与上下文签到入口，去除重复提交/取消按钮；右侧「活动发起概览」收敛为全圆角墨黑主胶囊（<code>#171a22</code>）+ 描边次胶囊，并将 sticky 偏移设为 <code>top: 76px</code> 避免滚动被顶栏遮挡。</li><li>全页统一千问 AI 风格（<code>18px</code> 卡片圆角、<code>#e1e6ef</code> 极细边框、中性数字步骤徽标、<code>#eef4fb / #175898</code> 选中态），卡片 02 检索框拆为独立输入框与胶囊 <code>添加</code> 按钮。</li></ul><a href="2026-11-12-对比截图/临床教学活动编辑页-修改后.png" target="_blank"><img alt="临床教学活动编辑页修改后（教学资料位于卡片 01 底部）" src="2026-11-12-对比截图/临床教学活动编辑页-修改后.png"></a><a href="2026-11-12-对比截图/临床教学活动编辑页-上传文件-修改后.png" target="_blank"><img style="margin-top:12px" alt="临床教学活动编辑页修改后（上传 PDF 后展示预览胶囊）" src="2026-11-12-对比截图/临床教学活动编辑页-上传文件-修改后.png"></a><a href="2026-11-12-对比截图/临床教学活动编辑页-学员与范围-修改后.png" target="_blank"><img style="margin-top:12px" alt="临床教学活动编辑页修改后（卡片 02 学员、卡片 03 范围与右侧吸顶概览）" src="2026-11-12-对比截图/临床教学活动编辑页-学员与范围-修改后.png"></a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-10" data-date="2026-11-12" data-scope="双端协同" data-search="全项目禁用 emoji 清理清单（pc 端 + 移动端） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 双端协同 全项目禁用 emoji 清理清单（pc 端 + 移动端）">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#10</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">全项目禁用 Emoji 清理清单（PC 端 + 移动端）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>全项目禁用 Emoji 清理清单（PC 端 + 移动端）</h2><p>要求：整个项目中，无论 PC 端还是移动端，在任何前端页面与交互脚本中均禁止使用 Emoji。本次共排查根目录 <code>*.html</code>、<code>pages/</code>、<code>shared/</code>、<code>移动端/</code>、<code>course-management-api/</code> 全部运行代码，将所有 Emoji 统一替换为内联线性 SVG 图标、纯文本状态标签或非 Emoji 的标准字符（如实心/空心方块）。</p><div class="emoji-audit-summary"><div class="emoji-audit-badge"><strong>覆盖范围</strong>：PC 端 + 移动端 H5 + 共享组件</div><div class="emoji-audit-badge"><strong>共清理文件</strong>：30 个前端文件</div><div class="emoji-audit-badge"><strong>校验结果</strong>：剩余 Emoji 0 处；22 个 JS 文件语法校验全部通过</div></div><h3>一、移动端（移动端/）</h3><table class="emoji-audit-table"><thead><tr><th style="width:28%">文件</th><th style="width:28%">原 Emoji（Unicode 编码）</th><th style="width:24%">替换方案</th><th>涉及位置</th></tr></thead><tbody><tr><td><a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a></td><td><code>U+1F4DC</code>（卷轴）</td><td>内联 <code>award</code> SVG 图标</td><td>教师端课程详情 · 课程证书已启用标签（L5522）</td></tr><tr><td><a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a></td><td><code>U+1F514</code>（铃铛）× 2</td><td>内联 <code>bell</code> SVG 图标</td><td>专项课程分节任务提醒按钮、单次课程提醒未完成按钮（L5631、L5702）</td></tr><tr><td><a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a></td><td><code>U+1F44D</code>（点赞）、<code>U+1F4AC</code>（对话气泡）</td><td>内联 <code>thumbs-up</code> / <code>message-square</code> SVG 图标</td><td>讨论区帖子点赞与回复操作栏（L8719、L8722）</td></tr></tbody></table><h3>二、PC 端业务模块（pages/）</h3><table class="emoji-audit-table"><thead><tr><th style="width:28%">文件</th><th style="width:28%">原 Emoji（Unicode 编码）</th><th style="width:24%">替换方案</th><th>涉及位置</th></tr></thead><tbody><tr><td><a href="../pages/官网/site.js">官网/site.js</a></td><td><code>U+2699 U+FE0F</code>（齿轮）、<code>U+2705</code>（绿对勾）</td><td>内联 <code>settings</code> SVG 图标；Toast 改纯文本</td><td>顶栏/移动端网站配置入口、配置抽屉、保存成功提示</td></tr><tr><td><a href="../pages/我的电子轮转手册/page.js">我的电子轮转手册/page.js</a></td><td><code>U+1F4CE</code>（回形针）、<code>U+26A1</code>（闪电）、<code>U+1F4CB</code>（剪贴板）</td><td>内联 <code>paperclip</code> / <code>zap</code> / <code>clipboard</code> SVG 图标</td><td>大病历扫描件附件提示、审核规则说明栏</td></tr><tr><td><a href="../pages/技能中心课程/views/audit.js">技能中心课程/views/audit.js</a></td><td><code>U+1F4C4</code>（文档）、<code>U+1F4DD</code>（备忘录）</td><td>内联 <code>file-text</code> / <code>clipboard-check</code> SVG 图标</td><td>微课课时目录文档附件与随堂测验标识</td></tr><tr><td><a href="../pages/课程审核/page.js">课程审核/page.js</a></td><td><code>U+1F4C4</code>（文档）、<code>U+1F4DD</code>（备忘录）</td><td>内联 <code>file-text</code> / <code>clipboard-check</code> SVG 图标</td><td>微课课时目录文档附件与随堂测验标识</td></tr><tr><td><a href="../pages/技能中心课程/views/development.js">技能中心课程/views/development.js</a></td><td><code>U+1F4A1</code>（灯泡）、<code>U+1F4D6</code>（翻开的书）</td><td>内联 <code>lightbulb</code> / <code>book-open</code> SVG 图标</td><td>引用线上课程弹窗指引条、空状态占位图标</td></tr><tr><td><a href="../pages/技能中心课程/views/implementation.js">技能中心课程/views/implementation.js</a></td><td><code>U+1F6E1 U+FE0F</code>（盾牌）、<code>U+2699 U+FE0F</code>（齿轮）、<code>U+1F4DC</code>（卷轴）</td><td>内联 <code>shield-check</code> / <code>settings</code> / <code>award</code> SVG 图标</td><td>线上课程审核/权限设置按钮、课程证书已启用标签</td></tr><tr><td><a href="../pages/课程实施/page.js">课程实施/page.js</a></td><td><code>U+1F6E1 U+FE0F</code>（盾牌）、<code>U+2699 U+FE0F</code>（齿轮）、<code>U+1F4DC</code>（卷轴）</td><td>内联 <code>shield-check</code> / <code>settings</code> / <code>award</code> SVG 图标</td><td>线上课程审核/权限设置按钮、课程证书已启用标签</td></tr><tr><td><a href="../pages/技能中心课程/views/pool.js">技能中心课程/views/pool.js</a></td><td><code>U+1F680</code>（火箭）</td><td>内联 <code>send</code> SVG 图标</td><td>发起在线实施批次按钮</td></tr><tr><td><a href="../pages/课程池/page.js">课程池/page.js</a></td><td><code>U+1F680</code>（火箭）</td><td>内联 <code>send</code> SVG 图标</td><td>发起在线实施批次按钮</td></tr><tr><td><a href="../pages/排课与报名/page.js">排课与报名/page.js</a> &amp; <a href="../pages/排课与报名/page.css">page.css</a></td><td><code>U+26A0 U+FE0F</code>（警告三角）</td><td>内联 <code>alert-triangle</code> SVG 图标；清理注释</td><td>质控未确认阻断警示卡片、不可开启报名角标</td></tr><tr><td><a href="../pages/角色工作台/page.js">角色工作台/page.js</a></td><td><code>U+1F4C4</code>（文档）、<code>U+1F4CA</code>（柱状图）</td><td>内联 <code>file-text</code> / <code>bar-chart</code> SVG 图标</td><td>课前导学配套资料下载链接（PDF / XLSX）</td></tr><tr><td><a href="../pages/评估工具库/page.js">评估工具库/page.js</a></td><td><code>U+2702</code>（剪刀）</td><td>内联 <code>scissors</code> SVG 图标</td><td>表单预览分页符标记</td></tr><tr><td><a href="../pages/课程工作台方案5/page.js">课程工作台方案5/page.js</a></td><td><code>U+2705</code>（绿对勾）、<code>U+1F4A1</code>（灯泡）</td><td>内联 <code>check-circle</code> / <code>info</code> SVG 图标</td><td>科室健康达标空状态、诊疗中心矩阵底部提示</td></tr><tr><td><a href="../pages/轮转安排/page.js">轮转安排/page.js</a></td><td><code>U+26A0 U+FE0F</code>（警告三角）</td><td>移除前缀符号，保留告警文案</td><td>累计请假超期补轮转提示</td></tr><tr><td><a href="../pages/可选课程/index_single.html">可选课程/index_single.html</a></td><td><code>U+1F4D6</code>（翻开的书）、<code>U+2764</code>（红心）</td><td>内联 <code>book-open</code> / <code>heart</code> SVG 图标</td><td>住培三年培养计划分类标题（通识 / 内科）</td></tr><tr><td><a href="../pages/发证管理/发证管理-设计稿-v3.html">发证管理-设计稿-v3.html</a></td><td><code>U+26A0</code>（警告三角）</td><td>内联 <code>alert-triangle</code> SVG 图标</td><td>证书撤销合规确认提示条</td></tr><tr><td><a href="../pages/讨论区管理/讨论区管理-设计稿-管理端.html">讨论区管理-设计稿-管理端.html</a></td><td><code>U+1F4CC</code>（图钉）</td><td>复用页面 <code>ico('pin')</code> SVG 图标</td><td>置顶帖标题前缀图标</td></tr><tr><td><a href="../pages/题库管理/题库管理-单文件.html">题库管理-单文件.html</a></td><td><code>U+2728</code>（闪耀星）</td><td>内联 <code>sparkles</code> SVG 图标</td><td>AI 生成题目草稿按钮</td></tr><tr><td><a href="../pages/评估结果与分析/demo-antv.html">demo-antv.html</a></td><td><code>U+1F4C8</code>（趋势图）</td><td>内联 <code>trending-up</code> SVG 图标</td><td>演示页顶部横幅标题</td></tr><tr><td><a href="../pages/评估结果与分析/demo-echarts.html">demo-echarts.html</a></td><td><code>U+1F4CA</code>（柱状图）</td><td>内联 <code>bar-chart</code> SVG 图标</td><td>演示页顶部横幅标题</td></tr><tr><td><a href="../pages/排课与报名/排课管理走查标准.html">排课管理走查标准.html</a>、<a href="../pages/排课与报名/选课报名走查标准.html">选课报名走查标准.html</a>、<a href="../pages/课程审核/课程审核走查标准.html">课程审核走查标准.html</a>、<a href="../pages/课程池/课程池走查标准.html">课程池走查标准.html</a></td><td><code>U+2705</code>（绿对勾）、<code>U+26A0 U+FE0F</code>（警告三角）</td><td>替换为彩色纯文本状态标识（<code>[已完成]</code> / <code>[部分完成]</code> / <code>[待确认]</code>）</td><td>各条目标题、进度说明与汇总表格</td></tr></tbody></table><h3>三、共享模块与演示文件（shared/）</h3><table class="emoji-audit-table"><thead><tr><th style="width:28%">文件</th><th style="width:28%">原 Emoji（Unicode 编码）</th><th style="width:24%">替换方案</th><th>涉及位置</th></tr></thead><tbody><tr><td><a href="../shared/js/course-dev-renderer.js">course-dev-renderer.js</a></td><td><code>U+1F4A1</code>（灯泡）、<code>U+1F4D6</code>（翻开的书）</td><td>内联 <code>lightbulb</code> / <code>book-open</code> SVG 图标</td><td>引用线上课程弹窗指引条、空结果占位图</td></tr><tr><td><a href="../shared/js/eval-form-sheet.js">eval-form-sheet.js</a></td><td><code>U+2702</code>（剪刀）、<code>U+2611</code>（蓝框复选）</td><td>内联 <code>scissors</code> SVG 图标；<code>■</code> 替代 <code>U+2611</code></td><td>分页符、多选/扣分项/一票否决项勾选态</td></tr><tr><td><a href="../shared/js/online-course-audit.js">online-course-audit.js</a></td><td><code>U+1F4C4</code>、<code>U+1F4DD</code>、<code>U+1F4CA</code>、<code>U+1F3AC</code></td><td>内联 <code>file-text</code> / <code>clipboard-check</code> / <code>bar-chart</code> / <code>video</code> SVG 图标</td><td>课时列表与配套教学资源文件列表</td></tr><tr><td><a href="../shared/js/online-course-creator.js">online-course-creator.js</a></td><td><code>U+23F1</code>（秒表）</td><td>内联 <code>clock</code> SVG 图标</td><td>视频随堂测验打点按钮</td></tr><tr><td><a href="../shared/data/mentor-demo.js">mentor-demo.js</a>、<a href="../shared/js/course-impl-demo.js">course-impl-demo.js</a>、<a href="../shared/js/exit-exam-demo.js">exit-exam-demo.js</a></td><td><code>U+2699</code>（齿轮）</td><td>内联 <code>settings</code> SVG 图标</td><td>右下角原型演示工具悬浮入口</td></tr><tr><td><a href="../shared/files/online-demo/live-session.html">live-session.html</a></td><td><code>U+1F465</code>、<code>U+1F393</code>、<code>U+1F552</code>、<code>U+1F4AC</code>、<code>U+1F4D6</code>、<code>U+1F4CE</code>、<code>U+2728</code>、<code>U+1F3AF</code>、<code>U+1F4C5</code>、<code>U+1F4C4</code>、<code>U+2705</code>、<code>U+1F389</code></td><td>全部替换为内联 SVG 图标或纯文本提示</td><td>直播示范页底栏统计、侧栏页签、课程介绍、Toast 与系统消息</td></tr></tbody></table>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-11" data-date="2026-11-12" data-scope="PC端" data-search="临床教学活动 · 操作列收口、统一两态签到弹窗、文案统一与编辑二次确认 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 临床教学活动">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#11</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">临床教学活动 · 操作列收口、统一两态签到弹窗、文案统一与编辑二次确认</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>临床教学活动 · 操作列收口、统一两态签到弹窗、文案统一与编辑二次确认</h2><p>定位：程主任（科室管理员）/ 王老师（教师端）→ 临床教学活动 → 列表操作 / 编辑教学活动。实现文件：<a href="../pages/教学活动实施/page.js">page.js</a>、<a href="../pages/教学活动实施/page.css">page.css</a>、<a href="../pages/技能中心课程/views/implementation.js">implementation.js</a>、<a href="../pages/课程实施/page.js">课程实施/page.js</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li><code>进行中</code> 行操作列同时显示 3 个独立按钮（<code>结束活动</code> / <code>发起签出</code> / <code>签到详情</code>），分别弹出不同模态框，操作繁琐。</li><li><code>已完成</code> 活动点击 <code>签到详情</code> 时未初始化历史签入/签出记录，统计全部显示 <code>0/10 未完成</code>。</li><li>签到弹窗右上角切换标签文案为 <code>开始签到 / 结束签到</code>，与二维码区状态徽标 <code>活动开始签到 / 活动结束签到</code> 不统一。</li><li>编辑教学活动点击 <code>保存修改</code> 直接提交保存，缺少变更通知二次确认弹窗。</li></ul><a href="2026-11-12-对比截图/活动列表三按钮收口-修改前.jpg" target="_blank"><img alt="活动列表三按钮修改前" src="2026-11-12-对比截图/活动列表三按钮收口-修改前.jpg"></a><a href="2026-11-12-对比截图/活动已完成弹窗明细-修改前.jpg" target="_blank"><img style="margin-top:12px" alt="已完成活动签到详情 0/10 修改前" src="2026-11-12-对比截图/活动已完成弹窗明细-修改前.jpg"></a><a href="2026-11-12-对比截图/活动签到弹窗文案-修改前.jpg" target="_blank"><img style="margin-top:12px" alt="签到弹窗旧文案开始/结束签到修改前" src="2026-11-12-对比截图/活动签到弹窗文案-修改前.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>操作列收口为单主按钮：未完成/进行中统一展示 <code>发起签到</code>（同一弹窗内按「活动开始签到 → 活动结束签到」推进）；双阶段完成后切换为 <code>签到详情</code>。</li><li>三弹窗合并为同一弹窗两态（<code>attendanceVisible</code>）：态 1 为左二维码 + 右实时名单；态 2（详情模式）自动隐藏左侧二维码栏，并补齐历史 <code>已完成</code> 活动 <code>9/10</code> 签入/签出明细与时间戳。</li><li>全端签到弹窗阶段切换标签统一改为 <code>活动开始签到 0/N</code> 与 <code>活动结束签到 0/N</code>。</li><li>在 <code>submitLaunch()</code> 编辑保存逻辑找回 <code>ArcoVue.Modal.confirm</code> 二次确认弹窗（<code>确认修改并通知学员？</code>）。</li></ul><a href="2026-11-12-对比截图/活动列表单按钮收口-修改后.png" target="_blank"><img alt="活动列表操作列收口为单按钮修改后" src="2026-11-12-对比截图/活动列表单按钮收口-修改后.png"></a><a href="2026-11-12-对比截图/活动已完成弹窗明细-修改后.png" target="_blank"><img style="margin-top:12px" alt="统一弹窗状态二（详情无二维码+已签明细）修改后" src="2026-11-12-对比截图/活动已完成弹窗明细-修改后.png"></a><a href="2026-11-12-对比截图/临床教学活动签到弹窗-修改后.png" target="_blank"><img style="margin-top:12px" alt="统一弹窗状态一（活动开始/结束签到文案）修改后" src="2026-11-12-对比截图/临床教学活动签到弹窗-修改后.png"></a><a href="2026-11-12-对比截图/活动保存二次确认弹窗-修改后.png" target="_blank"><img style="margin-top:12px" alt="编辑保存二次确认弹窗修改后" src="2026-11-12-对比截图/活动保存二次确认弹窗-修改后.png"></a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-12" data-date="2026-11-12" data-scope="PC端" data-search="临床教学活动 · 教师端与科室管理员端列表样式对齐 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 临床教学活动">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#12</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">临床教学活动 · 教师端与科室管理员端列表样式对齐</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>临床教学活动 · 教师端与科室管理员端列表样式对齐</h2><p>定位：王老师（教师端）vs 程主任（科室管理员）→ 临床教学活动列表。实现文件：<a href="../pages/教学活动实施/page.js">page.js</a>、<a href="../pages/教学活动实施/page.css">page.css</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>教师端使用 <code>16px</code> 圆角旧卡片容器、<code>全部状态</code> 下拉筛选框与 <code>15px</code> 粗行高样式。</li><li>教师端操作列多出 <code>编辑活动</code> 链接且按钮为蓝框描边样式，与科室管理员端的千问轻量列表样式（快捷状态胶囊、<code>12px</code> 卡片、黑底主胶囊）不统一。</li></ul><a href="2026-11-12-对比截图/活动教师端列表样式-修改前.png" target="_blank"><img alt="教师端旧列表样式修改前" src="2026-11-12-对比截图/活动教师端列表样式-修改前.png"></a><a href="2026-11-12-对比截图/活动科室端参考样式.jpg" target="_blank"><img style="margin-top:12px" alt="科室管理员端参考列表样式" src="2026-11-12-对比截图/活动科室端参考样式.jpg"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>教师端 <code>.ta-work-surface</code> 卡片对齐为 <code>12px</code> 圆角与 <code>#e1e6ef</code> 细边框，复用 <code>全部 / 待开始 / 进行中 / 已完成</code> 快捷状态胶囊切换条并移除多余状态下拉框。</li><li>统一行标题 <code>14px</code>、行高与间距，教师端操作列统一为墨黑主胶囊 <code>发起签到</code> 与文字链接 <code>签到详情</code>（点击整行仍可直接进入编辑/查看）。</li></ul><a href="2026-11-12-对比截图/活动教师端列表样式-修改后.png" target="_blank"><img alt="教师端列表样式对齐科室管理员端修改后" src="2026-11-12-对比截图/活动教师端列表样式-修改后.png"></a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-13" data-date="2026-11-12" data-scope="双端协同" data-search="移动端线上课程与详情 · 竞品级双视图重构 + 真实视频/弹题/建课 + pc双端同源ssot同步 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 双端协同 移动端线上课程与详情">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#13</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">移动端线上课程与详情 · 竞品级双视图重构 + 真实视频/弹题/建课 + PC双端同源SSOT同步</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>移动端线上课程与详情 · 竞品级双视图重构 + 真实视频/弹题/建课 + PC双端同源SSOT同步</h2><p>定位：移动端（学员端 / 教师端 / 科室管理员端）→ 线上课程列表与详情 ↔ PC 端（<code>王老师.html?page=线上课程</code>）。实现文件：<a href="../移动端/shared/js/online-course-mobile-ssot.js">online-course-mobile-ssot.js</a>、<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../移动端/student-tdesign.html">student-tdesign.html</a>、<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a>、<a href="../移动端/department-manager-tdesign.html">department-manager-tdesign.html</a>、<a href="../pages/线上课程/page.js">pages/线上课程/page.js</a>、<a href="../shared/js/online-course-hub.js">online-course-hub.js</a>、<a href="../shared/data/online-course-packages.js">online-course-packages.js</a>、<a href="../shared/js/course-discussion.js">course-discussion.js</a>、<a href="../scripts/serve-mobile-roles.cjs">serve-mobile-roles.cjs</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>移动端列表仅有单列简陋文字卡，无 16:9 封面、无卡片/列表双视图切换，存在异常冗余进度条，且缺少搜索与筛选抽屉。</li><li>教师端缺少 <code>新建录播课程 / 新建直播课程 / 新建专项课程</code> 入口、海报二维码与卡片操作抽屉。</li><li>移动端详情页无真实视频播放与弹题入口、无测验/作业提交，结构文案与 PC 端差异巨大且 5 图标页签排版错位。</li><li>PC 与移动端各自依赖静态数据，新建/复制/答疑/学习进度无法双向同步。</li></ul><a href="2026-11-12-对比截图/移动端线上课程列表-修改前.png" target="_blank"><img alt="移动端线上课程列表修改前" src="2026-11-12-对比截图/移动端线上课程列表-修改前.png"></a><a href="2026-11-12-对比截图/移动端线上课程详情-修改前.png" target="_blank"><img style="margin-top:12px" alt="移动端线上课程详情修改前" src="2026-11-12-对比截图/移动端线上课程详情-修改前.png"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>列表页升级为 <strong>2 列 16:9 封面卡片视图 + 紧凑列表视图</strong>、单条 4px 进度条、科室分组与筛选抽屉；教师端补全三大建课入口、<code>···</code> 操作抽屉与扫码海报导出，支持专项课包口令解锁。</li><li>详情与播放舞台 1:1 对齐 PC：学员端 6 字段 Hero、4 大页签（课程详情/病种图谱/讨论区/课程证书）、真实 MP4 <code>&lt;video&gt;</code>（Range 206 流式加载）+ 视频时间轴弹题、随堂测验与作业提交；教师端升级 5 大管理 Tab（目录/学情名册/答疑讨论/病种证书/统计课后）与一键 <code>课程预览</code>。</li><li>新建 <code>OnlineCourseMobileSSOT</code> 适配层，双套 SSOT 共享 <code>fdek.online-course.*</code> 等持久化键并监听 <code>storage</code> / <code>fdek.online-course.synced</code> 实现 PC ↔ 移动端实时双向同步与独立兜底（实测走查 37/37 与双端同步 E2E 24/24 全通过）。</li></ul><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><a href="2026-11-12-对比截图/移动端线上课程学员端卡片-修改后.png" target="_blank"><img alt="学员端 2 列卡片视图修改后" src="2026-11-12-对比截图/移动端线上课程学员端卡片-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程学员端列表-修改后.png" target="_blank"><img alt="学员端紧凑列表视图修改后" src="2026-11-12-对比截图/移动端线上课程学员端列表-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程学员端详情-修改后.png" target="_blank"><img alt="学员端课程详情修改后" src="2026-11-12-对比截图/移动端线上课程学员端详情-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程视频弹题-修改后.png" target="_blank"><img alt="真实视频播放器与弹题作答修改后" src="2026-11-12-对比截图/移动端线上课程视频弹题-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程教师端列表-修改后.png" target="_blank"><img alt="教师端列表与三大建课入口修改后" src="2026-11-12-对比截图/移动端线上课程教师端列表-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程教师端建课-修改后.png" target="_blank"><img alt="教师端建课表单修改后" src="2026-11-12-对比截图/移动端线上课程教师端建课-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程教师端详情-修改后.png" target="_blank"><img alt="教师端 5-Tab 详情与预览入口修改后" src="2026-11-12-对比截图/移动端线上课程教师端详情-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程双端同步PC端-修改后.png" target="_blank"><img alt="移动端新建课程实时同步至 PC 端修改后" src="2026-11-12-对比截图/移动端线上课程双端同步PC端-修改后.png"></a></div></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-14" data-date="2026-11-12" data-scope="移动端" data-search="移动端线上课程 · 顶部三大新建按钮收口为右下角复合悬浮按钮（fab） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 移动端 移动端线上课程">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#14</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">移动端线上课程 · 顶部三大新建按钮收口为右下角复合悬浮按钮（FAB）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>移动端线上课程 · 顶部三大新建按钮收口为右下角复合悬浮按钮（FAB）</h2><p>定位：移动端教师端（<code>教学 → 线上课程</code>）与科室管理员端（<code>科室管理 → 线上课程</code>）。实现文件：<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/tdesign-app.css">tdesign-app.css</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>页面顶部（红框区域）长期横排占位 3 颗新建按钮（<code>新建录播课程</code> / <code>新建直播课程</code> / <code>新建专项课程</code>），挤占列表首屏展示空间。</li><li>小屏窄视口下横排多按钮视觉拥挤，用户期望收口为右下角蓝圈区域的单个复合新建悬浮按钮（Speed-Dial FAB）。</li></ul><a href="2026-11-12-对比截图/移动端线上课程复合新建按钮-修改前.png" target="_blank"><img alt="移动端线上课程顶部三大新建按钮修改前" src="2026-11-12-对比截图/移动端线上课程复合新建按钮-修改前.png"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>移除列表顶部 <code>.td-onl-create-bar</code> 三按钮条，使科室切换栏、搜索框与课程卡片上移，首屏课程浏览面积显著提升。</li><li>在底部导航栏上方右下角新增 <code>.td-onl-create-fab</code> 圆形 <code>+</code> 悬浮按钮；点击后平滑展开 3 枚复合功能胶囊（<code>新建录播课程</code>、<code>新建直播课程</code>、<code>新建专项课程</code>）并伴随轻模糊遮罩与按钮旋转 <code>×</code> 态，点击遮罩、切换页签或选中任一方式后自动收起。</li></ul><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><a href="2026-11-12-对比截图/移动端线上课程教师端列表-修改后.png" target="_blank"><img alt="收口后默认列表与右下角圆形加号FAB修改后" src="2026-11-12-对比截图/移动端线上课程教师端列表-修改后.png"></a><a href="2026-11-12-对比截图/移动端线上课程复合新建按钮-修改后.png" target="_blank"><img alt="点击右下角FAB展开三大建课菜单修改后" src="2026-11-12-对比截图/移动端线上课程复合新建按钮-修改后.png"></a></div></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-15" data-date="2026-11-12" data-scope="移动端" data-search="技能中心课程详情 pc 与移动端对齐 · 同伴互评去掉邀请直接选人及真实表单项读取修复 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 移动端 技能中心课程详情 pc 与移动端对齐">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#15</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">技能中心课程详情 PC 与移动端对齐 · 同伴互评去掉邀请直接选人及真实表单项读取修复</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>技能中心课程详情 PC 与移动端对齐 · 同伴互评去掉邀请直接选人及真实表单项读取修复</h2><p>定位：PC 教师端（<a href="../王老师.html">王老师.html</a>）、PC 学员端（<a href="../王同学.html">王同学.html</a>）、移动端教师端（<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）与移动端学员端（<a href="../移动端/student-tdesign.html">student-tdesign.html</a>）。核心实现：<a href="../shared/js/course-session-tasks.js">course-session-tasks.js</a>、<a href="../shared/data/course-dev-seed.js">course-dev-seed.js</a>、<a href="../shared/js/course-eval-composer.js">course-eval-composer.js</a>、<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>移动端技能中心课程详情（教师端）：默认落在「课程信息」Tab；头卡缺少课程封面图、专科与证书弹窗标签；右上角缺少「开课日志」「发布通知」；课程任务缺少调整时间与单任务提醒；课程评价与反馈仍为旧版，缺少往期对比分析与 AI 改进建议。</li><li>PC 端技能中心课程详情（教师端）：顶部操作区缺少「发布通知」按钮；同伴互评原依赖受评人发起邀请后才能互评，操作链路冗余。</li><li>互评表单项缺失：<code>CRS-EVAL-003</code>（<code>EC 手法与通气核查表</code>）未进入 <code>EvalToolCatalog.allForms()</code>，导致 <code>CourseDevSeed.peerEvaluation()</code>、<code>CourseSessionTasks.resolveForm()</code> 与 <code>CourseEvalTasks.findLib()</code> 无法读出 8 条核查条目；移动端 <code>ensureCourseTaskModules</code> 亦误加载 <code>eval-tasks.js</code> 且缺少 <code>syncStudentCourseDemoState</code> 引发运行时异常。</li></ul><a href="2026-11-12-对比截图/移动端技能中心课程详情-修改前.png" target="_blank"><img alt="移动端技能中心课程详情修改前" src="2026-11-12-对比截图/移动端技能中心课程详情-修改前.png"></a><a href="2026-11-12-对比截图/PC技能中心课程详情-修改前.jpg" target="_blank"><img alt="PC技能中心课程详情修改前" src="2026-11-12-对比截图/PC技能中心课程详情-修改前.jpg" style="margin-top:10px"></a></div><div><h3>修改后 · 改动说明</h3><ul><li>课程详情 PC 与移动端对齐：移动端默认落点调整为「课程任务」，头卡补充封面图、专科标签与可点击「课程证书已启用 · 点击查看」，右上角置入「开课日志」「发布通知」；PC 教师端顶部同步补齐「发布通知」；移动端补全调整时间、单任务提醒、目标标签、课前信与专项多节信息读取、讨论区及「往期对比分析」「AI 改进建议」。</li><li>直接选人同伴互评：PC 与移动端均去除邀请环节，任意同课次学员打开同伴互评即可直接选择同伴评分，支持实时展示已评人数进度。</li><li>互评表单来源与稳定性修复：<code>CourseSessionTasks.resolveForm</code>、<code>CourseDevSeed.peerEvaluation</code> 与 <code>CourseEvalTasks.findLib</code> 优先通过 <code>EvalToolCatalog.formByCode</code> 读取 <code>CRS-EVAL-003</code>；移动端修正 <code>ensureCourseTaskModules</code> 加载 <code>course-eval-composer.js</code> 并补齐 <code>syncStudentCourseDemoState</code>；PC 与移动端互评均完整渲染 8 条核查条目，页面零报错。</li></ul><a href="2026-11-12-对比截图/移动端技能中心课程详情-教师端-修改后.png" target="_blank"><img alt="移动端技能中心课程详情教师端修改后" src="2026-11-12-对比截图/移动端技能中心课程详情-教师端-修改后.png"></a><a href="2026-11-12-对比截图/移动端技能中心课程详情-评价与反馈-修改后.png" target="_blank"><img alt="移动端技能中心课程评价与反馈修改后" src="2026-11-12-对比截图/移动端技能中心课程详情-评价与反馈-修改后.png" style="margin-top:10px"></a><a href="2026-11-12-对比截图/PC技能中心课程详情-修改后.png" target="_blank"><img alt="PC技能中心课程详情修改后" src="2026-11-12-对比截图/PC技能中心课程详情-修改后.png" style="margin-top:10px"></a><a href="2026-11-12-对比截图/PC同伴互评直接选人-修改后.png" target="_blank"><img alt="PC同伴互评直接选人修改后" src="2026-11-12-对比截图/PC同伴互评直接选人-修改后.png" style="margin-top:10px"></a><a href="2026-11-12-对比截图/移动端同伴互评直接选人-修改后.png" target="_blank"><img alt="移动端同伴互评直接选人修改后" src="2026-11-12-对比截图/移动端同伴互评直接选人-修改后.png" style="margin-top:10px"></a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-16" data-date="2026-11-12" data-scope="双端协同" data-search="临床思维课程（双端教师端 &amp; 移动端学员端）· 补齐第 4 页签并统一按 ssot 收口为 2 门已开课程 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 双端协同 临床思维课程（双端教师端 &amp; 移动端学员端）">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#16</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">临床思维课程（双端教师端 &amp; 移动端学员端）· 补齐第 4 页签并统一按 SSOT 收口为 2 门已开课程</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>临床思维课程（双端教师端 &amp; 移动端学员端）· 补齐第 4 页签并统一按 SSOT 收口为 2 门已开课程</h2><p>定位：移动端教师端（<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a> → 教学 → 临床思维课程）、PC 教师端（<a href="../王老师.html">王老师.html</a> → 我的授课 → 临床思维课程）及移动端学员端（<a href="../移动端/student-tdesign.html">student-tdesign.html</a> → 学习 → 临床思维训练）；<strong>PC 管理员端保持 10 门全集监控不变</strong>。实现文件：<a href="../shared/data/clinical-thinking-training.js">clinical-thinking-training.js</a>（SSOT）、<a href="../pages/临床思维课程/page.js">pages/临床思维课程/page.js</a>、<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a>、<a href="../移动端/student-tdesign.html">student-tdesign.html</a>、<a href="../移动端/department-manager-tdesign.html">department-manager-tdesign.html</a>、<a href="../shared/js/nav-data.js">nav-data.js</a>。</p><div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>移动端教师端「教学」缺少第 4 个 Tab <code>临床思维课程</code>，且接入后误展示管理员端 10 门全量数据；PC 端 <code>role='teacher'</code> 也直接复用了管理员端 10 门视图（且小行数下粘性表头 <code>top:64px</code> 遮挡首行），未收敛为实际开课的 2 门（<code>儿科肺炎</code>、<code>儿科腹泻</code>）。</li><li>移动端学员端 <code>tdesign-app.js</code> 未使用 SSOT，本地硬编码 6 例虚构病例（哮喘、高热惊厥、川崎病、败血症等）及静态指标 <code>3/6 / 91.7</code>，且点开腹泻病例时问诊/检查/诊断内容错用肺炎数据；PC 学员端 2 门卡片也局部硬编码而未读取 SSOT。</li></ul><a href="2026-11-12-对比截图/教师端移动端教学Tab-参照.png" target="_blank"><img alt="移动端教师端教学仅3个Tab修改前" src="2026-11-12-对比截图/教师端移动端教学Tab-参照.png"></a><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px"><a href="2026-11-12-对比截图/教师端移动端临床思维10门-修改前.png" target="_blank"><img alt="移动端教师端误展示10门课程修改前" src="2026-11-12-对比截图/教师端移动端临床思维10门-修改前.png"></a><a href="2026-11-12-对比截图/学员端移动端临床思维6例-修改前.jpg" target="_blank"><img alt="移动端学员端硬编码6例修改前" src="2026-11-12-对比截图/学员端移动端临床思维6例-修改前.jpg"></a></div><a href="2026-11-12-对比截图/教师端我的授课菜单-修改前.jpg" target="_blank"><img alt="PC教师端我的授课4项参照" src="2026-11-12-对比截图/教师端我的授课菜单-修改前.jpg" style="margin-top:12px"></a></div><div><h3>修改后 · 改动说明</h3><ul><li><strong>SSOT 统一收口（<code>clinical-thinking-training.js</code>）</strong>：新增 <code>getTeacherOverview()</code> 与 <code>getStudentProjects()</code>，严格收口为实际已开课的 <strong>2 门课程</strong>（<code>TC-PED-000 儿科肺炎</code> + <code>TC-PED-008 儿科腹泻</code>），并按 2 门真实流水计算 KPI；原有 <code>getAdminOverview()</code> 保持 10 门不变，<strong>PC 管理员端零改动</strong>。</li><li><strong>PC &amp; 移动端教师端对齐</strong>：移动端教师端补齐第 4 个 Tab <code>临床思维课程</code>，与 PC 教师端共同调用 <code>getTeacherOverview()</code>（<code>2 门 / 12 人 / 90.9 分 / 100%</code>）；PC 教师端关闭 2 行小表粘性表头以消除首行遮挡，移动端支持学员名单详情及复盘小结展开。</li><li><strong>PC &amp; 移动端学员端同源 SSOT</strong>：PC 学员端 <code>page.js</code> 与移动端 <code>student-tdesign.html</code> / <code>tdesign-app.js</code> 移除局部硬编码，统一读取 <code>getStudentProjects()</code>（含 <code>ekfy.png / ekfx.png</code> 封面、训练次数/最高分、预期耗时），并在点开 <code>儿科腹泻</code> 推演详情时展示腹泻专属问诊、查体、检查、诊断与补液决策方案。</li></ul><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px"><a href="2026-11-12-对比截图/教师端移动端教学4Tab-修改后.png" target="_blank"><img alt="移动端教师端教学4Tab及2门课程修改后" src="2026-11-12-对比截图/教师端移动端教学4Tab-修改后.png"></a><a href="2026-11-12-对比截图/教师端移动端临床思维详情-修改后.png" target="_blank"><img alt="移动端临床思维课程学员名单详情修改后" src="2026-11-12-对比截图/教师端移动端临床思维详情-修改后.png"></a></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px"><a href="2026-11-12-对比截图/学员端移动端临床思维2门-修改后.png" target="_blank"><img alt="移动端学员端临床思维2门SSOT对齐修改后" src="2026-11-12-对比截图/学员端移动端临床思维2门-修改后.png"></a><a href="2026-11-12-对比截图/学员端移动端临床思维训练详情-修改后.png" target="_blank"><img alt="移动端学员端儿科腹泻独立病例推演修改后" src="2026-11-12-对比截图/学员端移动端临床思维训练详情-修改后.png"></a></div><a href="2026-11-12-对比截图/教师端PC临床思维2门-修改后.png" target="_blank"><img alt="PC教师端临床思维2门课程修改后" src="2026-11-12-对比截图/教师端PC临床思维2门-修改后.png" style="margin-top:12px"></a></div></div>
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-18" data-date="2026-11-12" data-scope="移动端" data-search="移动端首页 · 视觉质感恢复、多色语义重构与常用服务自定义配置 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 移动端 移动端首页">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#18</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">移动端首页 · 视觉质感恢复、多色语义重构与常用服务自定义配置</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>移动端首页 · 视觉质感恢复、多色语义重构与常用服务自定义配置</h2>
+  <p>定位：移动端教师端（<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）/ 学员端（<a href="../移动端/student-tdesign.html">student-tdesign.html</a>）/ 科室管理员端（<a href="../移动端/department-manager-tdesign.html">department-manager-tdesign.html</a>）→ 首页 Hero、公告条、本月待办、常用服务及机构服务大厅。实现文件：<a href="../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/mentor-mobile.js">mentor-mobile.js</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>公告条出现 <code>· undefined</code> 脏数据</strong>：<code>mentor-mobile.js</code> 构造的导师通知仅赋了 <code>name</code> 而缺省 <code>text</code>，首页直接拼接 <code>name + ' · ' + text</code> 导致末尾显示 <code>· undefined</code>。</li>
+        <li><strong>Hero 头图建筑质感与快捷容器丢失</strong>：<code>tdesign-app.css</code> 文末 <code>!important</code> 补丁用纯蓝渐变覆盖了「儿科医院 8 号楼」实景底图，并去掉了顶部 3 个快捷操作图标的磨砂圆角盒。</li>
+        <li><strong>待办与服务图标退化为全蓝单色、分割线丢失</strong>：文末补丁将样式类误写为 <code>.tone-red</code> / <code>.tone-blue</code>（JS 实际输出 <code>red-tone</code> / <code>blue</code>），且 <code>border: none !important</code> 覆盖了 <code>border-bottom</code>，导致待办行间无分割线、紧急项失去红标锚点、常用服务全变单色蓝。</li>
+        <li><strong>常用服务首页溢出且「全部应用」漏项</strong>：教师端首页平铺 10+ 项导致第 3 行被底栏裁切；<code>serviceHallGroups</code> 教师端遗漏「我的出题」「我的责任学员」，学员端遗漏「我的训练」「自适应学习」，且不支持用户增删配置。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端首页-教师端-修改前.jpg" target="_blank"><img alt="移动端首页教师端修改前" src="2026-11-12-对比截图/移动端首页-教师端-修改前.jpg"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>修复公告条 <code>· undefined</code></strong>：<a href="../移动端/shared/mentor-mobile.js">mentor-mobile.js</a> 拆分返回 <code>name</code> 与 <code>text</code> 字段，<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a> 使用空值过滤拼接。</li>
+        <li><strong>恢复医院大楼底图与磨砂快捷框</strong>：保留新版「官方白字院徽 + 右上铃铛 + 通栏搜索框」布局，恢复医院蓝半透明渐变叠加 <code>儿科医院 8 号楼.png</code> 及 44×44 磨砂圆角快捷容器。</li>
+        <li><strong>恢复待办分割线与多色语义</strong>：修复 <code>.task-item</code> 下边框与 <code>red-tone</code> / <code>orange-tone</code> / <code>blue-tone</code> 类匹配，紧急待办按钮恢复红色 <code>theme="danger"</code>。</li>
+        <li><strong>多色宫格 + 角标右上角 + 自定义增删（上限 8 项）</strong>：补齐 <code>.service-icon</code> 全色系样式，角标挪至图标右上角；首页默认展示 8 项（2×4），补全各角色 <code>serviceHallGroups</code> 分组，并在首页「管理」与「机构服务大厅 → 配置常用」支持添加、移出、恢复默认及按角色 <code>localStorage</code> 持久化（同步约束桌面端 <code>.t-popup--bottom</code> 居中对齐 430px 手机壳）；底栏「轮转带教」文案按要求保持不变。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端首页-教师端-修改后.png" target="_blank"><img alt="移动端首页教师端修改后" src="2026-11-12-对比截图/移动端首页-教师端-修改后.png"></a>
+      <a href="2026-11-12-对比截图/移动端首页-自定义常用服务-修改后.png" target="_blank"><img alt="移动端机构服务大厅自定义常用服务修改后" src="2026-11-12-对比截图/移动端首页-自定义常用服务-修改后.png" style="margin-top:10px"></a>
+    </div>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-19" data-date="2026-11-12" data-scope="移动端" data-search="移动端教师端 · 轮转带教与「我的责任学员」入口核查结论（对照 pc 端，维持现状） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 移动端 移动端教师端">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#19</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">移动端教师端 · 轮转带教与「我的责任学员」入口核查结论（对照 PC 端，维持现状）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>移动端教师端 · 轮转带教与「我的责任学员」入口核查结论（对照 PC 端，维持现状）</h2>
+  <p>定位：移动端教师端（<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）底部「轮转带教」Tab &amp; 首页「常用服务 / 全部应用 → 我的责任学员」 ↔ PC 教师端「我的学员」（<a href="../shared/js/nav-data.js">nav-data.js</a>、<a href="../pages/我的轮转学员/page.js">我的轮转学员</a>、<a href="../pages/责任导师/page.js">我的责任学员</a>）。相关文件：<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/mentor-mobile.js">mentor-mobile.js</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>排查现状 · 双端入口差异</h3>
+      <ul>
+        <li><strong>PC 端结构</strong>：<code>nav-data.js</code> 在教师端「我的学员」下并列拆分为两个独立菜单——<strong>「我的轮转学员」</strong>（指导医师维度，管理在轮学员、手册、大病历与科室评语）和<strong>「我的责任学员」</strong>（责任导师维度，管理三年全程绑定学员、学员选择与谈话记录审核）。</li>
+        <li><strong>移动端「轮转带教」Tab</strong>：底部导航 <code>轮转带教</code>（<code>activeTab === 'students'</code>）仅承载了指导医师这一条线（「当前带教学员 / 历史带教记录」+ 大病历审核 / 科室评语 / 360 环评），页面内未直接放置「我的责任学员」。</li>
+        <li><strong>数据口径备忘</strong>：移动端 <code>teacherRotationStudents</code> 目前按全科室（<code>stay.dept === "重症医学科"</code>）过滤在轮学员（展示 22 人），而 PC 端「我的轮转学员」按当前登录教师的指导医师身份过滤（展示 2 人）。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-轮转带教-排查现状.png" target="_blank"><img alt="移动端教师端轮转带教现状" src="2026-11-12-对比截图/移动端教师端-轮转带教-排查现状.png"></a>
+      <a href="2026-11-12-对比截图/PC教师端-我的轮转学员-对比参考.png" target="_blank"><img alt="PC教师端我的轮转学员" src="2026-11-12-对比截图/PC教师端-我的轮转学员-对比参考.png" style="margin-top:10px"></a>
+      <a href="2026-11-12-对比截图/PC教师端-我的责任学员-对比参考.png" target="_blank"><img alt="PC教师端我的责任学员" src="2026-11-12-对比截图/PC教师端-我的责任学员-对比参考.png" style="margin-top:10px"></a>
+    </div>
+    <div>
+      <h3>核查结论 · 维持现状（暂不修改代码）</h3>
+      <ul>
+        <li><strong>移动端已有完整「我的责任学员」模块</strong>：由独立组件 <code>&lt;fdek-mentor-mobile&gt;</code>（<code>移动端/shared/mentor-mobile.js</code>）承载，已包含「当前责任学员」「学员选择（互选期）」「历史责任学员」「修改个人简介」以及学员档案 / 谈话记录审核功能，并与 PC 端共用 <code>Rotations</code> 数据。</li>
+        <li><strong>现有触发入口</strong>：挂在移动端教师端<strong>首页「常用服务」及「全部应用 → 带教与评价 → 我的责任学员」</strong>（点击以 <code>overlay === 'mentor'</code> 浮层打开），而非嵌入底部「轮转带教」Tab。</li>
+        <li><strong>处理结论</strong>：经与用户确认，移动端既已具备完整的「我的责任学员」入口与功能，<strong>本次保持现状，不修改业务代码</strong>；若后续需在交互上与 PC 端完全对齐，可将底部「轮转带教」Tab 更名为「我的学员」并在页内增设「我的轮转学员 / 我的责任学员」分段切换（同步按需统一指导医师过滤口径）。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-现有入口.png" target="_blank"><img alt="移动端教师端我的责任学员现有入口" src="2026-11-12-对比截图/移动端教师端-我的责任学员-现有入口.png"></a>
+    </div>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-20" data-date="2026-11-12" data-scope="移动端" data-search="技能中心课程 · 移动端学员端课程详情对齐 pc 端 &amp; 移除 ai 学习推荐虚构预约训练 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 移动端 技能中心课程">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#20</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">技能中心课程 · 移动端学员端课程详情对齐 PC 端 &amp; 移除 AI 学习推荐虚构预约训练</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>技能中心课程 · 移动端学员端课程详情对齐 PC 端 &amp; 移除 AI 学习推荐虚构预约训练</h2>
+  <p>定位：移动端（<code>移动端/学员-儿科示例.html</code>、<code>移动端/student-tdesign.html</code>）→ 学习 → 技能中心课程（单次/专项课程详情） &amp; PC 学员端（<code>王同学.html?page=技能中心课程</code>）→ 学习反馈 → AI 学习推荐。实现文件：<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../shared/js/course-insight.js">course-insight.js</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>Hero 头部缺失封面与 SSOT 字段不一致</strong>：移动端学员端详情缺少课程封面图、课程介绍、授课对象、证书启用标识等字段，且未接入 <code>CourseImplDemo.applyStudent</code> 与 <code>CourseSessionTasks.linkedSession</code> 联动同步。</li>
+        <li><strong>顶部页签与底部操作栏布局不匹配</strong>：顶部仅有「课程任务 / 课程信息」2 个页签，「学习分析」「课程评价与反馈」放在底部 4 按钮里，缺少「学习反馈」「课程证书」页签，且「签到」未做成扫码签到流程。</li>
+        <li><strong>资料与测验读写 Bug</strong>：<code>.pptx / .docx</code> 资料误标为「视频 · 看视频」，点学习无法打开预览或记录 <code>已学习</code>；测验与作业 ID 解析及 SSOT 会话键不一致导致答卷解析异常；列表中缺失「AHA-PALS 儿童高级生命支持」专项课程及分节任务。</li>
+        <li><strong>AI 学习推荐含虚构数据</strong>：<code>shared/js/course-insight.js</code> 的 <code>studentAnalyze</code> 返回了虚构的 5 条「预约训练 · 技能中心模型练习」推荐项，实际无需该类数据。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-修改前.png" target="_blank"><img alt="移动端学员端技能中心课程详情修改前" src="2026-11-12-对比截图/技能中心课程-移动端学员端-修改前.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-AI推荐-修改前.jpg" target="_blank"><img style="margin-top:12px" alt="PC端AI学习推荐含预约训练修改前" src="2026-11-12-对比截图/技能中心课程-AI推荐-修改前.jpg"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>Hero 头部与双端 SSOT 同源</strong>：增加封面图与状态徽标，展示「课程类型 · 培养层次 · 角色」「证书状态」、简介及 2×2 SSOT 字段（授课时间、地点/平台、授课对象、授课教师；专项课程展示节数、开课时间、负责人、授课对象），完整接入 <code>CourseImplDemo.applyStudent</code> 与 <code>linkedSession</code>。</li>
+        <li><strong>顶部 4 页签 + 底部双按钮 + 扫码签到</strong>：顶部统一为「课程任务 / 课程信息 / 学习反馈 / 课程证书」，底部精简为「签到」「讨论区」双按钮；点击「签到」弹出「扫码签到」交互框（取景框扫描 + 拍照/4~6 位数字备用码）并写入 <code>fdek.course.checkins.v1</code>。</li>
+        <li><strong>专项课程 + 学习反馈 + 课程证书 + 资料/测验对齐 PC</strong>：学员课程列表与详情补齐专项课程 <code>AHA-PALS 儿童高级生命支持</code>（含可折叠 <code>第 N 节</code> 任务节点与节列表）；<code>.pptx→课件</code>、<code>.docx→文档</code> 点击「学习」打开 <code>CourseFilePreview</code> 并记录已学；修复测验/作业 <code>source.id</code> 与 SSOT 联动，确保「查看答卷」直接进入解析态；补齐「学习反馈」（4 KPI、我的成绩与评估明细、我的反馈、AI 学习推荐）与「课程证书」（结业条件核验 + 电子证书预览）。</li>
+        <li><strong>移除虚构预约训练推荐</strong>：<code>course-insight.js</code> 删除 <code>预约训练</code> 相关生成逻辑，双端 AI 学习推荐均只保留「课程资料」与「题库练习」。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-课程任务-修改后.png" target="_blank"><img alt="移动端学员端课程详情（封面图+4页签+课程任务+底栏2按钮）" src="2026-11-12-对比截图/技能中心课程-移动端学员端-课程任务-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-扫码签到-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端学员端扫码签到弹窗" src="2026-11-12-对比截图/技能中心课程-移动端学员端-扫码签到-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-学习反馈-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端学员端学习反馈页签" src="2026-11-12-对比截图/技能中心课程-移动端学员端-学习反馈-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-课程证书-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端学员端课程证书页签" src="2026-11-12-对比截图/技能中心课程-移动端学员端-课程证书-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-移动端学员端-专项课程-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端学员端专项课程AHA-PALS分节详情" src="2026-11-12-对比截图/技能中心课程-移动端学员端-专项课程-修改后.png"></a>
+      <a href="2026-11-12-对比截图/技能中心课程-AI推荐-修改后.png" target="_blank"><img style="margin-top:12px" alt="PC端AI学习推荐已移除预约训练" src="2026-11-12-对比截图/技能中心课程-AI推荐-修改后.png"></a>
+    </div>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-21" data-date="2026-11-12" data-scope="双端协同" data-search="全项目头像风格统一 · 写实风头像全面替换为 3d 卡通风格头像（avatar_05.png） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 双端协同 全项目头像风格统一">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#21</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">全项目头像风格统一 · 写实风头像全面替换为 3D 卡通风格头像（avatar_05.png）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        <h2>全项目头像风格统一 · 写实风头像全面替换为 3D 卡通风格头像（avatar_05.png）</h2>
+  <p>定位：PC 端全站侧边栏左下角用户头像、线上建课默认讲师头像、新建课程单 HTML 侧边栏，以及移动端教师端「我的」个人中心 / 我的教学画像 / 基本信息页。实现文件：<a href="../shared/js/nav-render.js">nav-render.js</a>、<a href="../shared/js/online-course-creator.js">online-course-creator.js</a>、<a href="../pages/新建课程/单HTML/index.html">新建课程/单HTML/index.html</a>、<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li>项目同时混用两种头像风格：全站列表/名片使用 3D 卡通风格（<code>shared/assets/avatars/avatar_01~10.png</code>），而 PC 侧边栏、线上建课、新建课程单文件版及移动端教师个人中心仍使用旧版黑边圆框写实人像（<code>doctor-avatar-middle-aged.png</code>），视觉风格割裂。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/头像统一-PC端侧边栏-修改前.png" target="_blank"><img alt="PC端侧边栏旧版写实头像修改前" src="2026-11-12-对比截图/头像统一-PC端侧边栏-修改前.png"></a>
+      <a href="2026-11-12-对比截图/头像统一-移动端个人中心-修改前.png" target="_blank"><img style="margin-top:12px" alt="移动端个人中心旧版写实头像修改前" src="2026-11-12-对比截图/头像统一-移动端个人中心-修改前.png"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>PC 端统一替换</strong>：更新 <code>shared/js/nav-render.js</code>、<code>shared/js/online-course-creator.js</code>（使用 <code>getSharedBaseUrl()</code> 并兼容 <code>?root=1</code>）与 <code>pages/新建课程/单HTML/index.html</code>，将所有 <code>doctor-avatar-middle-aged.png</code> 引用替换为 3D 卡通风格 <code>avatars/avatar_05.png</code>。</li>
+        <li><strong>移动端统一替换</strong>：将 <code>shared/assets/avatars/avatar_01~10.png</code> 同步至 <code>移动端/assets/avatars/</code>（并同步 <code>avatar_05.png</code> 至单 HTML 资产目录），更新 <code>移动端/shared/tdesign-app.js</code> 中个人中心、我的教学画像、基本信息 3 处头像为 <code>./assets/avatars/avatar_05.png</code>。</li>
+        <li><strong>清理旧头像资产</strong>：删除活跃目录中的 4 份 <code>doctor-avatar-middle-aged.png</code> 冗余资源，全仓检索确认 0 处残留引用。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/头像统一-PC端侧边栏-修改后.png" target="_blank"><img alt="PC端侧边栏统一3D卡通头像修改后" src="2026-11-12-对比截图/头像统一-PC端侧边栏-修改后.png"></a>
+      <a href="2026-11-12-对比截图/头像统一-移动端个人中心-修改后.png" target="_blank"><img style="margin-top:12px" alt="移动端个人中心统一3D卡通头像修改后" src="2026-11-12-对比截图/头像统一-移动端个人中心-修改后.png"></a>
+    </div>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-22" data-date="2026-11-12" data-scope="移动端" data-search="我的责任学员 · 移动端教师端 ssot 对齐 pc 端 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 移动端 我的责任学员">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#22</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">我的责任学员 · 移动端教师端 SSOT 对齐 PC 端</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>我的责任学员 · 移动端教师端 SSOT 对齐 PC 端</h2>
+  <p>定位：移动端教师端（<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）首页「常用服务」/「全部应用 → 带教与评价 → 我的责任学员」（<code>overlay === 'mentor'</code>，保留顶栏与入口位置不变） ↔ PC 端（<a href="../pages/责任导师/page.js">pages/责任导师/page.js</a>）。实现文件：<a href="../移动端/shared/mentor-mobile.js">mentor-mobile.js</a>、<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>SSOT 与人数不一致</strong>：原组件默认角色未严格对齐 PC 导师 <code>周文浩</code> 且缺少 <code>people-profile.js / rotation-handbook-link.js</code> 依赖，导致显示 <code>当前责任学员 (0)</code>、<code>历史责任学员 (0)</code>（PC 为 <code>1</code> / <code>2</code>）。</li>
+        <li><strong>功能与信息缺口</strong>：缺失「更换导师 · 待你确认」区块与「剩余名额」校验提示；学员未使用 PC 真实头像图片且缺少工号/绑定方式/当前轮转科室/最近访谈与「轮转手册」操作；访谈审核仅支持查看、缺少「通过 / 退回（必填原因）」与推送通知；修改个人简介未对齐 PC 的 <code>PeopleProfile.BIO_FIELDS</code> 5 字段结构化表单。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-现有入口.png" target="_blank"><img alt="移动端教师端我的责任学员修改前（0人空状态）" src="2026-11-12-对比截图/移动端教师端-我的责任学员-现有入口.png"></a>
+      <a href="2026-11-12-对比截图/PC教师端-我的责任学员-对比参考.png" target="_blank"><img style="margin-top:12px" alt="PC教师端我的责任学员对照参考" src="2026-11-12-对比截图/PC教师端-我的责任学员-对比参考.png"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>SSOT 与人数完全对齐</strong>：对齐 <code>MENTOR_NAME = '周文浩'</code> 与全量 <code>Rotations.MENTOR_STUDENTS / MUTUAL / TRANSFERS</code>，当前展示 <code>1</code> 人（王雨桐，<code>2024001</code>，<code>带教 1 / 3 人</code>）、历史 <code>2</code> 条，并补齐「更换导师 · 待你确认」审批流（查看简介 / 不接收填因 / 接收）及「学员选择」<code>remainSlots</code> 剩余名额校验。</li>
+        <li><strong>卡片字段与操作闭环</strong>：统一采用 <code>PeopleProfile.avatarOf</code> 真实头像，补齐工号、招收年度、绑定方式、当前轮转科室、最近访谈；操作区补齐「查看（4 页签档案抽屉：基本信息/轮转历程/资质与成果/访谈记录）」「轮转手册（联动打开 <code>MobileHandbook</code> <code>mode=&quot;mentor&quot;</code>）」「访谈记录审核（支持通过与必填原因退回 + <code>pushMentorNotice</code>）」。</li>
+        <li><strong>结构化个人简介</strong>：对齐 PC 端 <code>PeopleProfile.BIO_FIELDS</code> 5 字段编辑器（含专业方向必填校验与 <code>MentorDemo.updateMentorBio</code> 持久化），保留原有 <code>← 我的责任学员</code> 顶栏与首页入口。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-修改后.png" target="_blank"><img alt="移动端教师端我的责任学员修改后（王雨桐真实头像与完整操作）" src="2026-11-12-对比截图/移动端教师端-我的责任学员-修改后.png"></a>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-访谈审核-修改后.png" target="_blank"><img alt="移动端教师端访谈记录审核（通过/退回）修改后" src="2026-11-12-对比截图/移动端教师端-我的责任学员-访谈审核-修改后.png"></a>
+        <a href="2026-11-12-对比截图/移动端教师端-我的责任学员-学员选择-修改后.png" target="_blank"><img alt="移动端教师端更换导师待确认与学员选择名额校验修改后" src="2026-11-12-对比截图/移动端教师端-我的责任学员-学员选择-修改后.png"></a>
+      </div>
+    </div>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-23" data-date="2026-11-12" data-scope="移动端" data-search="我的轮转学员（轮转带教） · 移动端教师端 ssot 与全功能对齐 pc 端 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 移动端 我的轮转学员（轮转带教）">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#23</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">我的轮转学员（轮转带教） · 移动端教师端 SSOT 与全功能对齐 PC 端</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>我的轮转学员（轮转带教） · 移动端教师端 SSOT 与全功能对齐 PC 端</h2>
+  <p>定位：移动端教师端（<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a>）底部「轮转带教」Tab（保留标题 <code>轮转带教</code> 与底栏入口不变） ↔ PC 端「我的轮转学员」（<a href="../shared/js/rotation-pc.js">rotation-pc.js</a>）。实现文件：<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../移动端/teacher-tdesign.html">teacher-tdesign.html</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>SSOT 口径不一致</strong>：按全科室过滤展示 <code>22 人</code>（张佳惠等），未按 PC <code>advisorMe()</code> 指导医师（王老师 / 周文浩）收口为当前 <code>2</code> 人（何梓涵、张明轩）与历史 <code>38</code> 条，且列表内残留硬编码的模拟「待审大病历 / 待写评语 / 360° 评价」分组。</li>
+        <li><strong>工具栏、头像与核心功能缺失</strong>：缺少顶部「搜索学员姓名或工号」与「修改个人简介」入口；学员卡片使用首字蓝块而非 PC 真实头像，字段与大病历成绩缺失；仅可看简版手册，缺少「评价表」「<code>NAT21-09</code> 住院病历书写质量评价量表（含在院/出院、AI 预评与分差、一票否决）」「大病历书写整体成绩评定」「催办（24h 冷却 + 消息通知）」以及历史带教「年份 + 月份」双筛选。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-轮转带教-排查现状.png" target="_blank"><img alt="移动端教师端轮转带教修改前（22人科室口径）" src="2026-11-12-对比截图/移动端教师端-轮转带教-排查现状.png"></a>
+      <a href="2026-11-12-对比截图/PC教师端-我的轮转学员-对比参考.png" target="_blank"><img style="margin-top:12px" alt="PC教师端我的轮转学员对照参考" src="2026-11-12-对比截图/PC教师端-我的轮转学员-对比参考.png"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>SSOT 与卡片全面对齐 PC</strong>：<code>advisorMe()</code> 统一收口为 <code>当前带教学员 (2)</code>（何梓涵 <code>2024037</code>、张明轩 <code>2025003</code>）与 <code>历史带教记录 (38)</code>，移除静态模拟分组并保持 <code>role === 'department'</code> 原有逻辑不受影响；卡片采用真实头像图片，展示工号、轮转状态、招收年度、培训专业、轮转科室、轮转时间、责任导师与大病历成绩。</li>
+        <li><strong>工具栏与历史年月筛选</strong>：新增姓名/工号实时搜索框与「修改个人简介」5 字段弹窗入口；「历史带教记录」补齐与 PC 一致的年份 + 月份双下拉筛选（<code>R.historyFilterYears / historyPeriodMatches</code>）。</li>
+        <li><strong>手册审核、<code>NAT21-09</code>、大病历与催办闭环</strong>：补齐「查看手册（含科次切换与评价表详情）」「手册审核（<code>NAT21-09</code> 在院 85 / 出院 100 评分、AI 预评及分差提示、一票否决、必填原因退回）」「大病历书写整体成绩评定（<code>RotationHandbookLink.saveBigrecOverall</code>，保存后刷新为 <code>91 分（优秀）</code> 与 <code>手册审核 · 修改成绩</code>）」以及「催办（24h <code>localStorage</code> 冷却态 <code>已催办</code> + 通知写入）」。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端教师端-轮转带教-修改后.png" target="_blank"><img alt="移动端教师端轮转带教修改后（2人SSOT真实头像卡片与搜索/简介/完整按钮）" src="2026-11-12-对比截图/移动端教师端-轮转带教-修改后.png"></a>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <a href="2026-11-12-对比截图/移动端教师端-轮转带教-NAT21-09审核-修改后.png" target="_blank"><img alt="移动端教师端NAT21-09质量评价与AI预评修改后" src="2026-11-12-对比截图/移动端教师端-轮转带教-NAT21-09审核-修改后.png"></a>
+        <a href="2026-11-12-对比截图/移动端教师端-轮转带教-历史带教筛选-修改后.png" target="_blank"><img alt="移动端教师端历史带教记录38条及年份月份双筛选修改后" src="2026-11-12-对比截图/移动端教师端-轮转带教-历史带教筛选-修改后.png"></a>
+      </div>
+    </div>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-24" data-date="2026-11-12" data-scope="PC端" data-search="pc 学员端 · 轮转手册 &amp; 我的导师（千问风规范、真实头像与全量简介抽屉补齐） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 pc 学员端">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#24</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">PC 学员端 · 轮转手册 &amp; 我的导师（千问风规范、真实头像与全量简介抽屉补齐）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>PC 学员端 · 轮转手册 &amp; 我的导师（千问风规范、真实头像与全量简介抽屉补齐）</h2>
+  <p>定位：PC 学员端（<a href="../student.html">student.html</a>）→ 左侧菜单「我的轮转 / 轮转手册 &amp; 我的导师」。实现文件：<a href="../shared/data/rotations.js">rotations.js</a>、<a href="../shared/js/people-profile.js">people-profile.js</a>、<a href="../pages/我的导师/page.js">我的导师/page.js</a>、<a href="../pages/我的导师/page.css">我的导师/page.css</a>、<a href="../pages/责任导师报名/page.js">责任导师报名/page.js</a>、<a href="../shared/js/handbook-pc.js">handbook-pc.js</a>、<a href="../pages/我的轮转/handbook.css">handbook.css</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>样式与头像缺失</strong>：「我的导师 / 我的指导医师」顶部 Hero 卡与历史表仍沿用旧版朴素列表样式，不符合千问风圆角描边与深灰主按钮规范；当前指导医师（王老师）及历史表均未渲染圆形真实头像，「轮转手册 → 历史轮转科室」指导医师列同样缺头像。</li>
+        <li><strong>导师简介严重丢失</strong>：67 位指导医师仅在极少数记录里配置了完整简介，大量导师点开「查看简介」弹窗后只有电话与邮箱，专业方向、研究方向、带教经历与对学员的期望全空；<code>RESPONSIBLES</code> 亦存在无头像/缺结构化简介问题。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/PC学员端-轮转手册历史科室-修改前.jpg" target="_blank"><img alt="PC学员端轮转手册历史科室修改前（指导医师缺头像）" src="2026-11-12-对比截图/PC学员端-轮转手册历史科室-修改前.jpg"></a>
+      <a href="2026-11-12-对比截图/PC学员端-我的指导医师-修改前.png" target="_blank"><img style="margin-top:12px" alt="PC学员端我的指导医师修改前（缺头像、非千问风、简介缺失）" src="2026-11-12-对比截图/PC学员端-我的指导医师-修改前.png"></a>
+      <a href="2026-11-12-对比截图/PC学员端-轮转手册当前轮转-对比参考.jpg" target="_blank"><img style="margin-top:12px" alt="PC学员端轮转手册当前轮转基准参考" src="2026-11-12-对比截图/PC学员端-轮转手册当前轮转-对比参考.jpg"></a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>千问风重构与圆形头像补全</strong>：<code>pages/我的导师/*</code> 与 <code>pages/责任导师报名/*</code> 全面对齐千问风浅灰浮卡、14px 圆角描边与黑灰主按钮；当前指导医师 Hero、历史指导医师表及「轮转手册 → 历史轮转科室」表格全部渲染真实圆形头像。</li>
+        <li><strong>全量结构化简介 SSOT 兜底</strong>：在 <code>shared/js/people-profile.js</code> 新增 <code>PeopleProfile.buildStructuredAdvisorBio()</code>，为全部 67 位 <code>ADVISORS</code>、6 位 <code>RESPONSIBLES</code> 及当前带教「王老师」补齐「专业方向 / 研究方向 / 带教经历 / 对学员的期望 / 电话 / 邮箱 / 办公地点」4 块结构化档案，抽屉/弹窗与移动详情页彻底告别空简介。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/PC学员端-轮转手册历史科室-修改后.png" target="_blank"><img alt="PC学员端轮转手册历史科室修改后（带圆形头像）" src="2026-11-12-对比截图/PC学员端-轮转手册历史科室-修改后.png"></a>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <a href="2026-11-12-对比截图/PC学员端-我的指导医师-修改后.png" target="_blank"><img alt="PC学员端我的指导医师修改后（千问风与圆形头像）" src="2026-11-12-对比截图/PC学员端-我的指导医师-修改后.png"></a>
+        <a href="2026-11-12-对比截图/PC学员端-指导医师简介抽屉-修改后.png" target="_blank"><img alt="PC学员端指导医师简介抽屉修改后（完整4字段档案）" src="2026-11-12-对比截图/PC学员端-指导医师简介抽屉-修改后.png"></a>
+      </div>
+    </div>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-25" data-date="2026-11-12" data-scope="移动端" data-search="移动端学员端 · 轮转手册 &amp; 我的导师（ssot 对齐 pc 呼吸科、全景条与快捷+登记、修复责任导师错文与头像） 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 移动端 移动端学员端">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#25</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">移动端学员端 · 轮转手册 &amp; 我的导师（SSOT 对齐 PC 呼吸科、全景条与快捷+登记、修复责任导师错文与头像）</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>移动端学员端 · 轮转手册 &amp; 我的导师（SSOT 对齐 PC 呼吸科、全景条与快捷+登记、修复责任导师错文与头像）</h2>
+  <p>定位：移动端学员端（<a href="../移动端/student-tdesign.html">student-tdesign.html</a>）→ 底部「轮转」Tab（轮转手册 &amp; 我的导师）。实现文件：<a href="../移动端/student-tdesign.html">student-tdesign.html</a>、<a href="../移动端/shared/mentor-mobile.js">mentor-mobile.js</a>、<a href="../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../移动端/shared/tdesign-app.css">tdesign-app.css</a>。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>SSOT 与过往科室切换不便</strong>：移动端误显「PICU / 刘国强 / 2/15」，与 PC 当前在科「呼吸科 / 王老师 / 7/24」不一致；缺少横滑全景科室条及「历史轮转科室」底部弹层（含年份/月份双筛选与出科成绩）。</li>
+        <li><strong>轮转中高频登记低效</strong>：要求标准竖排占半屏且只列「名称 / 0 / 查看记录」，缺少直观的 4 列表格「名称 | 要求 | 完成 | + / 明细」及快捷弹出填写与批量/分页交互。</li>
+        <li><strong>「我的导师」错写教师端文案且缺头像</strong>：责任导师卡片误渲染成教师视角的「我的责任学员 · 前往常用服务」；指导医师仅显示文字且未接入 <code>PeopleProfile</code> 圆形头像与完整简介，历史指导医师区块缺失。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/移动端学员端-轮转手册-修改前.png" target="_blank"><img alt="移动端学员端轮转手册修改前（PICU口径不一致与竖排低效列表）" src="2026-11-12-对比截图/移动端学员端-轮转手册-修改前.png"></a>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <a href="2026-11-12-对比截图/移动端学员端-我的导师-修改前.png" target="_blank"><img alt="移动端学员端我的导师修改前" src="2026-11-12-对比截图/移动端学员端-我的导师-修改前.png"></a>
+        <a href="2026-11-12-对比截图/移动端学员端-我的导师错文红框-修改前.png" target="_blank"><img alt="移动端学员端我的导师红框错文与缺头像修改前" src="2026-11-12-对比截图/移动端学员端-我的导师错文红框-修改前.png"></a>
+      </div>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>SSOT 收口 + 历史科室一键弹窗</strong>：顶部 Hero 与全景科室条对齐 PC（<code>呼吸科 · 王老师</code>、<code>7/24</code>、<code>73/91</code>、<code>2/2(13/43)</code>），点击 <code>7/24 历史轮转科室 ›</code> 弹出「历史轮转科室 (7)」半屏抽屉，支持年份/月份双筛选与直达该科手册。</li>
+        <li><strong>4 列表格 + 一键 <code>+</code> 快捷登记</strong>：分类芯片与通用活动双行精简排列，表格对齐「名称 / 要求 / 完成 / 操作（蓝色圆形 <code>+</code> 与明细）」，点击 <code>+</code> 直接打开预填病种登记弹窗并即时回刷完成数。</li>
+        <li><strong>「我的导师」彻底纠偏与头像闭环</strong>：替换为学员视角的「我的责任导师（周文浩 · 正式导师 · 查看详情→全量档案与面谈记录）」，补齐当前指导医师（王老师）+ 7 位历史指导医师（支持年月筛选），全卡片使用圆形头像与结构化简介抽屉。</li>
+      </ul>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <a href="2026-11-12-对比截图/移动端学员端-轮转手册-修改后.png" target="_blank"><img alt="移动端学员端轮转手册修改后（呼吸科全景条与4列表格+快捷按钮）" src="2026-11-12-对比截图/移动端学员端-轮转手册-修改后.png"></a>
+        <a href="2026-11-12-对比截图/移动端学员端-历史轮转科室-修改后.png" target="_blank"><img alt="移动端学员端历史轮转科室底部抽屉修改后" src="2026-11-12-对比截图/移动端学员端-历史轮转科室-修改后.png"></a>
+        <a href="2026-11-12-对比截图/移动端学员端-我的导师-修改后.png" target="_blank"><img alt="移动端学员端我的导师修改后（责任导师+当前王老师+历史7人）" src="2026-11-12-对比截图/移动端学员端-我的导师-修改后.png"></a>
+        <a href="2026-11-12-对比截图/移动端学员端-我的责任导师详情-修改后.png" target="_blank"><img alt="移动端学员端我的责任导师详情与结构化简介修改后" src="2026-11-12-对比截图/移动端学员端-我的责任导师详情-修改后.png"></a>
+      </div>
+    </div>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-12-sec-27" data-date="2026-11-12" data-scope="PC端" data-search="pc 端教学活动签到弹窗 · 去除点击计数、自动检测阶段状态与已结束态二维码位置补签 2026-11-12 pc与移动端大版本ui改版及功能演进 大版本 pc端 pc 端教学活动签到弹窗">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#27</span>
+            <span class="badge-date">2026-11-12</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">PC 端教学活动签到弹窗 · 去除点击计数、自动检测阶段状态与已结束态二维码位置补签</h2>
+          <div class="item-meta">2026-11-12 PC与移动端大版本UI改版及功能演进</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>PC 端教学活动签到弹窗 · 去除点击计数、自动检测阶段状态与已结束态二维码位置补签</h2>
+  <p>定位：PC 科室管理员端（<a href="../程主任.html">程主任.html</a>）与 PC 教师端（<a href="../王老师.html">王老师.html</a>）→ 临床教学活动实施（<a href="../pages/教学活动实施/page.js">教学活动实施/page.js</a>、<a href="../pages/教学活动实施/page.css">教学活动实施/page.css</a>）与通用签到共享存储（<a href="../shared/js/activity-signin.js">activity-signin.js</a>）。</p>
+  <div class="pair">
+    <div>
+      <h3>修改前 · 存在问题</h3>
+      <ul>
+        <li><strong>依靠点击计数决定阶段</strong>：原逻辑通过 <code>attendanceClickCounts[key] = (clicks % 2 === 1) ? 'in' : 'out'</code> 简单依据按钮被点击奇偶次切换 Tab，无法反映真实的考勤生命周期状态。</li>
+        <li><strong>缺少生命周期自动检测</strong>：当「活动开始签到」结束后，再次点击「发起签到」仍可能因点击计数重置而落回开始签到，缺少基于阶段完成状态的智能落点。</li>
+        <li><strong>已结束阶段缺少详情与补签能力</strong>：一旦签到结束，原弹窗直接隐藏左侧区域或无法补签；缺勤、迟到学员无法在已结束轮次中扫码补录。</li>
+      </ul>
+      <a href="2026-11-12-对比截图/PC临床教学活动签到-修改前.jpg" target="_blank">
+        <img alt="PC临床教学活动签到修改前" src="2026-11-12-对比截图/PC临床教学活动签到-修改前.jpg">
+      </a>
+    </div>
+    <div>
+      <h3>修改后 · 改动说明</h3>
+      <ul>
+        <li><strong>去除点击计数，改为基于业务状态自动检测</strong>：彻底移除 <code>attendanceClickCounts</code>。根据活动与各阶段真实状态（<code>isPhaseEnded</code>、<code>_signInFinished</code>、<code>_signOutFinished</code> 及 <code>ActivitySignin</code> 持久化）自动识别当前环节。</li>
+        <li><strong>开始签到结束后自动落点结束签到 Tab</strong>：当「活动开始签到」已结束且「活动结束签到」未结束时，点击「发起签到」自动默认激活「活动结束签到」Tab；用户亦可自由点击顶部 Tab 切换回「活动开始签到」。</li>
+        <li><strong>已结束 Tab 展示签到详情，二维码位置显示补签按钮</strong>：对于已结束的签到阶段，切换查看该 Tab 呈现「签到详情」与名单明细；原二维码位置无缝呈现「补签」功能卡片与按钮，保持双栏规整布局。</li>
+        <li><strong>点击补签即时展示补签二维码</strong>：点击「补签」按钮后，原位动态呈现补签二维码与独立补签码，倒计时实时刷新，支持学员扫码补签并实时同步出勤状态；提供「结束补签」以便随时安全退出补签模式。</li>
+      </ul>
+      <div style="display:grid;grid-template-columns:1fr;gap:12px;">
+        <a href="2026-11-12-对比截图/PC临床教学活动自动切换结束签到-修改后.png" target="_blank">
+          <img alt="PC临床教学活动自动切换结束签到修改后" src="2026-11-12-对比截图/PC临床教学活动自动切换结束签到-修改后.png">
+        </a>
+        <a href="2026-11-12-对比截图/PC临床教学活动签到详情-补签按钮.png" target="_blank">
+          <img alt="PC临床教学活动签到详情补签按钮修改后" src="2026-11-12-对比截图/PC临床教学活动签到详情-补签按钮.png">
+        </a>
+        <a href="2026-11-12-对比截图/PC临床教学活动签到-补签二维码.png" target="_blank">
+          <img alt="PC临床教学活动签到补签二维码修改后" src="2026-11-12-对比截图/PC临床教学活动签到-补签二维码.png">
+        </a>
+      </div>
+    </div>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-11-sec-01" data-date="2026-11-11" data-scope="PC端" data-search="意见 10 · 科室管理员活动详情：去掉「一起全选分组/全选全部」+ 修改前二次确认 第三轮走查意见验收与定位修复 第三轮走查 pc端">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#01</span>
+            <span class="badge-date">2026-11-11</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">意见 10 · 科室管理员活动详情：去掉「一起全选分组/全选全部」+ 修改前二次确认</h2>
+          <div class="item-meta">第三轮走查意见验收与定位修复</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>意见 10 · 科室管理员活动详情：去掉「一起全选分组/全选全部」+ 修改前二次确认</h2>
+  <div class="meta">pages/教学活动实施/page.js · 提交见 git 历史</div>
+  <div class="note">删除「一起全选分组」按钮与「★ 一起全选分组」胶囊、「全选全部」按钮（详情抽屉与废弃发起弹窗两处）；保留「清空」与按分组逐个全选胶囊。「确定修改并通知学员」改为先弹二次确认（将通知 N 名学员及主讲教师）。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 详情抽屉（待开始）</figcaption><img src="2026-11-11-对比截图/意见10-前-01-详情抽屉.png"></figure>
+    <figure class="after"><figcaption>修改后 · 详情抽屉</figcaption><img src="2026-11-11-对比截图/意见10-后-01-详情抽屉.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 无二次确认（点击直接保存并通知）</figcaption><img src="2026-11-11-对比截图/意见10-前-01-详情抽屉.png"></figure>
+    <figure class="after"><figcaption>修改后 · 二次确认弹窗</figcaption><img src="2026-11-11-对比截图/意见10-后-02-二次确认弹窗.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 签到情况页签</figcaption><img src="2026-11-11-对比截图/意见10-前-02-签到页签.png"></figure>
+    <figure class="after"><figcaption>修改后 · 签到情况页签</figcaption><img src="2026-11-11-对比截图/意见10-后-03-签到页签.png"></figure>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-11-sec-02" data-date="2026-11-11" data-scope="双端协同" data-search="意见 6 · 护理专区不再标绿 第三轮走查意见验收与定位修复 第三轮走查 双端协同">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#02</span>
+            <span class="badge-date">2026-11-11</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">意见 6 · 护理专区不再标绿</h2>
+          <div class="item-meta">第三轮走查意见验收与定位修复</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>意见 6 · 护理专区不再标绿</h2>
+  <div class="meta">shared/styles/online-course-hub.css · shared/js/online-course-hub.js</div>
+  <div class="note">绿标实际出现在「技能中心课程开发 → 引用线上课程」弹窗（复用 online-course-hub 组件，其自带样式仍为绿色 #00a870）。已把 hub 的护理专区筛选页签、标签、卡片角标统一改为与「线上课程」页面一致的口径（橙色 #b54708 / 白底橙字），并把列表视图的 a-tag 由 green 改为 gray。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 卡片角标绿底白字</figcaption><img src="2026-11-11-对比截图/意见6-前-02-引用弹窗-护理专区.png"></figure>
+    <figure class="after"><figcaption>修改后 · 角标白底橙字（与线上课程页一致）</figcaption><img src="2026-11-11-对比截图/意见6-后-02-引用弹窗-护理专区.png"></figure>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-11-sec-03" data-date="2026-11-11" data-scope="PC端" data-search="意见 9 · 教师端「发起教学活动」按管理员端口径对齐 + 增加「上传资料」 第三轮走查意见验收与定位修复 第三轮走查 pc端">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#03</span>
+            <span class="badge-date">2026-11-11</span>
+            <span class="badge-scope">PC端</span>
+          </div>
+          <h2 class="item-title">意见 9 · 教师端「发起教学活动」按管理员端口径对齐 + 增加「上传资料」</h2>
+          <div class="item-meta">第三轮走查意见验收与定位修复</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>意见 9 · 教师端「发起教学活动」按管理员端口径对齐 + 增加「上传资料」</h2>
+  <div class="meta">pages/临床教学活动实施/page.js（教师端） · 仲裁基准：pages/教学活动实施/page.js（管理员端）</div>
+  <div class="note">按「管理员 vs 教师以管理员为准」：教师端补齐管理员端字段——活动时长、主讲人（多选可输入）、主办科室，并新增 PM 要求的「上传资料」上传区；草稿保存时一并写入时长/主讲人/科室/资料名称。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 仅类型/名称/时间/人数/地点</figcaption><img src="2026-11-11-对比截图/意见9-前-01-教师端发起弹窗.png"></figure>
+    <figure class="after"><figcaption>修改后 · 对齐管理员字段 + 上传资料</figcaption><img src="2026-11-11-对比截图/意见9-后-01-教师端发起弹窗.png"></figure>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-11-sec-04" data-date="2026-11-11" data-scope="双端协同" data-search="意见 11 · 临床教学活动详情：升级二级页面 + 名单归签到 + 结束活动/签退 第三轮走查意见验收与定位修复 第三轮走查 双端协同">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#04</span>
+            <span class="badge-date">2026-11-11</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">意见 11 · 临床教学活动详情：升级二级页面 + 名单归签到 + 结束活动/签退</h2>
+          <div class="item-meta">第三轮走查意见验收与定位修复</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>意见 11 · 临床教学活动详情：升级二级页面 + 名单归签到 + 结束活动/签退</h2>
+  <div class="meta">pages/教学活动实施/page.js + page.css（管理员端，仲裁基准）</div>
+  <div class="note">① 活动详情由 720px 抽屉改为<strong>二级页面</strong>（返回 + 页面级操作区）；② 「教学活动详情」页签只保留事实信息，<strong>名单移入「教学活动签到情况」</strong>，并为每人标注未签到/已签到/已签退；③ 进行中状态新增<strong>「结束活动」</strong>按钮 → 结束活动·签退弹窗（签退核验码 + 签退码 + 结束说明），确认后活动置「已完成」、已签到学员记入签退名单，学员凭码完成签退。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 详情为弹窗抽屉（内含名单）</figcaption><img src="2026-11-11-对比截图/意见11-前-01-详情抽屉.png"></figure>
+    <figure class="after"><figcaption>修改后 · 二级页面（详情只放事实信息）</figcaption><img src="2026-11-11-对比截图/意见11-后-01-详情二级页面.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 名单在详情页签内</figcaption><img src="2026-11-11-对比截图/意见11-前-02-签到页签.png"></figure>
+    <figure class="after"><figcaption>修改后 · 名单归签到情况页签（带考勤状态）</figcaption><img src="2026-11-11-对比截图/意见11-后-02-签到情况页签.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 无结束活动入口</figcaption><img src="2026-11-11-对比截图/意见11-前-01-进行中活动详情.png"></figure>
+    <figure class="after"><figcaption>修改后 · 「结束活动」+ 签退码弹窗</figcaption><img src="2026-11-11-对比截图/意见11-后-03-签退码.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 教师端详情为抽屉</figcaption><img src="2026-11-11-对比截图/意见11-教师前-01-教师端详情.png"></figure>
+    <figure class="after"><figcaption>修改后 · 教师端详情二级页面（含结束活动）</figcaption><img src="2026-11-11-对比截图/意见11-教师后-01-教师端详情.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 教师端无签到明细视图</figcaption><img src="2026-11-11-对比截图/意见11-教师前-02-教师端签到情况.png"></figure>
+    <figure class="after"><figcaption>修改后 · 教师端签到情况页签（名单与状态）</figcaption><img src="2026-11-11-对比截图/意见11-教师后-02-教师端签到情况.png"></figure>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-11-sec-05" data-date="2026-11-11" data-scope="移动端" data-search="意见 1 · 移动端课程详情：去掉「课前信」独立 tab，改为课前任务中的一项 第三轮走查意见验收与定位修复 第三轮走查 移动端">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#05</span>
+            <span class="badge-date">2026-11-11</span>
+            <span class="badge-scope">移动端</span>
+          </div>
+          <h2 class="item-title">意见 1 · 移动端课程详情：去掉「课前信」独立 Tab，改为课前任务中的一项</h2>
+          <div class="item-meta">第三轮走查意见验收与定位修复</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>意见 1 · 移动端课程详情：去掉「课前信」独立 Tab，改为课前任务中的一项</h2>
+  <div class="meta">移动端/shared/tdesign-app.js（学员端 + 教师端）</div>
+  <div class="note">按「移动端跟 PC 端」原则：PC 端课前信是<strong>课前任务列表中的一项</strong>，移动端原为独立 Tab。现删除两端「课前信」Tab，课前阶段新增「课前信」任务项（课前任务共 6 项），点击后以底部抽屉展示课前信内容（发放时间 + 分段内容 + 自动填充/选填标记）。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 顶部有「课前信」独立 Tab</figcaption><img src="2026-11-11-对比截图/意见1-前-01-课程任务页签.png"></figure>
+    <figure class="after"><figcaption>修改后 · 课前信成为课前任务中的一项</figcaption><img src="2026-11-11-对比截图/意见1-后-01-课程任务页签.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 需切到课前信 Tab 查看</figcaption><img src="2026-11-11-对比截图/意见1-前-02-课前信内容.png"></figure>
+    <figure class="after"><figcaption>修改后 · 点击课前信任务项弹出内容抽屉</figcaption><img src="2026-11-11-对比截图/意见1-后-02-课前信内容.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 学员端同样为独立 Tab</figcaption><img src="2026-11-11-对比截图/意见1-前-02-课前信内容.png"></figure>
+    <figure class="after"><figcaption>修改后 · 学员端课前任务含课前信</figcaption><img src="2026-11-11-对比截图/意见1-后-学员-01-课程任务页签.png"></figure>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-11-sec-06" data-date="2026-11-11" data-scope="双端协同" data-search="意见 2 · 发放课程证书：新增规则设置 + 每人达标结果 第三轮走查意见验收与定位修复 第三轮走查 双端协同">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#06</span>
+            <span class="badge-date">2026-11-11</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">意见 2 · 发放课程证书：新增规则设置 + 每人达标结果</h2>
+          <div class="item-meta">第三轮走查意见验收与定位修复</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>意见 2 · 发放课程证书：新增规则设置 + 每人达标结果</h2>
+  <div class="meta">pages/课程实施/page.js（管理端实际加载）+ pages/技能中心课程/views/implementation.js · 两处同源同步</div>
+  <div class="note">① 新增<strong>「规则设置」</strong>只读区块（发证管理配置的 3 条条件：课程任务完成率 / 结课考核成绩 / 完成课程评价）；② 发放对象每人增加<strong>达标结果</strong>标签（已达标 / 未达标 / 已发证），悬停显示逐项核验明细（完成率、成绩、评价状态）。达标判定与学员端证书核验取同一份任务与作答数据。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 仅证书版式与发放对象</figcaption><img src="2026-11-11-对比截图/意见2-前-01-发放课程证书-规则设置.png"></figure>
+    <figure class="after"><figcaption>修改后 · 新增规则设置区块</figcaption><img src="2026-11-11-对比截图/意见2-后-01-发放课程证书-规则设置.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 名单只有姓名/科室/年级</figcaption><img src="2026-11-11-对比截图/意见2-前-02-发放对象-达标结果.png"></figure>
+    <figure class="after"><figcaption>修改后 · 每人标注已达标 / 未达标</figcaption><img src="2026-11-11-对比截图/意见2-后-02-发放对象-达标结果.png"></figure>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-11-sec-07" data-date="2026-11-11" data-scope="双端协同" data-search="意见 5 · ai 学习推荐：只推荐学习资料，不写薄弱环节、不推荐其他课程 第三轮走查意见验收与定位修复 第三轮走查 双端协同">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#07</span>
+            <span class="badge-date">2026-11-11</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">意见 5 · AI 学习推荐：只推荐学习资料，不写薄弱环节、不推荐其他课程</h2>
+          <div class="item-meta">第三轮走查意见验收与定位修复</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>意见 5 · AI 学习推荐：只推荐学习资料，不写薄弱环节、不推荐其他课程</h2>
+  <div class="meta">shared/js/course-insight.js（fd-study-advisor 组件，学员端「我的成绩与评估 → AI 学习推荐」）</div>
+  <div class="note">去掉「薄弱点」与「自评与导师评估不一致」两块分析结论；推荐列表只保留本课程的学习资料类（课程资料 / 题库练习 / 预约训练），去掉「相关课程」跨课程推荐；推荐理由文案改为只说明资料本身（不再出现"对应失分项 / 本次失分病种 / 操作条目未达标"）。<br>注：该组件依赖真实会话作答数据，学员端页面需预置课次才能出结果，故此处用组件级对照页取证（加载的是生产组件本身）。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 输出薄弱点并推荐其他课程</figcaption><img src="2026-11-11-对比截图/意见5-前-01-AI学习推荐结果.png"></figure>
+    <figure class="after"><figcaption>修改后 · 只输出学习资料推荐</figcaption><img src="2026-11-11-对比截图/意见5-后-01-AI学习推荐结果.png"></figure>
+  </div>
+
+      </div>
+    </article>
+  
+
+    <article class="item-card" id="2026-11-11-sec-08" data-date="2026-11-11" data-scope="双端协同" data-search="意见 4 · 线上课程去掉「自评 / 课程反馈」（两类任务全局下线） 第三轮走查意见验收与定位修复 第三轮走查 双端协同">
+      <div class="item-header">
+        <div class="item-title-wrap">
+          <div class="badge-row">
+            <span class="badge-num">#08</span>
+            <span class="badge-date">2026-11-11</span>
+            <span class="badge-scope">双端协同</span>
+          </div>
+          <h2 class="item-title">意见 4 · 线上课程去掉「自评 / 课程反馈」（两类任务全局下线）</h2>
+          <div class="item-meta">第三轮走查意见验收与定位修复</div>
+        </div>
+      </div>
+      <div class="item-body">
+        
+  <h2>意见 4 · 线上课程去掉「自评 / 课程反馈」（两类任务全局下线）</h2>
+  <div class="meta">pages/官网/course.js · pages/官网/courses-data.js · shared/data/online-course-demo.js · pages/我的课程/page.js · pages/我的授课/page.js · pages/课程实施/page.js · pages/技能中心课程/views/implementation.js · 移动端/shared/tdesign-app.js</div>
+  <div class="note">按 PM 确认的「全局下线」口径：① 线上课程目录模板与演示数据不再生成「课程目标达成自评」「课程体验反馈」任务；② 各端课前/课中/课后任务计划移除「课程综合评价（学员自评）」「课程满意度反馈问卷」（学员端 / 教师端 / 管理端 / 移动端同源同步）；③ 线上课程结业条件由三项改为两项（去掉「提交课程评价」），官网 / 学员端 / 移动端同步；④ 官网课程详情删除「课程评价」页签与头部评分。技能中心课的「课后学员反馈问卷」（我的授课 · 学习反馈）不在范围内，保留。</div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 官网有「课程评价」页签与头部评分，结业条件三项</figcaption><img src="2026-11-11-对比截图/意见4-前-01-官网-课程详情与结业条件.png"></figure>
+    <figure class="after"><figcaption>修改后 · 页签收敛为两个，结业条件两项</figcaption><img src="2026-11-11-对比截图/意见4-后-01-官网-课程详情与结业条件.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 目录末章含「课程目标达成自评」与「课程体验反馈」</figcaption><img src="2026-11-11-对比截图/意见4-前-02-学员端-课程目录末章.png"></figure>
+    <figure class="after"><figcaption>修改后 · 目录只剩综合测验与结课作业</figcaption><img src="2026-11-11-对比截图/意见4-后-02-学员端-课程目录末章.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 学员端结业条件三项（含提交课程评价）</figcaption><img src="2026-11-11-对比截图/意见4-前-03-学员端-课程证书.png"></figure>
+    <figure class="after"><figcaption>修改后 · 两项全部满足后进入发证名单</figcaption><img src="2026-11-11-对比截图/意见4-后-03-学员端-课程证书.png"></figure>
+  </div>
+  <div class="pair">
+    <figure class="before"><figcaption>修改前 · 移动端结业条件三项</figcaption><img src="2026-11-11-对比截图/意见4-前-04-移动端-课程证书.png"></figure>
+    <figure class="after"><figcaption>修改后 · 移动端同步为两项</figcaption><img src="2026-11-11-对比截图/意见4-后-04-移动端-课程证书.png"></figure>
+  </div>
+
+      </div>
+    </article>
+  
+</main>
+
+<div class="floating-nav">
+  <a href="#" class="fab">↑ 回到顶部</a>
+  <a href="index.html" class="fab" style="background:#2b5a9e">📂 返回归档总览</a>
+</div>
+
+<!-- Lightbox Modal -->
+<div id="lightbox">
+  <button id="lbClose">&times;</button>
+  <button class="lb-arrow lb-prev" id="lbPrev">&#10094;</button>
+  <img id="lbImg" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="">
+  <div id="lbCaption"></div>
+  <button class="lb-arrow lb-next" id="lbNext">&#10095;</button>
+</div>
+
+<script>
+(function() {
+  const cards = document.querySelectorAll('.item-card');
+  const dateChips = document.querySelectorAll('#dateFilters .chip');
+  const scopeChips = document.querySelectorAll('#scopeFilters .chip');
+  const searchInput = document.getElementById('searchInput');
+  const counterPill = document.getElementById('counterPill');
+  const btnSideBySide = document.getElementById('btnSideBySide');
+  const btnStacked = document.getElementById('btnStacked');
+  
+  let curDate = 'all';
+  let curScope = 'all';
+  let curSearch = '';
+  
+  function updateFilter() {
+    let visible = 0;
+    cards.forEach(c => {
+      const d = c.dataset.date;
+      const s = c.dataset.scope;
+      const t = c.dataset.search || '';
+      
+      const matchD = (curDate === 'all' || d === curDate);
+      const matchS = (curScope === 'all' || s === curScope);
+      const matchT = (!curSearch || t.includes(curSearch));
+      
+      if (matchD && matchS && matchT) {
+        c.style.display = '';
+        visible++;
+      } else {
+        c.style.display = 'none';
+      }
+    });
+    counterPill.textContent = '显示 ' + visible + ' / ' + cards.length + ' 项';
+  }
+  
+  dateChips.forEach(btn => {
+    btn.addEventListener('click', () => {
+      dateChips.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      curDate = btn.dataset.date;
+      updateFilter();
+    });
+  });
+  
+  scopeChips.forEach(btn => {
+    btn.addEventListener('click', () => {
+      scopeChips.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      curScope = btn.dataset.scope;
+      updateFilter();
+    });
+  });
+  
+  searchInput.addEventListener('input', (e) => {
+    curSearch = e.target.value.trim().toLowerCase();
+    updateFilter();
+  });
+  
+  btnSideBySide.addEventListener('click', () => {
+    document.body.classList.remove('mode-stacked');
+    btnSideBySide.classList.add('active');
+    btnStacked.classList.remove('active');
+  });
+  
+  btnStacked.addEventListener('click', () => {
+    document.body.classList.add('mode-stacked');
+    btnStacked.classList.add('active');
+    btnSideBySide.classList.remove('active');
+  });
+  
+  // Lightbox
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCaption = document.getElementById('lbCaption');
+  const lbClose = document.getElementById('lbClose');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  
+  let currentImgList = [];
+  let currentImgIndex = -1;
+  
+  function getVisibleImages() {
+    return Array.from(document.querySelectorAll('.item-card'))
+      .filter(c => c.style.display !== 'none')
+      .flatMap(c => Array.from(c.querySelectorAll('img')));
+  }
+  
+  document.addEventListener('click', e => {
+    const img = e.target.closest('img');
+    if (img && !img.closest('#lightbox')) {
+      currentImgList = getVisibleImages();
+      currentImgIndex = currentImgList.indexOf(img);
+      openLb(img);
+    }
+  });
+  
+  function openLb(img) {
+    if (!img) return;
+    lb.classList.add('active');
+    lbImg.src = img.src;
+    lbCaption.textContent = img.dataset.cap || img.alt || '对比大图';
+  }
+  
+  function closeLb() {
+    lb.classList.remove('active');
+    lbImg.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+  }
+  
+  lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', e => {
+    if (e.target === lb) closeLb();
+  });
+  
+  lbPrev.addEventListener('click', e => {
+    e.stopPropagation();
+    if (currentImgIndex > 0) {
+      currentImgIndex--;
+      openLb(currentImgList[currentImgIndex]);
+    }
+  });
+  
+  lbNext.addEventListener('click', e => {
+    e.stopPropagation();
+    if (currentImgIndex < currentImgList.length - 1) {
+      currentImgIndex++;
+      openLb(currentImgList[currentImgIndex]);
+    }
+  });
+  
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft' && currentImgIndex > 0) {
+      currentImgIndex--;
+      openLb(currentImgList[currentImgIndex]);
+    }
+    if (e.key === 'ArrowRight' && currentImgIndex < currentImgList.length - 1) {
+      currentImgIndex++;
+      openLb(currentImgList[currentImgIndex]);
+    }
+  });
+})();
+</script>
+</body>
+</html>

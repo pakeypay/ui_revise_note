@@ -53,16 +53,16 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-16 · PC端「年度课程计划」视角权限解耦与弹窗补齐修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">5</span> 项修改记录 · 严格剥离跨角色视角越权，补齐自主添加课程与真实课程联动学习闭环，完善批量装配课程多维筛选</div>
+  <div class="sub">共 <span id="index-total-count">4</span> 项修改记录 · 严格剥离跨角色视角越权，完善批量装配课程多维筛选，优化学员端课程学习详情直达与未选课提醒</div>
 </header>
 <main>
   <!-- 顶部总索引 -->
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">5</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">4</span> 项</div>
       <div class="summary-badge"><strong>改造核心</strong>：双端视角解耦（学员不看全院配置 / 管理员不看学员视角）</div>
-      <div class="summary-badge"><strong>功能补齐</strong>：自主选修加课弹窗 + 点击「学习」联动真实系统学习平台</div>
+      <div class="summary-badge"><strong>功能补齐</strong>：点击「学习」直达真实系统课程详情 + 未选课智能拦截提醒</div>
       <div class="summary-badge"><strong>交互增强</strong>：批量装配课程弹窗「更多筛选」多维浮层与实时联动</div>
     </div>
     <div class="index-toolbar">
@@ -92,28 +92,21 @@
         </tr>
         <tr data-scope="PC端">
           <td>02</td>
-          <td><a href="#sec-02"><strong>学员端 · 补齐「自主添加课程」与「学习」业务弹窗</strong></a></td>
-          <td><span class="scope-tag">PC端</span></td>
-          <td>学员端 → 年度课程计划 → 自主添加课程 / 列表学习按钮</td>
-          <td><code>pages/年度学习计划/page.js</code> 等 · 截图对比（2 张）</td>
-        </tr>
-        <tr data-scope="PC端">
-          <td>03</td>
-          <td><a href="#sec-03"><strong>管理员端 · 移除学员个人视角切换胶囊</strong></a></td>
+          <td><a href="#sec-02"><strong>管理员端 · 移除学员个人视角切换胶囊</strong></a></td>
           <td><span class="scope-tag">PC端</span></td>
           <td>管理员端 → 课程管理 → 课程工作台 / 年度课程计划</td>
           <td><code>pages/课程工作台/page.js</code> 等 · 截图对比（2 张）</td>
         </tr>
         <tr data-scope="PC端">
-          <td>04</td>
-          <td><a href="#sec-04"><strong>批量装配课程弹窗 · 「更多筛选」支持交互展开与多维条件过滤</strong></a></td>
+          <td>03</td>
+          <td><a href="#sec-03"><strong>批量装配课程弹窗 · 「更多筛选」支持交互展开与多维条件过滤</strong></a></td>
           <td><span class="scope-tag">PC端</span></td>
           <td>管理端 → 年度课程计划 → 配置方案 → 批量加课 → 更多筛选</td>
           <td><code>pages/年度学习计划/page.js</code> 等 · 截图对比（2 张）</td>
         </tr>
         <tr data-scope="PC端">
-          <td>05</td>
-          <td><a href="#sec-05"><strong>学员端 · 优化「学习」交互：直达真实课程详情，未选课智能提醒，取消无必要证书弹窗</strong></a></td>
+          <td>04</td>
+          <td><a href="#sec-04"><strong>学员端 · 优化「学习」交互：直达真实课程详情，未选课智能提醒，取消无必要证书弹窗</strong></a></td>
           <td><span class="scope-tag">PC端</span></td>
           <td>学员端 → 我的学习 → 年度课程计划 → 列表「学习」按钮</td>
           <td><code>pages/年度学习计划/page.js</code> 等 · 截图对比（2 张）</td>
@@ -153,44 +146,9 @@
     </div>
   </section>
 
-  <!-- ══════════════════════ 02 补齐自主加课与学习弹窗 ══════════════════════ -->
+  <!-- ══════════════════════ 02 管理员端移除学员视角 ══════════════════════ -->
   <section id="sec-02">
-    <h2>02. 学员端 · 补齐「自主添加课程」与「学习」业务弹窗</h2>
-    <div class="meta-path">
-      <strong>定位路径</strong>：学员端 → 年度课程计划 → 顶部「自主添加课程」按钮 / 课程表格右侧「学习」按钮<br>
-      <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code>
-    </div>
-    <div class="pair">
-      <div>
-        <h3><span class="badge-tag before">修改前</span> 存在问题</h3>
-        <ul>
-          <li><strong>功能静默阻断</strong>：点击顶部「自主添加课程」按钮无任何反应；点击课程列表行操作列「学习」按钮同样无任何弹窗展开。</li>
-          <li><strong>模板缺失</strong>：底层代码中声明了 <code>studentAddCourseModalVisible</code> 与多套学习状态，但 HTML 模板中完全遗漏了弹窗 DOM 结构，导致交互链路断裂。</li>
-        </ul>
-        <div style="background:#f8fafc;border:1px dashed #d0d5dd;border-radius:8px;padding:32px 20px;text-align:center;color:#64748b;margin-top:10px;">
-          <div style="font-size:15px;font-weight:600;color:#344054;">修改前：点击按钮无任何弹窗响应</div>
-          <p style="font-size:13px;margin:8px 0 0;">（底层有状态变更但无弹窗 UI 容器）</p>
-        </div>
-      </div>
-      <div>
-        <h3><span class="badge-tag after">修改后</span> 改造落地</h3>
-        <ul>
-          <li><strong>复用标准课程池装配抽屉</strong>：拒绝另起炉灶与样式割裂，直接复用成熟的「课程池装配大抽屉（弹窗 B）」，自适应切换为「自主添加选修课程」模式；内置 37 门全量课程池，且包含「更多筛选」交互气泡（归属基地/课程结构/来源/授课形式/精品课）多维联动筛选能力。</li>
-          <li><strong>分类学习弹窗</strong>：点击「学习」根据课程属性弹出对应模态窗（线上微课理论修读、虚拟病例临床思维推演、自适应学习弱项攻关、技能实训预约排课、达标成绩与证书）。</li>
-        </ul>
-        <a href="2026-11-16-对比截图/年度课程计划-自主添加课程弹窗-修改后.png" target="_blank">
-          <img src="2026-11-16-对比截图/年度课程计划-自主添加课程弹窗-修改后.png" alt="自主添加课程弹窗">
-        </a>
-        <a href="2026-11-16-对比截图/年度课程计划-学习预约弹窗-修改后.png" target="_blank" style="margin-top:14px;display:block;">
-          <img src="2026-11-16-对比截图/年度课程计划-学习预约弹窗-修改后.png" alt="技能实训预约弹窗">
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════ 03 管理员端移除学员视角 ══════════════════════ -->
-  <section id="sec-03">
-    <h2>03. 管理员端 · 移除学员个人视角切换胶囊</h2>
+    <h2>02. 管理员端 · 移除学员个人视角切换胶囊</h2>
     <div class="meta-path">
       <strong>定位路径</strong>：管理员端（<code>manager.html</code>） → 「课程管理」 → 「课程工作台」/「年度课程计划」<br>
       <strong>核心文件</strong>：<code>pages/课程工作台/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/年度学习计划/page.js</code>
@@ -219,9 +177,9 @@
     </div>
   </section>
 
-  <!-- ══════════════════════ 04 批量装配课程更多筛选 ══════════════════════ -->
-  <section id="sec-04">
-    <h2>04. 批量装配课程弹窗 · 「更多筛选」支持交互展开与多维条件过滤</h2>
+  <!-- ══════════════════════ 03 批量装配课程更多筛选 ══════════════════════ -->
+  <section id="sec-03">
+    <h2>03. 批量装配课程弹窗 · 「更多筛选」支持交互展开与多维条件过滤</h2>
     <div class="meta-path">
       <strong>定位路径</strong>：管理员端 → 「年度课程计划」 → 群体「配置」方案 → 「批量加课」大纲课程装配弹窗 → 工具栏「更多筛选」<br>
       <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/年度学习计划/page.css</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/课程工作台/dashboard.css</code>
@@ -251,9 +209,9 @@
     </div>
   </section>
 
-  <!-- ══════════════════════ 05 学习直达课程详情与未选课提醒 ══════════════════════ -->
-  <section id="sec-05">
-    <h2>05. 学员端 · 优化「学习」交互：直达真实课程详情，未选课智能提醒，取消无必要证书弹窗</h2>
+  <!-- ══════════════════════ 04 学习直达课程详情与未选课提醒 ══════════════════════ -->
+  <section id="sec-04">
+    <h2>04. 学员端 · 优化「学习」交互：直达真实课程详情，未选课智能提醒，取消无必要证书弹窗</h2>
     <div class="meta-path">
       <strong>定位路径</strong>：学员端（<code>student.html</code>） → 「我的学习」 → 「年度课程计划」 → 列表每门课程后的「学习」按钮<br>
       <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code>、<code>pages/我的课程/page.js</code>
