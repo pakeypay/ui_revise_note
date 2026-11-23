@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-11-17 · 修改前后对比</title>
+<style>
+  body{margin:0;background:#f5f6f8;color:#1d2129;font:14px/1.7 -apple-system,'PingFang SC',sans-serif}
+  header{background:#1d5b97;color:#fff;padding:24px 36px}
+  header h1{font-size:22px;margin:0}
+  header .sub{margin-top:4px;opacity:.9;font-size:13px}
+  main{max-width:1400px;margin:24px auto 64px;padding:0 24px}
+  section{background:#fff;border:1px solid #e5e9f0;border-radius:12px;padding:24px;margin-top:24px}
+  section[id]{scroll-margin-top:20px}
+  #change-index{margin-top:0}
+  h2{font-size:18px;margin-top:0}
+  img{width:100%;border:1px solid #e5e9f0;border-radius:6px;display:block}
+  a{color:#1d5b97;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .index-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:12px 0 14px}
+  .index-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .index-chip{border:1px solid #d9dfe7;border-radius:999px;background:#fff;padding:4px 12px;font-size:12px;color:#4e5969;cursor:pointer}
+  .index-chip.active{background:#1d5b97;border-color:#1d5b97;color:#fff}
+  .index-search{border:1px solid #d9dfe7;border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;min-width:240px}
+  .summary-row{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 16px}
+  .summary-badge{background:#f2f6fb;border:1px solid #d6e4f5;border-radius:8px;padding:6px 12px;font-size:13px;color:#1d5b97}
+  .audit-table{width:100%;border-collapse:collapse;font-size:13px}
+  .audit-table th,.audit-table td{border:1px solid #e5e9f0;padding:9px 12px;text-align:left;vertical-align:top}
+  .audit-table th{background:#f7f8fa;font-weight:600}
+  .audit-table tbody tr:hover{background:#f9fbff}
+  .scope-tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:#eef4fb;color:#1d5b97;white-space:nowrap}
+  .back-to-index{position:fixed;right:24px;bottom:24px;z-index:50;background:#1d5b97;color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;box-shadow:0 6px 18px rgba(29,91,151,.28)}
+  .back-to-index:hover{text-decoration:none;background:#164a7c}
+  @media(max-width:850px){.pair{grid-template-columns:1fr}.index-search{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
+  <h1>2026-11-17 · 修改前后对比</h1>
+  <div class="sub">共 <span id="index-total-count">3</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
+</header>
+<main>
+  <section id="change-index">
+    <h2>修改记录总清单（索引）</h2>
+    <div class="summary-row">
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">3</span> 项</div>
+    </div>
+    <div class="index-toolbar">
+      <div class="index-chips" id="index-scope-chips">
+        <button type="button" class="index-chip active" data-scope="all">全部</button>
+        <button type="button" class="index-chip" data-scope="PC端">PC端</button>
+        <button type="button" class="index-chip" data-scope="移动端">移动端</button>
+        <button type="button" class="index-chip" data-scope="双端">双端</button>
+        <button type="button" class="index-chip" data-scope="全项目">全项目</button>
+      </div>
+      <input type="search" id="index-search" class="index-search" placeholder="筛选模块、文件或关键词…">
+    </div>
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th style="width:56px">序号</th>
+          <th style="width:32%">模块与改动主题（点击跳转）</th>
+          <th style="width:88px">端别</th>
+          <th style="width:26%">定位 / 触发路径</th>
+          <th>涉及文件与留痕形式</th>
+        </tr>
+      </thead>
+      <tbody id="change-index-body">
+        <tr data-scope="PC端">
+          <td>01</td>
+          <td><a href="#sec-01"><strong>评估实施 · 第一阶段：学员三 Tab 与出科分类</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>院级／基地管理员 → 评估管理 → 评估实施 → 学员评估</td>
+          <td>导航、评估套件、计划与任务数据 · 图文对比（8 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>02</td>
+          <td><a href="#sec-02"><strong>评估管理 · 菜单文案重命名（住培评估计划、住培学员评估）</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>院级／基地管理员 → 评估管理 → 标准与计划 / 评估实施</td>
+          <td>导航数据、路由兼容、阶段加载、页面标题与面包屑</td>
+        </tr>
+      <tr data-scope="PC端"><td>03</td><td><a href="#sec-03"><strong>评估实施 · 第二阶段：计划发起与任务执行</strong></a></td><td>PC端</td><td>住培学员评估／教师评估／项目评估</td><td>计划联动、执行明细、完成结果与范围校验；11 张截图</td></tr></tbody>
+    </table>
+  </section>
+
+  <section id="sec-01">
+<h2>评估实施 · 第一阶段：学员三 Tab 与出科分类</h2>
+<p>定位：院级／基地管理员 → 评估实施 → 学员评估。三个 Tab 分别加载原有独立模块，不混排内容。教师、项目年度评估迁到独立菜单。</p>
+<p>范围：本轮完成入口与分类基础；形成性任务列表、管理员发起、过程评价按对象迁移及年度结果分析将在用户确认后逐轮处理。当前形成性进展及教学活动评价回收暂保留原实现；原型催办尚未改为真实消息。</p>
+<p>出科 360、理论和技能考核统一为形成性；保留合格判定、出科认定、补考及答卷。兼容已有浏览器数据，PC 与移动端任务数据副本同步。出科技能工具候选支持形成性，同时兼容既有终结性标记的出科工具。</p>
+<div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>学员阶段分散在左侧菜单。</li><li>终结性页面混合学员、教师、项目。</li><li>计划与部分出科任务仍标记终结性；表格操作列溢出、范围列重叠。</li></ul><a href="2026-11-17-对比截图/学员评估-基线-修改前.png" target="_blank"><img alt="学员评估-基线-修改前" src="2026-11-17-对比截图/学员评估-基线-修改前.png"></a><a href="2026-11-17-对比截图/学员评估-形成性-修改前.png" target="_blank"><img alt="学员评估-形成性-修改前" src="2026-11-17-对比截图/学员评估-形成性-修改前.png"></a><a href="2026-11-17-对比截图/学员评估-终结性-修改前.png" target="_blank"><img alt="学员评估-终结性-修改前" src="2026-11-17-对比截图/学员评估-终结性-修改前.png"></a></div>
+<div><h3>修改后 · 改动说明</h3><ul><li>学员三 Tab 独立切换，支持刷新保留及旧链接定位。</li><li>教师／项目年度评估独立入口，保留既有操作。</li><li>纠正计划、新任务、已有任务的出科分类，保留答卷与成绩。</li><li>修正表格宽度，教师任务操作列固定。</li></ul><a href="2026-11-17-对比截图/学员评估-基线-修改后.png" target="_blank"><img alt="学员评估-基线-修改后" src="2026-11-17-对比截图/学员评估-基线-修改后.png"></a><a href="2026-11-17-对比截图/学员评估-形成性-修改后.png" target="_blank"><img alt="学员评估-形成性-修改后" src="2026-11-17-对比截图/学员评估-形成性-修改后.png"></a><a href="2026-11-17-对比截图/学员评估-终结性-修改后.png" target="_blank"><img alt="学员评估-终结性-修改后" src="2026-11-17-对比截图/学员评估-终结性-修改后.png"></a><a href="2026-11-17-对比截图/教师评估-修改后.png" target="_blank"><img alt="教师评估-修改后" src="2026-11-17-对比截图/教师评估-修改后.png"></a><a href="2026-11-17-对比截图/项目评估-修改后.png" target="_blank"><img alt="项目评估-修改后" src="2026-11-17-对比截图/项目评估-修改后.png"></a></div></div>
+<h3>验证</h3><p>院级／基地三 Tab 实际点击与内容卸载、刷新保留、旧链接、基线创建抽屉、教师／项目入口、1440 与 1680 视口、出科历史分类迁移及答卷保留、年度分类不变。浏览器脚本：scripts/check-assessment-navigation.cjs。</p>
+<p>实现：<a href="../../shared/js/nav-data.js">菜单</a> · <a href="../../shared/js/nav-render.js">路由兼容</a> · <a href="../../shared/js/module-loader.js">阶段加载</a> · <a href="../../shared/js/eval-kit.js">共享 Tab</a> · <a href="../../shared/data/eval-tasks.js">计划与任务分类</a> · <a href="../../pages/评估计划/page.js">计划编辑</a> · <a href="../../pages/终结性评估任务/page.js">终结性／教师／项目</a></p>
+</section>
+<section id="sec-02">
+<h2>评估管理 · 菜单文案重命名（住培评估计划、住培学员评估）</h2>
+<p>定位：院级管理员（柴老师工作台）与基地管理员（儿科／儿外科基地管理员）→ 评估管理菜单。</p>
+<p>改动说明：</p>
+<ul>
+  <li><strong>「评估计划」改为「住培评估计划」</strong>：侧边栏菜单「标准与计划」分组下文案调整为「住培评估计划」，页面顶层工具栏与面包屑同步对齐为「住培评估计划」。底层模块与路由保持向后兼容。</li>
+  <li><strong>「学员评估」改为「住培学员评估」</strong>：侧边栏菜单「评估实施」分组下文案调整为「住培学员评估」，页面工具栏标题与面包屑同步对齐为「住培学员评估」，基线／形成性／终结性三阶段 Tab 与任务流程完整保留并无缝切换。</li>
+  <li><strong>全方位兼容机制</strong>：nav-render.js 与 module-loader.js 增加别名映射与双向高亮识别，历史链接、旧路由参数（<code>?page=评估计划</code>、<code>?page=学员评估</code>）与新路由参数均可平滑访问并正确高亮侧边栏。</li>
+</ul>
+<h3>验证</h3>
+<p>院级管理员与基地管理员角色侧边栏菜单加载、各级菜单点击高亮、页面工具栏标题与面包屑显示、URL 参数与历史别名兼容性均验证通过。</p>
+<p>实现：<a href="../../shared/js/nav-data.js">nav-data.js</a> · <a href="../../shared/js/nav-render.js">nav-render.js</a> · <a href="../../shared/js/module-loader.js">module-loader.js</a> · <a href="../../shared/js/eval-kit.js">eval-kit.js</a> · <a href="../../pages/评估计划/page.js">评估计划 page.js</a> · <a href="../../pages/入基地技能考/page.js">入基地技能考 page.js</a> · <a href="../../pages/形成性评估/page.js">形成性评估 page.js</a> · <a href="../../pages/终结性评估任务/page.js">终结性评估任务 page.js</a></p>
+</section>
+<section id="sec-03"><h2>评估实施 · 第二阶段：计划发起、任务执行与对象拆分</h2>
+<p>入口：院级／基地管理员 → 评估实施 → 住培学员评估 → 形成性评估；教师评估、项目评估 → 过程评价。</p>
+<p>形成性默认以任务列表展示来源、关联计划、组织范围、评估对象、完成进度、截止日期和状态。完成进展单独切换，保留科室与逐人核对；年度结果分析与导出仍属于结果分析。</p>
+<ul><li>发起时读取已发布有效计划，仅列出当前身份有权人工发布的计划项；学员来自本基地在科名单，工具来自关联表单，评估人来自科室教师与带教关系。</li><li>发布校验计划、范围、日期、工具、人员与重复任务，保存原表单快照并接入既有教师评估任务；任务详情可查看执行明细及本次完成结果。</li><li>出科理论、技能沿用原轮转考核与认定流程，在形成性任务中引用；不重复创建考试、不改变合格及认定规则。</li><li>教师360及教师类活动评价归教师，项目类活动评价归项目；匿名评价仅显示回收进度。原年度与综合评估功能保留。</li><li>催办保存本地记录并按日去重，不代表已经发送真实消息；当前持久化与权限校验属于前端原型，未新增后端服务。</li></ul>
+<h3>形成性评估</h3><div class="pair"><div><h4>修改前</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-形成性-修改前.png" alt="第二阶段 形成性 修改前"></div><div><h4>修改后</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-形成性-修改后.png" alt="第二阶段 形成性 修改后"></div></div>
+<h3>教师评估</h3><div class="pair"><div><h4>修改前</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-教师-修改前.png" alt="第二阶段 教师 修改前"></div><div><h4>修改后</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-教师-修改后.png" alt="第二阶段 教师 修改后"></div></div>
+<h3>项目评估</h3><div class="pair"><div><h4>修改前</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-项目-修改前.png" alt="第二阶段 项目 修改前"></div><div><h4>修改后</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-项目-修改后.png" alt="第二阶段 项目 修改后"></div></div>
+<h3>无人工计划</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-无人工计划-修改后.png" alt="第二阶段 无人工计划 修改后">
+<h3>发起评估</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-发起评估-修改后.png" alt="第二阶段 发起评估 修改后">
+<h3>任务详情</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-任务详情-修改后.png" alt="第二阶段 任务详情 修改后">
+<h3>完成结果</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-完成结果-修改后.png" alt="第二阶段 完成结果 修改后">
+<h3>完成进展</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-完成进展-修改后.png" alt="第二阶段 完成进展 修改后">
+<p>验证：真实浏览器检查发布、空名单／空评估人／过期日期拦截、重复任务阻断、刷新持久化、搜索空状态、基地范围与越权拦截、对象拆分及原年度入口；通过既有完成接口提交测试结果并验证管理端回写。1440 与 1680 视口检查通过，运行时异常为零。截图中的“阶段性临床能力评估验证”为隔离浏览器测试数据，没有写入默认种子。</p>
+<p>实现：<a href="../../shared/js/eval-admin.js">评估实施数据服务</a> · <a href="../../shared/js/eval-admin-panel.js">任务及发起面板</a> · <a href="../../scripts/check-assessment-stage2.cjs">浏览器验证脚本</a></p></section>
+</main>
+<a class="back-to-index" href="#change-index">↑ 返回总清单</a>
+<script>
+(function(){
+  const body = document.getElementById('change-index-body');
+  const search = document.getElementById('index-search');
+  const chips = document.querySelectorAll('#index-scope-chips .index-chip');
+  const visibleEl = document.getElementById('index-visible-count');
+  let activeScope = 'all';
+  function applyFilter(){
+    const q = (search.value || '').trim().toLowerCase();
+    let shown = 0;
+    body.querySelectorAll('tr').forEach(tr => {
+      const scope = tr.dataset.scope || '';
+      const scopeOk = activeScope === 'all' || scope === activeScope;
+      const textOk = !q || tr.textContent.toLowerCase().includes(q);
+      const show = scopeOk && textOk;
+      tr.hidden = !show;
+      if (show) shown++;
+    });
+    if (visibleEl) visibleEl.textContent = String(shown);
+  }
+  chips.forEach(btn => btn.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    activeScope = btn.dataset.scope;
+    applyFilter();
+  }));
+  search.addEventListener('input', applyFilter);
+})();
+</script>
+</body>
+</html>

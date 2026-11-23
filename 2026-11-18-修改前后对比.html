@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-11-18 · 修改前后对比 · 官网内容管理双方案</title>
+<style>
+  body{margin:0;background:#f5f6f8;color:#1d2129;font:14px/1.7 -apple-system,'PingFang SC',sans-serif}
+  header{background:#1d5b97;color:#fff;padding:24px 36px}
+  header h1{font-size:22px;margin:0}
+  header .sub{margin-top:4px;opacity:.9;font-size:13px}
+  main{max-width:1400px;margin:24px auto 64px;padding:0 24px}
+  section{background:#fff;border:1px solid #e5e9f0;border-radius:12px;padding:24px;margin-top:24px}
+  h2{font-size:18px;margin-top:0}
+  img{width:100%;border:1px solid #e5e9f0;border-radius:6px;display:block}
+  a{color:#1d5b97;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .summary-badge{background:#f2f6fb;border:1px solid #d6e4f5;border-radius:8px;padding:6px 12px;font-size:13px;color:#1d5b97;display:inline-block;margin:4px 6px 0 0}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{border:1px solid #e5e9f0;padding:9px 12px;text-align:left;vertical-align:top}
+  th{background:#f7f8fa;font-weight:600}
+  code{background:#f2f4f7;border-radius:4px;padding:1px 6px;font-size:12px}
+  .note{background:#fff8ec;border:1px solid #f4e2bb;border-radius:8px;padding:10px 14px;font-size:13px;color:#8a6116}
+  @media(max-width:850px){.pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div><a href="index.html" style="color:#d0e7ff;font-size:13px">← 返回留痕总览</a></div>
+  <h1>2026-11-18 · 官网内容管理双方案（新建）</h1>
+  <div class="sub">新建「官网内容管理」（方案 A · 可视化所见即所得）与「官网内容卡片台」（方案 B · 卡片工作台），替代旧版「后台配置页·内容发布」的有限编辑能力；旧版本未做任何改动。</div>
+</header>
+<main>
+
+<section id="summary">
+  <h2>改动概要</h2>
+  <span class="summary-badge">新增页面 2 个</span>
+  <span class="summary-badge">共用底座 2 个文件</span>
+  <span class="summary-badge">官网增量接入 1 个新文件 + 2 行 script</span>
+  <span class="summary-badge">导航/模块映射增量 2 处</span>
+  <span class="summary-badge">浏览器验收 32/32 通过</span>
+  <div style="margin-top:12px">
+    <table>
+      <tr><th style="width:280px">文件</th><th>性质与说明</th></tr>
+      <tr><td><code>pages/官网内容管理/</code>（5 个文件）</td><td><b>新增</b>。方案 A：内容大纲 + 官网实时预览 iframe + 属性面板；点击官网区块即选中编辑，编辑即时刷新预览并自动保存草稿，发布后官网热更新。</td></tr>
+      <tr><td><code>pages/官网内容卡片台/</code>（4 个文件）</td><td><b>新增</b>。方案 B：一叠与官网一一对应的区块卡片，左编辑右迷你实时预览；纯 Vue3+Arco，无 iframe，file:// 可用。</td></tr>
+      <tr><td><code>pages/官网内容管理/content-schema.js</code></td><td><b>新增</b>。内容 Schema 唯一真相来源，默认值逐字对齐官网现状；两方案共用。</td></tr>
+      <tr><td><code>pages/官网内容管理/content-store.js</code></td><td><b>新增</b>。草稿/发布双态存储（<code>fdek.siteContent.v1</code> / <code>fdek.siteContent.draft.v1</code>）、发布同步旧键 <code>fdek.portal.config</code>、导入导出。</td></tr>
+      <tr><td><code>pages/官网/content-apply.js</code></td><td><b>新增</b>。官网消费层：有发布数据才应用（hero/公告条/四维卡/八类入口/服务大厅/页脚/新闻中心）；支持 storage 事件热更新。</td></tr>
+      <tr><td><code>pages/官网/index.html</code>、<code>portal.html</code></td><td><b>增量 1 行</b>：各引入 content-apply.js。无发布数据时官网行为与改动前完全一致（已自动化验证）。</td></tr>
+      <tr><td><code>shared/js/module-loader.js</code></td><td><b>增量</b>：moduleMap 新增两页映射（含官网数据三件套与共用底座依赖）。</td></tr>
+      <tr><td><code>shared/js/nav-data.js</code></td><td><b>增量</b>：后台管理员「网站与内容」组最前加入两个新页面入口（旧入口保持不变）。</td></tr>
+    </table>
+  </div>
+</section>
+
+<section id="a">
+  <h2>方案 A · 官网内容管理（可视化所见即所得）</h2>
+  <div class="pair">
+    <figure><figcaption style="font-size:12px;color:#86909c;margin-bottom:6px">编辑器首屏区块：左大纲 / 中真实官网预览 / 右属性面板</figcaption><img src="2026-11-18-对比截图/方案A-可视化编辑器-首屏区块.png" alt="方案A编辑器"></figure>
+    <figure><figcaption style="font-size:12px;color:#86909c;margin-bottom:6px">品牌徽标：24 款官方标准排版 Logo 资产矩阵一键切换</figcaption><img src="2026-11-18-对比截图/A-品牌徽标-Logo资产矩阵.png" alt="方案A品牌徽标"></figure>
+    <figure><figcaption style="font-size:12px;color:#86909c;margin-bottom:6px">草稿编辑即时生效：公告条关闭、标题改写、「优质课程」隐藏，均在预览同步</figcaption><img src="2026-11-18-对比截图/方案A-草稿编辑即时生效.png" alt="方案A草稿编辑"></figure>
+    <figure><figcaption style="font-size:12px;color:#86909c;margin-bottom:6px">发布版本快照与一键回滚（规避误操作风险）</figcaption><img src="2026-11-18-对比截图/A-历史版本快照回滚.png" alt="方案A历史版本"></figure>
+  </div>
+  <figure style="margin-top:16px"><figcaption style="font-size:12px;color:#86909c;margin-bottom:6px">发布后真实官网首页（标题与公告条按发布态生效）</figcaption><img src="2026-11-18-对比截图/方案A-发布后官网生效.png" alt="方案A官网生效"></figure>
+</section>
+
+<section id="b">
+  <h2>方案 B · 官网内容卡片台（卡片工作台）</h2>
+  <div class="pair">
+    <figure><figcaption style="font-size:12px;color:#86909c;margin-bottom:6px">一叠区块卡片，右侧官网同款样式迷你实时预览</figcaption><img src="2026-11-18-对比截图/方案B-卡片台-首屏卡片.png" alt="方案B卡片台"></figure>
+    <figure><figcaption style="font-size:12px;color:#86909c;margin-bottom:6px">编辑与迷你预览逐字同步</figcaption><img src="2026-11-18-对比截图/方案B-编辑与迷你预览同步.png" alt="方案B同步"></figure>
+  </div>
+  <figure style="margin-top:16px"><figcaption style="font-size:12px;color:#86909c;margin-bottom:6px">发布后官网「新闻中心」从诚实空态变为托管新闻列表</figcaption><img src="2026-11-18-对比截图/方案B-发布后官网新闻中心生效.png" alt="方案B新闻生效"></figure>
+</section>
+
+<section id="verify">
+  <h2>验收与边界</h2>
+  <ul>
+    <li>双方案浏览器自动化验收 <b>32/32 通过</b>（三栏/卡片渲染、预览同步、草稿保存、Logo 资产矩阵切换、公告开关、显隐排序、发布写键、旧键与 logoUrl 同步、版本快照与回滚、官网生效、新闻中心生效、双方案数据互通、控制台零异常）。</li>
+    <li>零侵入边界验证 <b>5/5 通过</b>：未发布任何内容时，官网 hero / 公告条 / 八类入口 / 服务大厅 / 页脚与改动前完全一致。</li>
+    <li><code>scripts/verify-public-pages.cjs</code> 中本次未触碰的 <code>course.html</code> 断言存在既有失败（三个页签/结业条件/内联 style），与本次改动无关。</li>
+    <li>官网旧版两处编辑入口（site.js 快捷抽屉、后台配置页·内容发布 tab）<b>原样保留</b>，新旧数据通过发布同步机制互相兼容。</li>
+  </ul>
+  <div class="note">对比与选型建议见：<a href="../官网内容管理-双方案对比与推荐-20261118.html">docs/官网内容管理-双方案对比与推荐-20261118.html</a></div>
+</section>
+
+</main>
+</body>
+</html>

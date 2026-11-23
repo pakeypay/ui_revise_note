@@ -116,6 +116,11 @@ ul.desc-list li{margin-bottom:5px;line-height:1.6}
 /* 单栏模式 */
 body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compare-grid{grid-template-columns:1fr !important}
 
+/* 移动端竖屏截图网格 */
+.shot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:8px}
+.shot-single{max-width:290px;margin-top:8px}
+.shot-grid .img-wrap, .shot-single .img-wrap{margin-bottom:0}
+
 /* 快速回到顶部 */
 .floating-nav{position:fixed;right:24px;bottom:24px;z-index:50;display:flex;flex-direction:column;gap:8px}
 .fab{background:var(--primary);color:#fff;border:0;border-radius:999px;padding:10px 16px;font-size:13px;font-weight:500;box-shadow:0 4px 14px rgba(23,88,152,0.3);cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none}
@@ -142,19 +147,19 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
     <div class="metrics">
       <div class="m-card">
         <div class="m-label">归档总天数</div>
-        <div class="m-val">5<span class="m-unit">个工作日</span></div>
+        <div class="m-val">7<span class="m-unit">个工作日</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">67<span class="m-unit">项</span></div>
+        <div class="m-val">76<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">224<span class="m-unit">张</span></div>
+        <div class="m-val">265<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
-        <div class="m-val" style="font-size:19px">2026-11-16</div>
+        <div class="m-val" style="font-size:19px">2026-11-23</div>
       </div>
     </div>
   </div>
@@ -164,8 +169,10 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (67)</button>
-      <button class="chip" data-date="2026-11-16">2026-11-16 (最新 · 5项)</button>
+      <button class="chip active" data-date="all">全部日期 (76)</button>
+      <button class="chip" data-date="2026-11-23">2026-11-23 (最新 · 6项)</button>
+      <button class="chip" data-date="2026-11-17">2026-11-17 (3项)</button>
+<button class="chip" data-date="2026-11-16">2026-11-16 (5项)</button>
       <button class="chip" data-date="2026-11-15">2026-11-15 (双端改造 · 28项)</button>
       <button class="chip" data-date="2026-11-13">2026-11-13 (移动端 · 7项)</button>
       <button class="chip" data-date="2026-11-12">2026-11-12 (大版本 · 25项)</button>
@@ -186,12 +193,367 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 67 / 67 项</div>
+      <div class="stat-pill" id="counterPill">显示 76 / 76 项</div>
     </div>
   </div>
 </div>
 
 <main id="mainContainer">
+
+<article class="item-card" id="2026-11-23-sec-01" data-date="2026-11-23" data-scope="移动端" data-search="移动端学员端 评估任务 发起评估 成绩与评估记录 申请复核 OSCE 反馈与学习计划 占位 student-tdesign">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#01</span>
+        <span class="badge-date">2026-11-23</span>
+        <span class="badge-scope">移动端</span>
+      </div>
+      <h2 class="item-title">01. 移动端学员端 · 评估任务、成绩与评估记录及反馈占位改造</h2>
+      <div class="item-meta"><strong>定位路径</strong>：学员端（<code>移动端/student-tdesign.html</code>） → 底部 Tab「评估」（评估任务 / 成绩与评估记录 / 反馈与学习计划）<br>
+      <strong>核心文件</strong>：<code>移动端/student-tdesign.html</code>、<code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/tdesign-app.css</code>、<code>移动端/shared/data/eval-summative.js</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>旧版评估页仅展示静态简化卡片，缺少与 PC 端对齐的三段式导航（评估任务 / 成绩与评估记录 / 反馈与学习计划）。</li>
+          <li>缺少按年度评估计划自动带出当前在轮指导医师的「发起评估」弹窗，也无四类成绩归档与「申请复核」闭环。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端学员端-评估任务-修改前.png" alt="移动端学员端-评估任务-修改前" data-cap="2026-11-23 #01 修改前 · 学员端评估任务旧版视图">
+            <div class="img-caption"><span>修改前 · 学员端评估任务旧版视图</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
+        <ul class="desc-list">
+          <li><strong>评估任务与发起弹窗</strong>：拆分「待我评估 / 待他人评估」与三态筛选；悬浮「+」发起评估按年度计划自动带出在轮指导医师与 360° 多选表单。</li>
+          <li><strong>成绩与评估记录 + 复核闭环</strong>：支持形成性、课程、出科（理论/技能/大病历）、OSCE 四类筛选，复用 <code>fd-form-sheet</code> 只读量表，并支持临床/课程评估「申请复核」弹窗。</li>
+          <li><strong>规范占位</strong>：「反馈与学习计划」提供建设中规范占位符，避免虚假 mock 数据误导。</li>
+        </ul>
+        <div class="shot-grid">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端学员端-评估任务-修改后.png" alt="移动端学员端-评估任务-修改后" data-cap="2026-11-23 #01 修改后 · 评估任务（待我/待他人评估）">
+            <div class="img-caption"><span>修改后 · 评估任务（待我/待他人评估）</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端学员端-评估发起弹窗-修改后.png" alt="移动端学员端-评估发起弹窗-修改后" data-cap="2026-11-23 #01 修改后 · 发起评估弹窗">
+            <div class="img-caption"><span>修改后 · 发起评估弹窗</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端学员端-成绩与评估记录-修改后.png" alt="移动端学员端-成绩与评估记录-修改后" data-cap="2026-11-23 #01 修改后 · 成绩与评估记录">
+            <div class="img-caption"><span>修改后 · 成绩与评估记录</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端学员端-成绩详情与复核弹窗-修改后.png" alt="移动端学员端-成绩详情与复核弹窗-修改后" data-cap="2026-11-23 #01 修改后 · 成绩详情与申请复核弹窗">
+            <div class="img-caption"><span>修改后 · 成绩详情与申请复核弹窗</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端学员端-反馈与学习计划占位-修改后.png" alt="移动端学员端-反馈与学习计划占位-修改后" data-cap="2026-11-23 #01 修改后 · 反馈与学习计划占位">
+            <div class="img-caption"><span>修改后 · 反馈与学习计划占位</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="item-card" id="2026-11-23-sec-02" data-date="2026-11-23" data-scope="移动端" data-search="移动端督导专家 督导任务 督导评分弹窗 纸质表拍照 线上逐项评分 supervisor-tdesign EvalSupervision">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#02</span>
+        <span class="badge-date">2026-11-23</span>
+        <span class="badge-scope">移动端</span>
+      </div>
+      <h2 class="item-title">02. 移动端督导专家端 · 督导任务与现场评分/拍照弹窗补齐</h2>
+      <div class="item-meta"><strong>定位路径</strong>：督导专家端（<code>移动端/supervisor-tdesign.html</code>） → 底部 Tab「督导任务」及现场评分弹窗<br>
+      <strong>核心文件</strong>：<code>移动端/supervisor-tdesign.html</code>、<code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/tdesign-app.css</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>督导任务列表与教学日历未共用实时周期状态，缺少待督导/已完成计数与教研室指派/自选来源标识。</li>
+          <li>缺少现场评分弹窗，无法切换「线上逐项评分」与「纸质表拍照上传」并留痕现场照片。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端督导专家-督导任务-修改前.png" alt="移动端督导专家-督导任务-修改前" data-cap="2026-11-23 #02 修改前 · 督导任务旧版列表">
+            <div class="img-caption"><span>修改前 · 督导任务旧版列表</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
+        <ul class="desc-list">
+          <li><strong>双向同步任务看板</strong>：与教学日历共用 <code>EvalSupervision</code> 数据源，展示周期指标与「待督导 / 已完成」双页签。</li>
+          <li><strong>双模式现场评分弹窗</strong>：支持「线上逐项评分」（1~5 分维度卡，评分细则默认展开）与「纸质表拍照上传」（百分制总分 + 拍照/选图多图留痕），出科考核额外支持核验是否按要求完成。</li>
+        </ul>
+        <div class="shot-grid">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端督导专家-督导任务-修改后.png" alt="移动端督导专家-督导任务-修改后" data-cap="2026-11-23 #02 修改后 · 督导任务列表">
+            <div class="img-caption"><span>修改后 · 督导任务列表</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端督导专家-督导评分弹窗-修改后.png" alt="移动端督导专家-督导评分弹窗-修改后" data-cap="2026-11-23 #02 修改后 · 现场督导评分与拍照留痕弹窗">
+            <div class="img-caption"><span>修改后 · 现场督导评分与拍照留痕弹窗</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="item-card" id="2026-11-23-sec-03" data-date="2026-11-23" data-scope="移动端" data-search="移动端教师端 评估任务 双页签 表单开发任务 三段式表单编辑器 委员会工作 isCommitteeMember teacher-tdesign">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#03</span>
+        <span class="badge-date">2026-11-23</span>
+        <span class="badge-scope">移动端</span>
+      </div>
+      <h2 class="item-title">03. 移动端教师端 · 评估双页签重构、三段式表单编辑器与委员会权限控显隐</h2>
+      <div class="item-meta"><strong>定位路径</strong>：教师端（<code>移动端/teacher-tdesign.html</code>） → 底部 Tab「评估」（评估任务 / 表单开发任务 / 委员会工作）<br>
+      <strong>核心文件</strong>：<code>移动端/teacher-tdesign.html</code>、<code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/data/eval-tool-catalog.js</code>、<code>移动端/shared/data/milestone-workflow.js</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>教师端评估仅展示单一静态任务列表，缺少学员复核改判、出科技能考官打分、同行评议接单及 OSCE 考站提醒入口。</li>
+          <li>移动端缺失「表单开发任务」与手机端表单编辑器，也未按 <code>isCommitteeMember</code> 权限控显隐临床能力委员会工作。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端教师端-评估任务-修改前.png" alt="移动端教师端-评估任务-修改前" data-cap="2026-11-23 #03 修改前 · 教师端评估任务旧版界面">
+            <div class="img-caption"><span>修改前 · 教师端评估任务旧版界面</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
+        <ul class="desc-list">
+          <li><strong>评估任务双页签聚合</strong>：「待我评估 / 待他人评估」统一承载临床评估、EXS 考官打分、RQT 同行评议、学员复核改判及 OSCE 提醒。</li>
+          <li><strong>三段式表单编辑器</strong>：新增「表单开发任务」列表与全屏编辑器（1.基础与规则 / 2.题目与评分 / 3.标注与预览），支持提审一/二级审核。</li>
+          <li><strong>委员会权限控显隐</strong>：「委员会工作」页签严格受 <code>isCommitteeMember</code> 控制，仅呈现指派给本人复核的里程碑例外/申诉个案。</li>
+        </ul>
+        <div class="shot-grid">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端教师端-评估任务-修改后.png" alt="移动端教师端-评估任务-修改后" data-cap="2026-11-23 #03 修改后 · 教师端评估任务双页签">
+            <div class="img-caption"><span>修改后 · 教师端评估任务双页签</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端教师端-表单开发任务列表-修改后.png" alt="移动端教师端-表单开发任务列表-修改后" data-cap="2026-11-23 #03 修改后 · 表单开发任务列表">
+            <div class="img-caption"><span>修改后 · 表单开发任务列表</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端教师端-表单编辑器-修改后.png" alt="移动端教师端-表单编辑器-修改后" data-cap="2026-11-23 #03 修改后 · 三段式表单编辑器">
+            <div class="img-caption"><span>修改后 · 三段式表单编辑器</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端教师端-委员会工作-修改后.png" alt="移动端教师端-委员会工作-修改后" data-cap="2026-11-23 #03 修改后 · 委员会工作（权限控显隐）">
+            <div class="img-caption"><span>修改后 · 委员会工作（权限控显隐）</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="item-card" id="2026-11-23-sec-04" data-date="2026-11-23" data-scope="移动端" data-search="移动端课程开发 添加评估 添加反馈 V1.2 表单库导入 派生本课程表单 课程目标">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#04</span>
+        <span class="badge-date">2026-11-23</span>
+        <span class="badge-scope">移动端</span>
+      </div>
+      <h2 class="item-title">04. 移动端课程开发 · 添加评估与添加反馈弹窗对齐 V1.2 规格</h2>
+      <div class="item-meta"><strong>定位路径</strong>：教师端 / 科室管理员端 → 课程开发 → 评估任务与课程反馈 → 「+ 添加评估」/「+ 添加反馈」<br>
+      <strong>核心文件</strong>：<code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/data/eval-tool-catalog.js</code>、<code>移动端/shared/tdesign-app.css</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>移动端课程开发缺乏对齐 PC 端 V1.2 的两步式「添加评估 / 添加反馈」弹窗，无法进行表单库选表、国标锁定派生与课程目标关联。</li>
+          <li>评估与反馈任务设置字段未分离，缺少填写人、评估时机、合格线及相对开/结课时间推导。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端课程开发-添加评估与反馈-修改前.png" alt="移动端课程开发-添加评估与反馈-修改前" data-cap="2026-11-23 #04 修改前 · 课程开发添加评估与反馈入口">
+            <div class="img-caption"><span>修改前 · 课程开发添加评估与反馈入口</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
+        <ul class="desc-list">
+          <li><strong>两步式交互弹窗</strong>：Step 1 支持新建（空白/上传识别/AI）或从表单库导入，国标/基地锁定表单可一键「派生为本课程表单」。</li>
+          <li><strong>严格选表口径隔离</strong>：评估仅列「评估学员」表，反馈仅列「评估项目/教师」表；Step 2 分别配置评估（填写人/时机/合格线/计入成绩/可见性）与反馈（对象/频次/匿名）及相对开放截止时间。</li>
+        </ul>
+        <div class="shot-grid">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端课程开发-添加评估选表与设置-修改后.png" alt="移动端课程开发-添加评估选表与设置-修改后" data-cap="2026-11-23 #04 修改后 · 添加评估选表与任务设置">
+            <div class="img-caption"><span>修改后 · 添加评估选表与任务设置</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端课程开发-添加反馈选表与设置-修改后.png" alt="移动端课程开发-添加反馈选表与设置-修改后" data-cap="2026-11-23 #04 修改后 · 添加反馈选表与任务设置">
+            <div class="img-caption"><span>修改后 · 添加反馈选表与任务设置</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="item-card" id="2026-11-23-sec-05" data-date="2026-11-23" data-scope="移动端" data-search="移动端科室管理员 方案B 评估工作台 科室评估任务 里程碑审核 表单开发审核 一级审核 出科考核 二级选表弹窗 department-manager-tdesign">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#05</span>
+        <span class="badge-date">2026-11-23</span>
+        <span class="badge-scope">移动端</span>
+      </div>
+      <h2 class="item-title">05. 移动端科室管理员端（修正版方案 B）· 评估工作台/任务、首页审核与出科二级选表</h2>
+      <div class="item-meta"><strong>定位路径</strong>：科室管理员端（<code>移动端/department-manager-tdesign.html</code>） → 评估 Tab / 首页服务 / 出科评价与轮转工作台<br>
+      <strong>核心文件</strong>：<code>移动端/department-manager-tdesign.html</code>、<code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/data/milestone-workflow.js</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>科室管理员端缺少面向在科学员与教学活动的「评估工作台」与「科室评估任务」纯净双分段结构。</li>
+          <li>首页缺少「里程碑审核」「表单开发审核（一级审核）」「督导反馈与档案补正」独立闭环，出科考核也缺少二级选表弹窗。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端科室管理员-评估与首页-修改前.png" alt="移动端科室管理员-评估与首页-修改前" data-cap="2026-11-23 #05 修改前 · 科室管理员评估与首页旧版视图">
+            <div class="img-caption"><span>修改前 · 科室管理员评估与首页旧版视图</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
+        <ul class="desc-list">
+          <li><strong>修正版方案 B 双分段</strong>：评估 Tab 聚焦「评估工作台」（学员进度网格/教学活动行 + 督导反馈联动）与「科室评估任务」（进度条/发起评估/指派导师/安排同行）。</li>
+          <li><strong>首页三大审核服务</strong>：里程碑审核（胜任力证据核对与转交复核）、表单开发一级审核（通过交二审或退回）、督导反馈与档案补正。</li>
+          <li><strong>出科考核二级选表</strong>：<code>deptFormPickerPopup</code> 仅过滤展示已启用、终结性、逐项赋分且适用本基地的技能评估表单。</li>
+        </ul>
+        <div class="shot-grid">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端科室管理员-评估工作台与任务-修改后.png" alt="移动端科室管理员-评估工作台与任务-修改后" data-cap="2026-11-23 #05 修改后 · 评估工作台与科室评估任务">
+            <div class="img-caption"><span>修改后 · 评估工作台与科室评估任务</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端科室管理员-里程碑与表单审核-修改后.png" alt="移动端科室管理员-里程碑与表单审核-修改后" data-cap="2026-11-23 #05 修改后 · 里程碑审核与表单一级审核">
+            <div class="img-caption"><span>修改后 · 里程碑审核与表单一级审核</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端科室管理员-出科考核二级选表弹窗-修改后.png" alt="移动端科室管理员-出科考核二级选表弹窗-修改后" data-cap="2026-11-23 #05 修改后 · 出科考核二级选表弹窗">
+            <div class="img-caption"><span>修改后 · 出科考核二级选表弹窗</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="item-card" id="2026-11-23-sec-06" data-date="2026-11-23" data-scope="双端协同" data-search="移动端院级管理员 基地管理员 表单开发任务 二级审核弹窗 admin-tdesign PC 轮转任务与考核 滚动条清理">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#06</span>
+        <span class="badge-date">2026-11-23</span>
+        <span class="badge-scope">双端协同</span>
+      </div>
+      <h2 class="item-title">06. 移动端院级/基地管理员 · 表单开发任务与院级专属二级审核弹窗（含 PC 轮转任务与考核滚动条清理说明）</h2>
+      <div class="item-meta"><strong>定位路径</strong>：院级/基地管理员端（<code>移动端/admin-tdesign.html</code>） → 工作台「表单开发任务」；PC <code>pages/轮转任务与考核/page.css</code><br>
+      <strong>核心文件</strong>：<code>移动端/admin-tdesign.html</code>、<code>移动端/shared/admin-tdesign-app.js</code>、<code>移动端/shared/data/eval-tool-catalog.js</code>、<code>pages/轮转任务与考核/page.css</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>移动端院级/基地管理员工作台缺少「表单开发任务」管理与院级二审入口。</li>
+          <li>PC 端 <code>pages/轮转任务与考核/page.css</code> 存在强制 <code>.main-inner { overflow-y: scroll }</code> 与自定义 scrollbar 样式，易引发双滚动条干扰。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端院级管理员-评估看板-修改前.png" alt="移动端院级管理员-评估看板-修改前" data-cap="2026-11-23 #06 修改前 · 院级管理员评估看板旧版视图">
+            <div class="img-caption"><span>修改前 · 院级管理员评估看板旧版视图</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
+        <ul class="desc-list">
+          <li><strong>表单开发任务与权限隔离</strong>：基地管理员仅只读查看进度与表单预览摘要；院级管理员（<code>isHospitalAdmin</code>）可对「待二级审核」任务打开专属二审弹窗（<code>showToolDevReviewModal</code>），完成入库或退回。</li>
+          <li><strong>PC 轮转任务与考核滚动条清理</strong>：清理 <code>pages/轮转任务与考核/page.css</code> 冗余滚动条覆盖样式（移除 28 行），恢复全站统一的主滚动交互。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端院级管理员-表单二级审核弹窗-修改后.png" alt="移动端院级管理员-表单二级审核弹窗-修改后" data-cap="2026-11-23 #06 修改后 · 院级管理员表单开发二级审核弹窗">
+            <div class="img-caption"><span>修改后 · 院级管理员表单开发二级审核弹窗</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+<article class="item-card" id="2026-11-17-sec-01" data-date="2026-11-17" data-scope="PC端" data-search="评估实施 形成性 计划发起 教师 项目"><div style="padding:24px">
+<h2>评估实施 · 第一阶段：学员三 Tab 与出科分类</h2>
+<p>定位：院级／基地管理员 → 评估实施 → 学员评估。三个 Tab 分别加载原有独立模块，不混排内容。教师、项目年度评估迁到独立菜单。</p>
+<p>范围：本轮完成入口与分类基础；形成性任务列表、管理员发起、过程评价按对象迁移及年度结果分析将在用户确认后逐轮处理。当前形成性进展及教学活动评价回收暂保留原实现；原型催办尚未改为真实消息。</p>
+<p>出科 360、理论和技能考核统一为形成性；保留合格判定、出科认定、补考及答卷。兼容已有浏览器数据，PC 与移动端任务数据副本同步。出科技能工具候选支持形成性，同时兼容既有终结性标记的出科工具。</p>
+<div class="pair"><div><h3>修改前 · 存在问题</h3><ul><li>学员阶段分散在左侧菜单。</li><li>终结性页面混合学员、教师、项目。</li><li>计划与部分出科任务仍标记终结性；表格操作列溢出、范围列重叠。</li></ul><a href="2026-11-17-对比截图/学员评估-基线-修改前.png" target="_blank"><img alt="学员评估-基线-修改前" src="2026-11-17-对比截图/学员评估-基线-修改前.png"></a><a href="2026-11-17-对比截图/学员评估-形成性-修改前.png" target="_blank"><img alt="学员评估-形成性-修改前" src="2026-11-17-对比截图/学员评估-形成性-修改前.png"></a><a href="2026-11-17-对比截图/学员评估-终结性-修改前.png" target="_blank"><img alt="学员评估-终结性-修改前" src="2026-11-17-对比截图/学员评估-终结性-修改前.png"></a></div>
+<div><h3>修改后 · 改动说明</h3><ul><li>学员三 Tab 独立切换，支持刷新保留及旧链接定位。</li><li>教师／项目年度评估独立入口，保留既有操作。</li><li>纠正计划、新任务、已有任务的出科分类，保留答卷与成绩。</li><li>修正表格宽度，教师任务操作列固定。</li></ul><a href="2026-11-17-对比截图/学员评估-基线-修改后.png" target="_blank"><img alt="学员评估-基线-修改后" src="2026-11-17-对比截图/学员评估-基线-修改后.png"></a><a href="2026-11-17-对比截图/学员评估-形成性-修改后.png" target="_blank"><img alt="学员评估-形成性-修改后" src="2026-11-17-对比截图/学员评估-形成性-修改后.png"></a><a href="2026-11-17-对比截图/学员评估-终结性-修改后.png" target="_blank"><img alt="学员评估-终结性-修改后" src="2026-11-17-对比截图/学员评估-终结性-修改后.png"></a><a href="2026-11-17-对比截图/教师评估-修改后.png" target="_blank"><img alt="教师评估-修改后" src="2026-11-17-对比截图/教师评估-修改后.png"></a><a href="2026-11-17-对比截图/项目评估-修改后.png" target="_blank"><img alt="项目评估-修改后" src="2026-11-17-对比截图/项目评估-修改后.png"></a></div></div>
+<h3>验证</h3><p>院级／基地三 Tab 实际点击与内容卸载、刷新保留、旧链接、基线创建抽屉、教师／项目入口、1440 与 1680 视口、出科历史分类迁移及答卷保留、年度分类不变。浏览器脚本：scripts/check-assessment-navigation.cjs。</p>
+<p>实现：<a href="../shared/js/nav-data.js">菜单</a> · <a href="../shared/js/nav-render.js">路由兼容</a> · <a href="../shared/js/module-loader.js">阶段加载</a> · <a href="../shared/js/eval-kit.js">共享 Tab</a> · <a href="../shared/data/eval-tasks.js">计划与任务分类</a> · <a href="../pages/评估计划/page.js">计划编辑</a> · <a href="../pages/终结性评估任务/page.js">终结性／教师／项目</a></p>
+</div></article>
+<article class="item-card" id="2026-11-17-sec-02" data-date="2026-11-17" data-scope="PC端" data-search="评估实施 形成性 计划发起 教师 项目"><div style="padding:24px">
+<h2>评估管理 · 菜单文案重命名（住培评估计划、住培学员评估）</h2>
+<p>定位：院级管理员（柴老师工作台）与基地管理员（儿科／儿外科基地管理员）→ 评估管理菜单。</p>
+<p>改动说明：</p>
+<ul>
+  <li><strong>「评估计划」改为「住培评估计划」</strong>：侧边栏菜单「标准与计划」分组下文案调整为「住培评估计划」，页面顶层工具栏与面包屑同步对齐为「住培评估计划」。底层模块与路由保持向后兼容。</li>
+  <li><strong>「学员评估」改为「住培学员评估」</strong>：侧边栏菜单「评估实施」分组下文案调整为「住培学员评估」，页面工具栏标题与面包屑同步对齐为「住培学员评估」，基线／形成性／终结性三阶段 Tab 与任务流程完整保留并无缝切换。</li>
+  <li><strong>全方位兼容机制</strong>：nav-render.js 与 module-loader.js 增加别名映射与双向高亮识别，历史链接、旧路由参数（<code>?page=评估计划</code>、<code>?page=学员评估</code>）与新路由参数均可平滑访问并正确高亮侧边栏。</li>
+</ul>
+<h3>验证</h3>
+<p>院级管理员与基地管理员角色侧边栏菜单加载、各级菜单点击高亮、页面工具栏标题与面包屑显示、URL 参数与历史别名兼容性均验证通过。</p>
+<p>实现：<a href="../shared/js/nav-data.js">nav-data.js</a> · <a href="../shared/js/nav-render.js">nav-render.js</a> · <a href="../shared/js/module-loader.js">module-loader.js</a> · <a href="../shared/js/eval-kit.js">eval-kit.js</a> · <a href="../pages/评估计划/page.js">评估计划 page.js</a> · <a href="../pages/入基地技能考/page.js">入基地技能考 page.js</a> · <a href="../pages/形成性评估/page.js">形成性评估 page.js</a> · <a href="../pages/终结性评估任务/page.js">终结性评估任务 page.js</a></p>
+</div></article>
+<article class="item-card" id="2026-11-17-sec-03" data-date="2026-11-17" data-scope="PC端" data-search="评估实施 形成性 计划发起 教师 项目"><div style="padding:24px"><h2>评估实施 · 第二阶段：计划发起、任务执行与对象拆分</h2>
+<p>入口：院级／基地管理员 → 评估实施 → 住培学员评估 → 形成性评估；教师评估、项目评估 → 过程评价。</p>
+<p>形成性默认以任务列表展示来源、关联计划、组织范围、评估对象、完成进度、截止日期和状态。完成进展单独切换，保留科室与逐人核对；年度结果分析与导出仍属于结果分析。</p>
+<ul><li>发起时读取已发布有效计划，仅列出当前身份有权人工发布的计划项；学员来自本基地在科名单，工具来自关联表单，评估人来自科室教师与带教关系。</li><li>发布校验计划、范围、日期、工具、人员与重复任务，保存原表单快照并接入既有教师评估任务；任务详情可查看执行明细及本次完成结果。</li><li>出科理论、技能沿用原轮转考核与认定流程，在形成性任务中引用；不重复创建考试、不改变合格及认定规则。</li><li>教师360及教师类活动评价归教师，项目类活动评价归项目；匿名评价仅显示回收进度。原年度与综合评估功能保留。</li><li>催办保存本地记录并按日去重，不代表已经发送真实消息；当前持久化与权限校验属于前端原型，未新增后端服务。</li></ul>
+<h3>形成性评估</h3><div class="pair"><div><h4>修改前</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-形成性-修改前.png" alt="第二阶段 形成性 修改前"></div><div><h4>修改后</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-形成性-修改后.png" alt="第二阶段 形成性 修改后"></div></div>
+<h3>教师评估</h3><div class="pair"><div><h4>修改前</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-教师-修改前.png" alt="第二阶段 教师 修改前"></div><div><h4>修改后</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-教师-修改后.png" alt="第二阶段 教师 修改后"></div></div>
+<h3>项目评估</h3><div class="pair"><div><h4>修改前</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-项目-修改前.png" alt="第二阶段 项目 修改前"></div><div><h4>修改后</h4><img loading="lazy" src="2026-11-17-对比截图/第二阶段-项目-修改后.png" alt="第二阶段 项目 修改后"></div></div>
+<h3>无人工计划</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-无人工计划-修改后.png" alt="第二阶段 无人工计划 修改后">
+<h3>发起评估</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-发起评估-修改后.png" alt="第二阶段 发起评估 修改后">
+<h3>任务详情</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-任务详情-修改后.png" alt="第二阶段 任务详情 修改后">
+<h3>完成结果</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-完成结果-修改后.png" alt="第二阶段 完成结果 修改后">
+<h3>完成进展</h3><img loading="lazy" src="2026-11-17-对比截图/第二阶段-完成进展-修改后.png" alt="第二阶段 完成进展 修改后">
+<p>验证：真实浏览器检查发布、空名单／空评估人／过期日期拦截、重复任务阻断、刷新持久化、搜索空状态、基地范围与越权拦截、对象拆分及原年度入口；通过既有完成接口提交测试结果并验证管理端回写。1440 与 1680 视口检查通过，运行时异常为零。截图中的“阶段性临床能力评估验证”为隔离浏览器测试数据，没有写入默认种子。</p>
+<p>实现：<a href="../shared/js/eval-admin.js">评估实施数据服务</a> · <a href="../shared/js/eval-admin-panel.js">任务及发起面板</a> · <a href="../scripts/check-assessment-stage2.cjs">浏览器验证脚本</a></p></div></article>
+
 
     <article class="item-card" id="2026-11-16-sec-01" data-date="2026-11-16" data-scope="PC端" data-search="01. 学员端 · 年度课程计划移除全院管理配置下拉 <strong>定位路径</strong>：学员端（<code>student.html</code>） → 侧边栏「我的学习」 → 「年度课程计划」<br>
       <strong>核心文件</strong>：<code>pages/年度学习计划/page.js</code>、<code>pages/课程工作台/dashboard.js</code> 年度课程计划 权限解耦 交互补齐 真实学习直达 线上课程 选课报名">
