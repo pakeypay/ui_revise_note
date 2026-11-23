@@ -47,14 +47,14 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-23 · 移动端评估全角色重构与管理审核闭环 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">6</span> 项修改记录 · 23 张实机视口（375×667）前后对比截图 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">7</span> 项修改记录 · 33 张实机视口（375×667）前后对比截图 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">6</span> 项</div>
-      <div class="summary-badge"><strong>截图总数</strong>：23 张（修改前 6 张 · 修改后 17 张）</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">7</span> 项</div>
+      <div class="summary-badge"><strong>截图总数</strong>：33 张（修改前 11 张 · 修改后 22 张）</div>
       <div class="summary-badge"><strong>覆盖角色</strong>：学员端 / 督导专家端 / 教师端 / 课程开发 / 科室管理员 / 院级与基地管理员</div>
     </div>
     <div class="index-toolbar">
@@ -119,6 +119,13 @@
           <td><span class="scope-tag dual">双端</span></td>
           <td><code>admin-tdesign.html</code> → 工作台「表单开发任务」；PC <code>轮转任务与考核</code></td>
           <td><code>移动端/admin-tdesign.html</code>、<code>移动端/shared/admin-tdesign-app.js</code>、<code>pages/轮转任务与考核/page.css</code> · 图文对比（2 张）</td>
+        </tr>
+        <tr data-scope="移动端">
+          <td>07</td>
+          <td><a href="#sec-07"><strong>移动端评估域去 AI 味 + 统一 <code>--fdek-*</code> Token 视觉净化</strong></a></td>
+          <td><span class="scope-tag mobile">移动端</span></td>
+          <td>学员 / 教师 / 督导 / 科室 / 院级评估视觉净化</td>
+          <td><code>移动端/shared/tdesign-app.css</code>、<code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/admin-tdesign-app.js</code> · 图文对比（10 张）</td>
         </tr>
       </tbody>
     </table>
@@ -370,6 +377,74 @@
           <figure class="shot-card">
             <figcaption>修改后 · 院级管理员表单开发二级审核弹窗</figcaption>
             <a href="2026-11-23-对比截图/移动端院级管理员-表单二级审核弹窗-修改后.png" target="_blank"><img alt="移动端院级管理员-表单二级审核弹窗-修改后" src="2026-11-23-对比截图/移动端院级管理员-表单二级审核弹窗-修改后.png"></a>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-07">
+    <h2>07. 移动端评估域去 AI 味 + 统一 --fdek-* Token 视觉净化</h2>
+    <p>定位：学员端 / 教师端 / 督导专家端 / 科室管理员端 / 院级管理员端评估视图及弹窗全量视觉净化。实现文件：<a href="../../移动端/shared/tdesign-app.css">tdesign-app.css</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../../移动端/shared/admin-tdesign-app.js">admin-tdesign-app.js</a>、<a href="../../移动端/student-tdesign.html">student-tdesign.html</a>、<a href="../../移动端/teacher-tdesign.html">teacher-tdesign.html</a>、<a href="../../移动端/supervisor-tdesign.html">supervisor-tdesign.html</a>、<a href="../../移动端/department-manager-tdesign.html">department-manager-tdesign.html</a>、<a href="../../移动端/admin-tdesign.html">admin-tdesign.html</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>AI 模板痕迹过重</strong>：大量评估卡片左侧带装饰蓝线、分区标题带左竖杠（<code>border-left</code>），单张卡片堆叠多枚彩色彩虹胶囊标签。</li>
+          <li><strong>信息噪音与排版杂乱</strong>：列表上方存在冗余旁白文案、大量虚线分割线，表单编辑器将 10 种题型铺成满屏虚线按钮墙。</li>
+          <li><strong>色系与入口不统一</strong>：局部混用 Arco 亮蓝 <code>#165dff</code>（偏离复旦医科蓝），科室工作台 KPI 格使用警示红框；教师端顶部 Header 直接外露委员会演示权限开关。</li>
+        </ul>
+        <div class="shot-grid">
+          <figure class="shot-card">
+            <figcaption>修改前 · 学员端评估（左蓝线与多胶囊）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-学员端评估-修改前.png" target="_blank"><img alt="移动端去AI味-学员端评估-修改前" src="2026-11-23-对比截图/移动端去AI味-学员端评估-修改前.png"></a>
+          </figure>
+          <figure class="shot-card">
+            <figcaption>修改前 · 督导评分弹窗（虚线墙与杂色）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-督导评分弹窗-修改前.png" target="_blank"><img alt="移动端去AI味-督导评分弹窗-修改前" src="2026-11-23-对比截图/移动端去AI味-督导评分弹窗-修改前.png"></a>
+          </figure>
+          <figure class="shot-card">
+            <figcaption>修改前 · 教师端评估（外露开关与旁白）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-教师端评估-修改前.png" target="_blank"><img alt="移动端去AI味-教师端评估-修改前" src="2026-11-23-对比截图/移动端去AI味-教师端评估-修改前.png"></a>
+          </figure>
+          <figure class="shot-card">
+            <figcaption>修改前 · 教师端表单编辑器（10 题型虚线墙）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-教师端表单编辑器-修改前.png" target="_blank"><img alt="移动端去AI味-教师端表单编辑器-修改前" src="2026-11-23-对比截图/移动端去AI味-教师端表单编辑器-修改前.png"></a>
+          </figure>
+          <figure class="shot-card">
+            <figcaption>修改前 · 科室评估工作台（红框格与亮蓝）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-科室评估工作台-修改前.png" target="_blank"><img alt="移动端去AI味-科室评估工作台-修改前" src="2026-11-23-对比截图/移动端去AI味-科室评估工作台-修改前.png"></a>
+          </figure>
+        </div>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>全面基于 <code>--fdek-*</code> 统一 Design Token 净化</strong>：彻底去除卡片左蓝线与标题左竖杠，所有边框、圆角、阴影与背景回归低饱和中性灰体系。</li>
+          <li><strong>信息克制与排版收敛</strong>：单卡最多保留 1 个状态标签 + 单行 <code>·</code> 分隔次级灰字；移除列表上方冗余旁白文案与虚线分割。</li>
+          <li><strong>表单编辑器宫格抽屉化</strong>：将 10 题型虚线墙收进 <code>+ 添加题目</code> 2 列宫格抽屉中，编辑器画布聚焦题目结构本身。</li>
+          <li><strong>色值与权限入口规范</strong>：科室工作台红框格改为中性浅灰格，全局统一为复旦医科蓝 <code>#175898</code>；教师端 Header 去除外露演示开关，委员权限切换统一迁入「我的」页。</li>
+        </ul>
+        <div class="shot-grid">
+          <figure class="shot-card">
+            <figcaption>修改后 · 学员端评估（Token 净化与单行元数据）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-学员端评估-修改后.png" target="_blank"><img alt="移动端去AI味-学员端评估-修改后" src="2026-11-23-对比截图/移动端去AI味-学员端评估-修改后.png"></a>
+          </figure>
+          <figure class="shot-card">
+            <figcaption>修改后 · 督导评分弹窗（克制层次与医科蓝）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-督导评分弹窗-修改后.png" target="_blank"><img alt="移动端去AI味-督导评分弹窗-修改后" src="2026-11-23-对比截图/移动端去AI味-督导评分弹窗-修改后.png"></a>
+          </figure>
+          <figure class="shot-card">
+            <figcaption>修改后 · 教师端评估（开关迁入「我的」页）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-教师端评估-修改后.png" target="_blank"><img alt="移动端去AI味-教师端评估-修改后" src="2026-11-23-对比截图/移动端去AI味-教师端评估-修改后.png"></a>
+          </figure>
+          <figure class="shot-card">
+            <figcaption>修改后 · 教师端表单编辑器（+ 添加题目 2 列抽屉）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-教师端表单编辑器-修改后.png" target="_blank"><img alt="移动端去AI味-教师端表单编辑器-修改后" src="2026-11-23-对比截图/移动端去AI味-教师端表单编辑器-修改后.png"></a>
+          </figure>
+          <figure class="shot-card">
+            <figcaption>修改后 · 科室评估工作台（中性浅灰格与 #175898）</figcaption>
+            <a href="2026-11-23-对比截图/移动端去AI味-科室评估工作台-修改后.png" target="_blank"><img alt="移动端去AI味-科室评估工作台-修改后" src="2026-11-23-对比截图/移动端去AI味-科室评估工作台-修改后.png"></a>
           </figure>
         </div>
       </div>
