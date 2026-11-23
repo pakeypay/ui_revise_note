@@ -114,7 +114,20 @@ ul.desc-list li{margin-bottom:5px;line-height:1.6}
 .lb-next{right:24px}
 
 /* 单栏模式 */
-body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compare-grid{grid-template-columns:1fr !important}
+body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compare-grid, body.mode-stacked .evo-grid-3{grid-template-columns:1fr !important}
+
+/* 三阶段演进对比 */
+.evo-group{margin-top:16px;padding:16px;border:1px solid var(--border);border-radius:10px;background:#fbfcfe}
+.evo-group-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:12px}
+.evo-group-title{font-size:14.5px;font-weight:600;color:var(--text);margin:0}
+.evo-group-note{font-size:12px;color:var(--text-sec)}
+.evo-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.evo-col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.evo-col .img-wrap{margin-bottom:0}
+.stage-tag{display:inline-flex;align-items:center;align-self:flex-start;padding:3px 10px;border-radius:6px;font-size:12px;font-weight:600;line-height:1.4}
+.stage-tag.s1{background:#fff2f0;color:#cf1322;border:1px solid #ffa39e}
+.stage-tag.s2{background:#fff7e6;color:#d46b08;border:1px solid #ffd591}
+.stage-tag.s3{background:#f6ffed;color:#389e0d;border:1px solid #b7eb8f}
 
 /* 移动端竖屏截图网格 */
 .shot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:8px}
@@ -130,7 +143,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   header.hero{padding:24px 20px}
   .toolbar{padding:12px 16px}
   main{padding:0 16px}
-  .pair-grid, .pair, .compare-grid{grid-template-columns:1fr !important}
+  .pair-grid, .pair, .compare-grid, .evo-grid-3{grid-template-columns:1fr !important}
 }
 </style>
 </head>
@@ -155,7 +168,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">275<span class="m-unit">张</span></div>
+        <div class="m-val">280<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -516,7 +529,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
     </div>
   </div>
 </article>
-<article class="item-card" id="2026-11-23-sec-07" data-date="2026-11-23" data-scope="移动端" data-search="移动端 去ai味 视觉净化 fdek token 学员端 教师端 督导 科室工作台 表单编辑器 添加题目 175898 复旦医科蓝 我的页 tdesign-app">
+<article class="item-card" id="2026-11-23-sec-07" data-date="2026-11-23" data-scope="移动端" data-search="移动端 去ai味 视觉净化 fdek token 三阶段演进对比 学员端 教师端 督导 科室工作台 表单编辑器 添加题目 175898 复旦医科蓝 我的页 tdesign-app">
   <div class="item-header">
     <div class="item-title-wrap">
       <div class="badge-row">
@@ -524,67 +537,163 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <span class="badge-date">2026-11-23</span>
         <span class="badge-scope">移动端</span>
       </div>
-      <h2 class="item-title">07. 移动端评估域去 AI 味 + 统一 --fdek-* Token 视觉净化</h2>
+      <h2 class="item-title">07. 移动端评估域去 AI 味 + 统一 --fdek-* Token 视觉净化（三阶段演进对比）</h2>
       <div class="item-meta"><strong>定位路径</strong>：学员端 / 教师端 / 督导专家端 / 科室管理员端 / 院级管理员端评估视图及弹窗全量视觉净化<br>
       <strong>核心文件</strong>：<code>移动端/shared/tdesign-app.css</code>、<code>移动端/shared/tdesign-app.js</code>、<code>移动端/shared/admin-tdesign-app.js</code></div>
     </div>
   </div>
   <div class="item-body">
-    <div class="pair-grid">
-      <div class="pair-col">
-        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
-        <ul class="desc-list">
-          <li>卡片左蓝线与标题左竖杠、单卡多色彩虹胶囊轰炸、列表上方冗余旁白文案、虚线分割与 10 题型虚线墙、混用 Arco 亮蓝 <code>#165dff</code>、教师端 Header 外露演示开关。</li>
-        </ul>
-        <div class="shot-grid">
+    <ul class="desc-list">
+      <li><strong>① 最初版本（改造前）</strong>：移动端评估功能极简或缺失对应入口（无表单编辑器、无精细任务分组/评分弹窗），视觉与 PC 端口径未对齐。</li>
+      <li><strong>② 中间状态（功能对齐 PC 版）</strong>：完成全角色评估业务对齐 PC 端，但出现 AI 模板痕迹（卡片左蓝线/左竖杠、多色彩虹胶囊、冗余旁白与虚线墙、科室 KPI 红框格、外露演示权限开关、混用 <code>#165dff</code>）。</li>
+      <li><strong>③ 最终版本（--fdek-* Token 去 AI 味）</strong>：基于 <code>--fdek-*</code> Token 全面视觉净化——去左蓝线/左竖杠、单卡至多 1 枚状态标签 + 单行 <code>·</code> 次级灰字、10 题型收进 <code>+ 添加题目</code> 2 列抽屉、科室红框改 <code>--fdek-bg-sunken</code> 中性浅灰格、全局统一复旦医科蓝 <code>#175898</code>、委员权限开关迁入「我的」页。</li>
+    </ul>
+
+    <div class="evo-group">
+      <div class="evo-group-head">
+        <h3 class="evo-group-title">组 1 · 学员端评估任务</h3>
+        <span class="evo-group-note">旧版简陋静态列表 → 对齐 PC 三段式与弹窗（左蓝线/多胶囊） → --fdek-* Token 净化</span>
+      </div>
+      <div class="evo-grid-3">
+        <div class="evo-col">
+          <span class="stage-tag s1">① 最初版本（改造前）</span>
           <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-学员端评估-修改前.png" alt="移动端去AI味-学员端评估-修改前" data-cap="2026-11-23 #07 修改前 · 学员端评估（左蓝线与多胶囊）">
-            <div class="img-caption"><span>修改前 · 学员端评估</span></div>
+            <img loading="lazy" src="2026-11-23-对比截图/移动端学员端-评估任务-修改前.png" alt="移动端学员端-评估任务-修改前" data-cap="2026-11-23 #07 组1 ①最初版本 · 学员端评估旧版视图">
+            <div class="img-caption"><span>最初 · 学员端评估旧版视图</span></div>
           </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s2">② 中间状态（功能对齐 PC 版）</span>
           <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-督导评分弹窗-修改前.png" alt="移动端去AI味-督导评分弹窗-修改前" data-cap="2026-11-23 #07 修改前 · 督导评分弹窗">
-            <div class="img-caption"><span>修改前 · 督导评分弹窗</span></div>
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-学员端评估-修改前.png" alt="移动端去AI味-学员端评估-修改前" data-cap="2026-11-23 #07 组1 ②中间状态 · 学员端评估（左蓝线与多胶囊）">
+            <div class="img-caption"><span>中间 · 对齐 PC 版（左蓝线与多胶囊）</span></div>
           </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s3">③ 最终版本（--fdek-* Token 去 AI 味）</span>
           <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-教师端评估-修改前.png" alt="移动端去AI味-教师端评估-修改前" data-cap="2026-11-23 #07 修改前 · 教师端评估">
-            <div class="img-caption"><span>修改前 · 教师端评估</span></div>
-          </div>
-          <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-教师端表单编辑器-修改前.png" alt="移动端去AI味-教师端表单编辑器-修改前" data-cap="2026-11-23 #07 修改前 · 教师端表单编辑器">
-            <div class="img-caption"><span>修改前 · 教师端表单编辑器</span></div>
-          </div>
-          <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-科室评估工作台-修改前.png" alt="移动端去AI味-科室评估工作台-修改前" data-cap="2026-11-23 #07 修改前 · 科室评估工作台">
-            <div class="img-caption"><span>修改前 · 科室评估工作台</span></div>
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-学员端评估-修改后.png" alt="移动端去AI味-学员端评估-修改后" data-cap="2026-11-23 #07 组1 ③最终版本 · 学员端评估（Token 净化）">
+            <div class="img-caption"><span>最终 · Token 净化与单行元数据</span></div>
           </div>
         </div>
       </div>
-      <div class="pair-col">
-        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
-        <ul class="desc-list">
-          <li><strong>Token 统一与排版克制</strong>：全面基于 <code>--fdek-*</code> 统一 Design Token 净化，去左蓝线/左竖杠、单卡最多 1 个状态标签 + 单行 <code>·</code> 次级灰字、去旁白文案与虚线分割。</li>
-          <li><strong>抽屉收敛与色值权限规范</strong>：表单编辑器 10 题型虚线墙收进 <code>+ 添加题目</code> 2 列宫格抽屉；科室工作台红框格改中性浅灰格、统一复旦医科蓝 <code>#175898</code>；教师端委员权限开关迁入「我的」页。</li>
-        </ul>
-        <div class="shot-grid">
+    </div>
+
+    <div class="evo-group">
+      <div class="evo-group-head">
+        <h3 class="evo-group-title">组 2 · 督导专家端（任务 → 评分弹窗）</h3>
+        <span class="evo-group-note">旧版仅简陋任务列表 → 补齐评分与拍照弹窗（虚线墙与杂色） → 克制层次与医科蓝</span>
+      </div>
+      <div class="evo-grid-3">
+        <div class="evo-col">
+          <span class="stage-tag s1">① 最初版本（改造前）</span>
           <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-学员端评估-修改后.png" alt="移动端去AI味-学员端评估-修改后" data-cap="2026-11-23 #07 修改后 · 学员端评估">
-            <div class="img-caption"><span>修改后 · 学员端评估</span></div>
+            <img loading="lazy" src="2026-11-23-对比截图/移动端督导专家-督导任务-修改前.png" alt="移动端督导专家-督导任务-修改前" data-cap="2026-11-23 #07 组2 ①最初版本 · 督导任务旧版列表">
+            <div class="img-caption"><span>最初 · 督导任务旧版列表</span></div>
           </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s2">② 中间状态（功能对齐 PC 版）</span>
           <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-督导评分弹窗-修改后.png" alt="移动端去AI味-督导评分弹窗-修改后" data-cap="2026-11-23 #07 修改后 · 督导评分弹窗">
-            <div class="img-caption"><span>修改后 · 督导评分弹窗</span></div>
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-督导评分弹窗-修改前.png" alt="移动端去AI味-督导评分弹窗-修改前" data-cap="2026-11-23 #07 组2 ②中间状态 · 督导评分弹窗（虚线墙与杂色）">
+            <div class="img-caption"><span>中间 · 督导评分弹窗（虚线墙与杂色）</span></div>
           </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s3">③ 最终版本（--fdek-* Token 去 AI 味）</span>
           <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-教师端评估-修改后.png" alt="移动端去AI味-教师端评估-修改后" data-cap="2026-11-23 #07 修改后 · 教师端评估">
-            <div class="img-caption"><span>修改后 · 教师端评估</span></div>
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-督导评分弹窗-修改后.png" alt="移动端去AI味-督导评分弹窗-修改后" data-cap="2026-11-23 #07 组2 ③最终版本 · 督导评分弹窗（克制层次与医科蓝）">
+            <div class="img-caption"><span>最终 · 克制层次与医科蓝</span></div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="evo-group">
+      <div class="evo-group-head">
+        <h3 class="evo-group-title">组 3 · 教师端评估任务</h3>
+        <span class="evo-group-note">旧版单一评估页 → 重构双页签（Header 外露开关与旁白） → 开关迁入「我的」页</span>
+      </div>
+      <div class="evo-grid-3">
+        <div class="evo-col">
+          <span class="stage-tag s1">① 最初版本（改造前）</span>
           <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-教师端表单编辑器-修改后.png" alt="移动端去AI味-教师端表单编辑器-修改后" data-cap="2026-11-23 #07 修改后 · 教师端表单编辑器">
-            <div class="img-caption"><span>修改后 · 教师端表单编辑器</span></div>
+            <img loading="lazy" src="2026-11-23-对比截图/移动端教师端-评估任务-修改前.png" alt="移动端教师端-评估任务-修改前" data-cap="2026-11-23 #07 组3 ①最初版本 · 教师端评估任务旧版界面">
+            <div class="img-caption"><span>最初 · 教师端评估任务旧版界面</span></div>
           </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s2">② 中间状态（功能对齐 PC 版）</span>
           <div class="img-wrap">
-            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-科室评估工作台-修改后.png" alt="移动端去AI味-科室评估工作台-修改后" data-cap="2026-11-23 #07 修改后 · 科室评估工作台">
-            <div class="img-caption"><span>修改后 · 科室评估工作台</span></div>
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-教师端评估-修改前.png" alt="移动端去AI味-教师端评估-修改前" data-cap="2026-11-23 #07 组3 ②中间状态 · 教师端评估（外露开关与旁白）">
+            <div class="img-caption"><span>中间 · 双页签（外露开关与旁白）</span></div>
+          </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s3">③ 最终版本（--fdek-* Token 去 AI 味）</span>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-教师端评估-修改后.png" alt="移动端去AI味-教师端评估-修改后" data-cap="2026-11-23 #07 组3 ③最终版本 · 教师端评估（开关迁入我的页）">
+            <div class="img-caption"><span>最终 · 开关迁入「我的」页与净版列表</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="evo-group">
+      <div class="evo-group-head">
+        <h3 class="evo-group-title">组 4 · 教师端表单编辑器</h3>
+        <span class="evo-group-note">原移动端无表单编辑器入口 → 10 题型蓝色虚线按钮墙 → 精简为 + 添加题目 2 列宫格抽屉</span>
+      </div>
+      <div class="evo-grid-3">
+        <div class="evo-col">
+          <span class="stage-tag s1">① 最初版本（改造前）</span>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端教师端-评估任务-修改前.png" alt="移动端教师端-评估任务-修改前（原无表单编辑器入口）" data-cap="2026-11-23 #07 组4 ①最初版本 · 原移动端无表单编辑器入口">
+            <div class="img-caption"><span>最初 · 原移动端无表单编辑器入口</span></div>
+          </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s2">② 中间状态（功能对齐 PC 版）</span>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-教师端表单编辑器-修改前.png" alt="移动端去AI味-教师端表单编辑器-修改前" data-cap="2026-11-23 #07 组4 ②中间状态 · 10 题型蓝色虚线按钮墙">
+            <div class="img-caption"><span>中间 · 10 题型蓝色虚线按钮墙</span></div>
+          </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s3">③ 最终版本（--fdek-* Token 去 AI 味）</span>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-教师端表单编辑器-修改后.png" alt="移动端去AI味-教师端表单编辑器-修改后" data-cap="2026-11-23 #07 组4 ③最终版本 · 精简为 + 添加题目 2 列宫格抽屉">
+            <div class="img-caption"><span>最终 · 精简为 + 添加题目 2 列宫格抽屉</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="evo-group">
+      <div class="evo-group-head">
+        <h3 class="evo-group-title">组 5 · 科室管理员评估工作台</h3>
+        <span class="evo-group-note">旧版工作台 → 补齐评估工作台（满屏红框指标格） → 中性浅灰 --fdek-bg-sunken 指标格</span>
+      </div>
+      <div class="evo-grid-3">
+        <div class="evo-col">
+          <span class="stage-tag s1">① 最初版本（改造前）</span>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端科室管理员-评估与首页-修改前.png" alt="移动端科室管理员-评估与首页-修改前" data-cap="2026-11-23 #07 组5 ①最初版本 · 科室管理员评估与首页旧版">
+            <div class="img-caption"><span>最初 · 科室管理员评估与首页旧版</span></div>
+          </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s2">② 中间状态（功能对齐 PC 版）</span>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-科室评估工作台-修改前.png" alt="移动端去AI味-科室评估工作台-修改前" data-cap="2026-11-23 #07 组5 ②中间状态 · 满屏红框指标格与亮蓝">
+            <div class="img-caption"><span>中间 · 满屏红框指标格与亮蓝</span></div>
+          </div>
+        </div>
+        <div class="evo-col">
+          <span class="stage-tag s3">③ 最终版本（--fdek-* Token 去 AI 味）</span>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-23-对比截图/移动端去AI味-科室评估工作台-修改后.png" alt="移动端去AI味-科室评估工作台-修改后" data-cap="2026-11-23 #07 组5 ③最终版本 · 中性浅灰 --fdek-bg-sunken 指标格">
+            <div class="img-caption"><span>最终 · 中性浅灰 --fdek-bg-sunken 指标格</span></div>
           </div>
         </div>
       </div>
