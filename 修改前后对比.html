@@ -164,11 +164,11 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">80<span class="m-unit">项</span></div>
+        <div class="m-val">81<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">289<span class="m-unit">张</span></div>
+        <div class="m-val">295<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -182,8 +182,8 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (80)</button>
-      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 3项)</button>
+      <button class="chip active" data-date="all">全部日期 (81)</button>
+      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 4项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
       <button class="chip" data-date="2026-11-17">2026-11-17 (3项)</button>
@@ -208,12 +208,81 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 80 / 80 项</div>
+      <div class="stat-pill" id="counterPill">显示 81 / 81 项</div>
     </div>
   </div>
 </div>
 
 <main id="mainContainer">
+
+<article class="item-card" id="2026-11-27-sec-04" data-date="2026-11-27" data-scope="双端协同" data-search="选课报名 我的报名 班次 课次 文案统一 PC端 移动端 enroll-renderer-v2 tdesign-app.js 查看课次 课次人数">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#04</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">双端协同</span>
+      </div>
+      <h2 class="item-title">04. 学员端选课报名 · PC 与移动端「班次」文案全部统一为「课次」</h2>
+      <div class="item-meta"><strong>定位路径</strong>：学员端 PC（<code>student.html</code> → 选课报名 / 我的报名）与移动端（<code>移动端/student-tdesign.html</code> → 选课报名）<br>
+      <strong>核心文件</strong>：<code>shared/js/enroll-renderer-v2.js</code>、<code>移动端/shared/tdesign-app.js</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 移动端 · 班次与课次混用</div>
+        <ul class="desc-list">
+          <li>移动端选课卡片中普通课显示「2 个班次」、专项课（「儿童导尿术（男性）」）显示「2 个课次」，而右侧展开按钮写死「查看班次」，造成同一卡片内「左课次、右班次」割裂。</li>
+          <li>选课空态、我的选课抽屉与日历提示、课程说明及 Toast 均混用「班次」。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/选课报名-移动端-修改前.png" alt="选课报名-移动端-修改前" data-cap="2026-11-27 #04 修改前 · 移动端选课报名班次与课次混用">
+            <div class="img-caption"><span>修改前 · 左侧「2 个课次」与右侧「查看班次」不统一</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 移动端 · 全部统一为「课次」</div>
+        <ul class="desc-list">
+          <li><code>mobileCourseSessionCountText</code> 统一输出「X 个课次 / 暂无课次」，右侧展开按钮统一改为「查看课次」。</li>
+          <li>同步将课程简介/取消规则、空态提示、我的选课抽屉/日历说明及选课 Toast 全部统一为「课次」。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/选课报名-移动端-修改后.png" alt="选课报名-移动端-修改后" data-cap="2026-11-27 #04 修改后 · 移动端选课报名全部统一为课次">
+            <div class="img-caption"><span>修改后 · 全部课程统一「X 个课次」与「查看课次」</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pair-grid" style="margin-top:18px">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> PC 端 · 可选课程与我的报名</div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/选课报名-PC端-修改前.png" alt="选课报名-PC端-修改前" data-cap="2026-11-27 #04 修改前 · PC 端可选课程显示 1 个班次">
+          <div class="img-caption"><span>修改前 · PC 可选课程元信息显示「1 个班次」</span></div>
+        </div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/选课报名-PC端我的报名-修改前.png" alt="选课报名-PC端我的报名-修改前" data-cap="2026-11-27 #04 修改前 · PC 端我的报名使用班次人数与班次说明">
+          <div class="img-caption"><span>修改前 · PC 我的报名表头「班次人数」与 KPI 班次说明</span></div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> PC 端 · 全面统一为「课次」</div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/选课报名-PC端-修改后.png" alt="选课报名-PC端-修改后" data-cap="2026-11-27 #04 修改后 · PC 端可选课程统一为 1 个课次">
+          <div class="img-caption"><span>修改后 · PC 可选课程统一「1 个课次 / 收起课次」</span></div>
+        </div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/选课报名-PC端我的报名-修改后.png" alt="选课报名-PC端我的报名-修改后" data-cap="2026-11-27 #04 修改后 · PC 端我的报名统一为课次人数与课次说明">
+          <div class="img-caption"><span>修改后 · PC 我的报名表头「课次人数」与 KPI 课次说明</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
 <article class="item-card" id="2026-11-27-sec-03" data-date="2026-11-27" data-scope="PC端" data-search="PC端 管理员工作台 配色收敛 复旦儿科官网 ch.shmu.edu.cn 品牌蓝 医技青绿 暖珊瑚橙 浅底线框图标 design-tokens components account-hub manager.html">
   <div class="item-header">
