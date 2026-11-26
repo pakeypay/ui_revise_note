@@ -164,11 +164,11 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">79<span class="m-unit">项</span></div>
+        <div class="m-val">80<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">286<span class="m-unit">张</span></div>
+        <div class="m-val">289<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -182,8 +182,8 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (79)</button>
-      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 2项)</button>
+      <button class="chip active" data-date="all">全部日期 (80)</button>
+      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 3项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
       <button class="chip" data-date="2026-11-17">2026-11-17 (3项)</button>
@@ -208,12 +208,57 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 79 / 79 项</div>
+      <div class="stat-pill" id="counterPill">显示 80 / 80 项</div>
     </div>
   </div>
 </div>
 
 <main id="mainContainer">
+
+<article class="item-card" id="2026-11-27-sec-03" data-date="2026-11-27" data-scope="PC端" data-search="PC端 管理员工作台 配色收敛 复旦儿科官网 ch.shmu.edu.cn 品牌蓝 医技青绿 暖珊瑚橙 浅底线框图标 design-tokens components account-hub manager.html">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#03</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">PC端</span>
+      </div>
+      <h2 class="item-title">03. PC 管理员工作台 · 图标配色收敛至复旦儿科官网三色浅底体系（方案 A）</h2>
+      <div class="item-meta"><strong>定位路径</strong>：院级管理员（<code>manager.html</code>） → 首页工作台（常用服务 / 全部服务）<br>
+      <strong>核心文件</strong>：<code>shared/styles/design-tokens.css</code>、<code>shared/styles/components.css</code>、<code>shared/styles/nav.css</code>、<code>shared/js/account-hub.js</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>服务卡片图标（<code>.s-service-tile-icon[data-tone]</code>）混用 7 种高饱和实底色（钴蓝、紫罗兰、森林绿、鸭青、砖橙、玫红、灰青），同区交错显得“颜色太多”。</li>
+          <li>与左侧复旦品牌蓝（<code>#175898</code>）及医院官网配色割裂，且同一业务分类内部卡片色彩不统一。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/管理员工作台-修改前.png" alt="PC管理员工作台-修改前" data-cap="2026-11-27 #03 修改前 · 管理员工作台 7 色高饱和实底图标">
+          <div class="img-caption"><span>修改前 · 7 色高饱和实底图标混排</span></div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明（方案 A）</div>
+        <ul class="desc-list">
+          <li>参考复旦儿科官网（<code>ch.shmu.edu.cn</code>）将工作台配色严格收敛为<strong>品牌蓝 / 医技青绿 / 暖珊瑚橙</strong>三色，砍掉紫、粉、森林绿等杂色。</li>
+          <li>图标容器升级为<strong>浅底 tint + 1px 细描边 + 彩色线框图标</strong>，并按业务大类统一归属色（教务/用户/题库用蓝，轮转/空间/师生用青绿，物资/评估用暖橙）。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/管理员工作台-修改后.png" alt="PC管理员工作台-修改后" data-cap="2026-11-27 #03 修改后 · 管理员工作台官网三色浅底图标">
+          <div class="img-caption"><span>修改后 · 官网三色浅底线框图标（常用服务）</span></div>
+        </div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/管理员工作台-全部服务-修改后.png" alt="PC管理员工作台-全部服务-修改后" data-cap="2026-11-27 #03 修改后 · 全部服务按业务大类统一三色归属">
+          <div class="img-caption"><span>修改后 · 全部服务按业务大类统一三色</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
 <article class="item-card" id="2026-11-27-sec-02" data-date="2026-11-27" data-scope="移动端" data-search="移动端教师端 我的责任学员 样式补齐 排版修复 fdek-mm 头像 通知卡片 带教负荷 teacher-tdesign tdesign-app.css mentor-mobile">
   <div class="item-header">
