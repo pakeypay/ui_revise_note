@@ -160,19 +160,19 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
     <div class="metrics">
       <div class="m-card">
         <div class="m-label">归档总天数</div>
-        <div class="m-val">7<span class="m-unit">个工作日</span></div>
+        <div class="m-val">9<span class="m-unit">个工作日</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">77<span class="m-unit">项</span></div>
+        <div class="m-val">79<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">280<span class="m-unit">张</span></div>
+        <div class="m-val">286<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
-        <div class="m-val" style="font-size:19px">2026-11-23</div>
+        <div class="m-val" style="font-size:19px">2026-11-27</div>
       </div>
     </div>
   </div>
@@ -182,8 +182,9 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (77)</button>
-      <button class="chip" data-date="2026-11-26">2026-11-26 (最新 · 1项)</button>
+      <button class="chip active" data-date="all">全部日期 (79)</button>
+      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 2项)</button>
+      <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
       <button class="chip" data-date="2026-11-17">2026-11-17 (3项)</button>
 <button class="chip" data-date="2026-11-16">2026-11-16 (5项)</button>
@@ -207,12 +208,110 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 77 / 77 项</div>
+      <div class="stat-pill" id="counterPill">显示 79 / 79 项</div>
     </div>
   </div>
 </div>
 
 <main id="mainContainer">
+
+<article class="item-card" id="2026-11-27-sec-02" data-date="2026-11-27" data-scope="移动端" data-search="移动端教师端 我的责任学员 样式补齐 排版修复 fdek-mm 头像 通知卡片 带教负荷 teacher-tdesign tdesign-app.css mentor-mobile">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#02</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">移动端</span>
+      </div>
+      <h2 class="item-title">02. 移动端教师端 ·「我的责任学员」缺失样式补齐与排版修复</h2>
+      <div class="item-meta"><strong>定位路径</strong>：教师端（<code>移动端/teacher-tdesign.html</code>） → 常用服务 / 全部应用 › 带教与评价 → 我的责任学员<br>
+      <strong>核心文件</strong>：<code>移动端/shared/tdesign-app.css</code>、<code>移动端/shared/mentor-mobile.js</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li><code>mentor-mobile.js</code> 新增的 22 个 <code>.fdek-mm-*</code> 类名在 <code>tdesign-app.css</code> 中缺失，导致顶部负荷栏挤压、通知条无底色且「全部已读」露出原生按钮。</li>
+          <li>学员头像未限尺寸与圆角撑爆卡片，招收年度/绑定方式/轮转科室/最近访谈四个键值紧贴竖排。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/移动端教师端-我的责任学员-修改前.png" alt="移动端教师端-我的责任学员-修改前" data-cap="2026-11-27 #02 修改前 · 我的责任学员样式缺失排版错乱">
+            <div class="img-caption"><span>修改前 · 样式缺失导致头像撑爆与文字挤压</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
+        <ul class="desc-list">
+          <li>基于 <code>--fdek-*</code> 变量一次性补齐全部 22 个缺失 <code>.fdek-mm-*</code> 样式（剩余缺失为 0）。</li>
+          <li>顶部负荷栏左右对齐、未读通知浅橙分层卡片、圆形 <code>44×44</code> 头像并排姓名工号、学员信息重构为 2 列浅灰卡片网格。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/移动端教师端-我的责任学员-修改后.png" alt="移动端教师端-我的责任学员-修改后" data-cap="2026-11-27 #02 修改后 · 我的责任学员样式补齐后效果">
+            <div class="img-caption"><span>修改后 · 负荷栏/通知卡片/圆形头像与2列信息网格</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="item-card" id="2026-11-27-sec-01" data-date="2026-11-27" data-scope="移动端" data-search="移动端学员端 工作台 师资申请 全部服务 考核与成长 弹窗 表单 申请人信息 student-tdesign">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#01</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">移动端</span>
+      </div>
+      <h2 class="item-title">01. 移动端学员端 · 工作台补齐「师资申请」入口与弹窗</h2>
+      <div class="item-meta"><strong>定位路径</strong>：学员端（<code>移动端/student-tdesign.html</code>） → 工作台 → 全部服务 › 考核与成长 → 师资申请<br>
+      <strong>核心文件</strong>：<code>移动端/shared/tdesign-app.js</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>教师端工作台「全部服务 › 带教与评价」已有「师资申请」入口与三段式弹窗，但学员端 <code>configs.student.apps</code>、<code>support</code> 与 <code>serviceHallGroups</code> 均未注册该入口。</li>
+          <li>师资申请表单中「职称自动校验」与「申请人信息」硬编码为教师 <code>王老师 · EK1005 · 消化科</code>。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/学员端-师资申请-修改前.png" alt="移动端学员端-师资申请-修改前" data-cap="2026-11-27 #01 修改前 · 学员端全部服务无师资申请入口">
+            <div class="img-caption"><span>修改前 · 学员端全部服务无师资申请入口</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
+        <ul class="desc-list">
+          <li>在学员端 <code>configs.student.apps</code>、<code>support</code> 与 <code>serviceHallGroups</code>「考核与成长」分组补齐「师资申请」入口（与教师端结构一致，支持固定到首页常用服务与搜索命中）。</li>
+          <li>复用统一三段式弹窗（列表 → 新建申请表单 → 详情），并将表单「职称自动校验」与「申请人信息」改为动态读取当前账号。</li>
+        </ul>
+        <div class="shot-grid">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/学员端-师资申请-修改后.png" alt="移动端学员端-师资申请-修改后" data-cap="2026-11-27 #01 修改后 · 学员端考核与成长新增师资申请入口">
+            <div class="img-caption"><span>修改后 · 全部服务新增师资申请入口</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/学员端-师资申请-列表弹窗-修改后.png" alt="移动端学员端-师资申请-列表弹窗-修改后" data-cap="2026-11-27 #01 修改后 · 师资申请列表弹窗">
+            <div class="img-caption"><span>修改后 · 师资申请列表弹窗</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/学员端-师资申请-新建表单-修改后.png" alt="移动端学员端-师资申请-新建表单-修改后" data-cap="2026-11-27 #01 修改后 · 新建师资申请表单（动态学员信息）">
+            <div class="img-caption"><span>修改后 · 新建申请表单（动态学员信息）</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
 <article class="item-card" id="2026-11-26-sec-01" data-date="2026-11-26" data-scope="PC端" data-search="轮转进度 独立页 轮转工作台 Tab 拆分 轮转管理 菜单 责任导师分配 概览穿透 详情抽屉">
   <div class="item-head"><span class="date-badge">2026-11-26</span><span class="scope-tag">PC端</span><h3>轮转管理 · 轮转进度 Tab 拆为独立页</h3></div>
