@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-11-26 · 轮转进度独立页 · 修改前后对比</title>
+<style>
+  body{margin:0;background:#f5f6f8;color:#1d2129;font:14px/1.7 -apple-system,'PingFang SC',sans-serif}
+  header{background:#1d5b97;color:#fff;padding:24px 36px}
+  header h1{font-size:22px;margin:0}
+  header .sub{margin-top:4px;opacity:.9;font-size:13px}
+  main{max-width:1400px;margin:24px auto 64px;padding:0 24px}
+  section{background:#fff;border:1px solid #e5e9f0;border-radius:12px;padding:24px;margin-top:24px}
+  section[id]{scroll-margin-top:20px}
+  #change-index{margin-top:0}
+  h2{font-size:18px;margin-top:0}
+  h3{font-size:15px;margin:10px 0 8px}
+  img{width:100%;border:1px solid #e5e9f0;border-radius:6px;display:block}
+  a{color:#1d5b97;text-decoration:none}
+  a:hover{text-decoration:underline}
+  code{background:#f2f4f7;border-radius:4px;padding:1px 6px;font-size:12px}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .summary-row{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 16px}
+  .summary-badge{background:#f2f6fb;border:1px solid #d6e4f5;border-radius:8px;padding:6px 12px;font-size:13px;color:#1d5b97}
+  .audit-table{width:100%;border-collapse:collapse;font-size:13px}
+  .audit-table th,.audit-table td{border:1px solid #e5e9f0;padding:9px 12px;text-align:left;vertical-align:top}
+  .audit-table th{background:#f7f8fa;font-weight:600}
+  .scope-tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:#eef4fb;color:#1d5b97}
+  .back-to-index{position:fixed;right:24px;bottom:24px;z-index:50;background:#1d5b97;color:#fff;padding:8px 14px;border-radius:999px;font-size:13px}
+  @media(max-width:850px){.pair{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none">← 返回留痕总览</a></div>
+  <h1>2026-11-26 · 轮转进度独立页 · 修改前后对比</h1>
+  <div class="sub">共 <span id="index-total-count">1</span> 项修改记录 · 5 张真实入口截图 + 2 张 PM 原图 · PC 端 1440×900</div>
+</header>
+<main>
+  <section id="change-index">
+    <h2>修改记录总清单（索引）</h2>
+    <div class="summary-row"><div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">1</span> 项</div></div>
+    <table class="audit-table">
+      <thead><tr><th style="width:56px">序号</th><th style="width:32%">模块与改动主题</th><th style="width:88px">端别</th><th style="width:26%">定位 / 触发路径</th><th>涉及文件与留痕形式</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td><a href="#sec-01"><strong>轮转管理 · 轮转进度 Tab 拆为独立页</strong></a></td><td><span class="scope-tag">PC端</span></td><td>院级管理员 → 轮转管理 → 轮转进度</td><td><code>pages/轮转进度/</code> + <code>pages/轮转工作台/</code> + <code>nav-data.js</code> + <code>module-loader.js</code> · 图文对比</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="sec-01">
+    <h2>轮转管理 · 轮转进度 Tab 拆为独立页</h2>
+    <p>定位：院级/基地管理员 → 轮转管理 → 轮转工作台（改前在 Tab 内，改后为独立页）。实现：<a href="../../pages/轮转进度/page.js">pages/轮转进度/page.js</a>、<a href="../../pages/轮转工作台/page.js">pages/轮转工作台/page.js</a>、<a href="../../shared/js/nav-data.js">shared/js/nav-data.js</a>、<a href="../../shared/js/module-loader.js">shared/js/module-loader.js</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li>「轮转进度」是轮转工作台的第二个 Tab，与「轮转数据概览」「出科考核成绩」挤在同一页，不能作为独立入口直达。</li>
+          <li>左侧轮转管理菜单为：轮转工作台 → 轮转安排 → 责任导师分配 → 轮转任务与考核 → 结业办理，没有进度入口。</li>
+          <li>概览点击科室分布只能切到同页 Tab，无法沉淀为可分享的独立页面。</li>
+        </ul>
+        <a href="2026-11-26-对比截图/轮转工作台-before.png" target="_blank"><img alt="改前：工作台三 Tab" src="2026-11-26-对比截图/轮转工作台-before.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li>新建 <code>pages/轮转进度/</code>（index.html / page.js / page.css / page.md），菜单名与目录名一致；L1-02 工具栏显示标题「轮转进度」。</li>
+          <li>菜单插入四位角色（院级管理员、学院教务、课程管理员、基地管理员/旧编码手术基地）：轮转安排 → <strong>轮转进度</strong> → 责任导师分配；科室管理员菜单保持原样不动。</li>
+          <li>工作台仅保留「轮转数据概览」「出科考核成绩」两个 Tab；概览点击科室改为 <code>navigateTo('轮转进度')</code>，一次性参数带科室筛选。</li>
+          <li>进度页 CSS 通过 <code>@import ../轮转工作台/page.css</code> 复用同一份样式，避免两页规则漂移。</li>
+          <li>真实入口验证：标题/菜单/12 行表格/详情抽屉/出科行动跳转全部正常，控制台零报错。</li>
+        </ul>
+        <a href="2026-11-26-对比截图/轮转进度-独立页-after.png" target="_blank"><img alt="改后：独立页" src="2026-11-26-对比截图/轮转进度-独立页-after.png"></a>
+      </div>
+    </div>
+
+    <h3>补充截图</h3>
+    <div class="pair">
+      <div><h4>改后 · 工作台（两 Tab）</h4><a href="2026-11-26-对比截图/轮转工作台-after.png" target="_blank"><img alt="工作台改后" src="2026-11-26-对比截图/轮转工作台-after.png"></a></div>
+      <div><h4>改后 · 详情抽屉</h4><img alt="详情抽屉" src="2026-11-26-对比截图/轮转进度-详情抽屉-after.png"></div>
+    </div>
+    <div class="pair" style="margin-top:24px">
+      <div><h4>概览点击科室穿透 · 改后</h4><img alt="穿透" src="2026-11-26-对比截图/轮转工作台-概览穿透-after.png"></div>
+      <div><h4>PM 提供原图 · 改前 Tab</h4><img alt="PM 原图" src="2026-11-26-对比截图/轮转进度-Tab改前-PM原图.jpg"></div>
+    </div>
+    <p style="margin-top:16px;color:#4e5969;">科室管理员菜单 PM 原图另存于 <a href="2026-11-26-对比截图/科室管理员菜单-程主任-PM原图.jpg" target="_blank">科室管理员菜单-程主任-PM原图.jpg</a>（程主任菜单为「轮转学员 / 指导医师 / 出科考核」，本次未改）。</p>
+  </section>
+</main>
+<a class="back-to-index" href="#change-index">↑ 返回总清单</a>
+</body>
+</html>
