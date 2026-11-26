@@ -44,13 +44,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-27 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">4</span> 项修改记录 · 15 张真实入口截图 · PC 端 1440×900 / 移动端 375×812 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">7</span> 项修改记录 · 26 张真实入口截图 · PC 端 1440×900 / 移动端 375×812 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">4</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">7</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -100,6 +100,27 @@
           <td><span class="scope-tag">双端</span></td>
           <td>学员端（<code>student.html</code> / <code>移动端/student-tdesign.html</code>） → 选课报名 / 我的报名</td>
           <td><a href="../../shared/js/enroll-renderer-v2.js">shared/js/enroll-renderer-v2.js</a> + <a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a> · 图文对比（6 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>05</td>
+          <td><a href="#sec-05"><strong>住培蓝图 · 课程蓝图横向挤字修复与纵向分组展开重构（方案 1）</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>管理端 → 住培蓝图 → 课程蓝图（<code>pages/课程蓝图/index.html</code>）</td>
+          <td><a href="../../pages/课程蓝图/page.js">pages/课程蓝图/page.js</a> + <a href="../../pages/课程蓝图/page.css">pages/课程蓝图/page.css</a> · 图文对比（3 张）</td>
+        </tr>
+        <tr data-scope="移动端">
+          <td>06</td>
+          <td><a href="#sec-06"><strong>移动端学员端 ·「成绩与评估记录」「反馈与学习计划」迁至首页独立入口</strong></a></td>
+          <td><span class="scope-tag">移动端</span></td>
+          <td>学员端 → 首页常用服务（默认 8 宫格）&amp; 全部服务 › 考核与成长；底部「评估」Tab 精简为评估任务</td>
+          <td><a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a> · 图文对比（5 张）</td>
+        </tr>
+              <tr data-scope="PC端">
+          <td>07</td>
+          <td><a href="#sec-07"><strong>PC 全角色左侧导航 · 对齐千问 256px 尺寸、默认收起二级与无竖线纯缩进重构</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>全站 PC 角色入口（<code>manager.html</code>、<code>王老师.html</code>、<code>王同学.html</code>、<code>base-manager.html</code> 等 15 个页面）</td>
+          <td><a href="../../shared/styles/sidebar.css">sidebar.css</a> + <a href="../../shared/js/nav-render.js">nav-render.js</a> + <a href="../../shared/styles/design-tokens.css">design-tokens.css</a> · 图文对比（3 张）</td>
         </tr>
       </tbody>
     </table>
@@ -252,6 +273,107 @@
         <h4>修改后 · KPI 说明与表头全部统一为「课次报名成功 / 满员课次 / 其他课次 / 课次人数」</h4>
         <a href="2026-11-27-对比截图/选课报名-PC端我的报名-修改后.png" target="_blank"><img alt="修改后：PC 端我的报名统一为课次人数与说明" src="2026-11-27-对比截图/选课报名-PC端我的报名-修改后.png"></a>
       </div>
+    </div>
+  </section>
+
+  <section id="sec-05">
+    <h2>住培蓝图 · 课程蓝图横向挤字修复与纵向分组展开重构（方案 1）</h2>
+    <p>定位：管理端 → 住培蓝图 → 课程蓝图（<code>pages/课程蓝图/index.html</code>）。修改文件：<a href="../../pages/课程蓝图/page.js">pages/课程蓝图/page.js</a>、<a href="../../pages/课程蓝图/page.css">pages/课程蓝图/page.css</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li>采用 5 级横向思维导图并排（教学环境 168px + 课程类型 196px + 课程卡 + 固定 300px EPA 列 + 核心胜任力列）叠加右侧 296px 覆盖提醒栏，100% 缩放下（1440–1680px）最右侧「核心胜任力-子胜任力」被挤成 ~30px 竖条，中文逐字折行，只能靠缩小浏览器勉强查看。</li>
+          <li>教学环境与课程类型长期霸占左侧 400px+ 形成大面积空白死区；课程卡使用语义错位的 iOS 滑动开关控制展开/收起，整体观感粗糙。</li>
+        </ul>
+        <a href="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改前.png" target="_blank"><img alt="修改前：课程蓝图展开后核心胜任力列被挤成竖条" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明（方案 1）</h3>
+        <ul>
+          <li><strong>横向降维</strong>：将「教学环境 → 课程类型」改为纵向层级分组头，彻底释放左侧 400px+ 死区；右侧 296px 覆盖提醒栏收拢为年级顶部全宽紧凑缺口带（点击缺口芯片仍一键带入新建开发任务弹窗）。</li>
+          <li><strong>下方结构化展开</strong>：课程收起态呈多列卡片网格，去掉 iOS 开关改用轻量折叠箭头；展开后跨满整行，在卡片正下方以双栏呈现「关联 EPA」与按 6 域着色的「核心胜任力—子胜任力」，1440px / 1280px 下 100% 缩放均零挤字、零横向溢出。</li>
+        </ul>
+        <a href="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png" target="_blank"><img alt="修改后：课程蓝图展开态下方双栏清晰呈现" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png"></a>
+      </div>
+    </div>
+    <h3 style="margin-top:20px">修改后 · 默认收起态全览（1440×900 · 100% 缩放）</h3>
+    <div>
+      <h4>改后 · 纵向分组 + 顶部缺口带 + 3 列紧凑课程网格</h4>
+      <a href="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png" target="_blank"><img alt="修改后：课程蓝图收起态纵向分组网格" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png"></a>
+    </div>
+  </section>
+  <section id="sec-06">
+    <h2>移动端学员端 ·「成绩与评估记录」「反馈与学习计划」迁至首页独立入口</h2>
+    <p>定位：学员端（<code>移动端/student-tdesign.html</code>） → 首页「常用服务」默认 8 宫格与「全部服务 › 考核与成长」独立入口；底部「评估」Tab 精简为纯评估任务。修改文件：<a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li>底部「评估」Tab 顶部叠加 3 段切换栏（<code>评估任务 / 成绩与评估记录 / 反馈与学习计划</code>），下方又有 <code>待我评估 / 待他人评估</code> 与状态筛选，一屏 3 层导航过于拥挤。</li>
+          <li>首页「常用服务」默认 8 宫格中「成绩与评估记录」排在第 9 位被截断藏进「全部服务」；且从首页点击这两个服务会强制跳转到底部「评估」Tab，入口职责混乱。</li>
+        </ul>
+        <div class="mobile-shot">
+          <a href="2026-11-27-对比截图/移动端学员端-评估入口迁移-修改前.png" target="_blank"><img alt="修改前：底部评估Tab顶部堆叠三段切换栏，标注需迁至首页" src="2026-11-27-对比截图/移动端学员端-评估入口迁移-修改前.png"></a>
+        </div>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>底部「评估」Tab 减负</strong>：移除学员端顶部 3 段切换栏 <code>stu-eval-subnav</code> 及冗余状态 <code>stuEvalSection</code>，标题固定为「评估任务」，直接展示 <code>待我评估 / 待他人评估</code>、状态筛选与「+ 发起评估」按钮。</li>
+          <li><strong>首页工作台独立入口</strong>：调整 <code>configs.student.apps</code> 默认排序，将「成绩与评估记录」「反馈与学习计划」并列置入首页「常用服务」默认 8 宫格（同时保留于「全部服务 › 考核与成长」）。</li>
+          <li><strong>首页二级页承接新版完整内容</strong>：改写 <code>openFeature</code> 路由以全屏二级页（<code>overlay = 'detail'</code>）打开；「成绩与评估记录」完整迁入对齐 PC 端的 KPI 概览 + 5 阶段筛选与详情/复核弹窗，「反馈与学习计划」展示导师阶段性评价与个人学习计划。</li>
+        </ul>
+        <div class="mobile-shot">
+          <a href="2026-11-27-对比截图/移动端学员端-评估任务精简-修改后.png" target="_blank"><img alt="修改后：底部评估Tab精简为纯评估任务视图" src="2026-11-27-对比截图/移动端学员端-评估任务精简-修改后.png"></a>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:20px">修改后 · 首页独立按钮与二级页交互留痕</h3>
+    <div class="mobile-grid">
+      <div>
+        <h4>改后 · 首页「常用服务」默认 8 宫格</h4>
+        <a href="2026-11-27-对比截图/移动端学员端-首页常用服务-修改后.png" target="_blank"><img alt="改后：首页常用服务新增成绩与评估记录与反馈与学习计划独立按钮" src="2026-11-27-对比截图/移动端学员端-首页常用服务-修改后.png"></a>
+      </div>
+      <div>
+        <h4>改后 · 成绩与评估记录二级页（5 阶段口径）</h4>
+        <a href="2026-11-27-对比截图/移动端学员端-成绩与评估记录二级页-修改后.png" target="_blank"><img alt="改后：从首页进入成绩与评估记录二级页" src="2026-11-27-对比截图/移动端学员端-成绩与评估记录二级页-修改后.png"></a>
+      </div>
+      <div>
+        <h4>改后 · 反馈与学习计划二级页</h4>
+        <a href="2026-11-27-对比截图/移动端学员端-反馈与学习计划二级页-修改后.png" target="_blank"><img alt="改后：从首页进入反馈与学习计划二级页" src="2026-11-27-对比截图/移动端学员端-反馈与学习计划二级页-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-07">
+    <h2>PC 全角色左侧导航 · 对齐千问 256px 尺寸、默认收起二级与无竖线纯缩进重构</h2>
+    <p>定位：全站 PC 角色入口（<code>manager.html</code>、<code>base-manager.html</code>、<code>student.html</code>、<code>王老师.html</code>、<code>王同学.html</code> 等 15 个角色页面共享）。修改文件：<a href="../../shared/styles/sidebar.css">shared/styles/sidebar.css</a>、<a href="../../shared/js/nav-render.js">shared/js/nav-render.js</a>、<a href="../../shared/styles/design-tokens.css">shared/styles/design-tokens.css</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li>所有业务模块的二级菜单默认全部展开，左侧导航列表超长密密麻麻，视觉重心分散。</li>
+          <li>一级分组以小字号灰标题呈现，与工作台、单入口模块层级不统一，缺少清晰业务域分割线。</li>
+          <li>侧栏折叠/展开时图标位置存在跳跃，且没有一键「全部收起」二级菜单的快捷入口。</li>
+        </ul>
+        <a href="2026-11-27-对比截图/全角色左侧导航-修改前.png" target="_blank"><img alt="修改前：全角色左侧导航默认全展开密密麻麻" src="2026-11-27-对比截图/全角色左侧导航-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明（保持原 #175898 底色不变）</h3>
+        <ul>
+          <li><strong>千问实测尺寸体系</strong>：侧栏宽度统一为 <code>256px</code>，一、二级统一 <code>36px</code> 行高、<code>14px</code> 字号、<code>18px</code> 线性图标（<code>stroke-width: 1.5</code>）与 <code>4px</code> 间距，选中态与悬浮态统一为 <code>8px</code> 圆角矩形。</li>
+          <li><strong>默认收起 + 细分割线</strong>：工作台（工作台/数据汇总/教学日历）与单入口模块（教学资源库）平铺为一级直达项，用细分割线区隔业务域与系统区；多子项业务模块默认全部收起，进入某页面自动展开所属分组，并支持底部一键「全部收起」。</li>
+          <li><strong>无竖线纯缩进 + 折叠平移</strong>：二级菜单采用 <code>20px</code> 纯缩进替代深蓝底上的生硬竖线；侧栏收起时图标固定 <code>left: 8px</code> 平滑过渡至 <code>36×36</code> 圆角矩形，无跳跃感。</li>
+        </ul>
+        <a href="2026-11-27-对比截图/全角色左侧导航-默认收起-修改后.png" target="_blank"><img alt="修改后：左侧导航默认全部收起清爽有序" src="2026-11-27-对比截图/全角色左侧导航-默认收起-修改后.png"></a>
+      </div>
+    </div>
+    <h3 style="margin-top:20px">修改后 · 点击一级模块展开二级菜单留痕（无竖线纯缩进 + 同字号同图标）</h3>
+    <div>
+      <h4>改后 · 展开「轮转管理」二级菜单（14px 字号 / 18px 线性图标 / 20px 纯缩进）</h4>
+      <a href="2026-11-27-对比截图/全角色左侧导航-二级展开-修改后.png" target="_blank"><img alt="修改后：展开轮转管理二级菜单效果" src="2026-11-27-对比截图/全角色左侧导航-二级展开-修改后.png"></a>
     </div>
   </section>
 </main>

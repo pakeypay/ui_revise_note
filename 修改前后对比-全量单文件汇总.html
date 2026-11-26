@@ -164,11 +164,19 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
+<<<<<<< HEAD
         <div class="m-val">81<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">295<span class="m-unit">张</span></div>
+        <div class="m-val">306<span class="m-unit">张</span></div>
+=======
+        <div class="m-val">82<span class="m-unit">项</span></div>
+      </div>
+      <div class="m-card">
+        <div class="m-label">对比留痕截图总数</div>
+        <div class="m-val">297<span class="m-unit">张</span></div>
+>>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -182,8 +190,12 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (81)</button>
-      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 4项)</button>
+<<<<<<< HEAD
+      <button class="chip active" data-date="all">全部日期 (83)</button>
+=======
+      <button class="chip active" data-date="all">全部日期 (82)</button>
+>>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
+      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 7项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
       <button class="chip" data-date="2026-11-17">2026-11-17 (3项)</button>
@@ -208,13 +220,121 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 81 / 81 项</div>
+<<<<<<< HEAD
+      <div class="stat-pill" id="counterPill">显示 83 / 83 项</div>
+=======
+      <div class="stat-pill" id="counterPill">显示 82 / 82 项</div>
+>>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
     </div>
   </div>
 </div>
 
 <main id="mainContainer">
 
+<article class="item-card" id="2026-11-27-sec-07" data-date="2026-11-27" data-scope="PC端" data-search="PC端 左侧导航 sidebar nav 千问 256px 默认收起 无竖线 纯缩进 圆角矩形 全部收起 折叠平移动画 sidebar.css nav-render.js design-tokens.css manager.html 全角色">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#07</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">PC端</span>
+      </div>
+      <h2 class="item-title">07. PC 全角色左侧导航 · 对齐千问 256px 尺寸、默认收起二级与无竖线纯缩进重构</h2>
+      <div class="item-meta"><strong>定位路径</strong>：全站 PC 角色入口（<code>manager.html</code>、<code>base-manager.html</code>、<code>student.html</code>、<code>王老师.html</code>、<code>王同学.html</code> 等 15 个页面共享）<br>
+      <strong>核心文件</strong>：<code>shared/styles/sidebar.css</code>、<code>shared/js/nav-render.js</code>、<code>shared/styles/design-tokens.css</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>所有业务模块的二级菜单默认全部展开，左侧导航列表超长密密麻麻，视觉重心分散。</li>
+          <li>一级分组以小字号灰标题呈现，缺少清晰业务域分割线，且无一键「全部收起」入口。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/全角色左侧导航-修改前.png" alt="全角色左侧导航-修改前" data-cap="2026-11-27 #07 修改前 · 左侧导航默认全展开密密麻麻">
+          <div class="img-caption"><span>修改前 · 全量二级菜单默认展开</span></div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明（保持原 #175898 底色不变）</div>
+        <ul class="desc-list">
+          <li>对齐千问实测尺寸：宽度 <code>256px</code>，一、二级统一 <code>36px</code> 行高 / <code>14px</code> 字号 / <code>18px</code> 线性图标（<code>1.5px</code> 描边），选中态改为 <code>8px</code> 圆角矩形。</li>
+          <li>工作台与单项入口平铺直达 + 细分割线分组，多子项业务模块默认全部收起，二级采用 <code>20px</code> 无竖线纯缩进，补齐底部「全部收起」与侧栏平滑折叠平移。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/全角色左侧导航-默认收起-修改后.png" alt="全角色左侧导航-默认收起-修改后" data-cap="2026-11-27 #07 修改后 · 默认收起二级菜单清爽有序">
+          <div class="img-caption"><span>修改后 · 默认收起二级与细分割线分组</span></div>
+        </div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/全角色左侧导航-二级展开-修改后.png" alt="全角色左侧导航-二级展开-修改后" data-cap="2026-11-27 #07 修改后 · 展开轮转管理二级菜单（纯缩进 + 14px/18px 统一）">
+          <div class="img-caption"><span>修改后 · 展开二级菜单（无竖线纯缩进）</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+<article class="item-card" id="2026-11-27-sec-06" data-date="2026-11-27" data-scope="移动端" data-search="移动端学员端 成绩与评估记录 反馈与学习计划 首页 常用服务 全部服务 评估任务 精简 二级页 student-tdesign tdesign-app.js">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#06</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">移动端</span>
+      </div>
+      <h2 class="item-title">06. 移动端学员端 ·「成绩与评估记录」「反馈与学习计划」迁至首页独立入口</h2>
+      <div class="item-meta"><strong>定位路径</strong>：学员端（<code>移动端/student-tdesign.html</code>） → 首页常用服务（默认 8 宫格）&amp; 全部服务 › 考核与成长；底部「评估」Tab 精简为纯评估任务<br>
+      <strong>核心文件</strong>：<code>移动端/shared/tdesign-app.js</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>底部「评估」Tab 顶部叠加 3 段切换栏（评估任务 / 成绩与评估记录 / 反馈与学习计划），下方又有待我评估/待他人评估与状态筛选，一屏 3 层导航过重。</li>
+          <li>首页常用服务默认 8 宫格中「成绩与评估记录」排第 9 位被截断藏进全部服务，且点击这两个服务会强行跳转回底部「评估」Tab。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/移动端学员端-评估入口迁移-修改前.png" alt="移动端学员端-评估入口迁移-修改前" data-cap="2026-11-27 #06 修改前 · 评估Tab顶部三段切换栏需迁至首页">
+            <div class="img-caption"><span>修改前 · 评估 Tab 顶部 3 段切换栏（标注迁至首页）</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明</div>
+        <ul class="desc-list">
+          <li>底部「评估」Tab 移除 <code>stu-eval-subnav</code> 三段栏与 <code>stuEvalSection</code>，固定展示「评估任务」（待我评估 / 待他人评估 + 状态筛选 + 发起评估按钮）。</li>
+          <li>「成绩与评估记录」「反馈与学习计划」并列置入首页「常用服务」默认 8 宫格（同时保留于「全部服务 › 考核与成长」），点击以全屏二级页打开并保留 PC 同源 5 阶段成绩与导师评价/学习计划内容。</li>
+        </ul>
+        <div class="shot-grid">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/移动端学员端-评估任务精简-修改后.png" alt="移动端学员端-评估任务精简-修改后" data-cap="2026-11-27 #06 修改后 · 评估Tab精简为纯评估任务">
+            <div class="img-caption"><span>修改后 · 评估 Tab 精简视图</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/移动端学员端-首页常用服务-修改后.png" alt="移动端学员端-首页常用服务-修改后" data-cap="2026-11-27 #06 修改后 · 首页常用服务默认8宫格">
+            <div class="img-caption"><span>修改后 · 首页常用服务 8 宫格</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/移动端学员端-成绩与评估记录二级页-修改后.png" alt="移动端学员端-成绩与评估记录二级页-修改后" data-cap="2026-11-27 #06 修改后 · 成绩与评估记录二级页">
+            <div class="img-caption"><span>修改后 · 成绩与评估记录二级页</span></div>
+          </div>
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/移动端学员端-反馈与学习计划二级页-修改后.png" alt="移动端学员端-反馈与学习计划二级页-修改后" data-cap="2026-11-27 #06 修改后 · 反馈与学习计划二级页">
+            <div class="img-caption"><span>修改后 · 反馈与学习计划二级页</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<<<<<<< HEAD
 <article class="item-card" id="2026-11-27-sec-04" data-date="2026-11-27" data-scope="双端协同" data-search="选课报名 我的报名 班次 课次 文案统一 PC端 移动端 enroll-renderer-v2 tdesign-app.js 查看课次 课次人数">
   <div class="item-header">
     <div class="item-title-wrap">
@@ -226,11 +346,25 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       <h2 class="item-title">04. 学员端选课报名 · PC 与移动端「班次」文案全部统一为「课次」</h2>
       <div class="item-meta"><strong>定位路径</strong>：学员端 PC（<code>student.html</code> → 选课报名 / 我的报名）与移动端（<code>移动端/student-tdesign.html</code> → 选课报名）<br>
       <strong>核心文件</strong>：<code>shared/js/enroll-renderer-v2.js</code>、<code>移动端/shared/tdesign-app.js</code></div>
+=======
+<article class="item-card" id="2026-11-27-sec-05" data-date="2026-11-27" data-scope="PC端" data-search="PC端 课程蓝图 住培蓝图 纵向分组 展开挤压 EPA 核心胜任力 子胜任力 缺口带 方案1 pages/课程蓝图/page.js page.css">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#05</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">PC端</span>
+      </div>
+      <h2 class="item-title">05. 住培蓝图 · 课程蓝图横向挤字修复与纵向分组展开重构（方案 1）</h2>
+      <div class="item-meta"><strong>定位路径</strong>：管理端 → 住培蓝图 → 课程蓝图（<code>pages/课程蓝图/index.html</code>）<br>
+      <strong>核心文件</strong>：<code>pages/课程蓝图/page.js</code>、<code>pages/课程蓝图/page.css</code></div>
+>>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
     </div>
   </div>
   <div class="item-body">
     <div class="pair-grid">
       <div class="pair-col">
+<<<<<<< HEAD
         <div class="col-header"><span class="tag-badge before">修改前</span> 移动端 · 班次与课次混用</div>
         <ul class="desc-list">
           <li>移动端选课卡片中普通课显示「2 个班次」、专项课（「儿童导尿术（男性）」）显示「2 个课次」，而右侧展开按钮写死「查看班次」，造成同一卡片内「左课次、右班次」割裂。</li>
@@ -278,6 +412,31 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <div class="img-wrap">
           <img loading="lazy" src="2026-11-27-对比截图/选课报名-PC端我的报名-修改后.png" alt="选课报名-PC端我的报名-修改后" data-cap="2026-11-27 #04 修改后 · PC 端我的报名统一为课次人数与课次说明">
           <div class="img-caption"><span>修改后 · PC 我的报名表头「课次人数」与 KPI 课次说明</span></div>
+=======
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>采用 5 级横向思维导图并排叠加右侧 296px 覆盖提醒栏，100% 缩放（1440–1680px）下「核心胜任力-子胜任力」列被挤成 ~30px 竖条，中文逐字折行，只能靠缩小浏览器勉强查看。</li>
+          <li>教学环境与课程类型长期占去左侧 400px+ 死区留白，课程卡使用语义错位的 iOS 滑动开关控制展开/收起，整体粗糙。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改前.png" alt="课程蓝图-修改前" data-cap="2026-11-27 #05 修改前 · 课程蓝图展开后核心胜任力列被挤成竖条">
+          <div class="img-caption"><span>修改前 · 100% 缩放展开后文字被挤成竖条</span></div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明（方案 1）</div>
+        <ul class="desc-list">
+          <li><strong>横向降维</strong>：将「教学环境 → 课程类型」改为纵向分组头，彻底释放左侧 400px+ 空白死区；右侧 296px 覆盖提醒栏收拢为年级顶部全宽紧凑缺口带（保留点击一键派发开发任务闭环）。</li>
+          <li><strong>下方结构化展开</strong>：收起态为多列课程卡片网格（轻量折叠箭头替代 iOS 开关），展开态跨满整行并在正下方以双栏呈现「关联 EPA」与 6 域着色「核心胜任力—子胜任力」，1440px / 1280px 均零挤字、零横向溢出。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png" alt="课程蓝图-展开态-修改后" data-cap="2026-11-27 #05 修改后 · 1440×900 100% 缩放展开态双栏清晰呈现">
+          <div class="img-caption"><span>修改后 · 展开态（卡片下方双栏结构化映射）</span></div>
+        </div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png" alt="课程蓝图-收起态-修改后" data-cap="2026-11-27 #05 修改后 · 纵向分组 + 顶部缺口带 + 3 列紧凑课程网格">
+          <div class="img-caption"><span>修改后 · 收起态（纵向分组 + 顶部紧凑缺口带）</span></div>
+>>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
         </div>
       </div>
     </div>
