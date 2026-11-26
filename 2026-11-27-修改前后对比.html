@@ -44,13 +44,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-27 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">3</span> 项修改记录 · 9 张真实入口截图 · PC 端 1440×900 / 移动端 375×667 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">4</span> 项修改记录 · 15 张真实入口截图 · PC 端 1440×900 / 移动端 375×812 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">3</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">4</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -93,6 +93,13 @@
           <td><span class="scope-tag">PC端</span></td>
           <td>院级管理员（<code>manager.html</code>） → 首页工作台（常用服务 / 全部服务）</td>
           <td><a href="../../shared/styles/design-tokens.css">design-tokens.css</a> + <a href="../../shared/styles/components.css">components.css</a> + <a href="../../shared/styles/nav.css">nav.css</a> + <a href="../../shared/js/account-hub.js">account-hub.js</a> · 图文对比（3 张）</td>
+        </tr>
+        <tr data-scope="双端">
+          <td>04</td>
+          <td><a href="#sec-04"><strong>学员端选课报名 · PC 与移动端「班次」文案全部统一为「课次」</strong></a></td>
+          <td><span class="scope-tag">双端</span></td>
+          <td>学员端（<code>student.html</code> / <code>移动端/student-tdesign.html</code>） → 选课报名 / 我的报名</td>
+          <td><a href="../../shared/js/enroll-renderer-v2.js">shared/js/enroll-renderer-v2.js</a> + <a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a> · 图文对比（6 张）</td>
         </tr>
       </tbody>
     </table>
@@ -194,6 +201,57 @@
     <div>
       <h4>改后 · 全部服务按业务大类统一三色归属（滚动视图）</h4>
       <a href="2026-11-27-对比截图/管理员工作台-全部服务-修改后.png" target="_blank"><img alt="改后：管理员工作台全部服务分组视图" src="2026-11-27-对比截图/管理员工作台-全部服务-修改后.png"></a>
+    </div>
+  </section>
+
+  <section id="sec-04">
+    <h2>学员端选课报名 · PC 与移动端「班次」文案全部统一为「课次」</h2>
+    <p>定位：学员端 PC（<code>student.html</code> → 我的学习 → 选课报名 / 我的报名）与移动端（<code>移动端/student-tdesign.html</code> → 选课报名）。实现文件：<a href="../../shared/js/enroll-renderer-v2.js">shared/js/enroll-renderer-v2.js</a>、<a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题（移动端）</h3>
+        <ul>
+          <li>移动端选课卡片中，普通课显示「2 个班次」、专项课（「儿童导尿术（男性）」）显示「2 个课次」，而右侧展开按钮写死「查看班次」，造成同一卡片内「左课次、右班次」文案割裂。</li>
+          <li>选课空态提示、我的选课抽屉与日历提示、课程说明及 Toast 提示均混用「班次」。</li>
+        </ul>
+        <div class="mobile-shot">
+          <a href="2026-11-27-对比截图/选课报名-移动端-修改前.png" target="_blank"><img alt="修改前：移动端选课报名班次与课次混用" src="2026-11-27-对比截图/选课报名-移动端-修改前.png"></a>
+        </div>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明（移动端）</h3>
+        <ul>
+          <li><code>mobileCourseSessionCountText</code> 统一输出「X 个课次 / 暂无课次」，右侧展开按钮统一改为「查看课次」。</li>
+          <li>同步将课程简介/取消规则、空态提示、我的选课抽屉/日历说明及选课 Toast 全部由「班次」统一改为「课次」，与全站术语保持一致。</li>
+        </ul>
+        <div class="mobile-shot">
+          <a href="2026-11-27-对比截图/选课报名-移动端-修改后.png" target="_blank"><img alt="修改后：移动端选课报名全部统一为课次" src="2026-11-27-对比截图/选课报名-移动端-修改后.png"></a>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:20px">PC 端 · 选课报名（可选课程）修改前后对比</h3>
+    <div class="pair">
+      <div>
+        <h4>修改前 · 卡片元信息显示「1 个班次」、展开后按钮为「收起班次」</h4>
+        <a href="2026-11-27-对比截图/选课报名-PC端-修改前.png" target="_blank"><img alt="修改前：PC 端选课报名班次文案" src="2026-11-27-对比截图/选课报名-PC端-修改前.png"></a>
+      </div>
+      <div>
+        <h4>修改后 · 统一为「1 个课次」「收起课次」「请先选择课次」与「确认更换课次？」</h4>
+        <a href="2026-11-27-对比截图/选课报名-PC端-修改后.png" target="_blank"><img alt="修改后：PC 端选课报名统一为课次" src="2026-11-27-对比截图/选课报名-PC端-修改后.png"></a>
+      </div>
+    </div>
+
+    <h3 style="margin-top:20px">PC 端 · 我的报名修改前后对比</h3>
+    <div class="pair">
+      <div>
+        <h4>修改前 · KPI 说明与表头使用「班次报名成功 / 满员班次 / 其他班次 / 班次人数」</h4>
+        <a href="2026-11-27-对比截图/选课报名-PC端我的报名-修改前.png" target="_blank"><img alt="修改前：PC 端我的报名班次人数与说明" src="2026-11-27-对比截图/选课报名-PC端我的报名-修改前.png"></a>
+      </div>
+      <div>
+        <h4>修改后 · KPI 说明与表头全部统一为「课次报名成功 / 满员课次 / 其他课次 / 课次人数」</h4>
+        <a href="2026-11-27-对比截图/选课报名-PC端我的报名-修改后.png" target="_blank"><img alt="修改后：PC 端我的报名统一为课次人数与说明" src="2026-11-27-对比截图/选课报名-PC端我的报名-修改后.png"></a>
+      </div>
     </div>
   </section>
 </main>
