@@ -164,11 +164,11 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">85<span class="m-unit">项</span></div>
+<div class="m-val">83<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">315<span class="m-unit">张</span></div>
+        <div class="m-val">311<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -182,8 +182,8 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (85)</button>
-      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 7项)</button>
+<button class="chip active" data-date="all">全部日期 (83)</button>
+      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 8项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
       <button class="chip" data-date="2026-11-17">2026-11-17 (3项)</button>
@@ -208,12 +208,69 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 85 / 85 项</div>
+<div class="stat-pill" id="counterPill">显示 83 / 83 项</div>
     </div>
   </div>
 </div>
 
 <main id="mainContainer">
+
+<article class="item-card" id="2026-11-27-sec-08" data-date="2026-11-27" data-scope="双端协同" data-search="双端统一 SSOT 移动端 反馈与学习计划 胜任力画像 学习行为画像 雷达图 R2C2 申诉 谈话草案 课程学习推荐 去AI味 r2c2-mobile.js role-registry-ssot.js">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#08</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">双端协同</span>
+      </div>
+      <h2 class="item-title">08. 双端统一 SSOT 与移动端「反馈与学习计划」全量对齐 PC 端（去 AI 味 + 雷达图 + R2C2）</h2>
+      <div class="item-meta"><strong>定位路径</strong>：学员端（<code>移动端/王同学-儿外科示例.html</code> ↔ <code>student.html</code>）→ 反馈与学习计划<br>
+      <strong>核心文件</strong>：<code>移动端/shared/js/r2c2-mobile.js</code>、<code>移动端/shared/styles/r2c2-mobile.css</code>、<code>shared/data/role-registry-ssot.js</code>、<code>shared/js/ssot-runtime-store.js</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 静态假卡片 / 缺失双页签与雷达图</div>
+        <ul class="desc-list">
+          <li>双端存在 91 个镜像副本与角色字典分裂；部分移动端入口漏引 <code>eval-summative.js</code> 与 <code>r2c2-mobile.js</code>，且组件未注册导致页面空白或停留在静态假数据。</li>
+          <li>缺失「学习行为画像」页签、6 维雷达图、结论申诉、半年阶段预测、成长轨迹明细、关联课程详情抽屉及谈话草案；初版卡片存在粗色条与胶囊气泡 AI 装饰风。</li>
+        </ul>
+        <div class="shot-single">
+          <div class="img-wrap">
+            <img loading="lazy" src="2026-11-27-对比截图/移动端-反馈与学习计划-修改前.jpg" alt="移动端-反馈与学习计划-修改前" data-cap="2026-11-27 #08 修改前 · 移动端反馈与学习计划停留在静态假数据">
+          </div>
+          <div class="img-cap">修改前 · 静态假评价与 3 条硬编码计划</div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 统一 SSOT + TDesign 去 AI 味 + 全量对齐 PC</div>
+        <ul class="desc-list">
+          <li>删除 91 个镜像副本直连根目录 <code>shared/</code>，新增 <code>RoleRegistrySSOT</code>，<code>SSOTStore</code> 接入 <code>BroadcastChannel</code> 跨端同步。</li>
+          <li>补齐「胜任力画像 / 学习行为画像」双页签、<code>640×436</code> 2x 高清 6 维雷达图、申诉、半年预测、阶段明细、课程筛选详情、谈话草案与课程推荐，并去除粗色条与气泡。</li>
+        </ul>
+        <div class="shot-grid">
+          <div class="shot-card">
+            <div class="img-wrap"><img loading="lazy" src="2026-11-27-对比截图/移动端-反馈与学习计划-胜任力画像-修改后.png" alt="移动端-胜任力画像-修改后" data-cap="2026-11-27 #08 修改后 · 胜任力画像与 R2C2 五步引导"></div>
+            <div class="img-cap">改后 · 去 AI 味顶部引导与结论卡</div>
+          </div>
+          <div class="shot-card">
+            <div class="img-wrap"><img loading="lazy" src="2026-11-27-对比截图/移动端-反馈与学习计划-雷达图与六大胜任力-修改后.png" alt="移动端-雷达图与六大胜任力-修改后" data-cap="2026-11-27 #08 修改后 · 6 维雷达图与六大核心胜任力"></div>
+            <div class="img-cap">改后 · 6 维雷达图与六大胜任力</div>
+          </div>
+          <div class="shot-card">
+            <div class="img-wrap"><img loading="lazy" src="2026-11-27-对比截图/移动端-反馈与学习计划-行为画像-修改后.png" alt="移动端-行为画像-修改后" data-cap="2026-11-27 #08 修改后 · 学习行为画像页签"></div>
+            <div class="img-cap">改后 · 学习行为画像页签</div>
+          </div>
+          <div class="shot-card">
+            <div class="img-wrap"><img loading="lazy" src="2026-11-27-对比截图/PC端-反馈与学习计划-修改后.png" alt="PC端-反馈与学习计划-修改后" data-cap="2026-11-27 #08 修改后 · PC 端同源对照"></div>
+            <div class="img-cap">PC 端 · 同源反馈与学习计划对照</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
 <article class="item-card" id="2026-11-27-sec-07" data-date="2026-11-27" data-scope="PC端" data-search="PC端 左侧导航 sidebar nav 千问 256px 默认收起 无竖线 纯缩进 圆角矩形 全部收起 折叠平移动画 sidebar.css nav-render.js design-tokens.css manager.html 全角色">
   <div class="item-header">
@@ -318,51 +375,6 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   </div>
 </article>
 
-<article class="item-card" id="2026-11-27-sec-05" data-date="2026-11-27" data-scope="PC端" data-search="PC端 课程蓝图 住培蓝图 树状导图 横向树 缩放 展开挤压 EPA 核心胜任力 子胜任力 缺口带 pages/课程蓝图/page.js page.css">
-  <div class="item-header">
-    <div class="item-title-wrap">
-      <div class="badge-row">
-        <span class="badge-num">#05</span>
-        <span class="badge-date">2026-11-27</span>
-        <span class="badge-scope">PC端</span>
-      </div>
-      <h2 class="item-title">05. 住培蓝图 · 课程蓝图 5 级横向树状导图挤字修复与缩放优化</h2>
-      <div class="item-meta"><strong>定位路径</strong>：管理端 → 住培蓝图 → 课程蓝图（<code>pages/课程蓝图/index.html</code>）<br>
-      <strong>核心文件</strong>：<code>pages/课程蓝图/page.js</code>、<code>pages/课程蓝图/page.css</code></div>
-    </div>
-  </div>
-  <div class="item-body">
-    <div class="pair-grid">
-      <div class="pair-col">
-        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
-        <ul class="desc-list">
-          <li>采用 5 级横向思维导图并排叠加右侧 296px 覆盖提醒栏，100% 缩放（1440–1680px）下「核心胜任力-子胜任力」列被挤成 ~30px 竖条，中文逐字折行，只能靠缩小浏览器勉强查看。</li>
-          <li>课程卡使用语义错位的 iOS 滑动开关控制展开/收起，且缺少导图画布缩放能力。</li>
-        </ul>
-        <div class="img-wrap">
-          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改前.png" alt="课程蓝图-修改前" data-cap="2026-11-27 #05 修改前 · 课程蓝图展开后核心胜任力列被挤成竖条">
-          <div class="img-caption"><span>修改前 · 100% 缩放展开后文字被挤成竖条</span></div>
-        </div>
-      </div>
-      <div class="pair-col">
-        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明（保留 5 级横向树状导图并根治挤字）</div>
-        <ul class="desc-list">
-          <li><strong>完整保留 5 级横向树状导图与连线</strong>（教学环境 → 课程类型 → 课程卡 → 关联 EPA → 核心胜任力-子胜任力），右侧 296px 覆盖提醒栏收拢为年级顶部全宽紧凑缺口带（保留点击一键派发开发任务闭环）。</li>
-          <li><strong>锁定最小可读宽度 + 新增缩放控件</strong>：1440px 100% 缩放下五级完整排开、核心胜任力列宽 <code>288px</code> 零竖折挤字，窄屏独立横向滚动；分区头新增 <code>− / 100% / +</code> 导图缩放器，课程卡改用树节点「展开 &gt; / 收起 &lt;」触发器。</li>
-        </ul>
-        <div class="img-wrap">
-          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png" alt="课程蓝图-展开态-修改后" data-cap="2026-11-27 #05 修改后 · 5级横向树状导图1440×900 100%缩放展开态">
-          <div class="img-caption"><span>修改后 · 5 级横向树状导图展开态（100% 缩放零挤字）</span></div>
-        </div>
-        <div class="img-wrap">
-          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png" alt="课程蓝图-收起态-修改后" data-cap="2026-11-27 #05 修改后 · 横向树状导图收起态 + 顶部缺口带 + 缩放控件">
-          <div class="img-caption"><span>修改后 · 树状导图收起态（含顶部缺口带与缩放控件）</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-
 <article class="item-card" id="2026-11-27-sec-04" data-date="2026-11-27" data-scope="双端协同" data-search="选课报名 我的报名 班次 课次 文案统一 PC端 移动端 enroll-renderer-v2 tdesign-app.js 查看课次 课次人数">
   <div class="item-header">
     <div class="item-title-wrap">
@@ -379,7 +391,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="item-body">
     <div class="pair-grid">
       <div class="pair-col">
-        <div class="col-header"><span class="tag-badge before">修改前</span> 移动端 · 班次与课次混用</div>
+<div class="col-header"><span class="tag-badge before">修改前</span> 移动端 · 班次与课次混用</div>
         <ul class="desc-list">
           <li>移动端选课卡片中普通课显示「2 个班次」、专项课（「儿童导尿术（男性）」）显示「2 个课次」，而右侧展开按钮写死「查看班次」，造成同一卡片内「左课次、右班次」割裂。</li>
           <li>选课空态、我的选课抽屉与日历提示、课程说明及 Toast 均混用「班次」。</li>
