@@ -164,19 +164,11 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-<<<<<<< HEAD
-        <div class="m-val">81<span class="m-unit">项</span></div>
+        <div class="m-val">85<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">306<span class="m-unit">张</span></div>
-=======
-        <div class="m-val">82<span class="m-unit">项</span></div>
-      </div>
-      <div class="m-card">
-        <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">297<span class="m-unit">张</span></div>
->>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
+        <div class="m-val">315<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -190,11 +182,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-<<<<<<< HEAD
-      <button class="chip active" data-date="all">全部日期 (83)</button>
-=======
-      <button class="chip active" data-date="all">全部日期 (82)</button>
->>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
+      <button class="chip active" data-date="all">全部日期 (85)</button>
       <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 7项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
@@ -220,11 +208,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-<<<<<<< HEAD
-      <div class="stat-pill" id="counterPill">显示 83 / 83 项</div>
-=======
-      <div class="stat-pill" id="counterPill">显示 82 / 82 项</div>
->>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
+      <div class="stat-pill" id="counterPill">显示 85 / 85 项</div>
     </div>
   </div>
 </div>
@@ -334,7 +318,51 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   </div>
 </article>
 
-<<<<<<< HEAD
+<article class="item-card" id="2026-11-27-sec-05" data-date="2026-11-27" data-scope="PC端" data-search="PC端 课程蓝图 住培蓝图 树状导图 横向树 缩放 展开挤压 EPA 核心胜任力 子胜任力 缺口带 pages/课程蓝图/page.js page.css">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#05</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">PC端</span>
+      </div>
+      <h2 class="item-title">05. 住培蓝图 · 课程蓝图 5 级横向树状导图挤字修复与缩放优化</h2>
+      <div class="item-meta"><strong>定位路径</strong>：管理端 → 住培蓝图 → 课程蓝图（<code>pages/课程蓝图/index.html</code>）<br>
+      <strong>核心文件</strong>：<code>pages/课程蓝图/page.js</code>、<code>pages/课程蓝图/page.css</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
+        <ul class="desc-list">
+          <li>采用 5 级横向思维导图并排叠加右侧 296px 覆盖提醒栏，100% 缩放（1440–1680px）下「核心胜任力-子胜任力」列被挤成 ~30px 竖条，中文逐字折行，只能靠缩小浏览器勉强查看。</li>
+          <li>课程卡使用语义错位的 iOS 滑动开关控制展开/收起，且缺少导图画布缩放能力。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改前.png" alt="课程蓝图-修改前" data-cap="2026-11-27 #05 修改前 · 课程蓝图展开后核心胜任力列被挤成竖条">
+          <div class="img-caption"><span>修改前 · 100% 缩放展开后文字被挤成竖条</span></div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明（保留 5 级横向树状导图并根治挤字）</div>
+        <ul class="desc-list">
+          <li><strong>完整保留 5 级横向树状导图与连线</strong>（教学环境 → 课程类型 → 课程卡 → 关联 EPA → 核心胜任力-子胜任力），右侧 296px 覆盖提醒栏收拢为年级顶部全宽紧凑缺口带（保留点击一键派发开发任务闭环）。</li>
+          <li><strong>锁定最小可读宽度 + 新增缩放控件</strong>：1440px 100% 缩放下五级完整排开、核心胜任力列宽 <code>288px</code> 零竖折挤字，窄屏独立横向滚动；分区头新增 <code>− / 100% / +</code> 导图缩放器，课程卡改用树节点「展开 &gt; / 收起 &lt;」触发器。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png" alt="课程蓝图-展开态-修改后" data-cap="2026-11-27 #05 修改后 · 5级横向树状导图1440×900 100%缩放展开态">
+          <div class="img-caption"><span>修改后 · 5 级横向树状导图展开态（100% 缩放零挤字）</span></div>
+        </div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png" alt="课程蓝图-收起态-修改后" data-cap="2026-11-27 #05 修改后 · 横向树状导图收起态 + 顶部缺口带 + 缩放控件">
+          <div class="img-caption"><span>修改后 · 树状导图收起态（含顶部缺口带与缩放控件）</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
 <article class="item-card" id="2026-11-27-sec-04" data-date="2026-11-27" data-scope="双端协同" data-search="选课报名 我的报名 班次 课次 文案统一 PC端 移动端 enroll-renderer-v2 tdesign-app.js 查看课次 课次人数">
   <div class="item-header">
     <div class="item-title-wrap">
@@ -346,25 +374,11 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       <h2 class="item-title">04. 学员端选课报名 · PC 与移动端「班次」文案全部统一为「课次」</h2>
       <div class="item-meta"><strong>定位路径</strong>：学员端 PC（<code>student.html</code> → 选课报名 / 我的报名）与移动端（<code>移动端/student-tdesign.html</code> → 选课报名）<br>
       <strong>核心文件</strong>：<code>shared/js/enroll-renderer-v2.js</code>、<code>移动端/shared/tdesign-app.js</code></div>
-=======
-<article class="item-card" id="2026-11-27-sec-05" data-date="2026-11-27" data-scope="PC端" data-search="PC端 课程蓝图 住培蓝图 纵向分组 展开挤压 EPA 核心胜任力 子胜任力 缺口带 方案1 pages/课程蓝图/page.js page.css">
-  <div class="item-header">
-    <div class="item-title-wrap">
-      <div class="badge-row">
-        <span class="badge-num">#05</span>
-        <span class="badge-date">2026-11-27</span>
-        <span class="badge-scope">PC端</span>
-      </div>
-      <h2 class="item-title">05. 住培蓝图 · 课程蓝图横向挤字修复与纵向分组展开重构（方案 1）</h2>
-      <div class="item-meta"><strong>定位路径</strong>：管理端 → 住培蓝图 → 课程蓝图（<code>pages/课程蓝图/index.html</code>）<br>
-      <strong>核心文件</strong>：<code>pages/课程蓝图/page.js</code>、<code>pages/课程蓝图/page.css</code></div>
->>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
     </div>
   </div>
   <div class="item-body">
     <div class="pair-grid">
       <div class="pair-col">
-<<<<<<< HEAD
         <div class="col-header"><span class="tag-badge before">修改前</span> 移动端 · 班次与课次混用</div>
         <ul class="desc-list">
           <li>移动端选课卡片中普通课显示「2 个班次」、专项课（「儿童导尿术（男性）」）显示「2 个课次」，而右侧展开按钮写死「查看班次」，造成同一卡片内「左课次、右班次」割裂。</li>
@@ -412,31 +426,6 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <div class="img-wrap">
           <img loading="lazy" src="2026-11-27-对比截图/选课报名-PC端我的报名-修改后.png" alt="选课报名-PC端我的报名-修改后" data-cap="2026-11-27 #04 修改后 · PC 端我的报名统一为课次人数与课次说明">
           <div class="img-caption"><span>修改后 · PC 我的报名表头「课次人数」与 KPI 课次说明</span></div>
-=======
-        <div class="col-header"><span class="tag-badge before">修改前</span> 存在问题</div>
-        <ul class="desc-list">
-          <li>采用 5 级横向思维导图并排叠加右侧 296px 覆盖提醒栏，100% 缩放（1440–1680px）下「核心胜任力-子胜任力」列被挤成 ~30px 竖条，中文逐字折行，只能靠缩小浏览器勉强查看。</li>
-          <li>教学环境与课程类型长期占去左侧 400px+ 死区留白，课程卡使用语义错位的 iOS 滑动开关控制展开/收起，整体粗糙。</li>
-        </ul>
-        <div class="img-wrap">
-          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改前.png" alt="课程蓝图-修改前" data-cap="2026-11-27 #05 修改前 · 课程蓝图展开后核心胜任力列被挤成竖条">
-          <div class="img-caption"><span>修改前 · 100% 缩放展开后文字被挤成竖条</span></div>
-        </div>
-      </div>
-      <div class="pair-col">
-        <div class="col-header"><span class="tag-badge after">修改后</span> 改动说明（方案 1）</div>
-        <ul class="desc-list">
-          <li><strong>横向降维</strong>：将「教学环境 → 课程类型」改为纵向分组头，彻底释放左侧 400px+ 空白死区；右侧 296px 覆盖提醒栏收拢为年级顶部全宽紧凑缺口带（保留点击一键派发开发任务闭环）。</li>
-          <li><strong>下方结构化展开</strong>：收起态为多列课程卡片网格（轻量折叠箭头替代 iOS 开关），展开态跨满整行并在正下方以双栏呈现「关联 EPA」与 6 域着色「核心胜任力—子胜任力」，1440px / 1280px 均零挤字、零横向溢出。</li>
-        </ul>
-        <div class="img-wrap">
-          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png" alt="课程蓝图-展开态-修改后" data-cap="2026-11-27 #05 修改后 · 1440×900 100% 缩放展开态双栏清晰呈现">
-          <div class="img-caption"><span>修改后 · 展开态（卡片下方双栏结构化映射）</span></div>
-        </div>
-        <div class="img-wrap">
-          <img loading="lazy" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png" alt="课程蓝图-收起态-修改后" data-cap="2026-11-27 #05 修改后 · 纵向分组 + 顶部缺口带 + 3 列紧凑课程网格">
-          <div class="img-caption"><span>修改后 · 收起态（纵向分组 + 顶部紧凑缺口带）</span></div>
->>>>>>> ef8264ea (refactor(course-blueprint): 重构课程蓝图为纵向分组与下方双栏展开并记录2026-11-27留痕)
         </div>
       </div>
     </div>
