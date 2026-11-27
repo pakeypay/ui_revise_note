@@ -122,12 +122,12 @@
           <td>全站 PC 角色入口（<code>manager.html</code>、<code>王老师.html</code>、<code>王同学.html</code>、<code>base-manager.html</code> 等 15 个页面）</td>
           <td><a href="../../shared/styles/sidebar.css">sidebar.css</a> + <a href="../../shared/js/nav-render.js">nav-render.js</a> + <a href="../../shared/styles/design-tokens.css">design-tokens.css</a> · 图文对比（3 张）</td>
         </tr>
-        <tr data-scope="双端">
+        <tr data-scope="PC端">
           <td>08</td>
-          <td><a href="#sec-08"><strong>双端统一 SSOT 与移动端「反馈与学习计划」全量对齐 PC 端（去 AI 味 + 雷达图 + R2C2）</strong></a></td>
-          <td><span class="scope-tag">双端</span></td>
-          <td>学员端首页常用服务 → 反馈与学习计划（<code>移动端/王同学-儿外科示例.html</code> / <code>student.html</code>）</td>
-          <td><a href="../../移动端/shared/js/r2c2-mobile.js">r2c2-mobile.js</a> + <a href="../../移动端/shared/styles/r2c2-mobile.css">r2c2-mobile.css</a> + <a href="../../shared/data/role-registry-ssot.js">role-registry-ssot.js</a> · 图文对比（5 张）</td>
+          <td><a href="#sec-08"><strong>PC 端工作台 · 教师/学员新增「师资申请」抽屉与「添加常用」真实勾选弹窗</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>PC 工作台（<code>王老师.html</code>、<code>王同学.html</code> → 常用服务 / 全部服务 › 我的成果）</td>
+          <td><a href="../../shared/js/account-hub.js">account-hub.js</a> + <a href="../../pages/角色工作台/page.js">page.js</a> + <a href="../../pages/角色工作台/page.css">page.css</a> · 图文对比（5 张）</td>
         </tr>
       </tbody>
     </table>
@@ -296,18 +296,19 @@
         <a href="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改前.png" target="_blank"><img alt="修改前：课程蓝图展开后核心胜任力列被挤成竖条" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改前.png"></a>
       </div>
       <div>
-        <h3>修改后 · 改动说明（方案 1）</h3>
+        <h3>修改后 · 改动说明（保留 5 级横向树状导图并根治挤字）</h3>
         <ul>
-          <li><strong>横向降维</strong>：将「教学环境 → 课程类型」改为纵向层级分组头，彻底释放左侧 400px+ 死区；右侧 296px 覆盖提醒栏收拢为年级顶部全宽紧凑缺口带（点击缺口芯片仍一键带入新建开发任务弹窗）。</li>
-          <li><strong>下方结构化展开</strong>：课程收起态呈多列卡片网格，去掉 iOS 开关改用轻量折叠箭头；展开后跨满整行，在卡片正下方以双栏呈现「关联 EPA」与按 6 域着色的「核心胜任力—子胜任力」，1440px / 1280px 下 100% 缩放均零挤字、零横向溢出。</li>
+          <li><strong>完整保留 5 级横向树状导图与拓扑连线</strong>（教学环境 → 课程类型 → 课程卡 → 关联 EPA → 核心胜任力-子胜任力），同时将右侧 296px 覆盖提醒栏收拢为年级顶部全宽紧凑缺口带（保留点击一键发起开发任务），把主画布完整宽度还给导图。</li>
+          <li><strong>精算 5 级列宽并锁定最小可读宽度</strong>：<code>教学环境 156px</code> / <code>课程类型 184px</code> 全称不截断，核心胜任力列锁定最小可读宽度（1440px 下实测宽 <code>288px</code>），100% 缩放下五级完整排开、零竖折挤字；窄屏时画布独立横向滚动。</li>
+          <li><strong>补充轻量缩放控件与交互精修</strong>：分区头新增 <code>− / 100% / +</code> 导图缩放器（支持 60%–120% 及一键重置）；课程卡去掉 iOS 滑动开关，改用更干净的树节点「展开 &gt; / 收起 &lt;」触发器并校准全部连线几何。</li>
         </ul>
-        <a href="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png" target="_blank"><img alt="修改后：课程蓝图展开态下方双栏清晰呈现" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png"></a>
+        <a href="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png" target="_blank"><img alt="修改后：5级横向树状导图展开态100%缩放完整清晰" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-修改后.png"></a>
       </div>
     </div>
     <h3 style="margin-top:20px">修改后 · 默认收起态全览（1440×900 · 100% 缩放）</h3>
     <div>
-      <h4>改后 · 纵向分组 + 顶部缺口带 + 3 列紧凑课程网格</h4>
-      <a href="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png" target="_blank"><img alt="修改后：课程蓝图收起态纵向分组网格" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png"></a>
+      <h4>改后 · 树状导图收起态 + 顶部紧凑缺口带 + 导图缩放控件</h4>
+      <a href="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png" target="_blank"><img alt="修改后：课程蓝图横向树状导图收起态" src="2026-11-27-对比截图/课程蓝图-展开挤压与排版重构-收起态-修改后.png"></a>
     </div>
   </section>
   <section id="sec-06">
@@ -385,42 +386,41 @@
   </section>
 
   <section id="sec-08">
-    <h2>双端统一 SSOT 与移动端「反馈与学习计划」全量对齐 PC 端（去 AI 味 + 雷达图 + R2C2）</h2>
-    <p>定位：学员端首页常用服务 → 反馈与学习计划（<code>移动端/王同学-儿外科示例.html</code>、<code>移动端/student-tdesign.html</code> ↔ <code>student.html</code>）。修改文件：<a href="../../移动端/shared/js/r2c2-mobile.js">移动端/shared/js/r2c2-mobile.js</a>、<a href="../../移动端/shared/styles/r2c2-mobile.css">移动端/shared/styles/r2c2-mobile.css</a>、<a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a>、<a href="../../shared/data/role-registry-ssot.js">shared/data/role-registry-ssot.js</a>、<a href="../../shared/js/ssot-runtime-store.js">shared/js/ssot-runtime-store.js</a>。</p>
+    <h2>PC 端工作台 · 教师/学员新增「师资申请」抽屉与「添加常用」真实勾选弹窗</h2>
+    <p>定位：PC 工作台（<code>王老师.html</code>、<code>王同学.html</code> 等全角色首页工作台）。修改文件：<a href="../../shared/js/account-hub.js">shared/js/account-hub.js</a>、<a href="../../pages/角色工作台/page.js">pages/角色工作台/page.js</a>、<a href="../../pages/角色工作台/page.css">pages/角色工作台/page.css</a>。</p>
     <div class="pair">
       <div>
         <h3>修改前 · 存在问题</h3>
         <ul>
-          <li>移动端与 PC 端存在 91 个镜像复制文件（7 处已漂移），角色字典分裂；示例入口漏引 <code>eval-summative.js</code> 与 <code>r2c2-mobile.js</code>，且 <code>tdesign-app.js</code> 未注册 <code>&lt;fdek-r2c2-student&gt;</code>，页面曾显示旧静态假卡片或空白。</li>
-          <li>移动端缺失「学习行为画像」页签、6 项核心胜任力雷达图（含 2x 高清尺寸缺失）、结论申诉、半年阶段预测、成长轨迹明细、课程关联类型筛选与详情抽屉、谈话草案及课程学习推荐。</li>
-          <li>初版卡片带左侧粗色条与胶囊气泡，存在明显的 AI 装饰感。</li>
+          <li><strong>假卡片占位</strong>：工作台「常用服务」末尾的「添加常用」卡片点击后仅弹出 <code>自定义添加常用服务</code> 轻提示，无弹窗也无法真正勾选保存。</li>
+          <li><strong>双端功能缺口</strong>：移动端教师端、学员端已提供「师资申请」卡片与三段式申请流程，但 PC 端工作台缺少对应入口与抽屉弹窗。</li>
         </ul>
-        <a href="2026-11-27-对比截图/移动端-反馈与学习计划-修改前.jpg" target="_blank"><img alt="修改前：移动端反馈与学习计划为静态假数据" src="2026-11-27-对比截图/移动端-反馈与学习计划-修改前.jpg"></a>
+        <a href="2026-11-27-对比截图/PC工作台-师资申请与添加常用-修改前.png" target="_blank"><img alt="修改前：PC 工作台无师资申请卡片且添加常用仅弹提示" src="2026-11-27-对比截图/PC工作台-师资申请与添加常用-修改前.png"></a>
       </div>
       <div>
-        <h3>修改后 · 统一 SSOT 与 TDesign 移动端全量对齐</h3>
+        <h3>修改后 · 改动说明</h3>
         <ul>
-          <li><strong>统一 SSOT</strong>：删除 91 个重复镜像，移动端全部直连根目录 <code>shared/</code>；新增 <code>RoleRegistrySSOT</code> 统一 12 角色别名映射；<code>SSOTStore</code> 接入 <code>BroadcastChannel</code> 跨标签页同步。</li>
-          <li><strong>功能 100% 对齐 PC 端</strong>：补齐「胜任力画像 / 学习行为画像」双页签、<code>640×436</code> 2x 高清 6 维雷达图、年度结论与采信记录下钻、申诉、半年阶段预测、成长轨迹与阶段明细、关联课程类型/状态筛选与详情弹窗、R2C2 谈话草案及课程学习推荐。</li>
-          <li><strong>去 AI 装饰化</strong>：移除粗色条与胶囊气泡，统一采用 TDesign Mobile 白底细灰框卡片、<code>&lt;t-tag&gt;</code> 状态标签与纯文字细线快捷跳转。</li>
+          <li><strong>双端对齐「师资申请」卡片</strong>：在教师端与学员端的「常用服务」及「全部服务 › 我的成果」中均补齐「师资申请」入口卡片。</li>
+          <li><strong>PC 独立存储抽屉弹窗</strong>：点击打开 <code>a-drawer</code> 抽屉，完整复刻移动端「申请列表 → 新建申请表单 → 申请详情」流程，数据独立持久化至 <code>fdek.pc.faculty.apply.v1</code>。</li>
+          <li><strong>「添加常用」真实勾选弹窗</strong>：点击打开「自定义常用服务」弹窗，支持搜索、按分类勾选/取消、统计已选数并按账号保存或恢复默认。</li>
         </ul>
-        <a href="2026-11-27-对比截图/移动端-反馈与学习计划-胜任力画像-修改后.png" target="_blank"><img alt="修改后：移动端反馈与学习计划胜任力画像" src="2026-11-27-对比截图/移动端-反馈与学习计划-胜任力画像-修改后.png"></a>
+        <a href="2026-11-27-对比截图/PC工作台-教师端师资申请入口-修改后.png" target="_blank"><img alt="修改后：教师端工作台新增师资申请卡片" src="2026-11-27-对比截图/PC工作台-教师端师资申请入口-修改后.png"></a>
       </div>
     </div>
-    <h3 style="margin-top:20px">修改后 · 雷达图与行为画像 + PC 端同源对照留痕</h3>
-    <div class="mobile-grid">
+    <h3 style="margin-top:20px">修改后 · 交互状态留痕（师资申请抽屉 / 添加常用弹窗 / 学员端入口）</h3>
+    <div class="pair" style="margin-top:12px">
       <div>
-        <h4>移动端 · 6 维雷达图与核心胜任力</h4>
-        <a href="2026-11-27-对比截图/移动端-反馈与学习计划-雷达图与六大胜任力-修改后.png" target="_blank"><img alt="修改后：移动端6维雷达图完整渲染" src="2026-11-27-对比截图/移动端-反馈与学习计划-雷达图与六大胜任力-修改后.png"></a>
+        <h4>改后 ·「师资申请」抽屉弹窗（列表 / 表单 / 详情）</h4>
+        <a href="2026-11-27-对比截图/PC工作台-师资申请抽屉-修改后.png" target="_blank"><img alt="修改后：师资申请抽屉弹窗" src="2026-11-27-对比截图/PC工作台-师资申请抽屉-修改后.png"></a>
       </div>
       <div>
-        <h4>移动端 · 学习行为画像页签</h4>
-        <a href="2026-11-27-对比截图/移动端-反馈与学习计划-行为画像-修改后.png" target="_blank"><img alt="修改后：移动端学习行为画像页签" src="2026-11-27-对比截图/移动端-反馈与学习计划-行为画像-修改后.png"></a>
+        <h4>改后 ·「添加常用」自定义勾选弹窗</h4>
+        <a href="2026-11-27-对比截图/PC工作台-添加常用弹窗-修改后.png" target="_blank"><img alt="修改后：自定义常用服务勾选弹窗" src="2026-11-27-对比截图/PC工作台-添加常用弹窗-修改后.png"></a>
       </div>
-      <div>
-        <h4>PC 端 · 同源反馈与学习计划对照</h4>
-        <a href="2026-11-27-对比截图/PC端-反馈与学习计划-修改后.png" target="_blank"><img alt="PC 端反馈与学习计划对照" src="2026-11-27-对比截图/PC端-反馈与学习计划-修改后.png"></a>
-      </div>
+    </div>
+    <div style="margin-top:16px">
+      <h4>改后 · 学员端工作台同步补齐「师资申请」入口</h4>
+      <a href="2026-11-27-对比截图/PC工作台-学员端师资申请入口-修改后.png" target="_blank"><img alt="修改后：学员端工作台新增师资申请卡片" src="2026-11-27-对比截图/PC工作台-学员端师资申请入口-修改后.png"></a>
     </div>
   </section>
 </main>
