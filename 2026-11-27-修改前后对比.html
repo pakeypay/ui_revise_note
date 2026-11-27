@@ -44,7 +44,7 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-27 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">8</span> 项修改记录 · 31 张真实入口截图 · PC 端 1440×900 / 移动端 375×812 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">11</span> 项修改记录 · 39 张真实入口截图 · PC 端 1440×900 / 移动端 375×812 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
@@ -135,6 +135,20 @@
           <td><span class="scope-tag">PC端</span></td>
           <td>15.6" 电子班牌（<code>pages/电子班牌/index.html</code> → 本周课表上拉抽屉）</td>
           <td><a href="../../pages/电子班牌/index.html">index.html</a> + <a href="../../pages/电子班牌/电子班牌-需求规格说明.md">需求规格说明.md</a> · 图文对比（3 张）</td>
+        </tr>
+        <tr data-scope="移动端">
+          <td>10</td>
+          <td><a href="#sec-10"><strong>移动端学员端 ·「成绩与评估记录」移除顶部 3 张冗余汇总 KPI 卡</strong></a></td>
+          <td><span class="scope-tag">移动端</span></td>
+          <td><code>移动端/student-tdesign.html</code> → 首页常用服务「成绩与评估记录」</td>
+          <td><a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a> · 图文对比（2 张）</td>
+        </tr>
+        <tr data-scope="移动端">
+          <td>11</td>
+          <td><a href="#sec-11"><strong>移动端教师端 ·「表单开发任务」与「委员会工作」迁入工作台全部服务（非委员隐藏）</strong></a></td>
+          <td><span class="scope-tag">移动端</span></td>
+          <td><code>移动端/teacher-tdesign.html</code> → 底部「评估」Tab & 首页「全部服务 › 带教与评价」</td>
+          <td><a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a> · 图文对比（3 张）</td>
         </tr>
       </tbody>
     </table>
@@ -453,6 +467,58 @@
         </ul>
         <a href="2026-11-27-对比截图/电子班牌-周课表抽屉-修改后.png" target="_blank"><img alt="修改后：极昼浅色流体玻璃周课表抽屉与3D医生头像" src="2026-11-27-对比截图/电子班牌-周课表抽屉-修改后.png"></a>
         <a href="2026-11-27-对比截图/电子班牌-周课表抽屉-医院深蓝-修改后.png" target="_blank" style="display:block;margin-top:12px;"><img alt="修改后：复旦医院深蓝主题下的周课表抽屉" src="2026-11-27-对比截图/电子班牌-周课表抽屉-医院深蓝-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-10">
+    <h2>移动端学员端 ·「成绩与评估记录」移除顶部 3 张冗余汇总 KPI 卡</h2>
+    <p>定位：<code>移动端/student-tdesign.html</code> → 首页常用服务「成绩与评估记录」。修改文件：<a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>数字信息重复</strong>：页面顶部展示「7 全部结果 / 4 基线与形成性 / 3 终结与里程碑」3 张 KPI 卡片，与下方紧邻的「全部(7) / 基线评估(2) / 形成性评估(2) / 终结性评估(2) / 里程碑判定(1)」计数胶囊完全重复，挤压首屏列表展示空间。</li>
+        </ul>
+        <a href="2026-11-27-对比截图/移动端学员端-成绩与评估记录去KPI-修改前.jpg" target="_blank"><img alt="修改前：成绩与评估记录顶部红框 3 张 KPI 卡" src="2026-11-27-对比截图/移动端学员端-成绩与评估记录去KPI-修改前.jpg"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>精简首屏结构</strong>：移除顶部 <code>.stu-record-kpis</code> 三卡区块，进入二级页后直接由 5 阶段计数胶囊衔接评估记录卡片，首屏多出完整一张成绩卡可视区。</li>
+        </ul>
+        <a href="2026-11-27-对比截图/移动端学员端-成绩与评估记录去KPI-修改后.png" target="_blank"><img class="mobile-shot" alt="修改后：成绩与评估记录去除冗余 KPI 卡" src="2026-11-27-对比截图/移动端学员端-成绩与评估记录去KPI-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-11">
+    <h2>移动端教师端 ·「表单开发任务」与「委员会工作」迁入工作台全部服务（非委员隐藏）</h2>
+    <p>定位：<code>移动端/teacher-tdesign.html</code> → 底部「评估」Tab &amp; 首页「全部服务 › 带教与评价」。修改文件：<a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>评估 Tab 顶栏过重</strong>：「评估」Tab 顶部堆叠「评估任务 / 表单开发任务 / 委员会工作」三段切换，与下方「待我评估 / 待他人评估」双层页签嵌套，视觉冗余。</li>
+        </ul>
+        <a href="2026-11-27-对比截图/移动端教师端-评估入口迁移-修改前.jpg" target="_blank"><img class="mobile-shot" alt="修改前：教师端评估 Tab 顶部分段栏" src="2026-11-27-对比截图/移动端教师端-评估入口迁移-修改前.jpg"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>评估 Tab 纯净回归</strong>：移除顶部三段切换，「评估」Tab 只保留纯粹的「待我评估 / 待他人评估」与状态筛选。</li>
+          <li><strong>全部服务承接与权限隐藏</strong>：将「表单开发任务」「委员会工作」直接排入工作台「全部服务 › 带教与评价」并打开独立二级页；当教师非评估委员会成员（<code>isCommitteeMember = false</code>）时，直接隐藏「委员会工作」入口。</li>
+        </ul>
+        <div class="mobile-grid">
+          <div>
+            <h4>改后 · 评估 Tab 纯净态</h4>
+            <a href="2026-11-27-对比截图/移动端教师端-评估Tab纯净态-修改后.png" target="_blank"><img alt="修改后：教师端评估 Tab 纯净态" src="2026-11-27-对比截图/移动端教师端-评估Tab纯净态-修改后.png"></a>
+          </div>
+          <div>
+            <h4>改后 · 全部服务 › 带教与评价入口</h4>
+            <a href="2026-11-27-对比截图/移动端教师端-工作台全部服务入口-修改后.png" target="_blank"><img alt="修改后：教师端全部服务新增表单开发任务与委员会工作" src="2026-11-27-对比截图/移动端教师端-工作台全部服务入口-修改后.png"></a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
