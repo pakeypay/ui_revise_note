@@ -50,7 +50,7 @@
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">8</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">9</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -128,6 +128,13 @@
           <td><span class="scope-tag">PC端</span></td>
           <td>PC 工作台（<code>王老师.html</code>、<code>王同学.html</code> → 常用服务 / 全部服务 › 我的成果）</td>
           <td><a href="../../shared/js/account-hub.js">account-hub.js</a> + <a href="../../pages/角色工作台/page.js">page.js</a> + <a href="../../pages/角色工作台/page.css">page.css</a> · 图文对比（5 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>09</td>
+          <td><a href="#sec-09"><strong>电子班牌最终稿 · 独立目录收拢与「本周课表」抽屉极简流体玻璃+3D头像视觉升级</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>15.6" 电子班牌（<code>pages/电子班牌/index.html</code> → 本周课表上拉抽屉）</td>
+          <td><a href="../../pages/电子班牌/index.html">index.html</a> + <a href="../../pages/电子班牌/电子班牌-需求规格说明.md">需求规格说明.md</a> · 图文对比（3 张）</td>
         </tr>
       </tbody>
     </table>
@@ -423,6 +430,33 @@
       <a href="2026-11-27-对比截图/PC工作台-学员端师资申请入口-修改后.png" target="_blank"><img alt="修改后：学员端工作台新增师资申请卡片" src="2026-11-27-对比截图/PC工作台-学员端师资申请入口-修改后.png"></a>
     </div>
   </section>
+
+  <section id="sec-09">
+    <h2>电子班牌最终稿 · 独立目录收拢与「本周课表」抽屉极简流体玻璃 + 3D 头像视觉升级</h2>
+    <p>定位：15.6" 临床技能中心电子班牌（<code>pages/电子班牌/index.html</code> → 底部「本周课表 ^」上拉抽屉）。修改与新增文件：<a href="../../pages/电子班牌/index.html">pages/电子班牌/index.html</a>、<a href="../../pages/电子班牌/电子班牌-需求规格说明.md">pages/电子班牌/电子班牌-需求规格说明.md</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><strong>抽屉视觉过素、与首屏割裂</strong>：周课表抽屉底板为大面积灰白不透明块，盖死了首屏标志性的丝绸流体光影，呈现类似普通后台看板的干瘪感。</li>
+          <li><strong>缺少 3D 医生视觉基因</strong>：课程卡片仅展示纯灰黑文字，未延续首屏极具记忆点的圆形 3D 医生头像与 <code>A-301</code> 品牌蓝导视徽章。</li>
+          <li><strong>已结束场次发灰沉闷</strong>：周一至周四整卡降透明度，叠加 5 个等高灰色列盒，视觉层次偏弱。</li>
+        </ul>
+        <a href="2026-11-27-对比截图/电子班牌-周课表抽屉-修改前.png" target="_blank"><img alt="修改前：周课表抽屉为素灰白看板，缺少流体光影与3D头像" src="2026-11-27-对比截图/电子班牌-周课表抽屉-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li><strong>丝绸流体液态玻璃面板</strong>：抽屉改用与首屏同源的青蓝流体柔光玻璃底 + 高光描边，顶部引入 <code>A-301</code> 品牌蓝徽章与分段胶囊周次切换器（支持左右滑动切换上周/本周/下周）。</li>
+          <li><strong>5 列流体玻璃卡片 + 圆形 3D 医生头像</strong>：每张课程卡底部嵌入精致 <code>34px</code> 圆形 3D 医生头像（多人自动叠圆），与首屏 3D 圆形光环阵列高度统一。</li>
+          <li><strong>极简克制单色 + 双主题完整适配</strong>：全课表仅用复旦品牌蓝 + 翠绿突出「今日」「正在上课」「下一场」，同步完成极昼浅色与复旦医院深蓝双主题适配，并落地完整空态与硬件呼吸灯闪白模拟接口。</li>
+        </ul>
+        <a href="2026-11-27-对比截图/电子班牌-周课表抽屉-修改后.png" target="_blank"><img alt="修改后：极昼浅色流体玻璃周课表抽屉与3D医生头像" src="2026-11-27-对比截图/电子班牌-周课表抽屉-修改后.png"></a>
+        <a href="2026-11-27-对比截图/电子班牌-周课表抽屉-医院深蓝-修改后.png" target="_blank" style="display:block;margin-top:12px;"><img alt="修改后：复旦医院深蓝主题下的周课表抽屉" src="2026-11-27-对比截图/电子班牌-周课表抽屉-医院深蓝-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
 </main>
 <a class="back-to-index" href="#change-index">↑ 返回总清单</a>
 <script>
