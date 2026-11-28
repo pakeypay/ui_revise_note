@@ -105,6 +105,13 @@
           <td>PC 端全 19 个角色左侧导航（如「题库与试卷」「评估管理」「空间/物资/师生管理」）及移动端工作台入口</td>
           <td><a href="../../shared/js/nav-data.js">nav-data.js</a> + <a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a> + <a href="../专项-Icon语义化与去重改造方案.md">专项方案.md</a> · 文字记录</td>
         </tr>
+        <tr data-scope="PC端">
+          <td>05</td>
+          <td><a href="#sec-05"><strong>技能中心建课流程 P0 重构 · Step 2 按钮主次反转与 Step 3 操作按钮收敛</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>课程管理 → 课程开发 → 新建课程（<code>pages/课程开发/index.html</code> / <code>pages/技能中心课程/views/development.js</code>）</td>
+          <td><a href="../../pages/技能中心课程/views/development.js">development.js</a> + <a href="../../pages/技能中心课程/views/development.css">development.css</a> + <a href="../../shared/js/course-dev-renderer.js">course-dev-renderer.js</a> + <a href="../../shared/styles/course-dev.css">course-dev.css</a> · 图文对比（4 张）</td>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -375,6 +382,42 @@
           <li>建立 <code>pageIcons</code> 页面级语义映射并升级 <code>group()</code>：仅「父子完全重名」的单子项直达入口（如「教学资源库 › 教学资源库」）沿用同名图标，其余全部按语义匹配独立图标（如「题库与试卷」<code>layers</code> → 题库工作台 <code>barChart</code> / 题库管理 <code>database</code> / 试卷中心 <code>fileSpreadsheet</code> / 题库设置 <code>sliders</code> / 自适应学习 <code>sparkles</code>），经脚本校验 19 个角色零父子/同级重复。</li>
           <li>移动端（<code>移动端/shared/tdesign-app.js</code>）同步统一：科室端「试卷中心」改为 <code>file-spreadsheet</code>、「课程审核/把关」改为 <code>book-check</code>，教师端「表单开发任务」改为 <code>file-check-2</code>，学员端「评价反馈」改为 <code>message-square-heart</code>。</li>
         </ul>
+      </div>
+    </div>
+  </section>
+  <section id="sec-05">
+    <h2>05 · 技能中心建课流程 P0 重构 · Step 2 按钮主次反转与 Step 3 操作按钮收敛</h2>
+    <p>定位：课程管理 → 课程开发 → 点击「＋ 新建课程」进入 AI 启动页（Step 2）及课程编辑器（Step 3）。实现文件：<a href="../../pages/技能中心课程/views/development.js">pages/技能中心课程/views/development.js</a>、<a href="../../pages/技能中心课程/views/development.css">pages/技能中心课程/views/development.css</a>、<a href="../../shared/js/course-dev-renderer.js">shared/js/course-dev-renderer.js</a>、<a href="../../shared/styles/course-dev.css">shared/styles/course-dev.css</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>Step 2（AI 启动页）· 修改前</h3>
+        <ul>
+          <li><strong>按钮主次倒置</strong>：「跳过 AI，直接编辑 →」占据右下角醒目的蓝色实心主按钮位，而「开始生成教案 ↑」仅缩在输入区右下角小圆点中，容易引导教师误跳过 AI。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/建课流程-Step2-修改前.png" target="_blank"><img alt="建课流程Step2修改前" src="2026-11-28-对比截图/建课流程-Step2-修改前.png"></a>
+      </div>
+      <div>
+        <h3>Step 2（AI 启动页）· 修改后</h3>
+        <ul>
+          <li><strong>主次按钮反转</strong>：将「跳过 AI，直接编辑」降级为左侧 Ghost 描边次按钮；将「开始 AI 建课」升级为右下角唯一医疗蓝（<code>#175898</code>）实心主按钮，输入想法或上传教案后高亮激活。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/建课流程-Step2-修改后.png" target="_blank"><img alt="建课流程Step2修改后" src="2026-11-28-对比截图/建课流程-Step2-修改后.png"></a>
+      </div>
+    </div>
+    <div class="pair" style="margin-top:24px">
+      <div>
+        <h3>Step 3（课程编辑页）· 修改前</h3>
+        <ul>
+          <li>每个区块右上角常驻显眼的「✨ AI 优化内容」与「编辑」双按钮，整页视觉噪音高、操作入口重复。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/建课流程-Step3-修改前.png" target="_blank"><img alt="建课流程Step3修改前" src="2026-11-28-对比截图/建课流程-Step3-修改前.png"></a>
+      </div>
+      <div>
+        <h3>Step 3（课程编辑页）· 修改后</h3>
+        <ul>
+          <li>配合扁平分割线画布，将各区块右上角 <code>.cd-section-actions</code> 收敛为默认隐藏，仅在鼠标悬浮（<code>:hover</code>）、聚焦（<code>:focus-within</code>）或触屏设备下显现，大幅提升阅读与编辑专注度。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/建课流程-Step3-修改后.png" target="_blank"><img alt="建课流程Step3修改后" src="2026-11-28-对比截图/建课流程-Step3-修改后.png"></a>
       </div>
     </div>
   </section>
