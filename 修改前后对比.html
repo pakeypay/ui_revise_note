@@ -160,19 +160,19 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
     <div class="metrics">
       <div class="m-card">
         <div class="m-label">归档总天数</div>
-        <div class="m-val">9<span class="m-unit">个工作日</span></div>
+        <div class="m-val">10<span class="m-unit">个工作日</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">91<span class="m-unit">项</span></div>
+        <div class="m-val">92<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">336<span class="m-unit">张</span></div>
+        <div class="m-val">338<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
-        <div class="m-val" style="font-size:19px">2026-11-27</div>
+        <div class="m-val" style="font-size:19px">2026-11-28</div>
       </div>
     </div>
   </div>
@@ -182,8 +182,9 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (91)</button>
-      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 13项)</button>
+      <button class="chip active" data-date="all">全部日期 (92)</button>
+      <button class="chip" data-date="2026-11-28">2026-11-28 (最新 · 1项)</button>
+      <button class="chip" data-date="2026-11-27">2026-11-27 (13项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
       <button class="chip" data-date="2026-11-17">2026-11-17 (3项)</button>
@@ -208,12 +209,53 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 91 / 91 项</div>
+      <div class="stat-pill" id="counterPill">显示 92 / 92 项</div>
     </div>
   </div>
 </div>
 
 <main id="mainContainer">
+
+<article class="item-card" id="2026-11-28-sec-01" data-date="2026-11-28" data-scope="PC端" data-search="PC端 左侧导航 sidebar nav 三级菜单 字号 行高 统一 取消逐层缩减 shared/styles/sidebar.css nav.css">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#01</span>
+        <span class="badge-date">2026-11-28</span>
+        <span class="badge-scope">PC端</span>
+      </div>
+      <h2 class="item-title">01. 左侧导航 · 一二三级菜单统一字号与行高（取消逐层缩减）</h2>
+      <div class="item-meta"><strong>定位路径</strong>：全站 PC 端左侧导航 → 评估管理等三级菜单（<code>manager.html?page=评估目标和框架</code>）<br>
+      <strong>核心文件</strong>：<code>shared/styles/sidebar.css</code>、<code>shared/styles/nav.css</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前 · 存在问题</span></div>
+        <ul class="desc-list">
+          <li>三级菜单项（<code>.sb-subgroup-items .sb-item</code>）被缩减为 <code>height: 34px; font-size: 13.5px</code>，图标缩减为 <code>18px / 16px</code>，而一、二级为 <code>36px / 14px</code> 与 <code>20px / 18px</code>。</li>
+          <li>旧版兼容样式（<code>.nav-item</code> / <code>.submenu-item</code> / <code>.third-leaf</code>）同样存在 <code>40px → 36px → 30px</code> 与字号逐层缩减。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-28-对比截图/左侧导航-三级菜单样式-修改前.png" alt="左侧导航-三级菜单样式-修改前" data-cap="2026-11-28 #01 修改前 · 三级菜单字号 13.5px / 行高 34px 逐层缩减">
+          <div class="img-caption">改前 · 三级菜单字号 13.5px / 行高 34px</div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后 · 落地效果</span></div>
+        <ul class="desc-list">
+          <li>将 <code>.sb-subgroup-items .sb-item</code> 统一为 <code>height: 36px; min-height: 36px; font-size: 14px</code>，图标统一为 <code>20px / 18px</code>，一二三级完全一致。</li>
+          <li>同步将 <code>shared/styles/nav.css</code> 中 <code>.nav-item</code> / <code>.submenu-item</code> / <code>.third-leaf</code> 统一为 <code>min-height: 36px; font-size: var(--font-base)</code>。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-28-对比截图/左侧导航-三级菜单样式-修改后.png" alt="左侧导航-三级菜单样式-修改后" data-cap="2026-11-28 #01 修改后 · 一二三级菜单统一字号 14px / 行高 36px">
+          <div class="img-caption">改后 · 一二三级菜单统一 14px / 36px</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
 <article class="item-card" id="2026-11-27-sec-13" data-date="2026-11-27" data-scope="PC端" data-search="PC端 班牌和大屏管理 电子班牌 缩略图 详情抽屉 广播抽屉 投屏拟真 复旦儿科 pages/班牌和大屏管理/page.js page.css">
   <div class="item-header">

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-11-28 · 修改前后对比</title>
+<style>
+  body{margin:0;background:#f5f6f8;color:#1d2129;font:14px/1.7 -apple-system,'PingFang SC',sans-serif}
+  header{background:#1d5b97;color:#fff;padding:24px 36px}
+  header h1{font-size:22px;margin:0}
+  header .sub{margin-top:4px;opacity:.9;font-size:13px}
+  main{max-width:1400px;margin:24px auto 64px;padding:0 24px}
+  section{background:#fff;border:1px solid #e5e9f0;border-radius:12px;padding:24px;margin-top:24px}
+  section[id]{scroll-margin-top:20px}
+  #change-index{margin-top:0}
+  h2{font-size:18px;margin-top:0}
+  img{width:100%;border:1px solid #e5e9f0;border-radius:6px;display:block}
+  a{color:#1d5b97;text-decoration:none}
+  a:hover{text-decoration:underline}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .index-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:12px 0 14px}
+  .index-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .index-chip{border:1px solid #d9dfe7;border-radius:999px;background:#fff;padding:4px 12px;font-size:12px;color:#4e5969;cursor:pointer}
+  .index-chip.active{background:#1d5b97;border-color:#1d5b97;color:#fff}
+  .index-search{border:1px solid #d9dfe7;border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;min-width:240px}
+  .summary-row{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0 16px}
+  .summary-badge{background:#f2f6fb;border:1px solid #d6e4f5;border-radius:8px;padding:6px 12px;font-size:13px;color:#1d5b97}
+  .audit-table{width:100%;border-collapse:collapse;font-size:13px}
+  .audit-table th,.audit-table td{border:1px solid #e5e9f0;padding:9px 12px;text-align:left;vertical-align:top}
+  .audit-table th{background:#f7f8fa;font-weight:600}
+  .audit-table tbody tr:hover{background:#f9fbff}
+  .scope-tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;background:#eef4fb;color:#1d5b97;white-space:nowrap}
+  .back-to-index{position:fixed;right:24px;bottom:24px;z-index:50;background:#1d5b97;color:#fff;padding:8px 14px;border-radius:999px;font-size:13px;box-shadow:0 6px 18px rgba(29,91,151,.28)}
+  .back-to-index:hover{text-decoration:none;background:#164a7c}
+  @media(max-width:850px){.pair{grid-template-columns:1fr}.index-search{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
+  <h1>2026-11-28 · 修改前后对比</h1>
+  <div class="sub">共 <span id="index-total-count">1</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
+</header>
+<main>
+  <section id="change-index">
+    <h2>修改记录总清单（索引）</h2>
+    <div class="summary-row">
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">1</span> 项</div>
+    </div>
+    <div class="index-toolbar">
+      <div class="index-chips" id="index-scope-chips">
+        <button type="button" class="index-chip active" data-scope="all">全部</button>
+        <button type="button" class="index-chip" data-scope="PC端">PC端</button>
+        <button type="button" class="index-chip" data-scope="移动端">移动端</button>
+        <button type="button" class="index-chip" data-scope="双端">双端</button>
+        <button type="button" class="index-chip" data-scope="全项目">全项目</button>
+      </div>
+      <input type="search" id="index-search" class="index-search" placeholder="筛选模块、文件或关键词…">
+    </div>
+    <table class="audit-table">
+      <thead>
+        <tr>
+          <th style="width:56px">序号</th>
+          <th style="width:32%">模块与改动主题（点击跳转）</th>
+          <th style="width:88px">端别</th>
+          <th style="width:26%">定位 / 触发路径</th>
+          <th>涉及文件与留痕形式</th>
+        </tr>
+      </thead>
+      <tbody id="change-index-body">
+        <tr data-scope="PC端">
+          <td>01</td>
+          <td><a href="#sec-01"><strong>左侧导航 · 一二三级菜单统一字号与行高（取消逐层缩减）</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>全站 PC 端左侧导航 → 多级菜单（如 管理端 → 评估管理 → 标准与计划 → 目标与框架）</td>
+          <td><a href="../../shared/styles/sidebar.css">sidebar.css</a>、<a href="../../shared/styles/nav.css">nav.css</a> · 图文对比（2 张）</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="sec-01">
+    <h2>左侧导航 · 一二三级菜单统一字号与行高（取消逐层缩减）</h2>
+    <p>定位：全站 PC 端左侧导航 → 评估管理等三级菜单（<code>manager.html?page=评估目标和框架</code>）。实现文件：<a href="../../shared/styles/sidebar.css">shared/styles/sidebar.css</a>、<a href="../../shared/styles/nav.css">shared/styles/nav.css</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li>三级菜单项（<code>.sb-subgroup-items .sb-item</code>）被缩减为 <code>height: 34px; font-size: 13.5px</code>，图标缩减为 <code>18px / 16px</code>，而一、二级菜单为 <code>36px / 14px</code> 与 <code>20px / 18px</code>，形成逐层递减。</li>
+          <li>旧版兼容样式（<code>.nav-item</code> / <code>.submenu-item</code> / <code>.third-leaf</code>）同样存在 <code>40px → 36px → 30px</code> 与字号逐层缩减。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/左侧导航-三级菜单样式-修改前.png" target="_blank"><img alt="修改前" src="2026-11-28-对比截图/左侧导航-三级菜单样式-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li>将 <code>.sb-subgroup-items .sb-item</code> 统一为 <code>height: 36px; min-height: 36px; font-size: 14px</code>，图标统一为 <code>20px / 18px</code>，一二三级完全一致。</li>
+          <li>同步将 <code>shared/styles/nav.css</code> 中 <code>.nav-item</code> / <code>.submenu-item</code> / <code>.third-leaf</code> 统一为 <code>min-height: 36px; font-size: var(--font-base)</code>。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/左侧导航-三级菜单样式-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/左侧导航-三级菜单样式-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+</main>
+<a class="back-to-index" href="#change-index">↑ 返回总清单</a>
+<script>
+(function(){
+  const body = document.getElementById('change-index-body');
+  const search = document.getElementById('index-search');
+  const chips = document.querySelectorAll('#index-scope-chips .index-chip');
+  const visibleEl = document.getElementById('index-visible-count');
+  let activeScope = 'all';
+  function applyFilter(){
+    const q = (search.value || '').trim().toLowerCase();
+    let shown = 0;
+    body.querySelectorAll('tr').forEach(tr => {
+      const scope = tr.dataset.scope || '';
+      const scopeOk = activeScope === 'all' || scope === activeScope;
+      const textOk = !q || tr.textContent.toLowerCase().includes(q);
+      const show = scopeOk && textOk;
+      tr.hidden = !show;
+      if (show) shown++;
+    });
+    if (visibleEl) visibleEl.textContent = String(shown);
+  }
+  chips.forEach(btn => btn.addEventListener('click', () => {
+    chips.forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    activeScope = btn.dataset.scope;
+    applyFilter();
+  }));
+  search.addEventListener('input', applyFilter);
+})();
+</script>
+</body>
+</html>
