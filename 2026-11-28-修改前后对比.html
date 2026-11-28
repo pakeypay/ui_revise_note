@@ -41,13 +41,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-28 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">2</span> 项修改记录 · 115 张真实入口截图 · PC 端 1440×900 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">3</span> 项修改记录 · 117 张真实入口截图 · PC 端 1440×900 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">2</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">3</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -83,6 +83,13 @@
           <td><span class="scope-tag">PC端</span></td>
           <td>全站 11 个角色工作台（常用服务 / 全部服务 → 抽屉与跳转页面）</td>
           <td><a href="../../shared/js/account-hub.js">shared/js/account-hub.js</a> + <a href="../PC端工作台隐藏卡片清单-20261128.md">隐藏卡片清单.md</a> · 分角色截图（113 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>03</td>
+          <td><a href="#sec-03"><strong>出科考核 · 统一单行胶囊筛选栏、基地标签与 3D 卡通头像</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>科室管理员（<code>程主任.html?page=出科考核</code>）与基地管理员（<code>base-manager.html</code> / <code>郑老师.html</code> → 轮转任务与考核 → 出科考核）</td>
+          <td><a href="../../pages/轮转任务与考核/page.js">pages/轮转任务与考核/page.js</a> + <a href="../../pages/轮转任务与考核/page.css">pages/轮转任务与考核/page.css</a> · 图文对比（2 张）</td>
         </tr>
       </tbody>
     </table>
@@ -263,6 +270,31 @@
       <div style="border:1px solid #e5e9f0;border-radius:8px;overflow:hidden;background:#fafbfc"><a href="2026-11-28-对比截图/11-后台管理员(backend)/02-内容发布.png" target="_blank"><img loading="lazy" alt="backend - 内容发布" src="2026-11-28-对比截图/11-后台管理员(backend)/02-内容发布.png"></a><div style="padding:6px 10px;font-size:12px;color:#4e5969"><strong>02 · 内容发布</strong> <span style="color:#86909c">(跳转页面)</span></div></div>
       <div style="border:1px solid #e5e9f0;border-radius:8px;overflow:hidden;background:#fafbfc"><a href="2026-11-28-对比截图/11-后台管理员(backend)/03-公告配置.png" target="_blank"><img loading="lazy" alt="backend - 公告配置" src="2026-11-28-对比截图/11-后台管理员(backend)/03-公告配置.png"></a><div style="padding:6px 10px;font-size:12px;color:#4e5969"><strong>03 · 公告配置</strong> <span style="color:#86909c">(跳转页面)</span></div></div>
       <div style="border:1px solid #e5e9f0;border-radius:8px;overflow:hidden;background:#fafbfc"><a href="2026-11-28-对比截图/11-后台管理员(backend)/04-讨论区管理.png" target="_blank"><img loading="lazy" alt="backend - 讨论区管理" src="2026-11-28-对比截图/11-后台管理员(backend)/04-讨论区管理.png"></a><div style="padding:6px 10px;font-size:12px;color:#4e5969"><strong>04 · 讨论区管理</strong> <span style="color:#86909c">(跳转页面)</span></div></div>
+    </div>
+  </section>
+
+  <section id="sec-03">
+    <h2>03 · 出科考核 · 统一单行胶囊筛选栏、基地标签与 3D 卡通头像</h2>
+    <p>定位：科室管理员（<code>程主任.html?page=出科考核</code>）与基地管理员（<code>base-manager.html</code> / <code>郑老师.html</code> → 轮转任务与考核 → 出科考核）。实现文件：<a href="../../pages/轮转任务与考核/page.js">pages/轮转任务与考核/page.js</a>、<a href="../../pages/轮转任务与考核/page.css">pages/轮转任务与考核/page.css</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li>待发起列表顶部存在黄色预警横条（“7 名学员 7 天内换科，尚未发起出科考核 · 只看这些学员”），占用首屏空间。</li>
+          <li>缺少学员姓名/学号搜索与轮转周期筛选，科室管理员与基地管理员筛选控件位置及数量不统一。</li>
+          <li>学员列缺少 3D 头像与所属基地标识，跨基地轮转学员（如儿外科基地轮转至呼吸科）无法直观区分。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改前.jpg" target="_blank"><img alt="修改前" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改前.jpg"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li>移除待发起页签顶部的黄色预警条，列表结构更紧凑清晰。</li>
+          <li>参照「技能中心课程」单行胶囊筛选栏规范，统一科室管理员与基地管理员的筛选工具栏：<code>搜索学员姓名 / 学号</code> + <code>条件状态下拉</code> + <code>基地</code> + <code>科室</code> + <code>轮转周期</code> + <code>共 X 人</code> + <code>重置</code>，覆盖四个页签。</li>
+          <li>在四张出科考核表的「学员」列左侧同步加入 <code>34×34</code> 圆形 3D 卡通头像（<code>shared/assets/avatars/avatar_01~10.png</code> + 首字兜底），并展示基地胶囊标签（<code>儿科基地</code> 蓝底、<code>儿外科基地</code> 橙底）。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png"></a>
+      </div>
     </div>
   </section>
 </main>
