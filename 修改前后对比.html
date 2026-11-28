@@ -164,11 +164,11 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">93<span class="m-unit">项</span></div>
+        <div class="m-val">94<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">340<span class="m-unit">张</span></div>
+        <div class="m-val">342<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -182,8 +182,8 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (93)</button>
-      <button class="chip" data-date="2026-11-28">2026-11-28 (最新 · 2项)</button>
+      <button class="chip active" data-date="all">全部日期 (94)</button>
+      <button class="chip" data-date="2026-11-28">2026-11-28 (最新 · 3项)</button>
       <button class="chip" data-date="2026-11-27">2026-11-27 (13项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
@@ -209,7 +209,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 93 / 93 项</div>
+      <div class="stat-pill" id="counterPill">显示 94 / 94 项</div>
     </div>
   </div>
 </div>
@@ -292,6 +292,49 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <div class="img-wrap">
           <img loading="lazy" src="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改后.png" alt="左侧导航Icon语义化与去重-修改后" data-cap="2026-11-28 #02 修改后 · 语义化与去重后的左侧导航">
           <div class="img-caption">改后 · 「题库与试卷」及各级菜单图标语义清晰且无重复</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="item-card" id="2026-11-28-sec-03" data-date="2026-11-28" data-scope="PC端" data-search="PC端 轮转任务与考核 出科考核 黄色条 搜索 筛选 基地标签 轮转周期 pages/轮转任务与考核/page.js page.css">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#03</span>
+        <span class="badge-date">2026-11-28</span>
+        <span class="badge-scope">PC端</span>
+      </div>
+      <h2 class="item-title">03. 轮转任务与考核 · 出科考核移除黄色预警条、新增搜索筛选与基地标签</h2>
+      <div class="item-meta"><strong>定位路径</strong>：科室管理端 → 轮转管理 → 出科考核（<code>程主任.html?page=出科考核</code>）<br>
+      <strong>核心文件</strong>：<code>pages/轮转任务与考核/page.js</code>、<code>pages/轮转任务与考核/page.css</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前 · 存在问题</span></div>
+        <ul class="desc-list">
+          <li>待发起列表顶部存在黄色预警横条（“7 名学员 7 天内换科，尚未发起出科考核 · 只看这些学员”），占用首屏空间。</li>
+          <li>缺少按学员姓名/学号搜索，以及科室管理员视角下的「基地」「轮转周期」筛选控件。</li>
+          <li>学员列未展示所属基地，跨基地轮转学员（如儿外科基地轮转至呼吸科）无法直观区分。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改前.jpg" alt="出科考核-搜索筛选与基地标签-修改前" data-cap="2026-11-28 #03 修改前 · 含黄色预警条且无搜索/基地/周期筛选与基地标签">
+          <div class="img-caption">改前 · 含黄色预警条，缺少搜索/基地/周期筛选与基地标签</div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后 · 落地效果</span></div>
+        <ul class="desc-list">
+          <li>移除待发起页签顶部的黄色预警条，列表结构更紧凑清晰。</li>
+          <li>新增统一筛选工具栏：支持学员姓名/学号搜索、条件状态（全部/已达条件/未达条件）、基地（科室管理端下拉）与轮转周期筛选，覆盖四个页签。</li>
+          <li>在四张出科考核表的「学员」列新增基地胶囊标签（<code>儿科基地</code> 蓝底、<code>儿外科基地</code> 橙底），并加宽列宽至 <code>210px</code> 避免折行。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png" alt="出科考核-搜索筛选与基地标签-修改后" data-cap="2026-11-28 #03 修改后 · 移除黄色条，新增搜索筛选与基地标签">
+          <div class="img-caption">改后 · 移除黄色条，新增搜索/基地/轮转周期筛选与基地胶囊标签</div>
         </div>
       </div>
     </div>

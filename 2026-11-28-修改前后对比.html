@@ -39,13 +39,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-28 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">2</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">3</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">2</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">3</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -81,6 +81,13 @@
           <td><span class="scope-tag">双端</span></td>
           <td>PC 端全角色左侧导航（如 基地/科室管理端 → 题库与试卷）及移动端工作台入口</td>
           <td><a href="../../shared/js/nav-data.js">nav-data.js</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../专项-Icon语义化与去重改造方案.md">专项方案</a> · 图文对比（2 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>03</td>
+          <td><a href="#sec-03"><strong>轮转任务与考核 · 出科考核移除黄色预警条、新增搜索与多维筛选及基地标签</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>科室管理端 → 轮转管理 → 出科考核（<code>程主任.html?page=出科考核</code>）</td>
+          <td><a href="../../pages/轮转任务与考核/page.js">page.js</a>、<a href="../../pages/轮转任务与考核/page.css">page.css</a> · 图文对比（2 张）</td>
         </tr>
       </tbody>
     </table>
@@ -128,6 +135,31 @@
           <li>同步统一移动端「试卷中心」为 <code>file-spreadsheet</code>、「课程审核」为 <code>book-check</code>、「表单开发任务」为 <code>file-check-2</code>、学员端「评价反馈」为 <code>message-square-heart</code>。</li>
         </ul>
         <a href="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-03">
+    <h2>轮转任务与考核 · 出科考核移除黄色预警条、新增搜索与多维筛选及基地标签</h2>
+    <p>定位：科室管理端 → 轮转管理 → 出科考核（<code>程主任.html?page=出科考核</code>）。实现文件：<a href="../../pages/轮转任务与考核/page.js">pages/轮转任务与考核/page.js</a>、<a href="../../pages/轮转任务与考核/page.css">pages/轮转任务与考核/page.css</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li>待发起列表顶部存在黄色预警横条（“7 名学员 7 天内换科，尚未发起出科考核 · 只看这些学员”），占用列表首屏空间。</li>
+          <li>缺少按学员姓名/学号搜索，以及科室管理员视角下的「基地」「轮转周期」筛选控件。</li>
+          <li>学员信息列仅展示姓名、工号与年级，跨基地轮转学员（如儿外科基地轮转至呼吸科）无法直观区分所属基地。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改前.jpg" target="_blank"><img alt="修改前" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改前.jpg"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li>移除待发起页签顶部的黄色预警条，列表结构更紧凑清晰。</li>
+          <li>新增统一筛选工具栏：支持学员姓名/学号搜索、条件状态（全部/已达条件/未达条件，计数随筛选实时联动）、基地（科室管理端下拉）与轮转周期筛选，覆盖待发起/考核中/待补考/已归档四个页签。</li>
+          <li>在四张出科考核表的「学员」列中新增基地胶囊标签（<code>儿科基地</code> 蓝底、<code>儿外科基地</code> 橙底），并加宽列宽至 <code>210px</code> 避免折行。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png"></a>
       </div>
     </div>
   </section>
