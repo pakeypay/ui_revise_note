@@ -39,13 +39,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-28 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">3</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">4</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">3</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">4</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -88,6 +88,13 @@
           <td><span class="scope-tag">PC端</span></td>
           <td>科室管理端 → 轮转管理 → 出科考核（<code>程主任.html?page=出科考核</code>）</td>
           <td><a href="../../pages/轮转任务与考核/page.js">page.js</a>、<a href="../../pages/轮转任务与考核/page.css">page.css</a> · 图文对比（2 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>04</td>
+          <td><a href="#sec-04"><strong>轮转安排 · 顶部视图页签文案「学员视角 / 科室视角」调整为「学员层级 / 科室层级」</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>管理端 → 轮转管理 → 轮转安排（<code>manager.html?page=轮转安排</code>）</td>
+          <td><a href="../../pages/轮转安排/page.js">page.js</a>、<a href="../../scripts/verify-swap-dispatch.cjs">verify-swap-dispatch.cjs</a> · 图文对比（2 张）</td>
         </tr>
       </tbody>
     </table>
@@ -160,6 +167,28 @@
           <li>在四张出科考核表的「学员」列中新增基地胶囊标签（<code>儿科基地</code> 蓝底、<code>儿外科基地</code> 橙底），并加宽列宽至 <code>210px</code> 避免折行。</li>
         </ul>
         <a href="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-04">
+    <h2>轮转安排 · 顶部视图页签文案调整为「学员层级 / 科室层级」</h2>
+    <p>定位：管理端 → 轮转管理 → 轮转安排（<code>manager.html?page=轮转安排</code>）。实现文件：<a href="../../pages/轮转安排/page.js">pages/轮转安排/page.js</a>、<a href="../../scripts/verify-swap-dispatch.cjs">scripts/verify-swap-dispatch.cjs</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li>轮转安排顶部主视图页签文案为「学员视角」「科室视角」，与多层级排班维度表述不统一。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/轮转安排-视角改层级-修改前.png" target="_blank"><img alt="修改前" src="2026-11-28-对比截图/轮转安排-视角改层级-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li>将 <code>viewTabs</code> 中两个页签文案分别调整为「学员层级」与「科室层级」，保持图标与交互逻辑不变。</li>
+          <li>同步更新自动化校验脚本 <code>scripts/verify-swap-dispatch.cjs</code> 中的页签匹配文本为「科室层级」。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/轮转安排-视角改层级-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/轮转安排-视角改层级-修改后.png"></a>
       </div>
     </div>
   </section>
