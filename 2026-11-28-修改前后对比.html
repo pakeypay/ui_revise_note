@@ -39,13 +39,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-28 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">1</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">2</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">1</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">2</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -75,6 +75,13 @@
           <td>全站 PC 端左侧导航 → 多级菜单（如 管理端 → 评估管理 → 标准与计划 → 目标与框架）</td>
           <td><a href="../../shared/styles/sidebar.css">sidebar.css</a>、<a href="../../shared/styles/nav.css">nav.css</a> · 图文对比（2 张）</td>
         </tr>
+        <tr data-scope="双端">
+          <td>02</td>
+          <td><a href="#sec-02"><strong>专项 · 全角色导航与移动端 Icon 语义化与去重改造</strong></a></td>
+          <td><span class="scope-tag">双端</span></td>
+          <td>PC 端全角色左侧导航（如 基地/科室管理端 → 题库与试卷）及移动端工作台入口</td>
+          <td><a href="../../shared/js/nav-data.js">nav-data.js</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../专项-Icon语义化与去重改造方案.md">专项方案</a> · 图文对比（2 张）</td>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -98,6 +105,29 @@
           <li>同步将 <code>shared/styles/nav.css</code> 中 <code>.nav-item</code> / <code>.submenu-item</code> / <code>.third-leaf</code> 统一为 <code>min-height: 36px; font-size: var(--font-base)</code>。</li>
         </ul>
         <a href="2026-11-28-对比截图/左侧导航-三级菜单样式-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/左侧导航-三级菜单样式-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-02">
+    <h2>专项 · 全角色导航与移动端 Icon 语义化与去重改造</h2>
+    <p>定位：PC 端全角色左侧导航（如 <code>base-manager.html?page=试卷中心</code>）及移动端工作台入口（<code>移动端/mobile.html?role=department-manager</code>）。实现文件：<a href="../../shared/js/nav-data.js">shared/js/nav-data.js</a>、<a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a>，专项规范：<a href="../专项-Icon语义化与去重改造方案.md">docs/专项-Icon语义化与去重改造方案.md</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><code>group()</code> 辅助函数将父级 Icon 直接透传给所有字符串子项，导致「题库与试卷」一级与下方 5 个二级菜单全部显示同一图标；<code>admin</code> / <code>evalAdminGroup</code> 等显式配置亦存在工作台、发证、表单库等图标重复，且 <code>icons.brain</code> 未定义。</li>
+          <li>移动端科室管理端「试卷中心」使用 <code>clipboard-list</code>、「课程审核」使用 <code>check-check</code>，与教师/管理端语义不一致。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改前.png" target="_blank"><img alt="修改前" src="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改前.png"></a>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li>补齐 <code>brain</code> 等 18 个线性 SVG 图标，建立 <code>pageIcons</code> 页面级语义映射；除「父子完全重名」的单子项直达入口外，全量 19 个角色各级菜单均实现父子不重复、同组不撞车（如 题库与试卷 <code>layers</code> → 工作台 <code>barChart</code> / 题库 <code>database</code> / 试卷 <code>fileSpreadsheet</code> / 设置 <code>sliders</code> / 自适应 <code>sparkles</code>）。</li>
+          <li>同步统一移动端「试卷中心」为 <code>file-spreadsheet</code>、「课程审核」为 <code>book-check</code>、「表单开发任务」为 <code>file-check-2</code>、学员端「评价反馈」为 <code>message-square-heart</code>。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改后.png"></a>
       </div>
     </div>
   </section>

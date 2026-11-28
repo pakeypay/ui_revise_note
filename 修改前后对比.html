@@ -164,11 +164,11 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">92<span class="m-unit">项</span></div>
+        <div class="m-val">93<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">338<span class="m-unit">张</span></div>
+        <div class="m-val">340<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -182,8 +182,8 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (92)</button>
-      <button class="chip" data-date="2026-11-28">2026-11-28 (最新 · 1项)</button>
+      <button class="chip active" data-date="all">全部日期 (93)</button>
+      <button class="chip" data-date="2026-11-28">2026-11-28 (最新 · 2项)</button>
       <button class="chip" data-date="2026-11-27">2026-11-27 (13项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
@@ -209,7 +209,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 92 / 92 项</div>
+      <div class="stat-pill" id="counterPill">显示 93 / 93 项</div>
     </div>
   </div>
 </div>
@@ -251,6 +251,47 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <div class="img-wrap">
           <img loading="lazy" src="2026-11-28-对比截图/左侧导航-三级菜单样式-修改后.png" alt="左侧导航-三级菜单样式-修改后" data-cap="2026-11-28 #01 修改后 · 一二三级菜单统一字号 14px / 行高 36px">
           <div class="img-caption">改后 · 一二三级菜单统一 14px / 36px</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="item-card" id="2026-11-28-sec-02" data-date="2026-11-28" data-scope="双端协同" data-search="PC端 移动端 左侧导航 Icon 语义化 去重 题库与试卷 nav-data.js tdesign-app.js">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#02</span>
+        <span class="badge-date">2026-11-28</span>
+        <span class="badge-scope">双端协同</span>
+      </div>
+      <h2 class="item-title">02. 专项 · 全角色导航与移动端 Icon 语义化与去重改造</h2>
+      <div class="item-meta"><strong>定位路径</strong>：PC 端全角色左侧导航（如 <code>base-manager.html?page=试卷中心</code>）及移动端工作台入口<br>
+      <strong>核心文件</strong>：<code>shared/js/nav-data.js</code>、<code>移动端/shared/tdesign-app.js</code>、<code>docs/专项-Icon语义化与去重改造方案.md</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前 · 存在问题</span></div>
+        <ul class="desc-list">
+          <li><code>group()</code> 辅助函数将父级 Icon 直接透传给所有字符串子项，导致「题库与试卷」一级与下方 5 个二级菜单全部显示同一图标；<code>admin</code> / <code>evalAdminGroup</code> 等显式配置亦存在工作台、发证、表单库等图标重复，且 <code>icons.brain</code> 未定义。</li>
+          <li>移动端科室管理端「试卷中心」使用 <code>clipboard-list</code>、「课程审核」使用 <code>check-check</code>，与教师/管理端语义不一致。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改前.png" alt="左侧导航Icon语义化与去重-修改前" data-cap="2026-11-28 #02 修改前 · 一级与二级菜单图标完全重复">
+          <div class="img-caption">改前 · 「题库与试卷」一级与二级菜单图标完全重复</div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后 · 落地效果</span></div>
+        <ul class="desc-list">
+          <li>补齐 <code>brain</code> 等 18 个线性 SVG 图标，建立 <code>pageIcons</code> 页面级语义映射；除「父子完全重名」的单子项直达入口外，全量 19 个角色各级菜单均实现父子不重复、同组不撞车。</li>
+          <li>同步统一移动端「试卷中心」为 <code>file-spreadsheet</code>、「课程审核」为 <code>book-check</code>、「表单开发任务」为 <code>file-check-2</code>、学员端「评价反馈」为 <code>message-square-heart</code>。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改后.png" alt="左侧导航Icon语义化与去重-修改后" data-cap="2026-11-28 #02 修改后 · 语义化与去重后的左侧导航">
+          <div class="img-caption">改后 · 「题库与试卷」及各级菜单图标语义清晰且无重复</div>
         </div>
       </div>
     </div>
