@@ -41,13 +41,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-28 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">3</span> 项修改记录 · 117 张真实入口截图 · PC 端 1440×900 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">4</span> 项修改记录 · 121 张真实入口截图 · PC 端 1440×900 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">3</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">4</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -90,6 +90,13 @@
           <td><span class="scope-tag">PC端</span></td>
           <td>科室管理员（<code>程主任.html?page=出科考核</code>）与基地管理员（<code>base-manager.html</code> / <code>郑老师.html</code> → 轮转任务与考核 → 出科考核）</td>
           <td><a href="../../pages/轮转任务与考核/page.js">pages/轮转任务与考核/page.js</a> + <a href="../../pages/轮转任务与考核/page.css">pages/轮转任务与考核/page.css</a> · 图文对比（2 张）</td>
+        </tr>
+        <tr data-scope="PC端">
+          <td>04</td>
+          <td><a href="#sec-04"><strong>统一账号收件箱 · 名称统一为「通知、提醒和互动」并按三类规则重分</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>全站工作台右侧卡片 + 左下角铃铛抽屉弹窗（<code>manager.html</code> 等全角色通用）</td>
+          <td><a href="../../shared/js/account-hub.js">account-hub.js</a> + <a href="../../shared/js/global-components.js">global-components.js</a> + <a href="../../shared/js/nav-render.js">nav-render.js</a> · 图文对比（4 张）</td>
         </tr>
       </tbody>
     </table>
@@ -294,6 +301,45 @@
           <li>在四张出科考核表的「学员」列左侧同步加入 <code>34×34</code> 圆形 3D 卡通头像（<code>shared/assets/avatars/avatar_01~10.png</code> + 首字兜底），并展示基地胶囊标签（<code>儿科基地</code> 蓝底、<code>儿外科基地</code> 橙底）。</li>
         </ul>
         <a href="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-04">
+    <h2>04 · 统一账号收件箱 · 名称统一为「通知、提醒和互动」并按三类规则重分</h2>
+    <p>定位：工作台右侧收件箱卡片（<code>AppUnifiedInboxPanel</code>）与左侧栏底部铃铛抽屉弹窗（<code>.message-drawer</code>）。实现文件：<a href="../../shared/js/account-hub.js">shared/js/account-hub.js</a>、<a href="../../shared/js/global-components.js">shared/js/global-components.js</a>、<a href="../../shared/js/nav-render.js">shared/js/nav-render.js</a>、<a href="../../shared/styles/components.css">shared/styles/components.css</a>、<a href="../../shared/styles/sidebar.css">shared/styles/sidebar.css</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>工作台卡片 · 修改前（待办与动态）</h3>
+        <ul>
+          <li>工作台卡片标题为「待办与动态」，与账号统一收件箱抽屉「消息」命名不统一。</li>
+          <li>页签为「全部 / 待办 / 通知」，未按平台消息类型与判定规则区分「通知、提醒、互动」。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/统一账号收件箱-工作台卡片-修改前.png" target="_blank"><img alt="工作台卡片修改前" src="2026-11-28-对比截图/统一账号收件箱-工作台卡片-修改前.png"></a>
+      </div>
+      <div>
+        <h3>工作台卡片 · 修改后（通知、提醒和互动）</h3>
+        <ul>
+          <li>标题与折叠侧轨统一命名为「通知、提醒和互动」，角标显示「N 互动」。</li>
+          <li>页签调整为「全部 / 通知 / 提醒 / 互动」，每条消息行首展示对应类型标签，并在 <code>account-hub.js</code> 中按判定顺序（互动 → 提醒 → 通知）自动归类。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/统一账号收件箱-工作台卡片-修改后.png" target="_blank"><img alt="工作台卡片修改后" src="2026-11-28-对比截图/统一账号收件箱-工作台卡片-修改后.png"></a>
+      </div>
+    </div>
+    <div class="pair" style="margin-top:24px">
+      <div>
+        <h3>抽屉弹窗 · 修改前（消息）</h3>
+        <ul>
+          <li>抽屉主标题为「消息」，页签为「全部 / 未读 / 待处理」，与工作台卡片概念及分类体系割裂。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/统一账号收件箱-抽屉弹窗-修改前.jpg" target="_blank"><img alt="抽屉弹窗修改前" src="2026-11-28-对比截图/统一账号收件箱-抽屉弹窗-修改前.jpg"></a>
+      </div>
+      <div>
+        <h3>抽屉弹窗 · 修改后（通知、提醒和互动）</h3>
+        <ul>
+          <li>保留「账号统一收件箱」副标题，主标题统一为「通知、提醒和互动」，页签升级为「全部 / 未读 / 通知 / 提醒 / 互动」并支持实时联动刷新。</li>
+        </ul>
+        <a href="2026-11-28-对比截图/统一账号收件箱-抽屉弹窗-修改后.png" target="_blank"><img alt="抽屉弹窗修改后" src="2026-11-28-对比截图/统一账号收件箱-抽屉弹窗-修改后.png"></a>
       </div>
     </div>
   </section>
