@@ -164,11 +164,11 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">95<span class="m-unit">项</span></div>
+        <div class="m-val">96<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">344<span class="m-unit">张</span></div>
+        <div class="m-val">346<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -182,8 +182,8 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (95)</button>
-      <button class="chip" data-date="2026-11-28">2026-11-28 (最新 · 4项)</button>
+      <button class="chip active" data-date="all">全部日期 (96)</button>
+      <button class="chip" data-date="2026-11-28">2026-11-28 (最新 · 5项)</button>
       <button class="chip" data-date="2026-11-27">2026-11-27 (13项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
@@ -209,7 +209,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 95 / 95 项</div>
+      <div class="stat-pill" id="counterPill">显示 96 / 96 项</div>
     </div>
   </div>
 </div>
@@ -376,6 +376,46 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <div class="img-wrap">
           <img loading="lazy" src="2026-11-28-对比截图/轮转进度-修改后.png" alt="轮转进度-修改后" data-cap="2026-11-28 #04 修改后 · 技能中心课程同款胶囊筛选栏与 3D 卡通头像">
           <div class="img-caption">改后 · 胶囊搜索筛选栏 + 3D 卡通头像</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<article class="item-card" id="2026-11-28-sec-05" data-date="2026-11-28" data-scope="PC端" data-search="PC端 轮转安排 学员排班 科室排班 学员层级 科室层级 页签 文案 pages/轮转安排/page.js">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#05</span>
+        <span class="badge-date">2026-11-28</span>
+        <span class="badge-scope">PC端</span>
+      </div>
+      <h2 class="item-title">05. 轮转安排 · 顶部视图页签「学员层级 / 科室层级」改为「学员排班 / 科室排班」</h2>
+      <div class="item-meta"><strong>定位路径</strong>：管理端 → 轮转管理 → 轮转安排（<code>manager.html?page=轮转安排</code>）<br>
+      <strong>核心文件</strong>：<code>pages/轮转安排/page.js</code>、<code>scripts/verify-swap-dispatch.cjs</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前 · 存在问题</span></div>
+        <ul class="desc-list">
+          <li>轮转安排顶部主视图页签文案为「学员层级」「科室层级」，业务语义不够直观。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-28-对比截图/轮转安排-层级改排班-修改前.png" alt="轮转安排-层级改排班-修改前" data-cap="2026-11-28 #05 修改前 · 顶部页签为「学员层级 / 科室层级」">
+          <div class="img-caption">改前 · 顶部页签为「学员层级 / 科室层级」</div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后 · 落地效果</span></div>
+        <ul class="desc-list">
+          <li>将 <code>viewTabs</code> 中两个页签文案分别调整为「学员排班」与「科室排班」，更贴合排班业务场景。</li>
+          <li>同步更新自动化校验脚本 <code>scripts/verify-swap-dispatch.cjs</code> 中的页签匹配文本为「科室排班」。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-28-对比截图/轮转安排-层级改排班-修改后.png" alt="轮转安排-层级改排班-修改后" data-cap="2026-11-28 #05 修改后 · 顶部页签已改为「学员排班 / 科室排班」">
+          <div class="img-caption">改后 · 顶部页签已改为「学员排班 / 科室排班」</div>
         </div>
       </div>
     </div>
