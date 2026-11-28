@@ -41,13 +41,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-28 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">4</span> 项修改记录 · 122 张真实入口截图 · PC 端 1440×900 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">5</span> 项修改记录 · 122 张真实入口截图 · PC 端 1440×900 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">4</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">5</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -97,6 +97,13 @@
           <td><span class="scope-tag">PC端</span></td>
           <td>全站工作台右侧卡片 + 左下角铃铛抽屉弹窗（<code>manager.html</code> 等全角色通用）</td>
           <td><a href="../../shared/js/account-hub.js">account-hub.js</a> + <a href="../../shared/js/global-components.js">global-components.js</a> + <a href="../../shared/js/nav-render.js">nav-render.js</a> · 图文对比（5 张）</td>
+        </tr>
+        <tr data-scope="双端">
+          <td>05</td>
+          <td><a href="#sec-05"><strong>专项 · PC 全角色左侧导航与移动端 Icon 语义化与去重改造</strong></a></td>
+          <td><span class="scope-tag">双端</span></td>
+          <td>PC 端全 19 个角色左侧导航（如「题库与试卷」「评估管理」「空间/物资/师生管理」）及移动端工作台入口</td>
+          <td><a href="../../shared/js/nav-data.js">nav-data.js</a> + <a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a> + <a href="../专项-Icon语义化与去重改造方案.md">专项方案.md</a> · 文字记录</td>
         </tr>
       </tbody>
     </table>
@@ -346,6 +353,29 @@
       <h3>修改后 · 开发依据（消息类型与判定规则）</h3>
       <p style="color:#4e5969;margin:4px 0 12px">以下为本次改造及后续服务端消息接入的统一判定规则与分类依据（判定顺序：① 需要对方响应或处理 → 互动；② 由时间临近、逾期触发或原安排内容变动 → 提醒；③ 其余新增事项或状态变化 → 通知）：</p>
       <a href="2026-11-28-对比截图/统一账号收件箱-消息类型与判定规则-修改依据.png" target="_blank"><img alt="消息类型与判定规则（修改依据）" src="2026-11-28-对比截图/统一账号收件箱-消息类型与判定规则-修改依据.png"></a>
+    </div>
+  </section>
+
+  <section id="sec-05">
+    <h2>05 · 专项 · PC 全角色左侧导航与移动端 Icon 语义化与去重改造</h2>
+    <p>定位：PC 端全 19 个角色左侧导航（如「题库与试卷」「评估管理」「空间管理」「物资管理」「师生管理」「用户与权限」「AI 配置」）及移动端工作台/支持入口。实现文件：<a href="../../shared/js/nav-data.js">shared/js/nav-data.js</a>、<a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a>；专项文档：<a href="../专项-Icon语义化与去重改造方案.md">docs/专项-Icon语义化与去重改造方案.md</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li><code>group(label, iconName, children)</code> 辅助函数将父级 Icon 直接透传给所有字符串子项，导致多个角色的一级与二级菜单完全同图标（例如「题库与试卷」及其下 5 个子项全为 <code>clipboardList</code>）。</li>
+          <li><code>evalAdminGroup()</code>、<code>admin</code>、<code>academic-affairs</code>、<code>course-admin</code>、<code>resource-scheduler</code>、<code>backend</code> 等显式配置中存在工作台与分组同图标、发证与成果同图标（<code>award</code>）、表单库与学员评估同图标（<code>clipboard</code>）等问题；且「临床思维课程」引用的 <code>icons.brain</code> 在 <code>icons</code> 字典中缺失。</li>
+          <li>移动端科室管理端「试卷中心」使用 <code>clipboard-list</code>、「课程审核/把关」使用 <code>check-check</code>，教师端「表单开发任务」使用 <code>file-plus</code>，与管理端口径不一致；学员端「我的报名」与「评价反馈」共用 <code>clipboard-list</code>。</li>
+        </ul>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li>在 <code>shared/js/nav-data.js</code> 补齐 <code>brain</code> 并新增 <code>sparkles</code>、<code>layoutDashboard</code>、<code>fileText</code>、<code>fileSpreadsheet</code>、<code>fileCheck</code>、<code>badgeCheck</code>、<code>bookOpenCheck</code>、<code>clipboardPen</code>、<code>shieldCheck</code>、<code>userCog</code>、<code>cpu</code>、<code>calendarPlus</code>、<code>calendarRange</code>、<code>radar</code>、<code>dumbbell</code>、<code>compass</code>、<code>tags</code> 等 18 个线性 SVG 图标（全库共 136 个）。</li>
+          <li>建立 <code>pageIcons</code> 页面级语义映射并升级 <code>group()</code>：仅「父子完全重名」的单子项直达入口（如「教学资源库 › 教学资源库」）沿用同名图标，其余全部按语义匹配独立图标（如「题库与试卷」<code>layers</code> → 题库工作台 <code>barChart</code> / 题库管理 <code>database</code> / 试卷中心 <code>fileSpreadsheet</code> / 题库设置 <code>sliders</code> / 自适应学习 <code>sparkles</code>），经脚本校验 19 个角色零父子/同级重复。</li>
+          <li>移动端（<code>移动端/shared/tdesign-app.js</code>）同步统一：科室端「试卷中心」改为 <code>file-spreadsheet</code>、「课程审核/把关」改为 <code>book-check</code>，教师端「表单开发任务」改为 <code>file-check-2</code>，学员端「评价反馈」改为 <code>message-square-heart</code>。</li>
+        </ul>
+      </div>
     </div>
   </section>
 </main>
