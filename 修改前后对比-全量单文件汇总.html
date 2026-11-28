@@ -164,11 +164,11 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       </div>
       <div class="m-card">
         <div class="m-label">全量修改与对比项</div>
-        <div class="m-val">90<span class="m-unit">项</span></div>
+        <div class="m-val">91<span class="m-unit">项</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">对比留痕截图总数</div>
-        <div class="m-val">331<span class="m-unit">张</span></div>
+        <div class="m-val">336<span class="m-unit">张</span></div>
       </div>
       <div class="m-card">
         <div class="m-label">最新更新日期</div>
@@ -182,8 +182,8 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   <div class="toolbar-inner">
     <div class="filter-group" id="dateFilters">
       <span class="filter-label">日期：</span>
-      <button class="chip active" data-date="all">全部日期 (90)</button>
-      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 12项)</button>
+      <button class="chip active" data-date="all">全部日期 (91)</button>
+      <button class="chip" data-date="2026-11-27">2026-11-27 (最新 · 13项)</button>
       <button class="chip" data-date="2026-11-26">2026-11-26 (1项)</button>
       <button class="chip" data-date="2026-11-23">2026-11-23 (7项)</button>
       <button class="chip" data-date="2026-11-17">2026-11-17 (3项)</button>
@@ -208,12 +208,65 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <button class="view-btn active" id="btnSideBySide" title="左右并排对比">并排对比</button>
         <button class="view-btn" id="btnStacked" title="上下堆叠展示">单栏聚焦</button>
       </div>
-      <div class="stat-pill" id="counterPill">显示 90 / 90 项</div>
+      <div class="stat-pill" id="counterPill">显示 91 / 91 项</div>
     </div>
   </div>
 </div>
 
 <main id="mainContainer">
+
+<article class="item-card" id="2026-11-27-sec-13" data-date="2026-11-27" data-scope="PC端" data-search="PC端 班牌和大屏管理 电子班牌 缩略图 详情抽屉 广播抽屉 投屏拟真 复旦儿科 pages/班牌和大屏管理/page.js page.css">
+  <div class="item-header">
+    <div class="item-title-wrap">
+      <div class="badge-row">
+        <span class="badge-num">#13</span>
+        <span class="badge-date">2026-11-27</span>
+        <span class="badge-scope">PC端</span>
+      </div>
+      <h2 class="item-title">13. PC 班牌和大屏管理 · 对齐新版电子班牌首页视觉（缩略图 + 详情预览 + 广播投屏拟真）</h2>
+      <div class="item-meta"><strong>定位路径</strong>：管理端 → 空间管理 → 班牌和大屏管理（<code>pages/班牌和大屏管理/index.html</code>）<br>
+      <strong>核心文件</strong>：<code>pages/班牌和大屏管理/page.js</code>、<code>pages/班牌和大屏管理/page.css</code>、<code>shared/assets/dianzibanpai-erke.jpg</code></div>
+    </div>
+  </div>
+  <div class="item-body">
+    <div class="pair-grid">
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge before">修改前 · 存在问题</span></div>
+        <ul class="desc-list">
+          <li>列表与卡片缩略图沿用旧版“清华大学 / 音乐室”占位图（<code>dianzibanpai.png</code>），且正方形容器（<code>38×38</code> / <code>46×46</code>）严重裁切横屏画面。</li>
+          <li>终端详情抽屉缺少画面预览；广播发布抽屉右侧「终端物理投屏拟真」为深黑科技风（<code>FDEK-TERMINAL</code>），与新版浅蓝医疗风首页割裂。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/班牌和大屏管理-列表与缩略图-修改前.png" alt="班牌和大屏管理-列表与缩略图-修改前" data-cap="2026-11-27 #13 修改前 · 列表视图旧版清华大学音乐室正方形缩略图">
+          <div class="img-caption">改前 · 列表视图与旧版正方形缩略图</div>
+        </div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/班牌和大屏管理-广播抽屉-修改前.png" alt="班牌和大屏管理-广播抽屉-修改前" data-cap="2026-11-27 #13 修改前 · 广播抽屉深黑科技风待机拟真">
+          <div class="img-caption">改前 · 广播发布抽屉深黑科技风拟真</div>
+        </div>
+      </div>
+      <div class="pair-col">
+        <div class="col-header"><span class="tag-badge after">修改后 · 落地效果</span></div>
+        <ul class="desc-list">
+          <li>替换为复旦儿科新版电子班牌首页截图（<code>dianzibanpai-erke.jpg</code>），列表与卡片缩略图调整为 16:10 横向比例（<code>58×38</code> / <code>68×44</code>）。</li>
+          <li>终端详情抽屉顶部新增「当前终端画面预览」；广播抽屉未配置广播时展示终端首页底图，输入内容后切换为浅蓝医疗风「正在广播」白色圆角卡片拟真。</li>
+        </ul>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/班牌和大屏管理-列表与缩略图-修改后.png" alt="班牌和大屏管理-列表与缩略图-修改后" data-cap="2026-11-27 #13 修改后 · 列表视图采用复旦儿科新版班牌 16:10 横向缩略图">
+          <div class="img-caption">改后 · 列表视图 16:10 横向新缩略图</div>
+        </div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/班牌和大屏管理-详情抽屉-修改后.png" alt="班牌和大屏管理-详情抽屉-修改后" data-cap="2026-11-27 #13 修改后 · 终端详情抽屉新增当前终端画面预览">
+          <div class="img-caption">改后 · 终端详情抽屉（含画面预览）</div>
+        </div>
+        <div class="img-wrap">
+          <img loading="lazy" src="2026-11-27-对比截图/班牌和大屏管理-广播抽屉-修改后.png" alt="班牌和大屏管理-广播抽屉-修改后" data-cap="2026-11-27 #13 修改后 · 广播抽屉浅蓝医疗风正在广播拟真预览">
+          <div class="img-caption">改后 · 广播发布抽屉浅蓝医疗风拟真</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
 
 <article class="item-card" id="2026-11-27-sec-12" data-date="2026-11-27" data-scope="PC端" data-search="电子班牌 最终稿 本周课表 抽屉 流体玻璃 3D头像 极简克制 医院深蓝 呼吸灯 闪白 需求规格说明">
   <div class="item-head"><span class="date-badge">2026-11-27</span><span class="scope-tag">PC端</span><h3>电子班牌最终稿 · 「本周课表」抽屉极简流体玻璃 + 3D 头像视觉升级</h3></div>

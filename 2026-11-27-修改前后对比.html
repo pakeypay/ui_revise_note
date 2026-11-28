@@ -157,6 +157,13 @@
           <td>15.6" 电子班牌（<code>pages/电子班牌/index.html</code> → 本周课表上拉抽屉）</td>
           <td><a href="../../pages/电子班牌/index.html">index.html</a> + <a href="../../pages/电子班牌/电子班牌-需求规格说明.md">需求规格说明.md</a> · 图文对比（3 张）</td>
         </tr>
+        <tr data-scope="PC端">
+          <td>13</td>
+          <td><a href="#sec-13"><strong>PC 班牌和大屏管理 · 对齐新版电子班牌首页视觉（缩略图 + 详情预览 + 广播投屏拟真）</strong></a></td>
+          <td><span class="scope-tag">PC端</span></td>
+          <td>管理端 → 空间管理 → 班牌和大屏管理（<code>pages/班牌和大屏管理/index.html</code>）</td>
+          <td><a href="../../pages/班牌和大屏管理/page.js">page.js</a> + <a href="../../pages/班牌和大屏管理/page.css">page.css</a> · 图文对比（5 张）</td>
+        </tr>
       </tbody>
     </table>
   </section>
@@ -553,6 +560,51 @@
         </ul>
         <a href="2026-11-27-对比截图/电子班牌-周课表抽屉-修改后.png" target="_blank"><img alt="修改后：极昼浅色流体玻璃周课表抽屉与3D医生头像" src="2026-11-27-对比截图/电子班牌-周课表抽屉-修改后.png"></a>
         <a href="2026-11-27-对比截图/电子班牌-周课表抽屉-医院深蓝-修改后.png" target="_blank" style="display:block;margin-top:12px;"><img alt="修改后：复旦医院深蓝主题下的周课表抽屉" src="2026-11-27-对比截图/电子班牌-周课表抽屉-医院深蓝-修改后.png"></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-13">
+    <h2>PC 班牌和大屏管理 · 对齐新版电子班牌首页视觉（缩略图 + 详情预览 + 广播投屏拟真）</h2>
+    <p>定位：管理端 → 空间管理 → 班牌和大屏管理（<code>pages/班牌和大屏管理/index.html</code>）。实现文件：<a href="../../pages/班牌和大屏管理/page.js">pages/班牌和大屏管理/page.js</a>、<a href="../../pages/班牌和大屏管理/page.css">pages/班牌和大屏管理/page.css</a>、<a href="../../shared/assets/dianzibanpai-erke.jpg">shared/assets/dianzibanpai-erke.jpg</a>。</p>
+    <div class="pair">
+      <div>
+        <h3>修改前 · 存在问题</h3>
+        <ul>
+          <li>电子班牌列表与卡片缩略图仍使用旧版“清华大学 / 音乐室”占位图（<code>dianzibanpai.png</code>），且容器为正方形（<code>38×38</code> / <code>46×46</code>），横屏首页画面被严重裁切。</li>
+          <li>终端详情抽屉仅展示纯文字网格，缺少终端当前画面预览；多媒体广播发布抽屉右侧「终端物理投屏拟真」为深黑科技风（<code>FDEK-TERMINAL</code>），与新版浅蓝医疗风电子班牌首页割裂。</li>
+        </ul>
+        <div class="shot-grid">
+          <div>
+            <h4>改前 · 列表与正方形旧缩略图</h4>
+            <a href="2026-11-27-对比截图/班牌和大屏管理-列表与缩略图-修改前.png" target="_blank"><img alt="修改前：列表视图使用旧版清华大学音乐室正方形缩略图" src="2026-11-27-对比截图/班牌和大屏管理-列表与缩略图-修改前.png"></a>
+          </div>
+          <div>
+            <h4>改前 · 广播发布抽屉（深黑待机态）</h4>
+            <a href="2026-11-27-对比截图/班牌和大屏管理-广播抽屉-修改前.png" target="_blank"><img alt="修改前：广播抽屉深黑科技风待机拟真" src="2026-11-27-对比截图/班牌和大屏管理-广播抽屉-修改前.png"></a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>修改后 · 改动说明</h3>
+        <ul>
+          <li>替换为复旦大学附属儿科医院新版电子班牌首页截图（<code>dianzibanpai-erke.jpg</code>），并将列表与卡片缩略图容器调整为 16:10 横向比例（<code>58×38</code> / <code>68×44</code>），完整呈现双栏课程与考勤布局。</li>
+          <li>终端详情抽屉顶部新增「当前终端画面预览」卡片，广播发布抽屉未配置广播时直接渲染目标终端首页实景底图，输入广播后切换为浅蓝医疗风「正在广播」白色圆角卡片拟真效果。</li>
+        </ul>
+        <div class="shot-grid">
+          <div>
+            <h4>改后 · 列表与 16:10 横向新缩略图</h4>
+            <a href="2026-11-27-对比截图/班牌和大屏管理-列表与缩略图-修改后.png" target="_blank"><img alt="修改后：列表视图采用复旦儿科新版班牌16:10横向缩略图" src="2026-11-27-对比截图/班牌和大屏管理-列表与缩略图-修改后.png"></a>
+          </div>
+          <div>
+            <h4>改后 · 终端详情抽屉（含画面预览）</h4>
+            <a href="2026-11-27-对比截图/班牌和大屏管理-详情抽屉-修改后.png" target="_blank"><img alt="修改后：终端详情抽屉新增当前终端画面预览卡片" src="2026-11-27-对比截图/班牌和大屏管理-详情抽屉-修改后.png"></a>
+          </div>
+          <div>
+            <h4>改后 · 广播抽屉（浅蓝医疗风拟真）</h4>
+            <a href="2026-11-27-对比截图/班牌和大屏管理-广播抽屉-修改后.png" target="_blank"><img alt="修改后：广播抽屉浅蓝医疗风正在广播拟真预览" src="2026-11-27-对比截图/班牌和大屏管理-广播抽屉-修改后.png"></a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
