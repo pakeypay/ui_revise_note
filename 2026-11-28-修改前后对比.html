@@ -14,9 +14,11 @@
   section[id]{scroll-margin-top:20px}
   #change-index{margin-top:0}
   h2{font-size:18px;margin-top:0}
+  h3{font-size:15px;margin:10px 0 8px}
   img{width:100%;border:1px solid #e5e9f0;border-radius:6px;display:block}
   a{color:#1d5b97;text-decoration:none}
   a:hover{text-decoration:underline}
+  code{background:#f2f4f7;border-radius:4px;padding:1px 6px;font-size:12px}
   .pair{display:grid;grid-template-columns:1fr 1fr;gap:24px}
   .index-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:12px 0 14px}
   .index-chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -39,13 +41,13 @@
 <header>
   <div style="margin-bottom:8px"><a href="index.html" style="color:#d0e7ff;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:4px">← 返回留痕总览（所有日期清单）</a></div>
   <h1>2026-11-28 · 修改前后对比</h1>
-  <div class="sub">共 <span id="index-total-count">4</span> 项修改记录 · 点击顶部总清单锚点快速跳转至对应详情</div>
+  <div class="sub">共 <span id="index-total-count">1</span> 项修改记录 · 2 张真实入口截图 · PC 端 1440×900 · 点击顶部总清单锚点快速跳转至对应详情</div>
 </header>
 <main>
   <section id="change-index">
     <h2>修改记录总清单（索引）</h2>
     <div class="summary-row">
-      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">4</span> 项</div>
+      <div class="summary-badge"><strong>记录总数</strong>：<span id="index-visible-count">1</span> 项</div>
     </div>
     <div class="index-toolbar">
       <div class="index-chips" id="index-scope-chips">
@@ -70,125 +72,34 @@
       <tbody id="change-index-body">
         <tr data-scope="PC端">
           <td>01</td>
-          <td><a href="#sec-01"><strong>左侧导航 · 一二三级菜单统一字号与行高（取消逐层缩减）</strong></a></td>
+          <td><a href="#sec-01"><strong>轮转进度 · 筛选栏对齐技能中心课程胶囊样式与 3D 卡通头像升级</strong></a></td>
           <td><span class="scope-tag">PC端</span></td>
-          <td>全站 PC 端左侧导航 → 多级菜单（如 管理端 → 评估管理 → 标准与计划 → 目标与框架）</td>
-          <td><a href="../../shared/styles/sidebar.css">sidebar.css</a>、<a href="../../shared/styles/nav.css">nav.css</a> · 图文对比（2 张）</td>
-        </tr>
-        <tr data-scope="双端">
-          <td>02</td>
-          <td><a href="#sec-02"><strong>专项 · 全角色导航与移动端 Icon 语义化与去重改造</strong></a></td>
-          <td><span class="scope-tag">双端</span></td>
-          <td>PC 端全角色左侧导航（如 基地/科室管理端 → 题库与试卷）及移动端工作台入口</td>
-          <td><a href="../../shared/js/nav-data.js">nav-data.js</a>、<a href="../../移动端/shared/tdesign-app.js">tdesign-app.js</a>、<a href="../专项-Icon语义化与去重改造方案.md">专项方案</a> · 图文对比（2 张）</td>
-        </tr>
-        <tr data-scope="PC端">
-          <td>03</td>
-          <td><a href="#sec-03"><strong>轮转任务与考核 · 出科考核移除黄色预警条、新增搜索与多维筛选及基地标签</strong></a></td>
-          <td><span class="scope-tag">PC端</span></td>
-          <td>科室管理端 → 轮转管理 → 出科考核（<code>程主任.html?page=出科考核</code>）</td>
-          <td><a href="../../pages/轮转任务与考核/page.js">page.js</a>、<a href="../../pages/轮转任务与考核/page.css">page.css</a> · 图文对比（2 张）</td>
-        </tr>
-        <tr data-scope="PC端">
-          <td>04</td>
-          <td><a href="#sec-04"><strong>轮转安排 · 顶部视图页签文案「学员视角 / 科室视角」调整为「学员层级 / 科室层级」</strong></a></td>
-          <td><span class="scope-tag">PC端</span></td>
-          <td>管理端 → 轮转管理 → 轮转安排（<code>manager.html?page=轮转安排</code>）</td>
-          <td><a href="../../pages/轮转安排/page.js">page.js</a>、<a href="../../scripts/verify-swap-dispatch.cjs">verify-swap-dispatch.cjs</a> · 图文对比（2 张）</td>
+          <td>管理端 → 轮转管理 → 轮转进度（<code>pages/轮转进度/index.html</code>）</td>
+          <td><a href="../../pages/轮转进度/page.js">pages/轮转进度/page.js</a> + <a href="../../pages/轮转进度/page.css">pages/轮转进度/page.css</a> · 图文对比（2 张）</td>
         </tr>
       </tbody>
     </table>
   </section>
 
   <section id="sec-01">
-    <h2>左侧导航 · 一二三级菜单统一字号与行高（取消逐层缩减）</h2>
-    <p>定位：全站 PC 端左侧导航 → 评估管理等三级菜单（<code>manager.html?page=评估目标和框架</code>）。实现文件：<a href="../../shared/styles/sidebar.css">shared/styles/sidebar.css</a>、<a href="../../shared/styles/nav.css">shared/styles/nav.css</a>。</p>
+    <h2>01 · 轮转进度 · 筛选栏对齐技能中心课程胶囊样式与 3D 卡通头像升级</h2>
+    <p>定位：管理端 → 轮转管理 → 轮转进度（<code>pages/轮转进度/index.html</code>）。实现文件：<a href="../../pages/轮转进度/page.js">pages/轮转进度/page.js</a>、<a href="../../pages/轮转进度/page.css">pages/轮转进度/page.css</a>。</p>
     <div class="pair">
       <div>
         <h3>修改前 · 存在问题</h3>
         <ul>
-          <li>三级菜单项（<code>.sb-subgroup-items .sb-item</code>）被缩减为 <code>height: 34px; font-size: 13.5px</code>，图标缩减为 <code>18px / 16px</code>，而一、二级菜单为 <code>36px / 14px</code> 与 <code>20px / 18px</code>，形成逐层递减。</li>
-          <li>旧版兼容样式（<code>.nav-item</code> / <code>.submenu-item</code> / <code>.third-leaf</code>）同样存在 <code>40px → 36px → 30px</code> 与字号逐层缩减。</li>
+          <li>筛选栏仍采用「招收年度：」「科室：」「状态：」文字前缀 + 小号方角下拉框，搜索框置于最右侧且宽度较窄，与「技能中心课程」的千问胶囊筛选栏样式不统一。</li>
+          <li>学员列表头像仅显示单色圆角方框与姓氏首字，缺少 3D 卡通人物头像视觉质感。</li>
         </ul>
-        <a href="2026-11-28-对比截图/左侧导航-三级菜单样式-修改前.png" target="_blank"><img alt="修改前" src="2026-11-28-对比截图/左侧导航-三级菜单样式-修改前.png"></a>
+        <a href="2026-11-28-对比截图/轮转进度-修改前.png" target="_blank"><img alt="轮转进度修改前" src="2026-11-28-对比截图/轮转进度-修改前.png"></a>
       </div>
       <div>
         <h3>修改后 · 改动说明</h3>
         <ul>
-          <li>将 <code>.sb-subgroup-items .sb-item</code> 统一为 <code>height: 36px; min-height: 36px; font-size: 14px</code>，图标统一为 <code>20px / 18px</code>，一二三级完全一致。</li>
-          <li>同步将 <code>shared/styles/nav.css</code> 中 <code>.nav-item</code> / <code>.submenu-item</code> / <code>.third-leaf</code> 统一为 <code>min-height: 36px; font-size: var(--font-base)</code>。</li>
+          <li>搜索与筛选项对齐「技能中心课程」胶囊几何：搜索框居左（<code>300px</code> 宽、<code>36px</code> 高、<code>999px</code> 圆角、<code>0.5px solid #e1e6ef</code> 边框），后接无前缀标签的胶囊下拉筛选（<code>全部招收年度</code>、<code>全部科室</code>、<code>全部状态</code>），右侧附带 <code>共 X 人</code> 统计与激活筛选时的<code>重置</code>按钮。</li>
+          <li>学员头像升级为 3D 卡通头像（按姓名稳定映射 <code>shared/assets/avatars/avatar_01.png</code> ~ <code>avatar_10.png</code>，<code>34px</code> 圆形描边容器），并保留首字母色块作为加载兜底。</li>
         </ul>
-        <a href="2026-11-28-对比截图/左侧导航-三级菜单样式-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/左侧导航-三级菜单样式-修改后.png"></a>
-      </div>
-    </div>
-  </section>
-
-  <section id="sec-02">
-    <h2>专项 · 全角色导航与移动端 Icon 语义化与去重改造</h2>
-    <p>定位：PC 端全角色左侧导航（如 <code>base-manager.html?page=试卷中心</code>）及移动端工作台入口（<code>移动端/mobile.html?role=department-manager</code>）。实现文件：<a href="../../shared/js/nav-data.js">shared/js/nav-data.js</a>、<a href="../../移动端/shared/tdesign-app.js">移动端/shared/tdesign-app.js</a>，专项规范：<a href="../专项-Icon语义化与去重改造方案.md">docs/专项-Icon语义化与去重改造方案.md</a>。</p>
-    <div class="pair">
-      <div>
-        <h3>修改前 · 存在问题</h3>
-        <ul>
-          <li><code>group()</code> 辅助函数将父级 Icon 直接透传给所有字符串子项，导致「题库与试卷」一级与下方 5 个二级菜单全部显示同一图标；<code>admin</code> / <code>evalAdminGroup</code> 等显式配置亦存在工作台、发证、表单库等图标重复，且 <code>icons.brain</code> 未定义。</li>
-          <li>移动端科室管理端「试卷中心」使用 <code>clipboard-list</code>、「课程审核」使用 <code>check-check</code>，与教师/管理端语义不一致。</li>
-        </ul>
-        <a href="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改前.png" target="_blank"><img alt="修改前" src="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改前.png"></a>
-      </div>
-      <div>
-        <h3>修改后 · 改动说明</h3>
-        <ul>
-          <li>补齐 <code>brain</code> 等 18 个线性 SVG 图标，建立 <code>pageIcons</code> 页面级语义映射；除「父子完全重名」的单子项直达入口外，全量 19 个角色各级菜单均实现父子不重复、同组不撞车（如 题库与试卷 <code>layers</code> → 工作台 <code>barChart</code> / 题库 <code>database</code> / 试卷 <code>fileSpreadsheet</code> / 设置 <code>sliders</code> / 自适应 <code>sparkles</code>）。</li>
-          <li>同步统一移动端「试卷中心」为 <code>file-spreadsheet</code>、「课程审核」为 <code>book-check</code>、「表单开发任务」为 <code>file-check-2</code>、学员端「评价反馈」为 <code>message-square-heart</code>。</li>
-        </ul>
-        <a href="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/左侧导航Icon语义化与去重-修改后.png"></a>
-      </div>
-    </div>
-  </section>
-
-  <section id="sec-03">
-    <h2>轮转任务与考核 · 出科考核移除黄色预警条、新增搜索与多维筛选及基地标签</h2>
-    <p>定位：科室管理端 → 轮转管理 → 出科考核（<code>程主任.html?page=出科考核</code>）。实现文件：<a href="../../pages/轮转任务与考核/page.js">pages/轮转任务与考核/page.js</a>、<a href="../../pages/轮转任务与考核/page.css">pages/轮转任务与考核/page.css</a>。</p>
-    <div class="pair">
-      <div>
-        <h3>修改前 · 存在问题</h3>
-        <ul>
-          <li>待发起列表顶部存在黄色预警横条（“7 名学员 7 天内换科，尚未发起出科考核 · 只看这些学员”），占用列表首屏空间。</li>
-          <li>缺少按学员姓名/学号搜索，以及科室管理员视角下的「基地」「轮转周期」筛选控件。</li>
-          <li>学员信息列仅展示姓名、工号与年级，跨基地轮转学员（如儿外科基地轮转至呼吸科）无法直观区分所属基地。</li>
-        </ul>
-        <a href="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改前.jpg" target="_blank"><img alt="修改前" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改前.jpg"></a>
-      </div>
-      <div>
-        <h3>修改后 · 改动说明</h3>
-        <ul>
-          <li>移除待发起页签顶部的黄色预警条，列表结构更紧凑清晰。</li>
-          <li>新增统一筛选工具栏：支持学员姓名/学号搜索、条件状态（全部/已达条件/未达条件，计数随筛选实时联动）、基地（科室管理端下拉）与轮转周期筛选，覆盖待发起/考核中/待补考/已归档四个页签。</li>
-          <li>在四张出科考核表的「学员」列中新增基地胶囊标签（<code>儿科基地</code> 蓝底、<code>儿外科基地</code> 橙底），并加宽列宽至 <code>210px</code> 避免折行。</li>
-        </ul>
-        <a href="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/出科考核-搜索筛选与基地标签-修改后.png"></a>
-      </div>
-    </div>
-  </section>
-
-  <section id="sec-04">
-    <h2>轮转安排 · 顶部视图页签文案调整为「学员层级 / 科室层级」</h2>
-    <p>定位：管理端 → 轮转管理 → 轮转安排（<code>manager.html?page=轮转安排</code>）。实现文件：<a href="../../pages/轮转安排/page.js">pages/轮转安排/page.js</a>、<a href="../../scripts/verify-swap-dispatch.cjs">scripts/verify-swap-dispatch.cjs</a>。</p>
-    <div class="pair">
-      <div>
-        <h3>修改前 · 存在问题</h3>
-        <ul>
-          <li>轮转安排顶部主视图页签文案为「学员视角」「科室视角」，与多层级排班维度表述不统一。</li>
-        </ul>
-        <a href="2026-11-28-对比截图/轮转安排-视角改层级-修改前.png" target="_blank"><img alt="修改前" src="2026-11-28-对比截图/轮转安排-视角改层级-修改前.png"></a>
-      </div>
-      <div>
-        <h3>修改后 · 改动说明</h3>
-        <ul>
-          <li>将 <code>viewTabs</code> 中两个页签文案分别调整为「学员层级」与「科室层级」，保持图标与交互逻辑不变。</li>
-          <li>同步更新自动化校验脚本 <code>scripts/verify-swap-dispatch.cjs</code> 中的页签匹配文本为「科室层级」。</li>
-        </ul>
-        <a href="2026-11-28-对比截图/轮转安排-视角改层级-修改后.png" target="_blank"><img alt="修改后" src="2026-11-28-对比截图/轮转安排-视角改层级-修改后.png"></a>
+        <a href="2026-11-28-对比截图/轮转进度-修改后.png" target="_blank"><img alt="轮转进度修改后" src="2026-11-28-对比截图/轮转进度-修改后.png"></a>
       </div>
     </div>
   </section>
@@ -215,12 +126,12 @@
     if (visibleEl) visibleEl.textContent = String(shown);
   }
   chips.forEach(btn => btn.addEventListener('click', () => {
-    chips.forEach(c => c.classList.remove('active'));
+    chips.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    activeScope = btn.dataset.scope;
+    activeScope = btn.dataset.scope || 'all';
     applyFilter();
   }));
-  search.addEventListener('input', applyFilter);
+  if (search) search.addEventListener('input', applyFilter);
 })();
 </script>
 </body>

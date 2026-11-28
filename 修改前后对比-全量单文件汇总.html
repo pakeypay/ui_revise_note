@@ -341,7 +341,7 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
   </div>
 </article>
 
-<article class="item-card" id="2026-11-28-sec-04" data-date="2026-11-28" data-scope="PC端" data-search="PC端 轮转安排 学员层级 科室层级 学员视角 科室视角 页签 文案 pages/轮转安排/page.js">
+<article class="item-card" id="2026-11-28-sec-04" data-date="2026-11-28" data-scope="PC端" data-search="PC端 轮转进度 轮转管理 搜索 筛选栏 技能中心课程 胶囊样式 3D卡通头像 avatar pages/轮转进度/page.js page.css">
   <div class="item-header">
     <div class="item-title-wrap">
       <div class="badge-row">
@@ -349,9 +349,9 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
         <span class="badge-date">2026-11-28</span>
         <span class="badge-scope">PC端</span>
       </div>
-      <h2 class="item-title">04. 轮转安排 · 顶部视图页签「学员视角 / 科室视角」改为「学员层级 / 科室层级」</h2>
-      <div class="item-meta"><strong>定位路径</strong>：管理端 → 轮转管理 → 轮转安排（<code>manager.html?page=轮转安排</code>）<br>
-      <strong>核心文件</strong>：<code>pages/轮转安排/page.js</code>、<code>scripts/verify-swap-dispatch.cjs</code></div>
+      <h2 class="item-title">04. 轮转进度 · 筛选栏对齐技能中心课程胶囊样式与 3D 卡通头像升级</h2>
+      <div class="item-meta"><strong>定位路径</strong>：管理端 → 轮转管理 → 轮转进度（<code>pages/轮转进度/index.html</code>）<br>
+      <strong>核心文件</strong>：<code>pages/轮转进度/page.js</code>、<code>pages/轮转进度/page.css</code></div>
     </div>
   </div>
   <div class="item-body">
@@ -359,22 +359,23 @@ body.mode-stacked .pair-grid, body.mode-stacked .pair, body.mode-stacked .compar
       <div class="pair-col">
         <div class="col-header"><span class="tag-badge before">修改前 · 存在问题</span></div>
         <ul class="desc-list">
-          <li>轮转安排顶部主视图页签文案为「学员视角」「科室视角」，与多层级排班维度表述不统一。</li>
+          <li>筛选栏仍采用「招收年度：」「科室：」「状态：」文字前缀 + 小号方角下拉框，搜索框置于最右侧且宽度较窄，与「技能中心课程」的千问胶囊筛选栏样式不统一。</li>
+          <li>学员列表头像仅显示单色圆角方框与姓氏首字，缺少 3D 卡通人物头像视觉质感。</li>
         </ul>
         <div class="img-wrap">
-          <img loading="lazy" src="2026-11-28-对比截图/轮转安排-视角改层级-修改前.png" alt="轮转安排-视角改层级-修改前" data-cap="2026-11-28 #04 修改前 · 顶部页签为「学员视角 / 科室视角」">
-          <div class="img-caption">改前 · 顶部页签为「学员视角 / 科室视角」</div>
+          <img loading="lazy" src="2026-11-28-对比截图/轮转进度-修改前.png" alt="轮转进度-修改前" data-cap="2026-11-28 #04 修改前 · 旧版方角筛选栏与单色首字头像">
+          <div class="img-caption">改前 · 带文字前缀的方角筛选栏与单色首字头像</div>
         </div>
       </div>
       <div class="pair-col">
         <div class="col-header"><span class="tag-badge after">修改后 · 落地效果</span></div>
         <ul class="desc-list">
-          <li>将 <code>viewTabs</code> 中两个页签文案分别调整为「学员层级」与「科室层级」，保持图标与交互逻辑不变。</li>
-          <li>同步更新自动化校验脚本 <code>scripts/verify-swap-dispatch.cjs</code> 中的页签匹配文本为「科室层级」。</li>
+          <li>搜索与筛选项对齐「技能中心课程」胶囊几何：搜索框居左（<code>300px</code> 宽、<code>36px</code> 高、<code>999px</code> 圆角、<code>0.5px solid #e1e6ef</code> 边框），后接无前缀标签的胶囊下拉筛选（<code>全部招收年度</code>、<code>全部科室</code>、<code>全部状态</code>），右侧附带 <code>共 X 人</code> 统计与激活筛选时的<code>重置</code>按钮。</li>
+          <li>学员头像升级为 3D 卡通头像（按姓名稳定映射 <code>shared/assets/avatars/avatar_01.png</code> ~ <code>avatar_10.png</code>，<code>34px</code> 圆形描边容器），并保留首字母色块作为加载兜底。</li>
         </ul>
         <div class="img-wrap">
-          <img loading="lazy" src="2026-11-28-对比截图/轮转安排-视角改层级-修改后.png" alt="轮转安排-视角改层级-修改后" data-cap="2026-11-28 #04 修改后 · 顶部页签已改为「学员层级 / 科室层级」">
-          <div class="img-caption">改后 · 顶部页签已改为「学员层级 / 科室层级」</div>
+          <img loading="lazy" src="2026-11-28-对比截图/轮转进度-修改后.png" alt="轮转进度-修改后" data-cap="2026-11-28 #04 修改后 · 技能中心课程同款胶囊筛选栏与 3D 卡通头像">
+          <div class="img-caption">改后 · 胶囊搜索筛选栏 + 3D 卡通头像</div>
         </div>
       </div>
     </div>
